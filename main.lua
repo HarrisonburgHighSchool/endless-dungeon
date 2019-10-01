@@ -7,7 +7,18 @@ end
 
 
 function love.update(dt)
-
+  if love.keyboard.isDown('w') then   
+    y = y - 1
+  end
+    if love.keyboard.isDown('s') then   
+      y = y + 1
+    end
+      if love.keyboard.isDown('a') then  
+        x = x - 1
+      end
+        if love.keyboard.isDown('d') then   
+          x = x + 1
+  end
 end
 
 
