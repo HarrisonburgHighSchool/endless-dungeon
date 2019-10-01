@@ -2,12 +2,29 @@
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 end
 
 
 function love.update(dt)
-
+if love.keyboard.isDown('right') then -- if the 'up' key
+  x = x + 3
+end
+  if love.keyboard.isDown('left') then -- if the 'up' key
+    x = x - 3
+end
+if love.keyboard.isDown('up') then -- if the 'up' key
+  y = y - 3
+end
+  if love.keyboard.isDown('down') then -- if the 'up' key
+    y = y + 3
+end
+if(x < 1)then 
+    x = x + 4
+end
+if(x > 700)then 
+  x = x - 4
+end
 end
 
 
