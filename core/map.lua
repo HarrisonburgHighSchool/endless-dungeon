@@ -1,28 +1,23 @@
+local class = require 'core/middleclass'
 local Tile = require 'core/tile'
+local Map = class('Map')
 
-local Map = {}
-
-function Map:new(xSize, ySize)
+function Map:initialize(xSize, ySize)
   local template
-  local map = {
-    matrix = {},
-    x = 0,
-    y = 0,
-  }
+  self.matrix = {}
+  self.x = 0
+  self.y = 0
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
   else
     for x = 1, xSize do
-      map.matrix[x] = {}
+      self.matrix[x] = {}
       for y = 1, ySize do
-        map.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64)
+        self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64)
       end
     end
   end
-  setmetatable(map, self)
-  self.__index = self
-  return map
 end
 
 function Map:draw()
