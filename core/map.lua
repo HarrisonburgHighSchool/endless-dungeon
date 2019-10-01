@@ -2,7 +2,7 @@ local class = require 'core/middleclass'
 local Tile = require 'core/tile'
 local Map = class('Map')
 
-function Map:initialize(xSize, ySize)
+function Map:constructor(xSize, ySize)
   local template
   self.matrix = {}
   self.x = 0

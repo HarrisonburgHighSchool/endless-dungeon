@@ -112,7 +112,7 @@ end
 local DefaultMixin = {
   __tostring   = function(self) return "instance of " .. tostring(self.class) end,
 
-  initialize   = function(self, ...) end,
+  constructor   = function(self, ...) end,
 
   isInstanceOf = function(self, aClass)
     return type(aClass) == 'table'
@@ -132,7 +132,7 @@ local DefaultMixin = {
     new = function(self, ...)
       assert(type(self) == 'table', "Make sure that you are using 'Class:new' instead of 'Class.new'")
       local instance = self:allocate()
-      instance:initialize(...)
+      instance:constructor(...)
       return instance
     end,
 
@@ -145,7 +145,7 @@ local DefaultMixin = {
       for methodName, f in pairs(self.__instanceDict) do
         _propagateInstanceMethod(subclass, methodName, f)
       end
-      subclass.initialize = function(instance, ...) return self.initialize(instance, ...) end
+      subclass.constructor = function(instance, ...) return self.constructor(instance, ...) end
 
       self.subclasses[subclass] = true
       self:subclassed(subclass)

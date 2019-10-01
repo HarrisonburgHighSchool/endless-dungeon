@@ -2,7 +2,7 @@ local class = require 'core/middleclass'
 
 local Entity = class('Entity')
 
-function Entity:initialize()
+function Entity:constructor()
   self.img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   self.x = 400
   self.y = 300

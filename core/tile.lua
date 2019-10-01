@@ -2,7 +2,7 @@ local class = require 'core/middleclass'
 
 local Tile = class('Tile')
 
-function Tile:initialize(x, y)
+function Tile:constructor(x, y)
   self.x = x
   self.y = y
   self.img = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
