@@ -78,7 +78,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
-| `Map:new()` | `object` | Creates an `Map` object |
+| `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
@@ -111,6 +111,8 @@ end
 
 
 # Collisions
+
+Under construction
 
 ----
  
