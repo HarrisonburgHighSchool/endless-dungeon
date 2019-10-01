@@ -1,3 +1,4 @@
+
 function love.load()
   x = 400
   y = 300
@@ -15,9 +16,3 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
 end
 
-
-function love.keypressed(key)
-  if key == 'up' then
-    x = x + 1
-  end
-end
