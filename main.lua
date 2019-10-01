@@ -2,12 +2,23 @@
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
 end
 
 
 function love.update(dt)
-
+  if love.keyboard.isDown('up') and y > 0 then   -- if the 'up' key is being pressed...
+    y = y - 10
+  end
+  if love.keyboard.isDown('down')then   -- if the 'down' key is being pressed...
+    y = y + 10
+  end
+  if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
+    x = x - 10
+  end
+  if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
+    x = x + 10
+  end
 end
 
 
