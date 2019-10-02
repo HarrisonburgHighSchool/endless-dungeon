@@ -10,11 +10,31 @@ function Map:constructor(xSize, ySize)
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
-  else
+  end
+  if not template then
     for x = 1, xSize do
       self.matrix[x] = {}
       for y = 1, ySize do
         self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64)
+      end
+    end
+  else
+    for x = 1, #template do
+      if type(template[1]) == 'table' then
+        self.matrix[x] = {}
+        for y = 1, #template[1] do
+          if type(template[x][y]) == 'string' then
+            self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64, love.graphics.newImage(template[x][y]))
+          else
+            self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64, template[x][y])
+          end
+        end
+      else
+        if type(template[x][y]) == 'string' then
+          self.matrix[x] = Tile:new((x-1)*64, y, template[x])
+        else
+          self.matrix[x] = Tile:new((x-1)*64, y, love.graphics.newImage(template[x]))
+        end
       end
     end
   end
