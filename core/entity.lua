@@ -1,15 +1,11 @@
-local Entity = {}
+local class = require 'core/middleclass'
 
-function Entity:new(spritesheet, x, y)
-  local entity = {
-    img = love.graphics.newImage(spritesheet);
-    x = x,
-    y = y,
-    state = 'rest',
-  }
-  setmetatable(entity, self)
-  self.__index = self
-  return entity
+local Entity = class('Entity')
+
+function Entity:constructor()
+  self.img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  self.x = 400
+  self.y = 300
 end
 
 function Entity:draw()
