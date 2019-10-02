@@ -4,12 +4,8 @@ function love.load()
   map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 end
 
-function love.update(dt)
-  -- Nothing to update
-end
-
 function love.draw()
-  map:draw()
+  map:draw1()
 end
 
 function love.load()
@@ -40,40 +36,9 @@ function love.update(dt)
   map = Map:new(mapTemplate)
 end
 
-function love.update(dt)
-  -- Nothing to update yet
-end
-
-
 function love.draw()
   love.graphics.print('Hi how has your day!', 0, 0)
   love.graphics.print('Hello, world!', 0, 0)
   map:draw()
   love.graphics.draw(playerImg, x, y)
 end
-
-function love.load()
-
-    floorTile = love.graphics.newImage('asset.png')
-    altar     = love.graphics.newImage('altar-asset.png')
-    template = { --a 3 x 3 map with the altar texture in the middle
-                 {floorTile, floorTile, floorTile},
-                 {floorTile, altar, floorTile},
-                 {floorTile, floorTile, floorTile},
-               }
-    map = Map:new(template)
-  end
-
-  function love.update(dt)
-    -- Nothing to update
-  end
-  
-  function love.draw()
-    map:draw()
-  end
-
-
-
-
-
-
