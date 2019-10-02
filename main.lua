@@ -20,7 +20,7 @@ function love.update(dt)
    a = a + 1
   end
   if love.keyboard.isDown('left')then
-   b = b - 1
+    = b - 1
   end
   end
 function love.move(dt)
