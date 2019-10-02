@@ -10,7 +10,7 @@ function love.update(dt)
   if love.keyboard.isDown('w') and y > 0 then   -- if the 'up' key is being pressed
     y = y - 5
   end
-  if love.keyboard.isDown('s') then   -- if the 'up' key is being pressed
+  if love.keyboard.isDown('s') and y < 600 then   -- if the 'up' key is being pressed
     y = y + 5
   end
   if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed
@@ -27,4 +27,3 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
-
