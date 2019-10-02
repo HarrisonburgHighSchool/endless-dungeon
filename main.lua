@@ -5,10 +5,12 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_yellow.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
   template = {
-    {floor,wall,floor,floor},
-    {wall,wall,wall,wall},
-    {floor,wall,floor,floor},}
-  map = Map:new(5, 5)
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, wall, floor, floor, floor},
+    {floor, wall, wall, wall, wall, floor},
+    {floor, floor, wall, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor}}
+  map = Map:new(template)
 end
 
 
