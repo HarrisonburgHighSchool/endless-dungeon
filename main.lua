@@ -22,9 +22,14 @@ end
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   mapTemplate = {
-    {cobalt, cobalt, cobalt},
-    {cobalt, cobalt, cobalt},
-    {cobalt, cobalt, cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
   }
 
   map = Map:new(mapTemplate)
