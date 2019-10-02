@@ -6,6 +6,11 @@ function love.load()
   y = 400
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
 oct = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
+template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
   map = Map:new(15, 15)
 end
 
