@@ -11,7 +11,7 @@ function love.load()
               {cobble, cobble, cobble},
             }
 
-            map = Map:new(5, 5)
+            map = Map:new(template)
 end
 
 
@@ -30,22 +30,20 @@ if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
   y = y - 10
 end
 if(x > 700) then
-  x = x - 3
+  x = x - 10
 end
 if (x < 50) then
-x = x + 3
+x = x + 10
 end
 if(y > 500) then
-  y = y - 3
+  y = y - 10
 end
 if(y < 50) then
-  y = y + 3
+  y = y + 10
 end
 end
 
-function love.update(dt)
-  -- Nothing to update yet
-end
+
 
 function love.draw()
   map:draw()
