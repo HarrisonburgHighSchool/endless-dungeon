@@ -3,13 +3,25 @@ local Map = require 'core/map'
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-
-  cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  playerImg = love.graphics.newImage('assets-2/player/base/elf_f.png')
+  
+  ,limestone,limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
+  
   mapTemplate = {
-    {cobalt, cobalt, cobalt},
-    {cobalt, cobalt, cobalt},
-    {cobalt, cobalt, cobalt},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    {,limestone,limestone, ,limestone,limestone, ,limestone,limestone, ,limestone,limestone},
+    
   }
 
   map = Map:new(mapTemplate)
@@ -23,7 +35,11 @@ function love.update(dt)
     y = y - 1
   end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    y = x + 1
+    x = x + 1
+end
+if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
+  x = x - 1
+end
 end
 
 function love.draw()
