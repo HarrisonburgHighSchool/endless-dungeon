@@ -29,6 +29,9 @@ function love.update(dt)
   
 end
 
+function love.update(dt)
+  -- Nothing to update yet
+end
 
 function love.draw()
   
