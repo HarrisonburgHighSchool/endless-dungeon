@@ -9,7 +9,6 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  love.graphics.print('AD 117, the peak of the Roman Empires might.', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
-
