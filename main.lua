@@ -1,8 +1,11 @@
+local map = require 'core/map'
 
 function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_5.png')
+
+  cobble = love.graphics.newImage()
 end
 
 
