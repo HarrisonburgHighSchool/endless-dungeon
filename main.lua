@@ -36,7 +36,7 @@ function love.load()
 }
   map = Map:new(template)
 end
-
+-- DELETE THIS
 
 function love.update(dt)
   if love.keyboard.isDown('w') and y > 0 then   -- if the 'up' key is being pressed
