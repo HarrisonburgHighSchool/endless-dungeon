@@ -24,16 +24,20 @@ function Map:constructor(xSize, ySize)
         self.matrix[x] = {}
         for y = 1, #template[1] do
           if type(template[x][y]) == 'string' then
-            self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64, love.graphics.newImage(template[x][y]))
+            local img = love.graphics.newImage(template[x][y])
+            self.matrix[x][y] = Tile:new((x-1)*img:getWidth(), (y-1)*img:getWidth(), img)
           else
-            self.matrix[x][y] = Tile:new((x-1)*64, (y-1)*64, template[x][y])
+            local img = template[x][y]
+            self.matrix[x][y] = Tile:new((x-1)*img:getWidth(), (y-1)*img:getWidth(), img)
           end
         end
       else
         if type(template[x][y]) == 'string' then
-          self.matrix[x] = Tile:new((x-1)*64, y, template[x])
+          local img = template[x]
+          self.matrix[x] = Tile:new((x-1)*img:getWidth(), y, img)
         else
-          self.matrix[x] = Tile:new((x-1)*64, y, love.graphics.newImage(template[x]))
+          local img = love.graphics.newImage(template[x])
+          self.matrix[x] = Tile:new((x-1)*img:getWidth(), y, img)
         end
       end
     end
