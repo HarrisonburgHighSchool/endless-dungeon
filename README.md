@@ -1,6 +1,6 @@
 # Endless Dungeon Documentation
 
-This is the documentation for the Endless Dungeon Project.
+This is the documentation f33or the Endless Dungeon Project.
 
 ### Table of Contents
 
@@ -115,4 +115,3 @@ end
 Under construction
 
 ----
- 
