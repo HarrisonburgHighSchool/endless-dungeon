@@ -70,7 +70,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `matrix` | table | A 2D table, with each index containing a `Tile` object |
+| `matrix` | table | A 1D or 2D table, with each index containing a `Tile` object |
 | `x` | integer | Offsets the location of the `Tile.x` values stored in `matrix` |
 | `y` | integer | Offsets the location of the `Tile.y` values stored in `matrix` |
 
@@ -78,7 +78,8 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
-| `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` |
+| `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
+| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
@@ -96,6 +97,30 @@ local Map = require 'core/map'
 
 function love.load()
   map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
+end
+
+function love.update(dt)
+  -- Nothing to update
+end
+
+function love.draw()
+  map:draw()
+end
+```
+
+To make a custom table, you can create a `template` data structure that you can pass into `Map:new(template)`. The `template` will determine the size of the map and the textures that get loaded into each `Tile` object. Here is an example:
+
+```lua
+function love.load()
+  
+  floorTile = love.graphics.newImage('asset.png')
+  altar     = love.graphics.newImage('altar-asset.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
 end
 
 function love.update(dt)
