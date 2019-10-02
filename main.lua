@@ -2,7 +2,7 @@
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/Link.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/Octopode_1.png')
 end
 
 function love.update(dt)
