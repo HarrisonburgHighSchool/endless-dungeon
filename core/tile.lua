@@ -1,14 +1,15 @@
-local Tile = {}
+local class = require 'core/middleclass'
 
-function Tile:new(x, y)
-  local tile = {
-    x = x,
-    y = y,
-    img = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
-  }
-  setmetatable(tile, self)
-  self.__index = self
-  return tile
+local Tile = class('Tile')
+
+function Tile:constructor(x, y, img)
+  self.x = x
+  self.y = y
+  if not img then
+    self.img = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
+  else
+    self.img = img
+  end
 end
 
 function Tile:draw()
