@@ -1,7 +1,7 @@
 local Map = require 'core/map'
 
 function love.load()
-  map = Map:new(5, 5)
+  map = Map:new(20, 20)
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
@@ -9,16 +9,16 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('up') then  
-    y = y - 1
+    y = y - 5
   end
   if love.keyboard.isDown('right') then  
-    x = x + 1
+    x = x + 5
   end
   if love.keyboard.isDown('left') then  
-    x = x - 1
+    x = x - 5
   end
 if love.keyboard.isDown('down') then  
-    y = y + 1
+    y = y + 5
 end
 end
 
