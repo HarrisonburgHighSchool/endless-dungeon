@@ -1,4 +1,5 @@
-
+local Map = require 'core/map'
+love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   x = 400
   y = 300
@@ -6,7 +7,17 @@ function love.load()
   a = 500
   b = 400
   playerImg2 = love.graphics.newImage('assets-1/monster/human.png')
+  tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
+  path = love.graphics.newImage('assets-1/dungeon/floor/lab-stone_0.png')
 
+
+  template = { --a 3 x 3 map with the altar texture in the middle
+                 {tile, path, tile},
+                 {tile, path, tile},
+                 {tile, path, tile},
+               }
+  map = Map:new(template)
+  map:changeScale(5)
 end
 
 function love.update(dt)
@@ -37,6 +48,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  map:draw()
   love.graphics.print('AD 117, the peak of the Roman Empires might.', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg2, a, b)
