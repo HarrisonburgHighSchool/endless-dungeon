@@ -1,4 +1,3 @@
-local Map = require 'core/map'
 
 function love.load()
   x = 400
@@ -7,7 +6,9 @@ function love.load()
 end
 
 function love.update(dt)
-  -- Nothing to update yet
+  if love.keyboard.isDown('right') then
+    x = x + 1
+  end
 end
 
 function love.draw()
