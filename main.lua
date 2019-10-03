@@ -46,7 +46,7 @@ end
 
 function love.draw()
   map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  love.graphics.print('Level Boss', 0, 0)
   love.graphics.draw(playerImg, x, y)
   
 end
