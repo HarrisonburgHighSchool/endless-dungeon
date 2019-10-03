@@ -1,6 +1,17 @@
 
+local Map = require 'core/map'
+love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
-  x = 400
+  floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
+  altar     = love.graphics.newImage('assets-1/dungeon/altars/altar_ashenzari.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
+  map:changeScale(4)
+x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
 
@@ -8,6 +19,9 @@ function love.load()
   y = 300
 playerImg1 = love.graphics.newImage('assets-1/player/base/gargoyle_female.png')
 end
+
+
+
 
 
 
@@ -36,8 +50,10 @@ function love.update(dt)
 end
 
 function love.draw()
+  map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, x, y)
+  love.graphics.draw(altar)
 
 end
