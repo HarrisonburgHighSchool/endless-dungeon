@@ -4,14 +4,17 @@ function love.load()
   x = 0
   mirrorx = 704
   y = 256
-  mirrory = 512
+  mirrory = 256
+
   playerImg = love.graphics.newImage('assets-1/player/base/Octopode_1.png')
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltMirrorLeft = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_left.png')
   cobaltMirrorRight = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   mapTemplate = {
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall,},
     {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, hole, hole,},
     {cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, hole, hole,},
     {cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
