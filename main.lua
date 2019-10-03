@@ -1,4 +1,3 @@
-local Map = require 'core/map'
 
 function love.load()
   x = 400
