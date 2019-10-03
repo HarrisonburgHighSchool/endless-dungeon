@@ -5,13 +5,18 @@ function love.load()
 end
 
 function love.update(dt)
-  if love.keyboard.isDown('up') then
+ if love.keyboard.isDown('up') then
     y = y + -1
-
-    if love.keyboard.isDown('down') then
-      y = y + 1
   end
-
+  if love.keyboard.isDown('down') then
+     y = y + 1
+   end
+   if love.keyboard.isDown('left') then
+      x = x + -1
+    end
+    if love.keyboard.isDown('right') then
+       x = x + 1
+     end
 end
 
 function love.draw()
