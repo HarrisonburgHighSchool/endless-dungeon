@@ -58,7 +58,6 @@ end
 
 function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
-  map:draw()
   love.graphics.draw(playerImg, x, y)
     love.graphics.draw(gate, 400, 570)
     entity:draw()
