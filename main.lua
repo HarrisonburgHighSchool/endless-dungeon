@@ -16,7 +16,6 @@ function love.load()
     map = Map:new(template)
 end
 
-
 function love.update(dt)
 if love.keyboard.isDown('right') then 
   x = x + 3
@@ -44,9 +43,7 @@ if(y > 550)then
 end
 end
 
-
 function love.draw()
   map:draw()
   love.graphics.draw(playerImg, x, y)
 end
-
