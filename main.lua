@@ -8,7 +8,7 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   img = love.graphics.newImage('assets-1/item/book/plaid.png')
 end
-
+ 
 function love.update(dt)
   if love.keyboard.isDown('up')then
     y=y-1
