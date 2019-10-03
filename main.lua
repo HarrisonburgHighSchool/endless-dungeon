@@ -5,25 +5,22 @@ function love.load()
 end
 
 function love.update(dt)
-end
+  if love.keybored.isdown('right') then
+        x = x + 1
+   end
+
+   if love.keybored.isdown('left') then
+        x = x - 1
+    end
+
+    if love.keybored.isdown('up') then
+        x = x + 1
+
+    if love.keybored.isdown('down') then
+        x = x - 1
+       end
 
 function love.draw()
   love.graphics.print('mike hawk!', 0, 0)
-  love.graphics.draw(playerImg, 30, 50)
+  love.graphics.draw(playerImg, x, y)
 end
-
- iflove.keybored.isdown('right')then
-   x = x + 1
-  end
-
-  iflove.keybored.isdown('left')then
-    x = x - 1
-   end
-
-   iflove.keybored.isdown('up')then
-     x = x + 1
-
-
-   iflove.keybored.isdown('down')then
-       x = x - 1
-      end
