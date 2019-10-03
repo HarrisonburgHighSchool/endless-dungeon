@@ -1,4 +1,3 @@
-local Map = require 'core/map'
 
 function love.load()
   map = Map:new(20,20) -- Create a 5 x 5 map object named "map"
@@ -26,4 +25,3 @@ function love.draw()
   love.graphics.print('Hi how has your day!', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
-
