@@ -1,35 +1,52 @@
+local Map = require 'core/map'
 
 function love.load()
+
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  playerImg = love.graphics.newImage('assets-1/monster/raven.png')
+
+  floor = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
+  template = { 
+               {floor, floor, floor},
+               {floor, floor, floor},
+               {floor, floor, floor},
+               {floor, floor, floor},
+             }
+    map = Map:new(template)
 end
 
 
 function love.update(dt)
-if love.keyboard.isDown('right') then -- if the 'up' key
+if love.keyboard.isDown('right') then 
   x = x + 3
 end
-  if love.keyboard.isDown('left') then -- if the 'up' key
+  if love.keyboard.isDown('left') then 
     x = x - 3
 end
-if love.keyboard.isDown('up') then -- if the 'up' key
+if love.keyboard.isDown('up') then 
   y = y - 3
 end
-  if love.keyboard.isDown('down') then -- if the 'up' key
+  if love.keyboard.isDown('down') then 
     y = y + 3
 end
 if(x < 1)then 
     x = x + 4
 end
-if(x > 700)then 
+if(x > 730)then 
   x = x - 4
+end
+if(y < 1)then 
+  y = y + 4
+end
+if(y > 550)then 
+  y = y - 4
 end
 end
 
 
 function love.draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  map:draw()
   love.graphics.draw(playerImg, x, y)
 end
 
