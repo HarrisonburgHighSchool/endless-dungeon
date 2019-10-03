@@ -8,7 +8,7 @@ function love.load()
   enemy_x = 100
   enemy_y = 400
 
-  cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+  cam = gamera.new(-5, -5, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
   playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
@@ -16,25 +16,24 @@ function love.load()
  
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_full.png')
-  
-  
-
+  left_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_west.png')
+  right_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_south.png')
   template = { --a 3 x 3 map with the altar texture in the middle
 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}, 
+  {left_edge_tile, left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, },
+  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
+  {right_edge_tile, right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile, }, 
  
 
 }
