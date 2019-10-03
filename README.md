@@ -4,6 +4,11 @@ This is the documentation for the Endless Dungeon Project.
 
 ### Table of Contents
 
+* [Entities](#the-entity-class)
+* [Maps](#the-map-class)
+* [Collisions](#collisions)
+* [Camera](#camera)
+
 ----
 
 
@@ -70,7 +75,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `matrix` | table | A 2D table, with each index containing a `Tile` object |
+| `matrix` | table | A 1D or 2D table, with each index containing a `Tile` object |
 | `x` | integer | Offsets the location of the `Tile.x` values stored in `matrix` |
 | `y` | integer | Offsets the location of the `Tile.y` values stored in `matrix` |
 
@@ -78,7 +83,8 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
-| `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` |
+| `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
+| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
@@ -107,6 +113,30 @@ function love.draw()
 end
 ```
 
+To make a custom table, you can create a `template` data structure that you can pass into `Map:new(template)`. The `template` will determine the size of the map and the textures that get loaded into each `Tile` object. Here is an example:
+
+```lua
+function love.load()
+  
+  floorTile = love.graphics.newImage('asset.png')
+  altar     = love.graphics.newImage('altar-asset.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
+end
+
+function love.update(dt)
+  -- Nothing to update
+end
+
+function love.draw()
+  map:draw()
+end
+```
+
 ----
 
 
@@ -115,4 +145,44 @@ end
 Under construction
 
 ----
- 
+
+# Camera
+
+The `gamera` is a camera that automatically scales and repositions the camera.
+
+## How to Use
+
+First, you need to `require` the `gamera` at the top of your code. This imports the library and allows you to use it in your code.
+
+```lua
+local gamera = require 'core/gamera'
+```
+
+Then, you should make the camera and store it in a data structure. **Put something like this in your `love.load()` function:**
+
+```lua
+cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+```
+
+To change the position of your camera, use the `gamera:setPosition(x, y)` method. This will likely go in your `love.update(dt)` function:
+
+```lua
+cam:setPosition(400, 400)
+```
+
+Remember that you can use a variable anywhere where you see a number...
+
+Finally, you need to invoke the camera when you draw anything to the screen. To make this happen, set up your `love.draw()` function accordingly:
+
+```lua
+function love.draw()
+  cam:draw(function(l, t, w, h)
+  
+  --Draw everything here. For example:
+  love.graphics.draw(playerImg, x, y)
+  
+  end)
+end
+```
+
+----

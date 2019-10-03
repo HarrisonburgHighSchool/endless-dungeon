@@ -1,3 +1,4 @@
+
 function love.load()
   x = 400
   y = 300
