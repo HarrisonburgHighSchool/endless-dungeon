@@ -5,14 +5,16 @@ function love.load()
 end
 
 function love.update(dt)
-  -- Nothing to update yet
+  if love.keyboard.isDown('up') then
+    y = y + -1
+
+    if love.keyboard.isDown('down') then
+      y = y + 1
+  end
+
 end
 
 function love.draw()
   love.graphics.print('Yo!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-end
-
-iflove.keyboard.isdown('right')then
-  x = x + 1
 end
