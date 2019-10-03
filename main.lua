@@ -88,7 +88,7 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y) 
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
-  
+  end)
 end
 
 
