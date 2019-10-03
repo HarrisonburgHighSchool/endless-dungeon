@@ -1,3 +1,4 @@
+local Map = require 'core/map'
 
 function love.load()
   x = 400
@@ -8,31 +9,22 @@ function love.load()
   cage1 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_10.png')
   cage2 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_11.png')
   cage3 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_12.png')
-  statue = love.graphics.newImage('assets-1/dungeon/statues/statue_hydra.png')
+  statue = love.graphics.newImage('assets-1/dungeon/altars/cheibriados.png')
   mapTemplate = {
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
+    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
 
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
-
-    
   }
 end
   function love.update(dt)
@@ -56,7 +48,16 @@ end
 
 function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
+  map:draw()
+  love.graphics.draw(statue, 100, 200)
+  love.graphics.draw(statue, 200, 200)
+  love.graphics.draw(statue, 300, 200)
+  love.graphics.draw(statue, 400, 200)
+  love.graphics.draw(statue, 500, 200)
+  love.graphics.draw(statue, 600, 200)
+  love.graphics.draw(statue, 700, 200)
+  
   love.graphics.draw(playerImg, x, y)
-
   
 end
+
