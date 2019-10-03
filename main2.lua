@@ -1,15 +1,15 @@
 local Map = require 'core/map'
 
-function love.load()
- 
-  --player = Entity:new() -- Create the Entity object named player
 
+  
+function love.load()
  
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
   map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
+
 end
 
 
@@ -32,10 +32,10 @@ end
 
 
 function love.draw()
-  map:draw()
+  
   love.graphics.print('Octopod-cast!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-  --player:draw() -- Draw the entity object named player
-  
+  player:draw() -- Draw the entity object named player
+ 
 
 end
