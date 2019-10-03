@@ -1,7 +1,7 @@
 local Map = require 'core/map'
 
 function love.load()
-  x = 400
+  x = 0
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
 
@@ -22,6 +22,14 @@ end
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   mapTemplate = {
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
+    {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
     {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
     {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
     {cobalt, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cobalt},
