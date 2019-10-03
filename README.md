@@ -4,6 +4,11 @@ This is the documentation f33or the Endless Dungeon Project.
 
 ### Table of Contents
 
+* [Entities](#the-entity-class)
+* [Maps](#the-map-class)
+* [Collisions](#collisions)
+* [Camera](#camera)
+
 ----
 
 
@@ -112,7 +117,7 @@ To make a custom table, you can create a `template` data structure that you can 
 
 ```lua
 function love.load()
-  
+
   floorTile = love.graphics.newImage('asset.png')
   altar     = love.graphics.newImage('altar-asset.png')
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -138,5 +143,46 @@ end
 # Collisions
 
 Under construction
+
+----
+
+# Camera
+
+The `gamera` is a camera that automatically scales and repositions the camera.
+
+## How to Use
+
+First, you need to `require` the `gamera` at the top of your code. This imports the library and allows you to use it in your code.
+
+```lua
+local gamera = require 'core/gamera'
+```
+
+Then, you should make the camera and store it in a data structure. **Put something like this in your `love.load()` function:**
+
+```lua
+cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+```
+
+To change the position of your camera, use the `gamera:setPosition(x, y)` method. This will likely go in your `love.update(dt)` function:
+
+```lua
+cam:setPosition(400, 400)
+```
+
+Remember that you can use a variable anywhere where you see a number...
+
+Finally, you need to invoke the camera when you draw anything to the screen. To make this happen, set up your `love.draw()` function accordingly:
+
+```lua
+function love.draw()
+  cam:draw(function(l, t, w, h)
+
+  --Draw everything here. For example:
+  love.graphics.draw(playerImg, x, y)
+
+  end)
+end
+```
 
 ----
