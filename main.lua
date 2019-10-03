@@ -10,7 +10,7 @@ function love.load()
   cobalt2 = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
   cobalt3 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_12.png')
   ent = love.graphics.newImage('assets-1/monster/boggart.png')
-
+  
 
   mapTemplate = {
     {cobalt, cobalt2, cobalt, cobalt2, cobalt3, cobalt3, cobalt2, cobalt, cobalt2, cobalt},
@@ -57,8 +57,14 @@ function love.update(dt)
 end
 
 function love.draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  map:draw()
+  entity:draw()
+  love.graphics.print('Level 1, Teaching Level!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-    love.graphics.draw(gate, 400, 570)
-    entity:draw()
+  love.graphics.draw(gate, 400, 570)
+
+
+
+
+
 end
