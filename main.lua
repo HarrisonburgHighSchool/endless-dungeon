@@ -11,19 +11,29 @@ function love.load()
   cage3 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_12.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_hydra.png')
   mapTemplate = {
-    {cage, cage1, cage2, cage3},
-    {cage3, cage, cage1, cage2},
-    {cage2, cage3, cage,},
-    {cage1, cage2, cage3},
-    {cage, cage2, cage3},
-    {cage2, cage3, cage},
-    {cage3, cage, cage2},
-    {cage, cage2, cage3},
-    {cage, cage2, cage3},
-    {cage2, cage3, cage},
-    {cage3, cage, cage2},
-    {cage, cage2, cage3},
-    {cage, cage2, cage3},
+
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+    {cage1, cage2, cage3, cage, cage, cage, cage, cage, cage, cage},
+
+    
   }
 end
   function love.update(dt)
