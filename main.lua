@@ -1,3 +1,5 @@
+local Map = require 'core/map'
+local gamera = require 'core/gamera'
 
 function love.load()
   map = Map:new(20,20) -- Create a 5 x 5 map object named "map"
@@ -25,3 +27,4 @@ function love.draw()
   love.graphics.print('Hi how has your day!', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
+cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
