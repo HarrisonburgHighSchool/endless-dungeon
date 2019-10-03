@@ -10,7 +10,19 @@ function love.load()
   c = 300
   d = 400
   Img3 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
+
+  floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
+  altar     = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
+
+
 end
+
 
 
 
@@ -31,6 +43,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(Img2, a, b)
