@@ -9,23 +9,26 @@ function love.load()
   cam = gamera.new(-500, -500, 2000, 2000)
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
-altar     = love.graphics.newImage('assets-1/dungeon/floor/dirt_0.png')
+wall= love.graphics.newImage('assets-1/dungeon/floor/dirt_0.png')
 template = { --a 3 x 3 map with the altar texture in the middle
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
            }
+
 map = Map:new(template)
 map:changeScale(2)
 end
