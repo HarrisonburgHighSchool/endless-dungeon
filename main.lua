@@ -6,12 +6,31 @@ function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  floortile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
+  floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   altar     = love.graphics.newImage('assets-1/monster/demons/hellion.png')
-  template = { --a 3 x 3 map with the altar texture in the middle
-                {floorTile, floorTile, floorTile},
-                {floorTile, altar, floorTile},
-                {floorTile, floorTile, floorTile},
+  template = { --a 20 x 20 map with the altar texture in the middle
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},{floorTile, floorTile, floorTile},
+
+
+
+
               }
 map = Map:new(template)
 end
