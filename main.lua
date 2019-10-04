@@ -5,11 +5,11 @@ function love.load()
   x = 128
   camx = 96
   mirrorx = 768
-  y = 256
+  y = 320
   camy = 256
-  mirrory = 256
+  mirrory = 320
 
-  cam = gamera.new(48, 48, 800, 608)
+  cam = gamera.new(48, 52, 800, 604)
 
   playerImg = love.graphics.newImage('assets-1/player/base/Octopode_3.png')
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
