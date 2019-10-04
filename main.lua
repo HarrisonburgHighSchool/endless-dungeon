@@ -41,16 +41,16 @@ function love.update(dt)
     x=x+3
   end
   if love.keyboard.isDown('w')then
-    B=B-3
+    B=B-5
   end
   if love.keyboard.isDown('s')then
-    B=B+3
+    B=B+5
   end
   if love.keyboard.isDown('a')then
-    A=A-3
+    A=A-5
   end
   if love.keyboard.isDown('d')then
-    A=A+3
+    A=A+5
   end
 end
 function love.draw()
