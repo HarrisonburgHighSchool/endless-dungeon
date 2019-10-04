@@ -8,15 +8,14 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   playerImg1 = love.graphics.newImage('assets-1/player/base/gargoyle_female.png')
 
-
     floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
     altar     = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_3.png')
     template = {
-                  {floortile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, altar, floorTile, floorTile, altar, floortile,},
-                  {floorTile, floorTile, floorTile, floorTile, floorTile, floortile,},
+                  {floortile, floorTile, floorTile},
+                  {floorTile, altar, floorTile},
+                  {floorTile, floorTile, floorTile}
                 }
-    map = Map:new(1, 5)
+    map = Map:new(template)
 
 
 end
@@ -56,4 +55,5 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, a, b)
+  love.graphics.draw(altar, 130, 130)
 end
