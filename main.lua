@@ -10,9 +10,13 @@ function love.load()
 Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-            {Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
              }
   
 
@@ -36,7 +40,7 @@ end
 
 function love.draw()
   map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  love.graphics.print('Welcome to the Dungeon!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   --map = Map:new(50, 50) -- Create a 5 x 5 map object named "map"
 end
