@@ -68,6 +68,9 @@ function Map:createOneD(template, w, h)
       img = template[x]
     end
     self.matrix[x] = Tile:new(((x-1)*w + self.x) * self.scale, self.y * self.scale, img)
+    if self.matrix[x].img:getWidth() ~= w then
+      self.matrix[x]:changeScale(w/self.matrix[x].img:getWidth())
+    end
   end
 end
 
@@ -82,6 +85,9 @@ function Map:createTwoD(template, w, h)
         img = template[x][y]
       end
       self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
+      if self.matrix[x][y].img:getWidth() ~= w then
+        self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+      end
     end
   end
 end
