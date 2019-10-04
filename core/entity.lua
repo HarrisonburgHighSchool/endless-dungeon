@@ -2,8 +2,12 @@ local class = require 'core/middleclass'
 
 local Entity = class('Entity')
 
-function Entity:constructor()
-  self.img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+function Entity:constructor(img, x, y)
+  if type(img) == 'string' then
+    self.img = love.graphics.newImage(img)
+  else
+    self.img = img
+  end
   self.x = 400
   self.y = 300
 end

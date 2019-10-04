@@ -4,7 +4,7 @@ function love.load()
   cam = gamera.new(-500, -500, 2000, 2000)
   x = 400
   y = 325
-  playerImg = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
+  playerImg = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
   a = 470
   b = 400
   Img2 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
@@ -59,5 +59,5 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(Img2, a, b)
   love.graphics.draw(Img3, c, d)
- end) 
+ end)
 end
