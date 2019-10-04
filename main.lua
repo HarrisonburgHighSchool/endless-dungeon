@@ -8,7 +8,7 @@ function love.load()
   enemy_x = 100
   enemy_y = 400
 
-  cam = gamera.new(-5, -5, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+  cam = gamera.new(-20, -20, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
   playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
@@ -17,23 +17,31 @@ function love.load()
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_full.png')
   left_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_west.png')
-  right_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_south.png')
+  right_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_east.png')
+  top_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_north.png')
+  bottom_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_south.png')
+  northeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northeast.png')
+  southwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southwest.png')
+  southeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southeast.png')
+  northwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northwest.png')
+  butterfly = love.graphics.newImage('assets-2/dc-mon/animals/butterfly6.png')
+  fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_sparkling_fountain.png')
   template = { --a 3 x 3 map with the altar texture in the middle
 
-  {left_edge_tile, left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, },
-  {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, }, 
-  {right_edge_tile, right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile, }, 
+  {northwest_tile, left_edge_tile,left_edge_tile, left_edge_tile,left_edge_tile, left_edge_tile,southwest_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, },
+  {top_edge_tile, floorTile,floorTile, floorTile,floorTile, floorTile,  bottom_edge_tile, }, 
+  {northeast_tile, right_edge_tile,right_edge_tile, right_edge_tile,right_edge_tile, right_edge_tile, southeast_tile, }, 
  
 
 }
@@ -86,6 +94,8 @@ function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y) 
+  love.graphics.draw(fountain, 440, 200)
+  love.graphics.draw(butterfly, 450, 100)
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
   end)
 end
