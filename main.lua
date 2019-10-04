@@ -1,6 +1,8 @@
 local Map = require 'core/map'
+local gamera = require 'core/gamera'
 
 function love.load()
+  cam = gamera.new(0, 0, 2000, 2000)
   a = 100
   b = 100
   x = 400
@@ -8,11 +10,30 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/dungeon/trees/mangrove_1.png')
   playerImg2 = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/bog_green_1.png')
- --altar     = love.graphics.newImage('altar-asset.png')
+  wall     = love.graphics.newImage('assets-1/dungeon/wall/hell_5.png')
  template = { --a 3 x 3 map with the altar texture in the middle
-              {floorTile, floorTile, floorTile},
-              {floorTile, floorTile, floorTile},
-              {floorTile, floorTile, floorTile},
+              {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
+              {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+
             }
  map = Map:new(template)
 end
@@ -45,11 +66,14 @@ function love.update(dt)
           if love.keyboard.isDown('w') then
                 b = b - 1
               end
+cam:setPosition(x, y)
 end
 
 function love.draw()
-   map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(playerImg2, a, b)
+  cam:draw(function(l, t, w, h)
+     map:draw()
+    love.graphics.print('Hello, world!', 0, 0)
+    love.graphics.draw(playerImg, x, y)
+    love.graphics.draw(playerImg2, a, b)
+  end)
 end
