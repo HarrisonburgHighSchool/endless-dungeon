@@ -34,7 +34,6 @@ function love.update(dt)
   end
 end
 
-
 function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
