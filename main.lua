@@ -1,4 +1,3 @@
-local Map = require 'core/map'
 
 function love.load()
   x = 0
@@ -52,8 +51,6 @@ end
 
 function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
-  map:draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
 end
-
