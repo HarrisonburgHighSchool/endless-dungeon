@@ -85,7 +85,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
 | `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
-| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles |
+| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles. The `Tile` objects will be sized based on the size of the first tile. |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
