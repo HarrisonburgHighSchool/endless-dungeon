@@ -2,14 +2,14 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 
 function love.load()
-  x = 64
+  x = 128
   camx = 96
   mirrorx = 768
   y = 256
   camy = 256
   mirrory = 256
 
-  cam = gamera.new(48, 48, 816, 608)
+  cam = gamera.new(48, 48, 800, 608)
 
   playerImg = love.graphics.newImage('assets-1/player/base/Octopode_3.png')
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
@@ -64,7 +64,7 @@ end
 function love.draw()
   cam:draw(function(camx, camy)
   map:draw()
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x, y,rotation, -1, 1)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   end)
 end
