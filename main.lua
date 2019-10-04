@@ -11,7 +11,7 @@ function love.load()
     floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
     template = {
-                  {floorTile, floorTile, floorTile, floorTile, flooorTile, floorTile, floorTile, flooorTile},
+                  {floorTile, altar, floorTile, floorTile, flooorTile},
                   {floorTile, altar, altar, altar, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile},
