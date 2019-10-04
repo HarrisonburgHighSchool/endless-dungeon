@@ -1,17 +1,36 @@
   local Map = require 'core/map'
-  love.graphics.setDefaultFliter('nearest', 'nearest')
+  local gamera = require 'core/gamera'
+love.graphics.setDefaultFilter( 'nearest', 'nearest')
 function love.load()
-
+  x= 200
+  y= 300
+  a=200
+  b=400
+  cam = gamera.new(-500, -500, 2000, 2000)
+  playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
 altar     = love.graphics.newImage('assets-1/dungeon/floor/dirt_0.png')
 template = { --a 3 x 3 map with the altar texture in the middle
-             {floorTile, floorTile,,
-             {floorTile, altar, },
-             {floorTile, floorTile, },
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+
            }
 map = Map:new(template)
+map:changeScale(2)
 end
 function love.update(dt)
+  cam:setPosition(x, y)
 if love.keyboard.isDown('right') then
 x = x + 1
 end
@@ -40,8 +59,11 @@ end
 end
 
 function love.draw()
-map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+
+cam:draw(function(l, t, w, h)
+  map:draw()
+  --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(playerImg1, a, b)
+
+end)
 end
