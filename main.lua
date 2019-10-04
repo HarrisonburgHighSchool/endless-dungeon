@@ -15,16 +15,16 @@ function love.load()
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile ,tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
-    {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
-    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
-    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
-    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
-    {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
-    {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile, tile, tile, tile3, tile3, tile3, tile, tile, tile, tile}
+    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
+    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
+    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
+    {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
+    {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
+    {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
+    {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
+    {tile, tile, tile, tile2, tile3, tile3, tile, tile, tile, tile}
   }
   bkgrnd = Map:new(map)
 
