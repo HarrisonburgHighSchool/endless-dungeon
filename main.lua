@@ -3,22 +3,21 @@ local gamera = require 'core/gamera'
 
 function love.load()
   cam = gamera.new(0,0,2000,2000)
-  map = Map:new(20,20) -- Create a 5 x 5 map object named "map"
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png'
-  floorTile = love.graphics.newImage('asset.png')
-  altar     = love.graphics.newImage('altar-asset.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  floortile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
+  altar     = love.graphics.newImage('assets-1/monster/demons/hellion.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-               {floorTile, floorTile, floorTile},
-               {floorTile, altar, floorTile},
-               {floorTile, floorTile, floorTile},
-             }
-  map = Map:new(template)
-end
+                {floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile},
+                {floorTile, floorTile, floorTile},
+              }
+map = Map:new(template)
 end
 
 function love.update(dt)
+  -- Nothing update
 if love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
   y = y - 5
 end
