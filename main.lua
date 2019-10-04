@@ -2,14 +2,22 @@ local Map = require 'core/map'
 
 function love.load()
   
-  wall = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_yellow.png')
-  floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_10.png')
+  door = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
   template = {
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, wall, floor, floor, floor},
-    {floor, wall, wall, wall, wall, floor},
-    {floor, floor, wall, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor}}
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, floor, floor, floor, floor, floor, floor, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   map = Map:new(template)
 end
 
@@ -31,9 +39,6 @@ function love.update(dt)
   
 end
 
-function love.update(dt)
-  -- Nothing to update yet
-end
 
 function love.draw()
   
