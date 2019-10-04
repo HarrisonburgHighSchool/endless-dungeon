@@ -5,11 +5,21 @@ function love.load()
   y = 300
   playerImg = love.graphics.newImage('assets-1/monster/dragons/quicksilver_dragon.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
-  altar = love.graphics.newImage('altar-asset.png')
-  template = { --a 3 x 3 map with the altar texture in the middle
-               {cobalt, cobalt, cobalt},
-               {cobalt, cobalt, cobalt},
-               {cobalt, cobalt, cobalt},
+  
+  template = { --a 13 x 10 map with the altar texture in the middle
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
              }
   map = Map:new(template)
 end
@@ -30,7 +40,6 @@ function love.update(dt)
   end
 end
 
-local Map = require 'core/map'
 
 function love.draw()
   map:draw()
