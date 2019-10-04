@@ -24,7 +24,7 @@ function love.load()
                }
   map = Map:new(template)
   map:changeScale(2)
-   
+
 end
 
 function love.update(dt)
