@@ -5,8 +5,7 @@ function love.load()
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
   dragon = love.graphics.newImage('assets-1/dungeon/statues/statue_dragon.png')
-  x = 400
-  y = 300
+  
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_2a.png')
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
@@ -15,17 +14,17 @@ function love.load()
 
   template = {
     {wall, wall, wall, wall, wall, wall, wall, wall, doorc, wall},
-    {door, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, floor, floor, floor, floor, floor, floor, floor, wall},
+    {door, floor, floor, floor, wall, floor, floor, floor, floor, wall},
+    {wall, wall, wall, floor, wall, wall, floor, wall, wall, wall},
+    {wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
+    {wall, floor, wall, wall, floor, wall, floor, wall, floor, wall},
+    {wall, floor, floor, floor, floor, wall, wall, wall, wall, wall},
+    {wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
+    {wall, wall, wall, floor, wall, floor, wall, wall, wall, wall},
+    {wall, floor, floor, floor, wall, floor, floor, floor, floor, wall},
+    {wall, floor, wall, wall, wall, floor, wall, wall, floor, wall},
+    {wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
+    {wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
   }
@@ -55,5 +54,5 @@ function love.draw()
   love.graphics.draw(fountain, 675, 100)
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(dragon, 400, 200)
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, 65, 80)
 end
