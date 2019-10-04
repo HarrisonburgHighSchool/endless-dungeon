@@ -6,7 +6,16 @@ function love.load()
   map = Map:new(20,20) -- Create a 5 x 5 map object named "map"
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png'
+  floorTile = love.graphics.newImage('asset.png')
+  altar     = love.graphics.newImage('altar-asset.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
+end
 end
 
 function love.update(dt)
