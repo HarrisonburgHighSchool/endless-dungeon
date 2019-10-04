@@ -8,9 +8,8 @@ function love.load()
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/zot_blue_0.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
-
-  template = {
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  template = {-- a 3 x 3 map with the floor texture in the middle
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, floor, floor, floor, wall, floor, wall, wall},
     {wall, floor, floor, floor, wall, floor, wall, wall},
     {wall, floor, floor, floor, wall, floor, wall, wall},
@@ -52,7 +51,7 @@ end
 if love.keyboard.isDown('up') then 
   y = y - 21
 end
-
+-- nothing to update
 end
 
 
