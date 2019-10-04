@@ -7,7 +7,7 @@ function Tile:constructor(x, y, img)
   self.y = y
   self.scale = 1
   if not img then
-    self.img = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
+    self.img = love.graphics.newImage('assets-1/transparent.png')
   else
     self.img = img
   end

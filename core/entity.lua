@@ -3,7 +3,11 @@ local class = require 'core/middleclass'
 local Entity = class('Entity')
 
 function Entity:constructor(img, x, y)
-  self.img = img
+  if type(img) == 'string' then
+    self.img = love.graphics.newImage(img)
+  else
+    self.img = img
+  end
   self.x = x
   self.y = y
 end
