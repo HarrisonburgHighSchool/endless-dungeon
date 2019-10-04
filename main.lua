@@ -1,15 +1,12 @@
 local Map = require 'core/map'
 function love.load()
-  map = Map:new(13, 10) -- Create a 5 x 5 map object named "map"
+  map = Map:new(10, 8) -- Create a 5 x 5 map object named "map"
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/monster/dragons/quicksilver_dragon.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   
   template = { --a 13 x 10 map with the altar texture in the middle
-               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-               {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
                {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
                {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
                {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
