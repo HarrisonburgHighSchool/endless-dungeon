@@ -1,7 +1,7 @@
 local Map = require 'core/map'
 
 function love.load()
-  map = Map:new(50, 50) -- Create a 5 x 5 map object named "map"
+  
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
@@ -39,7 +39,7 @@ function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-  
+  --map = Map:new(50, 50) -- Create a 5 x 5 map object named "map"
 end
 
 
