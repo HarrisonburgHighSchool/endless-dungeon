@@ -19,6 +19,16 @@ function love.update(dt)
     if love.keyboard.isDown("down") then
         y = y + 4
        end
+       function love.load()
+
+  floorTile = love.graphics.newImage('asset.png')
+  altar     = love.graphics.newImage('altar-asset.png')
+  template = { --a 3 x 3 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile},
+               {floorTile, altar, floorTile},
+               {floorTile, floorTile, floorTile},
+             }
+  map = Map:new(template)
 end
 function love.draw()
   love.graphics.print('mike hawk!', 0, 0)
