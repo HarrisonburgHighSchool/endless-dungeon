@@ -24,7 +24,6 @@ function love.load()
   map = Map:new(template)
 end
 
-
 function love.update(dt)
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
     x = x + 1
@@ -40,10 +39,8 @@ function love.update(dt)
   end
 end
 
-
 function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
-
