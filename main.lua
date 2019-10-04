@@ -1,4 +1,3 @@
-local Map = require 'core/map'
 
 function love.load()
   
@@ -19,22 +18,25 @@ function love.load()
     {wall, floor, floor, floor, floor, floor, floor, floor, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   map = Map:new(template)
+  x = 400
+  y = 300
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_3.png')
 end
 
 
 function love.update(dt)
-  --if love.keyboard.isDown('up') then
-  --y=y-1
-  --end
-  --if love.keyboard.isDown('down') then
-  --y=y+1
-  --end
-  --if love.keyboard.isDown('right') then
-  --x=x+1
-  --end
-  --if love.keyboard.isDown('left') then
-  --x=x-1
-  --end
+  if love.keyboard.isDown('up') thens
+  y=y-1
+  end
+  if love.keyboard.isDown('down') then
+  y=y+1
+  end
+  if love.keyboard.isDown('right') then
+  x=x+1
+  end
+  if love.keyboard.isDown('left') then
+  x=x-1
+  end
 
   
 end
@@ -44,5 +46,5 @@ function love.draw()
   
   map:draw()
 
+  love.graphics.draw(playerImg, x, y)
 end
-
