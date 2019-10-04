@@ -1,6 +1,7 @@
 local Map = require 'core/map'
-
+local gamera = require 'core/gamera'
 function love.load()
+  cam = gamera.new(-500, -500, 2000, 2000)
   x = 400
   y = 325
   playerImg = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
@@ -46,13 +47,17 @@ function love.update(dt)
     end
   if love.keyboard.isDown('left') then
     x = x - 1
+
   end
+  cam:setPosition(x, y)
 end
 
 function love.draw()
+  cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(Img2, a, b)
   love.graphics.draw(Img3, c, d)
+ end) 
 end
