@@ -3,7 +3,7 @@ local Map = require 'core/map'
 function love.load()
   x = 370
   y = 270
-playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
+playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
   floorTile = love.graphics.newImage('assets-2/dc-dngn/floor/crystal_floor5.png')
   --wall     = love.graphics.newImage('altar-asset.png')
   template = { --a 3 x 3 map with the altar texture in the middle
