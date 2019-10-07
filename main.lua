@@ -1,6 +1,9 @@
+
 local Map = require 'core/map'
+local Util = require 'core/util'
 local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
+cc(x1, y1, w1, h1, x2, y2, w2, h2)
 function love.load()
   cam = gamera.new(0, 0, 1000, 1000)
   playerImg = love.graphics.newImage('assets-1/monster/human.png')
@@ -8,7 +11,7 @@ function love.load()
   y = 550
   enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
   a = 560
-  h = 550
+  i = 550
   enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
   c = 600
   d = 600
@@ -20,6 +23,9 @@ function love.load()
   b = 550
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
 
 
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -60,12 +66,17 @@ function love.update(dt)
     a = a - 1
   end
   if love.keyboard.isDown('s') then
-    h = h + 1
+    i = i + 1
   end
   if love.keyboard.isDown('w') then
-    h = h - 1
+    i = i - 1
   end
   cam:setPosition(x, y)
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if cc(x, y, w, h,   0, 0, 64, 64) then
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
 end
 
 function love.draw()
@@ -77,6 +88,10 @@ function love.draw()
   love.graphics.draw(enemy2, c, d)
   love.graphics.draw(enemy3, e, f)
   love.graphics.draw(questItem, g, b)
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+  -- Print the player's HP in the top left corner
+  love.graphics.print(hp, 0, 0)
     --Draw everything here. For example:
   end)
 end
