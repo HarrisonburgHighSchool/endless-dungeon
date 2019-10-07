@@ -47,7 +47,8 @@ Here is a whole program, using the default `Entity` image:
 local Entity = require 'core/entity'
 
 function love.load()
-  player = Entity:new() -- Create the Entity object named player
+  img = love.graphics.newImage('player.png') -- Load the player sprite
+  player = Entity:new(img, 200, 200) -- Create the Entity object named player
 end
 
 function love.update(dt)
@@ -84,7 +85,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
 | `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
-| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles |
+| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles. The `Tile` objects will be sized based on the size of the first tile. |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
@@ -116,6 +117,8 @@ end
 To make a custom table, you can create a `template` data structure that you can pass into `Map:new(template)`. The `template` will determine the size of the map and the textures that get loaded into each `Tile` object. Here is an example:
 
 ```lua
+local Map = require 'core/map'
+
 function love.load()
   
   floorTile = love.graphics.newImage('asset.png')
