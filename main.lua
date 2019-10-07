@@ -1,23 +1,28 @@
 local Map = require 'core/map'
+local Util = require 'core/util'
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
-
+  playerImg = love.graphics.newImage('assets-2/player/base/merfolk_m.png')
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
   cage = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_3.png')
   cage1 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_4.png')
   cage2 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_5.png')
   cage3 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_6.png')
   wall = love.graphics.newImage ('assets-1/dungeon/wall/catacombs_0.png')
   door = love.graphics.newImage ('assets-1/dungeon/doors/runed_door.png')
+  door2 = love.graphics.newImage('assets-1/dungeon/doors/sealed_door.png')
   statue1 = love.graphics.newImage ('assets-1/dungeon/statues/statue_sigmund.png')
   butterfly = love.graphics.newImage('assets-1/monster/animals/butterfly_1.png')
   jackal = love.graphics.newImage('assets-1/monster/animals/jackal.png')
   bat = love.graphics.newImage('assets-1/monster/animals/bat.png')
-  hog = love.graphics.newImage('assets-1/monster/animals/hog.png')
+  raiju = love.graphics.newImage('assets-1/monster/animals/raiju.png')
   hat = love.graphics.newImage('assets-1/item/armor/headgear/cap_jester.png')
+  trap = love.graphics.newImage ('assets-1/dungeon/traps/shaft.png')
 
   mapTemplate = {
     {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
@@ -50,6 +55,14 @@ end
           x = x + 5
   end
  
+  if cc(x, y, w, h,   65, 325, 64, 64) then  
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
+  if cc(x, y, w, h,   675, 325, 64, 64) then  
+    -- if true, decrease HP:
+    hp = hp - 2
+  end
 
   map = Map:new(mapTemplate)
 end
@@ -98,7 +111,14 @@ function love.draw()
   love.graphics.draw(wall, 640, 575)
   love.graphics.draw(wall, 705, 575)
 
-  love.graphics.draw(door, 390, 0, 0, 2)
+  love.graphics.draw(trap, 385, 130, 0, 2)
+  love.graphics.draw(trap, 320, 130, 0, 2)
+  love.graphics.draw(trap, 450, 130, 0, 2)
+  love.graphics.draw(trap, 450, 65, 0, 2)
+  love.graphics.draw(trap, 320, 65, 0, 2)
+
+
+  love.graphics.draw(door2, 390, 0, 0, 2)
   love.graphics.draw(door, 390, 575, 0, 2)
   love.graphics.draw(door, 740, 325, 0, 2)
   love.graphics.draw(door, 0, 325, 0, 2)
@@ -107,10 +127,13 @@ function love.draw()
 
   love.graphics.draw(butterfly, 65, 325, 0, 2)
   love.graphics.draw(bat, 675, 325, 0, 2)
-  love.graphics.draw(hog, 385, 65, 0, 2)
+  love.graphics.draw(raiju, 385, 65, 0, 2)
 
 
 
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x, y, 0, 2)
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+
+  love.graphics.print(hp, 0, 0)
 end
 
