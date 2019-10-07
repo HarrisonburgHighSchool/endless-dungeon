@@ -36,6 +36,9 @@ function love.load()
 x = 400
 y = 300
 playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+w = 64   -- The player's width is 64
+h = 64   -- The player's height is 64
+hp = 100 -- Set the player's HP to 100 at the start of the game
 end
 
 function love.update(dt)
@@ -53,14 +56,28 @@ if love.keyboard.isDown('up') then
 end
 -- nothing to update
 end
+-- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+if cc(x, y, w, h,   0, 0, 64, 64) then  
+  -- if true, decrease HP:
+  hp = hp - 1
+ end
 
 function love.draw()
   map:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
+ 
+  -- Draw the player
   love.graphics.draw(playerImg, x, y)
-   -- Create a 14 x 14 floor object named "Floor"
-  --- Create a
+ 
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+
+ -- Print the player's HP in the top left corner
+ love.graphics.print(hp, 0, 0)
+end
   --player:draw() -- Draw the entity object named player
   
 
+
+function cc(x1, y1, w1, h1, x2, y2, w2, h2)
 end
