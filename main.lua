@@ -1,7 +1,19 @@
+local Map = require 'core/map'
+
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-2/player/transform/dragon_form.png')
+  floorTile = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
+  altar     = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
+  template = { --a 6 x 6 map with the altar texture in the middle
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,},
+               {floorTile, altar, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,},
+              {floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,},
+             }
+
+  map = Map:new(template)
+map: changeScale(3)
 end
   function love.update(dt)
   if love.keyboard.isDown("left") then
@@ -18,18 +30,13 @@ end
     if love.keyboard.isDown("down") then
         y = y + 4
        end
-       function love.load()
 
-  floorTile = love.graphics.newImage('dirt_east.png')
-  altar     = love.graphics.newImage('dirt_east.png')
-  template = { --a 3 x 3 map with the altar texture in the middle
-               {floorTile, floorTile, floorTile},
-               {floorTile, altar, floorTile},
-               {floorTile, floorTile, floorTile},
-             }
-  map = Map:new(template)
+
 end
+
+
 function love.draw()
+  map:draw()
   love.graphics.print('play here !', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
