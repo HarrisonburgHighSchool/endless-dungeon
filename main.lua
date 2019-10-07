@@ -26,19 +26,19 @@ Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   
 
 map = Map:new(template)
-            end
+            
 
 function love.update(dt)
   if love.keyboard.isDown('up') and y > 0 then   -- if the 'up' key is being pressed...
     y = y - 10
   end
-  if love.keyboard.isDown('down') and y > 0 then   -- if the 'down' key is being pressed...
+  if love.keyboard.isDown('down')  then   -- if the 'down' key is being pressed...
     y = y + 10
   end
   if love.keyboard.isDown('left') and x > 0 then   -- if the 'left' key is being pressed...
     x = x - 10
   end
-  if love.keyboard.isDown('right') and x > 0 then   -- if the 'right' key is being pressed...
+  if love.keyboard.isDown('right')  then   -- if the 'right' key is being pressed...
     x = x + 10
   end
   
@@ -50,11 +50,11 @@ end
 
 function love.draw()
   map:draw()
-  love.graphics.print('Welcome to the Dungeon!', 0, 0)
+  
   
   love.graphics.draw(playerImg, x, y)
   
-  love.graphics.rectangle('line', 0, 0, 64, 64)
+  love.graphics.rectangle('line', 50, 50, 64, 64)
   
   love.graphics.print(hp, 0, 0)
 end
