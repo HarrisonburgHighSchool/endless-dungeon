@@ -7,30 +7,41 @@ function love.load()
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_1.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, altar, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTisle, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                 {floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar},
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, altar, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, alta},{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTisle, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,{floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
+                 {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,
+                 {floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar,
+                 {floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar,
+                 {floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, altar}
   
   
   
