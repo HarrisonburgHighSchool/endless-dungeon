@@ -2,13 +2,20 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
 
+  local Util = require 'core/util'
+
   x = 400
   y = 300
+
+
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
 
   enemy_x = 100
   enemy_y = 400
 
-  cam = gamera.new(-20, -20, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+  cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
   playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
@@ -68,10 +75,39 @@ function love.update(dt)
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
     x = x + 5
   end
+
+   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+   if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
+    -- if true, decrease HP:
+    hp = hp - .2
+  end
+
+   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+   if cc(x, y, w, h,   1, -50, 880, 1) then  
+    -- if true, decrease HP:
+    y = y + 5
+  end
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if cc(x, y, w, h,   -15, 1, 1, 880) then  
+    -- if true, decrease HP:
+    x = x + 5
+  end
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if cc(x, y, w, h,   1, 445, 880, 1) then  
+    -- if true, decrease HP:
+    y = y - 5
+  end
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if cc(x, y, w, h,   900, 1, 1, 850) then  
+    -- if true, decrease HP:
+    x = x - 5
+  end
+  
+
  c = dist(enemy_x, enemy_y, x, y)
  a = y - enemy_y
  b = x - enemy_x
- speed = 5
+ speed = 3
  cRatio = speed/c
  dy = a * cRatio
  dx = b * cRatio
@@ -92,9 +128,9 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  love.graphics.print('KILL THE BUTTERFLY!', 425, 85)
+  love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y) 
-  love.graphics.draw(fountain, 440, 200)
   love.graphics.draw(butterfly, 450, 100)
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
   end)
