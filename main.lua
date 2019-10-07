@@ -21,7 +21,7 @@ function love.load()
   ent = love.graphics.newImage('assets-1/monster/boggart.png')
   love.graphics.setDefaultFilter('nearest', 'nearest')
 
-  cam = gamera.new(-1000, -1000, 2000, 2000)
+  cam = gamera.new(0, 0, 1000, 1000)
 
   mapTemplate = {
     {c, c2, c, c2, c3, c3, c2, c, c2, c, c, c2, c, c2, c2, c, c2},
@@ -54,23 +54,23 @@ function love.update(dt)
 
 
   if love.keyboard.isDown('right') then
-  x = x + 7
-  X1 = X1 + 7
+  x = x + 5
+  X1 = X1 + 5
   end
 
   if love.keyboard.isDown('left') then
-  x = x - 7
-  X1 = X1 - 7
+  x = x - 5
+  X1 = X1 - 5
   end
 
   if love.keyboard.isDown('up') then
-  y = y - 7
-  Y1 = Y1 - 7
+  y = y - 5
+  Y1 = Y1 - 5
   end
 
   if love.keyboard.isDown('down') then
-  y = y + 7
-  Y1 = Y1 + 7
+  y = y + 5
+  Y1 = Y1 + 5
   end
 
 
