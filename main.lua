@@ -8,10 +8,10 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('right') then
-    x = x + 1
+    x = x + 2
   end
   if love.keyboard.isDown('left') then
-    x = x + 1
+    x = x + 5
   end
 end
 
