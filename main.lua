@@ -27,7 +27,8 @@ function love.load()
     {wall, floor, floor, floor, wall, floor, wall, wall},
     {wall, floor, floor, floor, wall, floor, wall, wall},
     {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall , wall},}
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
 
 
   
@@ -39,16 +40,16 @@ end
 
 function love.update(dt)
  if love.keyboard.isDown('right') then  
-x = x + 21
+x = x + 9
 end
 if love.keyboard.isDown('down') then  
-y = y + 21
+y = y + 9
 end
 if love.keyboard.isDown('left') then  
-x = x - 21
+x = x - 9
 end
 if love.keyboard.isDown('up') then 
-  y = y - 21
+  y = y - 9
 end
 -- nothing to update
 end
