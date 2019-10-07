@@ -1,5 +1,6 @@
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
+local Util = require 'core/util'
 
 function love.load()
   x = 128
@@ -9,7 +10,7 @@ function love.load()
   camy = 256
   mirrory = 320
 
-  cam = gamera.new(48, 52, 800, 604)
+  cam = gamera.new(48, 52, 800, 600)
 
   playerImg = love.graphics.newImage('assets-1/player/base/Octopode_3.png')
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
@@ -21,6 +22,7 @@ function love.load()
   cobaltMirrorRightT = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right_top.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  Hp = love.graphics.newImage('assets-1/player/hp_bar/template2.png')
 
   mapTemplate = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
@@ -64,7 +66,8 @@ end
 function love.draw()
   cam:draw(function(camx, camy)
   map:draw()
-  love.graphics.draw(playerImg, x, y,rotation, -1, 1)
+  love.graphics.draw(playerImg, x, y, rotation, -1, 1)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
+  love.graphics.draw(Hp, x, y)
   end)
 end
