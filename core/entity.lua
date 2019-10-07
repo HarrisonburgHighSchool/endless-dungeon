@@ -8,8 +8,10 @@ function Entity:constructor(img, x, y)
   else
     self.img = img
   end
-  self.x = x
-  self.y = y
+  self.x = 400
+  self.y = 300
+  self.w = self.img:getWidth()
+  self.h = self.img:getHeight()
 end
 
 function Entity:draw()
