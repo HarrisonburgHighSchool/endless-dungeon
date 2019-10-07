@@ -7,8 +7,15 @@ function love.load()
 end
 
 function love.update(dt)
-  -- Nothing to update yet
+  if love.keyboard.isDown('right') then
+    x = x + 1
+  end
+  if love.keyboard.isDown('left') then
+    x = x + 1
+  end
 end
+
+
 
 function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
