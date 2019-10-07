@@ -1,11 +1,16 @@
 local Map = require 'core/map'
 
+local Util = require 'core/util'
+
 function love.load()
   
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
-
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
+end
 
 Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
@@ -36,13 +41,22 @@ function love.update(dt)
   if love.keyboard.isDown('right') and x > 0 then   -- if the 'right' key is being pressed...
     x = x + 10
   end
+  
+   if cc(x, y, w, h,   0, 0, 64, 64) then  
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
 end
 
 function love.draw()
   map:draw()
   love.graphics.print('Welcome to the Dungeon!', 0, 0)
+  
   love.graphics.draw(playerImg, x, y)
-  --map = Map:new(50, 50) -- Create a 5 x 5 map object named "map"
+  
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+  
+  love.graphics.print(hp, 0, 0)
 end
 
 
