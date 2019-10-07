@@ -1,38 +1,42 @@
 local Map = require 'core/map'
+local Util = require 'core/util'
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
+  
   x = 50
   y = 285
+  playerImg = love.graphics.newImage('assets-1/monster/juggernaut.png')
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
+
   rectFloor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
   rect1Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_1.png')
   rect2Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_2.png')
   rect3Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_3.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   doorway = love.graphics.newImage('assets-2/dc-dngn/gateways/dngn_enter_dis.png')
-  cobaltWall = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_1.png')
-  axeTrap = love.graphics.newImage('assets-2/dc-dngn/dngn_trap_axe.png')
-  shaftTrap = love.graphics.newImage('assets-2/dc-dngn/dngn_trap_shaft.png')
-  playerImg = love.graphics.newImage('assets-1/monster/juggernaut.png')
+  
 
   template = { --a 3 x 3 map with the altar texture in the middle
  
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
   map = Map:new(template)
-end
-
+  end
 function love.update(dt)
   if love.keyboard.isDown('w') and y > 0 then   -- if the 'w' key is being pressed
     y = y - 2
@@ -46,10 +50,28 @@ function love.update(dt)
   if love.keyboard.isDown('d') and x < 769 then   -- if the 'd' key is being pressed
     x = x + 2
   end
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner (LEFT WALL)
+ if cc(x, y, w, h,   0, 0, 64, 640) then  
+  -- if true, decrease HP:
+  hp = hp - 1
+ end
+ -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner (RIGHT WALL)
+ if cc(x, y, w, h,   738, 0, 0, 640) then  
+  -- if true, decrease HP:
+  hp = hp - 1
+ end
 end
 
 
 function love.draw()
   map:draw()
   love.graphics.draw(playerImg, x, y)
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', -1, 0, 64, 640)
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', 705, 0, 64, 640) 
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', 0, 577, 768, 64)    --YOU LEFT OFF HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  -- Print the player's HP in the top left corner
+  love.graphics.print(hp, 0, 0)
 end
