@@ -47,7 +47,8 @@ Here is a whole program, using the default `Entity` image:
 local Entity = require 'core/entity'
 
 function love.load()
-  player = Entity:new() -- Create the Entity object named player
+  img = love.graphics.newImage('player.png') -- Load the player sprite
+  player = Entity:new(img, 200, 200) -- Create the Entity object named player
 end
 
 function love.update(dt)
@@ -84,7 +85,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 | Name | Returns | Description |
 | ---- | ------- | ----------- |
 | `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
-| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles |
+| `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles. The `Tile` objects will be sized based on the size of the first tile. |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
 
 ## How to Use
@@ -116,6 +117,8 @@ end
 To make a custom table, you can create a `template` data structure that you can pass into `Map:new(template)`. The `template` will determine the size of the map and the textures that get loaded into each `Tile` object. Here is an example:
 
 ```lua
+local Map = require 'core/map'
+
 function love.load()
   
   floorTile = love.graphics.newImage('asset.png')
@@ -142,7 +145,76 @@ end
 
 # Collisions
 
+Collisions happen when the game senses that two rectangles are overlapping. We can trigger different events when these rectangles overlap; for example, you could make the player's HP decrease while the "player" rectangle is overlapping with the "enemy" rectangle.
+
+Here's some information about the collision detection function I have provided:
+
+| Function |  Returns | Description |
+| -------- | -------- | ----------- |
+| `cc(x1, y1, w1, h1, x2, y2, w2, h2)` | `boolean` | Given the coordinates and size of two rectangles, return `true` if they are overlapping. Otherwise, return `false`. |
+
+## Collision Detection: How To
+
+To sense if two rectangles are overlapping, first import the `util.lua` file that contains the function definition for the function that checks collisions. **Put this line of code at the top of your `main.lua` file, before `love.load()`:
+
+```lua
+local Util = require 'core/util'
+```
+
+Then, use the `cc()` function to check if two rectangles are overlapping. The function will **return** a value of `true` if the rectangles are overlapping, and a value of `false` if the rectangles are not overlapping. You can use this function in an `if()` statement to trigger different events based on what rectangles the player is overlapping with. Here is an example program that prints out an HP value, and that makes the value of HP decrease when the player is in the top left corner of the screen:
+
+```lua
+local Util = require 'core/util'
+
+function love.load()
+  x = 400
+  y = 300
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
+end
+
+function love.update(dt)
+  -- Set up player movement
+  if love.keyboard.isDown('up') then
+    y = y - 1
+  end
+  if love.keyboard.isDown('down') then
+    y = y + 1
+  end
+  if love.keyboard.isDown('left') then
+    x = x - 1
+  end
+  if love.keyboard.isDown('right') then
+    x = x + 1
+  end
+
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if cc(x, y, w, h,   0, 0, 64, 64) then  
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
+end
+
+function love.draw()
+  -- Draw the player
+  love.graphics.draw(playerImg, x, y)
+
+  -- Draw the rectangle in the upper left corner
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+
+  -- Print the player's HP in the top left corner
+  love.graphics.print(hp, 0, 0)
+end
+
+```
+
+## Collision Resolution
+
 Under construction
+
+
 
 ----
 
