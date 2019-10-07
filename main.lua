@@ -1,4 +1,5 @@
 local Map = require 'core/map'
+local Util = require 'core/util'
 function love.load()
   map = Map:new(12, 9) -- Create a 5 x 5 map object named "map"
   x = 400
@@ -38,6 +39,7 @@ function love.update(dt)
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     y = y - 1
   end
+  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
     hp = hp - 1
