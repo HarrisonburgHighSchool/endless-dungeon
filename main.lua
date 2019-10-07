@@ -23,11 +23,11 @@ function love.load()
     {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
     {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
     {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
-    {tile5, tile6, tile7, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile6, tile7, tile4, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile7, tile4, tile5, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile4, tile5, tile6, tile2, tile2, tile2, tile, tile, tile, tile},
-    {tile5, tile6, tile7, tile3, tile3, tile3, tile, tile, tile, tile}
+    {tile5, tile6, tile7, tile2, tile2, tile2, tile4, tile5, tile6, tile7},
+    {tile6, tile7, tile4, tile2, tile2, tile2, tile5, tile6, tile7, tile4},
+    {tile7, tile4, tile5, tile2, tile2, tile2, tile6, tile7, tile4, tile5},
+    {tile4, tile5, tile6, tile2, tile2, tile2, tile7, tile4, tile5, tile6},
+    {tile5, tile6, tile7, tile3, tile3, tile3, tile4, tile5, tile6, tile7}
   }
   bkgrnd = Map:new(map)
 
