@@ -37,7 +37,6 @@ y = 300
 playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 end
 
-
 function love.update(dt)
  if love.keyboard.isDown('right') then  
 x = x + 21
@@ -53,7 +52,6 @@ if love.keyboard.isDown('up') then
 end
 -- nothing to update
 end
-
 
 function love.draw()
   map:draw()
