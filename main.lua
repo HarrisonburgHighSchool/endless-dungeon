@@ -3,10 +3,10 @@ local Util = require 'core/util'
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
-  
-  x = 50
-  y = 285
-  playerImg = love.graphics.newImage('assets-1/monster/juggernaut.png')
+  love.window.setMode(768, 576)
+  x = 368
+  y = 280
+  playerImg = love.graphics.newImage('assets-1/monster/deep_elf_fighter.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -22,16 +22,16 @@ function love.load()
   template = { --a 3 x 3 map with the altar texture in the middle
  
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, rectFloor, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
+  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
@@ -53,12 +53,17 @@ function love.update(dt)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner (LEFT WALL)
  if cc(x, y, w, h,   0, 0, 64, 640) then  
   -- if true, decrease HP:
-  hp = hp - 1
+  x = x + 2
  end
  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner (RIGHT WALL)
- if cc(x, y, w, h,   738, 0, 0, 640) then  
+ if cc(x, y, w, h,   738, 0, 128, 640) then  
   -- if true, decrease HP:
-  hp = hp - 1
+  x = x - 2 
+ end
+-- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner (BOTTOM WALL)
+if cc(x, y, w, h,   0, 546, 801, 64) then  
+  -- if true, decrease HP:
+  y = y - 2
  end
 end
 
@@ -66,12 +71,6 @@ end
 function love.draw()
   map:draw()
   love.graphics.draw(playerImg, x, y)
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', -1, 0, 64, 640)
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', 705, 0, 64, 640) 
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', 0, 577, 768, 64)    --YOU LEFT OFF HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  -- Print the player's HP in the top left corner
+
   love.graphics.print(hp, 0, 0)
 end
