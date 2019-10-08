@@ -16,7 +16,7 @@ function love.load()
     {wall, floor, wall, floor, wall, floor, wall, floor, wall},
     {wall, floor, wall, floor, wall, floor, wall, floor, wall},
     {wall, floor, wall, floor, wall, floor, wall, floor, wall},
-    {wall, floor, wall, wall, wall, floor, wall, floor, wall},
+    {wall, floor, floor, floor, wall, floor, wall, floor, wall},
     {wall, floor, floor, floor, floor, floor, wall, floor, wall},
     {wall, wall, wall, wall, wall, wall, wall, floor, wall}}
   map = Map:new(template)
