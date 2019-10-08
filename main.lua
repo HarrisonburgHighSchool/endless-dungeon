@@ -1,20 +1,17 @@
-<<<<<<< HEAD
+
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 
-=======
-love.graphics.setDefaultFilter('nearest', 'nearest')
->>>>>>> upstream/master
 function love.load()
   x = 400
   y = 300
   A = 400
   B = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  img = love.graphics.newImage('assets-1/item/book/plaid.png')
+ function love.load()
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
   altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_2.png')
 template = {
+
              {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile},
              {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile, altar, floorTile,floorTile, altar, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile},
              {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile},
@@ -71,9 +68,6 @@ end
 
 
 function love.update(dt)
-
-
-
   if love.keyboard.isDown('up')then
     y=y-3
     cam:setPosition(x, y)
@@ -109,7 +103,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  cam:draw(function(l, t, w, h)
+  cam:draw(function(x, y, A, B)
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
