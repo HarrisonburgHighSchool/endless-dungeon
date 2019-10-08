@@ -51,12 +51,18 @@ end
 function love.draw()
   map:draw()
   
-  
-  love.graphics.draw(playerImg, x, y)
-  
+  if alive == true then
+    love.graphics.draw(playerImg, x, y)
+  end
+  ih hp <= 0 then
+    alive = false
+  end
   love.graphics.rectangle('line', 50, 50, 64, 64)
   
   love.graphics.print(hp, 0, 0)
+
+  
+  
 end
 
 
