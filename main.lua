@@ -1,8 +1,11 @@
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
+--local Entity = require 'core/entity'
 
 function love.load()
+ -- -img = love.graphics.newImage(,player.png)
+  --player = Entity:new(img, 200, 200)
   cam = gamera.new(0,0,2000,2000)
   x = 400
   y = 300
@@ -57,11 +60,6 @@ function love.update(dt)
   end
   cam:setPosition(x,y)
 
-  if cc(x, y, w, h,  0, 0, 64, 899) then  
-    -- if true, decrease HP:
-    hp = hp - 1
-  end
-
 
   if cc(x, y, w, h,  0, 0, 64, 899) then  
     -- if true, decrease HP:
@@ -70,12 +68,12 @@ function love.update(dt)
 end
 
 function love.draw()
+ -- player:draw()
   cam:draw(function(l, t, w, h)
     map:draw()
     love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0, 0, 64, 899)
-    love2.graphics.rectangle('line', 0, 0, 899, 64)
     love.graphics.print(hp, 0, 0)
 end)
 end
