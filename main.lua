@@ -2,8 +2,8 @@ local Map = require 'core/map'
 
 function love.load()
   x = 400
-  y = 300
-  playerImg = love.graphics.newImage('assets-2/player/transform/dragon_form.png')
+  y = 100
+  playerImg = love.graphics.newImage('assets-2/player/demons/blizzard_demon.png')
   floorTile = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
   altar     = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
   template = { --a 6 x 6 map with the altar texture in the middle
@@ -39,4 +39,7 @@ function love.draw()
   map:draw()
   love.graphics.print('play here !', 0, 0)
   love.graphics.draw(playerImg, x, y)
+end
+if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+  x = x + 1
 end
