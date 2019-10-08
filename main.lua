@@ -77,7 +77,9 @@ function love.draw()
   cam:draw(function(l, t, w, h)
 
     map:draw()
+    if hp>0 then
     love.graphics.draw(playerImg, x, y)
+  end
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
 
