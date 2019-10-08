@@ -1,6 +1,4 @@
 local Map = require 'core/map'
-local gamera = require 'core/gamera'
-
 function cc(x1, y1, w1, h1, x2, y2, w2, h2)
 end
 
@@ -43,10 +41,6 @@ playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 w = 64   -- The player's width is 64
 h = 64   -- The player's height is 64
 hp = 100 -- Set the player's HP to 100 at the start of the game
-
-cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
-
-cam:setPosition(400, 400)
 end
 
 function love.update(dt)
@@ -75,14 +69,6 @@ function love.draw()
   map:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
  
- 
-  cam:draw(function(x, y, w, h)
-  
-  -- Draw everything here. For example:
-  love.graphics.draw(playerImg, x, y)
-  
-  end)
-
   -- Draw the player
   love.graphics.draw(playerImg, x, y)
  
