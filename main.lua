@@ -3,6 +3,7 @@ local gamera = require 'core/gamera'
 function love.load()
 
   enemy_draw = false
+  butterfly_alive = true
 
   local Util = require 'core/util'
 
@@ -98,11 +99,13 @@ function love.update(dt)
     x = x + 5
   end
 
-   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  if enemy_draw == true then
+  
    if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
-    -- if true, decrease HP:
+  
     hp = hp - .2
   end
+end
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
    if cc(x, y, w, h,   1, -50, 880, 1) then  
@@ -150,11 +153,15 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+  if butterfly_alive == true then
   love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
+  end
   love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y) 
+
+  if butterfly_alive == true then
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
-  
+  end
   if enemy_draw == true then
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
   end
