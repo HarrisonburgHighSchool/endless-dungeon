@@ -9,11 +9,15 @@ function love.load()
   y = 320
   camy = 256
   mirrory = 320
-
+  hp = 20
   cam = gamera.new(48, 52, 800, 600)
 
   playerImg = love.graphics.newImage('assets-1/player/base/Octopode_3.png')
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
+  w = 64   -- The mirror player's width is 64
+  h = 64   -- The mirror player's height is 64
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
   cobaltMirrorLeft = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_left.png')
@@ -22,7 +26,7 @@ function love.load()
   cobaltMirrorRightT = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right_top.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  Hp = love.graphics.newImage('assets-1/player/hp_bar/template4.png')
+  --Hp = love.graphics.newImage('assets-1/player/hp_bar/template4.png')
 
   mapTemplate = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
@@ -60,6 +64,9 @@ function love.update(dt)
     y = y - 4
     mirrory = mirrory - 4
   end
+  if cc(x, y, w, h,   128, 0, 192, 64) then  
+    hp = hp - 1
+  end
   cam:setPosition(x, y)
 end
 
@@ -68,6 +75,6 @@ function love.draw()
   map:draw()
   love.graphics.draw(playerImg, x, y, rotation, -1, 1)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
-  love.graphics.draw(Hp, x, y)
+  love.graphics.print(hp, x, y)
   end)
 end
