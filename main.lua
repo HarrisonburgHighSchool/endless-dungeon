@@ -12,7 +12,7 @@ local Util = require 'core/util'
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_open_door.png')
   doorc = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
   x = 65
-  y = 80
+  y = 70
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -36,7 +36,7 @@ map = Map:new(template)
 end
 
 function love.update(dt)
-  if cc(x, y, w, h,  0, 0, 0, 0) then
+  if not cc(x, y, w, h,  0, 0, 64, 64) then
     if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
       x = x + 15
     end
