@@ -2,8 +2,10 @@
 local Map = require 'core/map'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
+local gamera = 'core/gamera'
 
 function love.load()
+  cam = gamera.new(0, 0, 2000, 2000)
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
 
@@ -119,31 +121,31 @@ x21 = 500
 y21 = 300
 playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
-x20 = 500
-y20 = 300
+x22 = 500
+y22 = 300
 playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
-x20 = 500
-y20 = 300
+x23 = 500
+y23 = 300
 playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
-x20 = 500
-y20 = 300
+x24 = 500
+y24 = 300
 playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
-x20 = 500
-y20 = 300
-playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
-
-
-x20 = 500
-y20 = 300
+x25 = 500
+y25 = 300
 playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
 
+x25 = 500
+y25 = 300
+playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.png')
 
 
 
+
+--cam:setPosition(400, 400)
 
 
 end
@@ -171,6 +173,7 @@ function love.update(dt)
     y = y - 1
   end
 
+--cam:setPosition(x, y)
 
 
 
@@ -178,6 +181,7 @@ function love.update(dt)
 end
 
 function love.draw()
+  --cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg2, x2, y2)
@@ -200,6 +204,11 @@ function love.draw()
   love.graphics.draw(playerImg19, x19, y19)
   love.graphics.draw(playerImg20, x20, y20)
 
+
+  --Draw everything here. For example:
+  love.graphics.draw(playerImg, x, y)
+
+  --end)
 
 
 
