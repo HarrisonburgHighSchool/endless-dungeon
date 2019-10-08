@@ -13,6 +13,12 @@ function love.load()
   butterfly_x = 450
   butterfly_y = 100
 
+  function attack()
+    if x >= butterfly_x - 5 and x <= butterfly_x + 5 and  y >= butterfly_y - 5 and y <= butterfly_y + 5 then
+      butterfly_alive = false
+    end
+  end
+
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -22,7 +28,7 @@ function love.load()
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
-  playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
+  playerImg = love.graphics.newImage('hero/sliced/idle-1.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   map = Map:new(30,30) -- Create a 5 x 5 map object named "map"
  
@@ -57,7 +63,7 @@ function love.load()
  
 
 }
-  map = Map:new(template)
+  map = Map:new(template, 64)
   
             
   
@@ -84,7 +90,7 @@ function love.update(dt)
 
     if x_y == 4 then
       butterfly_y = butterfly_y -2
-    end
+    end 
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     y = y - 5
@@ -105,6 +111,10 @@ function love.update(dt)
   
     hp = hp - .2
   end
+  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+    attack()
+
+
 end
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
@@ -127,6 +137,7 @@ end
     -- if true, decrease HP:
     x = x - 5
   end
+end
   
 
  c = dist(enemy_x, enemy_y, x, y)
