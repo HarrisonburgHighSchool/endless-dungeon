@@ -46,10 +46,10 @@ end
   if love.keyboard.isDown('down') then 
     y = y + 3
 end
-if(x < 62)then 
+if(x < 60)then 
     x = x + 3
 end
-if(x > 700)then 
+if(x > 707)then 
   x = x - 3
 end
 if(y < 62)then 
