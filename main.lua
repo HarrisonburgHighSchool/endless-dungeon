@@ -94,9 +94,6 @@ function love.update(dt)
         hp = hp - 1
     end
 
-  if (hp < 0) then
-  end
-
 end
 
 function love.draw()
