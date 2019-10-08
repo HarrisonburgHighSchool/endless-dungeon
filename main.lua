@@ -54,7 +54,7 @@ function love.draw()
   if alive == true then
     love.graphics.draw(playerImg, x, y)
   end
-  ih hp <= 0 then
+  if hp <= 0 then
     alive = false
   end
   love.graphics.rectangle('line', 50, 50, 64, 64)
