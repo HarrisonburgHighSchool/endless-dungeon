@@ -2,11 +2,15 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
 
+  enemy_draw = false
+
   local Util = require 'core/util'
 
   x = 400
   y = 300
 
+  butterfly_x = 450
+  butterfly_y = 100
 
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -62,6 +66,24 @@ end
 
 function love.update(dt)
 
+  x_y = love.math.random(1,4)
+
+  if x_y == 1 then
+    butterfly_x = butterfly_x + 2
+
+  end
+
+    if x_y == 2 then
+      butterfly_x = butterfly_x -2
+    end
+
+    if x_y == 3 then
+      butterfly_y = butterfly_y +2
+    end
+
+    if x_y == 4 then
+      butterfly_y = butterfly_y -2
+    end
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     y = y - 5
@@ -128,11 +150,14 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-  love.graphics.print('KILL THE BUTTERFLY!', 425, 85)
+  love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
   love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y) 
-  love.graphics.draw(butterfly, 450, 100)
+  love.graphics.draw(butterfly, butterfly_x, butterfly_y)
+  
+  if enemy_draw == true then
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
+  end
   end)
 end
 
