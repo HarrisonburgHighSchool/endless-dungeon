@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 
+=======
+love.graphics.setDefaultFilter('nearest', 'nearest')
+>>>>>>> upstream/master
 function love.load()
   x = 400
   y = 300
