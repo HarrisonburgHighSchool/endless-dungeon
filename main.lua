@@ -1,6 +1,8 @@
 
 local Map = require 'core/map'
 love.graphics.setDefaultFilter('nearest', 'nearest')
+local Map = require 'core/map'
+
 function love.load()
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
