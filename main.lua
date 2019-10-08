@@ -1,5 +1,5 @@
 local Map = require 'core/map'
-
+local gamera = require 'core/gamera'
 function love.load()
   x = 400
   y = 300
@@ -9,25 +9,26 @@ function love.load()
   playerImg1 = love.graphics.newImage('assets-1/player/base/gargoyle_female.png')
 
     floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-    altar     = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_0.png')
+    altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
+    ground    = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
     template = {
-                  {floorTile, floorTile, floorTile, floorTile, flooorTile},
-                  {floorTile, altar, altar, altar, floorTile, floorTile},
+                  {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, flooorTile, floorTile, floorTile, floorTile, floorTile},
+                  {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground,  altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+                  {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
+                  {floorTile, altar, floorTile, floorTile, altar, floorTile},
+                  {floorTile, altar, floorTile, floorTile, altar, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile, floorTile},
-                  {floorTile, altar, altar, altar, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile},
-                  {floorTile, altar, floorTile, floorTile, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile},
                   {floorTile, altar, floorTile, floorTile, floorTile},
