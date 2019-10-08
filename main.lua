@@ -3,15 +3,15 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
-cc(x1, y1, w1, h1, x2, y2, w2, h2)
+
 function love.load()
   cam = gamera.new(0, 0, 1000, 1000)
   playerImg = love.graphics.newImage('assets-1/monster/human.png')
   x = 400
   y = 550
   enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
-  a = 560
-  i = 550
+  x2 = 560
+  y2 = 550
   enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
   c = 600
   d = 600
@@ -60,20 +60,20 @@ function love.update(dt)
     y = y - 1
   end
   if love.keyboard.isDown('d') then
-    a = a + 1
+    x2 = x2 + 1
   end
   if love.keyboard.isDown('a') then
-    a = a - 1
+    x2 = x2 - 1
   end
   if love.keyboard.isDown('s') then
-    i = i + 1
+    y2 = y2 + 1
   end
   if love.keyboard.isDown('w') then
-    i = i - 1
+    y2 = y2 - 1
   end
   cam:setPosition(x, y)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   0, 0, 64, 64) then
+  if cc(x, y, w, h,   x2, y2, 64, 64) then
     -- if true, decrease HP:
     hp = hp - 1
   end
@@ -82,14 +82,14 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-  love.graphics.print('AD 117, the peak of the Roman Empires might.', 0, 0)
+
   love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(enemy, a, b)
+  love.graphics.draw(enemy, x2, y2)
   love.graphics.draw(enemy2, c, d)
   love.graphics.draw(enemy3, e, f)
   love.graphics.draw(questItem, g, b)
   -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', 0, 0, 64, 64)
+  love.graphics.rectangle('line', x2, y2, 64, 64)
   -- Print the player's HP in the top left corner
   love.graphics.print(hp, 0, 0)
     --Draw everything here. For example:
