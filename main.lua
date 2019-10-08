@@ -5,6 +5,7 @@ local Map = require 'core/map'
 function love.load()
   collide1 = false
   i = 1
+  g = 0
  bossdefeated = 1
  x = 300
  y = 400
@@ -20,13 +21,17 @@ function love.load()
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   colbalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   colbalt1 = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  lava = love.graphics.newImage('assets-2/dc-dngn/floor/lava0.png')
+  lava1 = love.graphics.newImage('assets-2/dc-dngn/floor/lava1.png')
+  lava2 = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
+  lava3 = love.graphics.newImage('assets-2/dc-dngn/floor/lava3.png')
   template = {
               {colbalt, colbalt, colbalt, colbalt, cobble, colbalt, colbalt, colbalt, colbalt,},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, colbalt, cobble, colbalt, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt},
+              {colbalt, cobble, cobble, lava2, lava1, lava2, cobble, cobble, colbalt},
+              {colbalt, cobble, cobble, lava3, lava2, lava3, cobble, cobble, colbalt},
+              {colbalt, cobble, cobble, lava2, lava1, lava2, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
@@ -39,12 +44,12 @@ function love.load()
 
             map = Map:new(template)
   template2 = {
-              {colbalt1, colbalt1, colbal1t, colbalt1, cobble1, colbalt1, colbalt1, colbalt1, colbalt1,},
+              {colbalt1, colbalt1, colbalt1, colbalt1, cobble, colbalt1, colbalt1, colbalt1, colbalt1,},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, colbalt, cobble, colbalt, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, lava1, lava, lava1, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, lava, lava3, lava2, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, lava3, lava, lava3, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
@@ -52,10 +57,11 @@ function love.load()
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               
               
-              {colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt,},
+              {colbalt1, colbalt1, colbalt1, colbalt1, colbalt1, colbalt1, colbalt1, colbalt1, colbalt1,},
             }
 
             map2 = Map:new(template2)
+    
 end
 
 
@@ -109,19 +115,33 @@ end
 if(x > 50) then
 i = 1
 end
+if(g < 20) then
+g = g + 0.1
+end
+if(g > 20) then
+  g = 0
+end
+
 end
 
 
 
 function love.draw()
-  map:draw()
+  if(g < 10) then
+    map:draw()
+  else
+    map2:draw()
+  end
+  
   if(collide1 == true) then
     love.graphics.draw(playerImg2, x, y)
     
   else
   love.graphics.draw(playerImg, x, y)
   end
+ 
   love.graphics.print(x, 10, 20)
+  love.graphics.print(g, 50, 50)
   love.graphics.print(y, 30 ,30)
   love.graphics.print(HP, 100, 100)
   love.graphics.print(tostring(collide1), 0, 0)
