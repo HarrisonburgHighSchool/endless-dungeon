@@ -22,7 +22,7 @@ function love.load()
   cobaltMirrorRightT = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right_top.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  Hp = love.graphics.newImage('assets-1/player/hp_bar/template2.png')
+  Hp = love.graphics.newImage('assets-1/player/hp_bar/template4.png')
 
   mapTemplate = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
