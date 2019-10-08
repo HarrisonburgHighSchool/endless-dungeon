@@ -57,10 +57,9 @@ end
 -- nothing to update
 end
 -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-if cc(x, y, w, h,   0, 0, 64, 64) then  
+ 
   -- if true, decrease HP:
-  hp = hp - 1
- end
+
 
 function love.draw()
   map:draw()
@@ -79,5 +78,3 @@ end
   
 
 
-function cc(x1, y1, w1, h1, x2, y2, w2, h2)
-end
