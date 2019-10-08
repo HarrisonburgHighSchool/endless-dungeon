@@ -7,7 +7,9 @@ function love.load()
   y = 300
   A = 400
   B = 300
- function love.load()
+playerImg = love.graphics.newImage('assets-1/player/base/kobold_male.png')
+img = love.graphics.newImage('assets-1/player/base/ghoul_2_male.png')
+
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
   altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_2.png')
 template = {
@@ -103,7 +105,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  cam:draw(function(x, y, A, B)
+  cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
