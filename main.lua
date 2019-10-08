@@ -35,6 +35,7 @@ function love.load()
 
                 }
     map = Map:new(template)
+    cam = gamera.new(0, 0, 2000, 2000)
 
 
 end
@@ -43,36 +44,45 @@ function love.update(dt)
   player2()
   if love.keyboard.isDown('up')then
    y = y - 10
+   cam:setPosition(x, y)
   end
   if love.keyboard.isDown('down')then
    y = y + 10
+   cam:setPosition(x, y)
   end
   if love.keyboard.isDown('right')then
    x = x + 10
+   cam:setPosition(x, y)
   end
   if love.keyboard.isDown('left')then
    x = x - 10
+   cam:setPosition(x, y)
   end
 
-end
+
 function player2()
   if love.keyboard.isDown('w')then
    b = b - 10
+   cam:setPosition(a, b)
   end
   if love.keyboard.isDown('s')then
    b = b + 10
+   cam:setPosition(a, b)
   end
   if love.keyboard.isDown('d')then
    a = a + 10
+   cam:setPosition(a, b)
   end
   if love.keyboard.isDown('a')then
    a = a - 10
+   cam:setPosition(a, b)
   end
 end
 function love.draw()
    map:draw()
+  cam:draw(function(l, t, w, h)
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, a, b)
-
+end)
 end
