@@ -16,8 +16,10 @@ function love.load()
  h = 64
  HP = 100
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
+  playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   colbalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
+  colbalt1 = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   template = {
               {colbalt, colbalt, colbalt, colbalt, cobble, colbalt, colbalt, colbalt, colbalt,},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
@@ -36,6 +38,24 @@ function love.load()
             }
 
             map = Map:new(template)
+  template2 = {
+              {colbalt1, colbalt1, colbal1t, colbalt1, cobble1, colbalt1, colbalt1, colbalt1, colbalt1,},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, colbalt, cobble, colbalt, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, colbalt, colbalt, colbalt, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              
+              
+              {colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt, colbalt,},
+            }
+
+            map2 = Map:new(template2)
 end
 
 
@@ -95,10 +115,12 @@ end
 
 function love.draw()
   map:draw()
-  if(collide = true) then
-    love.graphics.draw(playerImg, x, y)
-
+  if(collide1 == true) then
+    love.graphics.draw(playerImg2, x, y)
+    
+  else
   love.graphics.draw(playerImg, x, y)
+  end
   love.graphics.print(x, 10, 20)
   love.graphics.print(y, 30 ,30)
   love.graphics.print(HP, 100, 100)
