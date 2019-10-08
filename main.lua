@@ -5,6 +5,8 @@ love.graphics.setDefaultFilter( 'nearest', 'nearest')
 function love.load()
   x = 400
   y = 300
+  x1 = 200
+  y1 = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -57,18 +59,17 @@ if cc(x, y, w, h,   0, 0, 64, 64) then
   -- if true, decrease HP:
   hp = hp - 1
 end
+--if(hp==0)then
+
 end
 
 function love.draw()
-  love.graphics.draw(playerImg, x, y)
 
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', 0, 0, 64, 64)
-
-  -- Print the player's HP in the top left corner
-  love.graphics.print(hp, 0, 0)
 cam:draw(function(l, t, w, h)
   map:draw()
+love.graphics.rectangle('line', w, h, x, y)
+  love.graphics.print(hp, x, y)
+  love.graphics.print('Hello, world!', 0, 0)
   --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
 
