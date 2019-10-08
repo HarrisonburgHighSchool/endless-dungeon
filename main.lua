@@ -57,6 +57,10 @@ function love.update(dt)
   end
   cam:setPosition(x,y)
 
+  if cc(x, y, w, h,  0, 0, 64, 899) then  
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
 
 
   if cc(x, y, w, h,  0, 0, 64, 899) then  
@@ -71,6 +75,7 @@ function love.draw()
     love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0, 0, 64, 899)
+    love2.graphics.rectangle('line', 0, 0, 899, 64)
     love.graphics.print(hp, 0, 0)
 end)
 end
