@@ -101,14 +101,15 @@ function love.draw()
  cam:draw(function(l, t, w, h)
 
   map:draw()
-  entity:draw()
+  --entity:draw()
   love.graphics.print('Level 1, Practice Level!', 0, 0)
-
+  love.graphics.draw(ent, 400, 130)
   if (hp > 0) then
   love.graphics.draw(playerImg, x, y)
   love.graphics.print(hp, X2, Y2)
 end
   love.graphics.draw(gate, 400, 570)
+
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
   love.graphics.rectangle('line', 449, 190, 64, 64)
