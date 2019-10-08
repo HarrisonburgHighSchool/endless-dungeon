@@ -2,9 +2,21 @@
 local Map = require 'core/map'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
-local gamera = 'core/gamera'
+local gamera = require 'core/gamera'
+local Util = require 'core/util'
 
 function love.load()
+  x = 400
+  y = 300
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
+  hp = 100 -- Set the player's HP to 100 at the start of the game
+
+
+
+
+
+
   cam = gamera.new(0, 0, 2000, 2000)
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
@@ -38,7 +50,7 @@ function love.load()
 
 x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/naga_blue_male.png')
 
   x2 = 500
   y2 = 300
@@ -173,7 +185,7 @@ function love.update(dt)
     y = y - 1
   end
 
---cam:setPosition(x, y)
+cam:setPosition(x, y)
 
 
 
@@ -181,7 +193,7 @@ function love.update(dt)
 end
 
 function love.draw()
-  --cam:draw(function(l, t, w, h)
+  cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg2, x2, y2)
@@ -208,7 +220,7 @@ function love.draw()
   --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
 
-  --end)
+  end)
 
 
 
