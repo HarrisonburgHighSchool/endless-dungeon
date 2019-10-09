@@ -1,14 +1,15 @@
 
 
 local Map = require 'core/map'
+local Util = require 'core/util'
 
 function love.load()
   collide1 = false
   i = 1
   g = 0
  bossdefeated = 1
- x = 300
- y = 400
+ x = 500
+ y = 300
   x2 = 193
   y2 = 192
   w2 = 192
@@ -66,19 +67,7 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('right') then  
-    x = x + 3
-   
-  end
-    if love.keyboard.isDown('left') then  
-      x = x - 3
-  end
-  if love.keyboard.isDown('down') then 
-    y = y + 3
-end
-if love.keyboard.isDown('up') then
-  y = y - 3
-end
+ 
 
 
 
@@ -95,13 +84,24 @@ if(y < 60) then
   y = y + 3
 end
 
-if(x + w > x2 and y + h > y2 and y2 + h2 > y and x2 + w2 > x) then
-  collide1 = true
-
-else
-
-  collide1 = false
+collide1 = false
+  
+if love.keyboard.isDown('right') then  
+    x = x + 3
+   
+  end
+    if love.keyboard.isDown('left') then  
+      x = x - 3
+  end
+  if love.keyboard.isDown('down') then 
+    y = y + 3
 end
+if love.keyboard.isDown('up') then
+   if cc(x, y - 1, w2, h2, w, h) == false then
+    y = y - 3
+  end
+end
+
 if(collide1 == true) then
   HP = HP - 0.1
 end
