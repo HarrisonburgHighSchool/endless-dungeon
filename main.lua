@@ -3,7 +3,6 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
-
 function love.load()
   cam = gamera.new(0, 0, 1000, 1000)
   playerImg = love.graphics.newImage('assets-1/monster/human.png')
@@ -23,8 +22,8 @@ function love.load()
   b = 550
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 36   -- The player's width is 64
+  h = 36   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
 
 
@@ -47,6 +46,18 @@ function love.load()
 end
 
 function love.update(dt)
+  if x < 0 then
+    x = 0
+  end
+  if y < 0 then
+    y = 0
+  end
+  if x > 960 then
+    x = 960
+  end
+  if y > 960 then
+    y = 960
+  end
   if love.keyboard.isDown('right') then
     x = x + 1
   end
@@ -73,7 +84,15 @@ function love.update(dt)
   end
   cam:setPosition(x, y)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   x2, y2, 64, 64) then
+  if cc(x, y, w, h,   x2, y2, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
+  if cc(x, y, w, h,   c, d, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
+  if cc(x, y, w, h,   e, f, 36, 36) then
     -- if true, decrease HP:
     hp = hp - 1
   end
@@ -82,16 +101,16 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(enemy, x2, y2)
   love.graphics.draw(enemy2, c, d)
   love.graphics.draw(enemy3, e, f)
   love.graphics.draw(questItem, g, b)
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', x2, y2, 64, 64)
+  if hp < 0 then
+    love.graphics.print('GAME OVER', 560, 480)
+  end
   -- Print the player's HP in the top left corner
-  love.graphics.print(hp, 0, 0)
+  love.graphics.print(hp, x, y)
     --Draw everything here. For example:
   end)
 end
