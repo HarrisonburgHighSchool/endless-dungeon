@@ -12,6 +12,8 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
   w = 64   -- The player's width is 64
   h = 899   -- The player's height is 64
+  w2 = 64   -- The player's width is 64
+  h2 = 899
   hp = 100 -- Set the player's HP to 100 at the start of the game
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   floorTile2 = love.graphics.newImage('assets-1/dungeon/wall/pebble_red_0.png')
@@ -52,18 +54,20 @@ function love.update(dt)
   if love.keyboard.isDown('down') then
     y = y + 3
   end
-  if love.keyboard.isDown('left') then
-    x = x - 3
-  end
+  
   if love.keyboard.isDown('right') then
     x = x + 3
+  end  
+ if love.keyboard.isDown('right') then
+  x = x + 3
   end
   cam:setPosition(x,y)
 
-
-  if cc(x, y, w, h,  0, 0, 64, 899) then  
+  if not cc(x, y, w, h,  0, 0, 64, 899) then  
     -- if true, decrease HP:
-    hp = hp - 1
+    if love.keyboard.isDown('left') then
+      x = x - 3
+    end
   end
 end
 
