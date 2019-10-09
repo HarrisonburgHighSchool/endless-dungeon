@@ -1,4 +1,5 @@
 local Map = require 'core/map'
+--local Entity = require 'core/entity'
 function cc(x1, y1, w1, h1, x2, y2, w2, h2)
 end
 
@@ -10,26 +11,26 @@ end
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/zot_blue_0.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
-  template = {-- a 3 x 3 map with the floor texture in the middle
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, floor, floor, floor, wall, floor, wall, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  template = {-- a 10 x 10 map with the floor texture in the middle
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
+    {wall, wall, wall, floor, floor, wall, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
+    {wall, floor, floor, floor, floor, floor, wall, wall, wall, wall},
+    {wall, wall, wall, floor, wall, wall, wall, wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
 
 
@@ -41,6 +42,8 @@ playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 w = 64   -- The player's width is 64
 h = 64   -- The player's height is 64
 hp = 100 -- Set the player's HP to 100 at the start of the game
+
+--img = love.graphics.newImage('assets')
 end
 
 function love.update(dt)
