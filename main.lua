@@ -4,8 +4,8 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
-  G = love.math.random(-1, 2);
-  H = love.math.random(-1, 2);
+  G = love.math.random(-3, 4);
+  H = love.math.random(-3, 4);
   x = 400
 
   y = 300
