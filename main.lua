@@ -13,6 +13,8 @@ function love.load()
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
   jelly = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
+  w=60
+  h=60
   jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
@@ -57,7 +59,7 @@ end
  if cc(x, y, w, h,   0, 0, 64, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
- 
+
 end
 end
 
@@ -82,6 +84,9 @@ function love.draw()
   love.graphics.draw(jelly2, 258, 193)
   love.graphics.draw(playerImg, x, y)
 
+  if cc(x, y, w, h,   0, 0, 64, 64) then
+    love.graphics.draw(jelly, x, y)
+  end
  
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', 0, 0, 64, 64)
