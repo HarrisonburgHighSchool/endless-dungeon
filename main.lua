@@ -51,7 +51,12 @@ function love.load()
   
                 }  
 map = Map:new(template)
+w = 64   -- The player's width is 64
+h = 64   -- The player's height is 64
+hp = 100 -- Set the player's HP to 100 at the sstart of the game
+
 end
+
 
 function love.update(dt)
   if love.keyboard.isDown('up') then  
@@ -67,16 +72,20 @@ if love.keyboard.isDown('down') then
     y = y + 5
 end
 cam:setPosition(x,y)
-
+ -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+ if cc(x, y, w, h,   0, 0, 54, 54) then  
+  -- if true, decrease HP:
+  hp = hp - 1
 end
-
+end
 function love.draw()
  cam:draw(function(l,t,w,h)
     map:draw()
     love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
-    --love.graphics.rectangle('line', 0 , 0, 64, 899) 
-   -- love2.graphics.rectangle('line', 0, 0, 64, 899)
+    love.graphics.rectangle('line', 0 , 0, 64, 899) 
+    love.graphics.rectangle('line', 0, 0, 64, 899)
+    love.graphics.print(hp, 0, 0)
   end)
 end
 
