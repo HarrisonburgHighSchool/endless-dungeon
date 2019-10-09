@@ -4,7 +4,10 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
+  G = love.math.random(-1, 2);
+  H = love.math.random(-1, 2);
   x = 400
+
   y = 300
   l = 0
   t = 0
@@ -48,7 +51,7 @@ function love.load()
     {c, c2, c, c2, c3, c3, c2, c, c2, c, c, c2, c, c2, c2, c, c2},
   }
 
-  entity = Entity:new(ent, 200, 200)
+  entity = Entity:new(ent, 100, 200)
   map = Map:new(mapTemplate)
 
 end
@@ -59,25 +62,25 @@ function love.update(dt)
   cam:setPosition(X1, Y1)
 
 
-  if love.keyboard.isDown('right') then
+  if love.keyboard.isDown('right') and x < 940 then
   x = x + 5
   X1 = X1 + 5
   X2 = X2 + 5
   end
 
-  if love.keyboard.isDown('left') then
+  if love.keyboard.isDown('left') and x > 0 then
   x = x - 5
   X1 = X1 - 5
   X2 = X2 - 5
   end
 
-  if love.keyboard.isDown('up') then
+  if love.keyboard.isDown('up') and y > -5 then
   y = y - 5
   Y1 = Y1 - 5
   Y2 = Y2 - 5
   end
 
-  if love.keyboard.isDown('down') then
+  if love.keyboard.isDown('down') and y < 945 then
   y = y + 5
   Y1 = Y1 + 5
   Y2 = Y2 + 5
@@ -94,14 +97,26 @@ function love.update(dt)
         hp = hp - 1
     end
 
+
+
+
+  entity.x = entity.x +- G
+  entity.y = entity.y +- H
+
+
+
 end
 
 function love.draw()
 
- cam:draw(function(l, t, w, h)
+
+
+  cam:draw(function(l, t, w, h)
 
   map:draw()
-  --entity:draw()
+
+  entity:draw();
+
   love.graphics.print('Level 1, Practice Level!', 0, 0)
   love.graphics.draw(ent, 400, 130)
   if (hp > 0) then
