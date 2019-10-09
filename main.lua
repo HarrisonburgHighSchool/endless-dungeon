@@ -6,8 +6,8 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
-  x = 400
-  y = 300
+  x = 100
+  y = 100
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -23,13 +23,32 @@ function love.load()
 
   template = { --a 3 x 3 map with the altar texture in the middle
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
@@ -157,7 +176,7 @@ playerImg20 = love.graphics.newImage('assets-2/dc-mon/fungi_plants/oklob_plant.p
 
 
 
---cam:setPosition(400, 400)
+cam:setPosition(400, 400)
 
 
 end
@@ -187,7 +206,10 @@ function love.update(dt)
 
 cam:setPosition(x, y)
 
-
+if cc(x, y, w, h,   100, 100, 64, 64) then
+    -- if true, decrease HP:
+    hp = hp - 1
+  end
 
 
 end
@@ -215,10 +237,57 @@ function love.draw()
   love.graphics.draw(playerImg18, x18, y18)
   love.graphics.draw(playerImg19, x19, y19)
   love.graphics.draw(playerImg20, x20, y20)
+   love.graphics.rectangle('line', 200, 100, 40, 40)
 
+   love.graphics.print(hp, 0, 0)
 
-  --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 250, 350, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 250, 350, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 600, 700, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 530, 300, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 420, 173, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 368, 444, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+  love.graphics.rectangle('line', 550, 650, 40, 40)
+
+  love.graphics.print(hp, 0, 0)
+
+  love.graphics.draw(playerImg, x, y)
+
+
+
+
 
   end)
 
