@@ -64,7 +64,7 @@ function love.update(dt)
     y = y - 4
     mirrory = mirrory - 4
   end
-  if cc(x, y, w, h,   128, 0, 192, 64) then  
+  if cc(x, y, w, h,   192, 192, 192, 256) then  
     hp = hp - 1
   end
   cam:setPosition(x, y)
