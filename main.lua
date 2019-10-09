@@ -1,4 +1,4 @@
-local gamera = require 'core/gamera'
+
 local Map = require 'core/map'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Util = require 'core/util'
@@ -9,7 +9,6 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
-  cam = gamera.new(0, 0, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
@@ -58,7 +57,7 @@ end
  if cc(x, y, w, h,   0, 0, 64, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
-  cam:setPosition(400, 400)
+ 
 end
 end
 
@@ -89,10 +88,8 @@ function love.draw()
    -- Print the player's HP in the top left corner
    love.graphics.print(hp, 0, 0)
 
-   cam:draw(function(l, t, w, h)
-  
-    --Draw everything here. For example:
+   --Draw everything here. For example:
     love.graphics.draw(playerImg, x, y)
     
-    end)
-end
+    end
+
