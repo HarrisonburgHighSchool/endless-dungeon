@@ -7,8 +7,8 @@ function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 67   -- The player's width is 67
+  h = 67   -- The player's height is 67
   hp = 100 -- Set the player's HP to 100 at the start of the game
 end
 
@@ -42,7 +42,7 @@ function love.update(dt)
     x = x + 10
   end
   
-   if cc(x, y, w, h,   0, 0, 64, 64) then  
+   if cc(x, y, w, h,   0, 0, 67, 67) then  
     -- if true, decrease HP:
     hp = hp - 1
   end
@@ -57,7 +57,7 @@ function love.draw()
   if hp <= 0 then
     alive = false
   end
-  love.graphics.rectangle('line', 50, 50, 64, 64)
+  love.graphics.rectangle('line', 50, 50, 67, 67)
   
   love.graphics.print(hp, 0, 0)
 
