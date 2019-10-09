@@ -76,6 +76,7 @@ end
 
 function love.draw()
   bkgrnd:draw()
+  map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', x2, y2, w2, h2)
