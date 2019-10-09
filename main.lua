@@ -55,21 +55,25 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('d') then   -- if the 'up' key is being pressed...
-    x = x + 4
-  end
+  
   if love.keyboard.isDown('s') then   -- if the 'up' key is being pressed...
     y = y + 4
   end
-  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    x = x - 4
+
+  if love.keyboard.isDown('d') then   -- if the 'up' key is being pressed...
+    x = x + 4
   end
+if not cc(x, y, w, h,   0, 0, 1280, 63) then  
+ 
   if love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
     y = y - 4
   end
-if cc(x, y, w, h,   0, 0, 801, 63) then  
-  hp = hp - 1
+  if not cc(x, y, w, h,   0, 0, 0, 200) then
+    if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+      x = x - 4
   end
+ end
+end
 cam:setPosition(x,y)
 end
 
