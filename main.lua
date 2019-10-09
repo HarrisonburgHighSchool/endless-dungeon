@@ -16,8 +16,8 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
-  w = 64   -- The mirror player's width is 64
-  h = 64   -- The mirror player's height is 64
+  w2 = 64   -- The mirror player's width is 64
+  h2 = 64   -- The mirror player's height is 64
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
   cobaltMirrorLeft = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_left.png')
@@ -64,8 +64,41 @@ function love.update(dt)
     y = y - 4
     mirrory = mirrory - 4
   end
-  if cc(x, y, w, h,   192, 192, 192, 256) then  
+  if cc(x, y, w, h, 216, 216, 84, 16) then  
     hp = hp - 1
+  end
+  --if cc(x, y, w, h, 216, 216, 84, 16) then  
+    --hp = hp - 1
+  --end
+  --if cc(x, y, w, h, 216, 216, 84, 16) then  
+    --hp = hp - 1
+  --end
+  --if cc(x, y, w, h, 216, 216, 84, 16) then  
+    --hp = hp - 1
+  --end
+  if cc(x, y, w, h, 64, 0, 768, 64) then  
+    if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+      y = y + 4
+      mirrory = mirrory + 4
+    end
+  end
+  if cc(x, y, w, h, 502, 64, 84, 576) then  
+    if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
+      x = x - 4
+      mirrorx = mirrorx + 4
+    end
+  end
+  if cc(x, y, w, h, 64, 64, 64, 576) then  
+    if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
+      x = x + 4
+      mirrorx = mirrorx - 4
+    end
+  end
+  if cc(x, y, w, h, 64, 644, 832, 64) then  
+    if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
+      y = y - 4
+      mirrory = mirrory - 4
+    end
   end
   cam:setPosition(x, y)
 end
