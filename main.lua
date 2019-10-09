@@ -38,16 +38,16 @@ end
 function love.update(dt)
   if not cc(x, y, w, h,  0, 0, 64, 64) then
     if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-      x = x + 15
+      x = x + 2
     end
     if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-      x = x - 15
+      x = x - 2
     end
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-      y = y - 15
+      y = y - 2
     end
     if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-      y = y + 15
+      y = y + 2
     end
   end
 
