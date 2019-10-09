@@ -9,7 +9,7 @@ function love.load()
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   cage = love.graphics.newImage('assets-1/dungeon/floor/cage_0.png')
   mapTemplate = {
-    {cage, cage,cage, cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage},     
+    {cage, cage,  cage, cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,cage,},     
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,cage,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,cage,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,cage,cage,},
