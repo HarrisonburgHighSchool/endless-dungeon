@@ -2,6 +2,8 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 local gamera = require 'core/gamera'
 --love.graphics.setDefaultFilter('nearest', 'nearest')
+
+
 function love.load()
   map = Map:new(20,20)
   x = 400
@@ -42,6 +44,13 @@ function love.load()
   }
 
   map = Map:new(template)
+  --playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  --template = {
+    --{playerImg, playerImg, playerImg},
+    --{playerImg, playerImg, playerImg},
+    --{playerImg, playerImg, playerImg},
+  --}
+
 end
 
 
