@@ -1,9 +1,26 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
+local Entity = require 'core/entity'
+
+function love.load()
+  playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
+  player = Entity:new(playerImg, 200, 200)
+end
+
+function love.update(dt)
+end
+
+function love.draw()
+  player:draw()
+end
+
+
+
+
+
 local Util = require 'core/util'
 function love.load()
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
   w1 = 5
   h1 = 5
   hp = 100
@@ -49,6 +66,12 @@ end
 
 
 function love.update(dt)
+end
+
+function love.draw()
+  map:draw()
+end
+
   if love.keyboard.isDown('right') then
     x=x+7
   end
