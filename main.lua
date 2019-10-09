@@ -9,6 +9,7 @@ function love.load()
   y = 235
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
   oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
   w=64
   h=64
   hp=100
@@ -50,10 +51,41 @@ floor = {
              }
 
   map = Map:new(floor)
+  z=100
+  s=100
+  direction = 'down'
+  direction2='left'
 
 end
-
 function love.update(dt)
+
+  if direction == 'down' then
+    z = z + 5
+  end
+  if direction == 'up' then
+    z = z -5
+  end
+
+  if z==500 then
+    direction = 'up'
+  end
+  if z==50 then
+    direction = 'down'
+  end
+
+  if direction == 'left' then
+    s = s + 5
+  end
+  if direction == 'right' then
+    s = s -5
+  end
+  if s==500 then
+    direction2 = 'left'
+  end
+  if s==50 then
+    direction2 = 'right'
+  end
+
   if love.keyboard.isDown('right')then
     x = x + 3
   end
@@ -67,9 +99,9 @@ function love.update(dt)
     y = y + 3
   end
   cam:setPosition(x, y)
- if cc(x, y, w, h,   100, 100, 58, 58) then
+ if cc(x, y, w, h,   100, z, 20, 100) then
 
-   hp = hp - 1
+   hp = hp - 0.5
  end
 end
 
@@ -77,7 +109,8 @@ function love.draw()
   cam:draw(function(l, t, w, h)
 
     map:draw()
-    love.graphics.draw(oct, 100, 100)
+    love.graphics.draw(oct, 100, z)
+    love.graphics.draw(oct2, s, 325)
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
   end
