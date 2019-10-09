@@ -63,6 +63,7 @@ end
 
 
 function love.draw()
+  map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   map:draw()
   love.graphics.draw(grass, 513, 258, 0, 2)

@@ -11,7 +11,9 @@ function Map:constructor(xSize, ySize, x, y)
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
-    self.gridsize = ySize
+    if ySize then
+      self.gridsize = ySize
+    end
   end
   if not template then
     -- Use the default texture
@@ -39,8 +41,8 @@ function Map:constructor(xSize, ySize, x, y)
         w = self.gridsize
         h = self.gridsize
       else
-        local w = img:getWidth()
-        local h = img:getHeight()
+        w = img:getWidth()
+        h = img:getHeight()
       end
       -- Create the matrix
       self:createTwoD(template, w, h)
@@ -139,4 +141,3 @@ function Map:changeScale(mult)
 end
 
 return Map
-  
