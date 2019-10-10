@@ -22,6 +22,15 @@ function love.load()
 map: changeScale(3)
 end
   function love.update(dt)
+
+
+   if love.keyboard.isDown('right')then
+     if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+       x = x + 1
+     end
+   end
+
+
   if love.keyboard.isDown("left") then
         x = x - 4
    end
