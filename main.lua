@@ -10,6 +10,7 @@ function love.load()
   y = 320
   camy = 256
   mirrory = 320
+  s = 1
   hp = 20
   cam = gamera.new(48, 52, 800, 600)
 
@@ -50,23 +51,23 @@ end
   
 function love.update(dt)
   if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-    x = x + 4
-    mirrorx = mirrorx - 4
+    x = x + 3
+    mirrorx = mirrorx - 3
   end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-    y = y + 4
-    mirrory = mirrory + 4
+    y = y + 3
+    mirrory = mirrory + 3
   end
   if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-    x = x - 4
-    mirrorx = mirrorx + 4
+    x = x - 3
+    mirrorx = mirrorx + 3
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    y = y - 4
-    mirrory = mirrory - 4
+    y = y - 3
+    mirrory = mirrory - 3
   end
   if cc(x, y, w, h, 216, 216, 84, 16) then  
-    hp = hp - 1
+    s = s + 0.5
   end
   if cc(x, y, w, h, 344, 410, 16, 16) then  
     hp = hp - 1
@@ -79,26 +80,26 @@ function love.update(dt)
   --end
   if cc(x, y, w, h, 64, 0, 768, 64) then  
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-      y = y + 4
-      mirrory = mirrory + 4
+      y = y + 3
+      mirrory = mirrory + 3
     end
   end
   if cc(x, y, w, h, 502, 64, 84, 576) then  
     if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-      x = x - 4
-      mirrorx = mirrorx + 4
+      x = x - 3
+      mirrorx = mirrorx + 3
     end
   end
   if cc(x, y, w, h, 64, 64, 64, 576) then  
     if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-      x = x + 4
-      mirrorx = mirrorx - 4
+      x = x + 3
+      mirrorx = mirrorx - 3
     end
   end
   if cc(x, y, w, h, 64, 644, 832, 64) then  
     if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-      y = y - 4
-      mirrory = mirrory - 4
+      y = y - 3
+      mirrory = mirrory - 3
     end
   end
   cam:setPosition(x, y)
@@ -107,8 +108,8 @@ end
 function love.draw()
   cam:draw(function(camx, camy)
   map:draw()
-  love.graphics.draw(playerImg, x, y, rotation, -1, 1)
-  love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
+  love.graphics.draw(playerImg, x, y, rotation, -1, 1, size, s, s)
+  love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory, 0, s)
   love.graphics.print(hp, x, y)
   end)
 end
