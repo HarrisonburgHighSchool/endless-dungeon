@@ -20,35 +20,37 @@ function love.load()
   cam = gamera.new(0, 0, 2000, 2000)
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
-
+  gate = love.graphics.newImage('assets-1/dungeon/gateways/bazaar_gone.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
@@ -189,19 +191,27 @@ end
 function love.update(dt)
   -- Nothing to update yet
   if love.keyboard.isDown('right') then
+    if cc(x + 1, y, 64, 64, 50, 50, 64, 64)==false then
     x = x + 1
+    end
   end
 
   if love.keyboard.isDown('left') then
+    if cc(x + 1, y, 64, 64, 50, 50, 64, 64)==false then
     x = x - 1
+    end
   end
 
   if love.keyboard.isDown('down') then
+    if cc(y + 1, y, 64, 64, 50, 50, 64, 64)==false then
     y = y + 1
+    end
   end
 
   if love.keyboard.isDown('up') then
+    if cc(y - 1, y, 64, 64, 50, 50, 64, 64)==false then
     y = y - 1
+    end
   end
 
 cam:setPosition(x, y)
@@ -237,53 +247,7 @@ function love.draw()
   love.graphics.draw(playerImg18, x18, y18)
   love.graphics.draw(playerImg19, x19, y19)
   love.graphics.draw(playerImg20, x20, y20)
-   love.graphics.rectangle('line', 200, 100, 40, 40)
 
-   love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 250, 350, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 250, 350, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 600, 700, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 530, 300, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 420, 173, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 368, 444, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
-
-  love.graphics.rectangle('line', 550, 650, 40, 40)
-
-  love.graphics.print(hp, 0, 0)
-
-  love.graphics.draw(playerImg, x, y)
 
 
 
