@@ -11,7 +11,7 @@ function love.update(dt)
     x = x + 2
   end
   if love.keyboard.isDown('left') then
-    x = x + 5
+    x = y + 2
   end
 end
 
@@ -21,3 +21,4 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end
+c
