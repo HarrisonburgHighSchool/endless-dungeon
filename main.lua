@@ -23,8 +23,8 @@ function love.load()
     {w1, f1, f1, f1, f1, f1, f1, f1, w1},
     {w1, w1, w1, w1, w1, w1, w1, f1, w1}}
   map = Map:new(template)
-  x = 400
-  y = 300
+  x = 704
+  y = 448
   w = 64
   h = 64
   hp = 100
@@ -46,8 +46,43 @@ function love.update(dt)
   x=x-4
   end
 
-  if cc(x, y, w, h, 0, 0, 64, 64) then  
-    hp = hp - 1
+  if cc(x, y, w, h, 320, 256, 256, 64) then  
+    if love.keyboard.isDown('up') then
+    y=y+4
+    if love.keyboard.isDown('left') then
+      x=x-4
+      end
+    if love.keyboard.isDown('right') then
+      x=x+4
+      end
+    end
+    if love.keyboard.isDown('down') then
+    y=y-4
+    if love.keyboard.isDown('left') then
+      x=x-4
+      end
+    if love.keyboard.isDown('right') then
+      x=x+4
+      end
+    end
+    if love.keyboard.isDown('left') then
+    x=x+4
+    if love.keyboard.isDown('up') then
+      y=y+4
+      end
+    if love.keyboard.isDown('down') then
+      y=y-4
+      end
+    end
+    if love.keyboard.isDown('right') then
+    x=x-4
+    if love.keyboard.isDown('down') then
+      y=y-4
+      end
+    if love.keyboard.isDown('up') then
+      y=y+4
+      end
+    end
   end
 
 end
