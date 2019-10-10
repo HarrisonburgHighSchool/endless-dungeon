@@ -40,27 +40,26 @@ function love.load()
   map = Map:new(template)
   end
 function love.update(dt)
-  if love.keyboard.isDown('w') and y > 0 then   -- if the 'w' key is being pressed
+ 
+-- x, y, w, h all represent the player's rectangle. The other values are blocks you're colliding with.
+-- If the statement is true it will run the code, but if it is false it will skip it.
+if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
+  if love.keyboard.isDown('w') and y > 18 then -- up
     y = y - 2
   end
-  if love.keyboard.isDown('a') and x > 64 then   -- if the 'a' key is being pressed
+end 
+if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
+  if love.keyboard.isDown('a') and x > 62 then -- left
     x = x - 2
   end
-  if love.keyboard.isDown('s') and y < 482 then   -- if the 's' key is being pressed
+end
+if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
+  if love.keyboard.isDown('s') and y < 482 then -- down
     y = y + 2
   end
-  if love.keyboard.isDown('d') and x < 677 then   -- if the 'd' key is being pressed
-    x = x + 2
-  end
- 
--- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-if cc(x, y, w, h,   230, 227, 25, 32) then  
-  if love.keyboard.isDown('w') and y > 0 then   -- if the 'w' key is being pressed
-    y = y + 2
-  end
- end
-if cc(x, y, w, h,   230, 227, 25, 32) then  
-  if love.keyboard.isDown('a') and y > 64 then   -- if the 'w' key is being pressed
+end
+if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
+  if love.keyboard.isDown('d') and x < 677 then -- right
     x = x + 2
   end
  end
