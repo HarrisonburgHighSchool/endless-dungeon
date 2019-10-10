@@ -68,7 +68,13 @@ function love.update(dt)
     if love.keyboard.isDown('left') then
       x = x - 3
     end
+end
+
+  if cc(x,y,64,64,100,200,64,64)==false then
+    if love.keyboard.isDown('w') then 
+      y=y-1
   end
+end
 end
 
 function love.draw()
