@@ -85,19 +85,25 @@ if(y < 60) then
 end
 
 collide1 = false
-  
+
+if cc(x + 3, y, w, h, x2, y2, w2, h2) == false then
 if love.keyboard.isDown('right') then  
     x = x + 3
    
   end
+end
+if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then
     if love.keyboard.isDown('left') then  
       x = x - 3
   end
+end
+  if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
   if love.keyboard.isDown('down') then 
     y = y + 3
 end
+end
 
-   if cc(x, y - 1, 192, h2, w, h) == false then
+   if cc(x, y - 3, w, h, x2, y2, w2, h2) == false then
     if love.keyboard.isDown('up') then
     y = y - 3
   end
