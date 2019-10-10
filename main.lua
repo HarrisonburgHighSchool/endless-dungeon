@@ -36,20 +36,31 @@ map = Map:new(template)
 end
 
 function love.update(dt)
-  if not cc(x, y, w, h,  0, 0, 64, 64) then
-    if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-      x = x + 2
+  
+  
+
+    if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
+      if cc(x, y - 1, w, h, 65, 70) == false then
+      
+      y = y - 1
     end
-    if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-      x = x - 2
-    end
-    if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-      y = y - 2
-    end
-    if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-      y = y + 2
-    end
+  end  
+  if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
+    if cc(x, y + 1, w, h, 65, 70, w, h) == false then
+    
+    y = y + 1
   end
+end  if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
+  if cc(x, x + 1, w, h, 65, 70) == false then
+  
+  x = x + 1
+  end
+end  if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
+  if cc(x, x - 1, w, h, 65, 70) == false then
+  
+  x = x - 1
+ end
+end  
 
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
@@ -58,10 +69,8 @@ function love.update(dt)
 end
 
 
-
 function love.draw()
   map:draw()
-  --love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(fountain, 675, 100)
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(dragon, 400, 200)
