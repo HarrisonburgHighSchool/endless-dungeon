@@ -46,6 +46,7 @@ end
 end
 
 function love.draw()
+  map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   floorm:draw()
   love.graphics.draw(playerImg, x, y)
