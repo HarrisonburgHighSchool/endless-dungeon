@@ -8,9 +8,21 @@ function love.load()
  y = 400
 
  floor = {
-   {cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+ 
  }
 
  map = Map:new(floor)
@@ -30,6 +42,10 @@ if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
   y = y - 15
 end
   -- Nothing to update
+  if keyboard.isDown ('w') then
+    if cc(x,y-1,e,h, 100,200,64,64) == flase than
+    y=y-1
+  end
 end
 
 function love.draw()
