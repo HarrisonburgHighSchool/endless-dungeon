@@ -13,11 +13,7 @@ function love.load()
   butterfly_x = 450
   butterfly_y = 100
 
-  function attack()
-    if x >= butterfly_x - 5 and x <= butterfly_x + 5 and  y >= butterfly_y - 5 and y <= butterfly_y + 5 then
-      butterfly_alive = false
-    end
-  end
+  
 
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -28,7 +24,7 @@ function love.load()
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
-  playerImg = love.graphics.newImage('hero/sliced/idle-1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   map = Map:new(30,30) -- Create a 5 x 5 map object named "map"
  
@@ -93,26 +89,40 @@ function love.update(dt)
     end 
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    y = y - 5
+    if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+      y = y - 5
+    else y = y + 15
+    end
   end
+  
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    y = y + 5
+    if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+      y = y + 5
+    else y = y - 15
+    end
   end
+  
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-    x = x - 5
+    if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+      x = x -5
+    else x = x + 15
+    end
   end
+  
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    x = x + 5
+    if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+      x = x + 5
+    else x = x - 15
+    end
   end
-
+  
   if enemy_draw == true then
   
    if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
   
     hp = hp - .2
   end
-  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    attack()
+  
 
 
 end
@@ -137,7 +147,7 @@ end
     -- if true, decrease HP:
     x = x - 5
   end
-end
+
   
 
  c = dist(enemy_x, enemy_y, x, y)
@@ -151,6 +161,7 @@ end
  enemy_y = enemy_y + dy
  cam:setPosition(x, y)
 end
+
 
 
 
