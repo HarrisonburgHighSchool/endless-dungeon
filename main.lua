@@ -10,11 +10,18 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
   oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
   oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
+    oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
   w=64
   h=64
   hp=100
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
+z=100
+s=100
+t=100
+direction = 'down'
+direction2= 'left'
+direction3= 'right'
 floor = {
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -51,10 +58,7 @@ floor = {
              }
 
   map = Map:new(floor)
-  z=100
-  s=100
-  direction = 'down'
-  direction2='left'
+
 
 end
 function love.update(dt)
@@ -73,33 +77,62 @@ function love.update(dt)
     direction = 'down'
   end
 
-  if direction == 'left' then
+  if direction2 == 'left' then
     s = s + 5
   end
-  if direction == 'right' then
+  if direction2 == 'right' then
     s = s -5
   end
-  if s==500 then
+  if s==700 then
+    direction2 = 'right'
+  end
+  if s==70 then
     direction2 = 'left'
   end
-  if s==50 then
-    direction2 = 'right'
+
+  if direction3 == 'left' then
+    t = t + 5
+  end
+  if direction3 == 'right' then
+    t = t -5
+  end
+  if t==700 then
+    direction3 = 'right'
+  end
+  if t==70 then
+    direction3 = 'left'
   end
 
   if love.keyboard.isDown('right')then
+    if cc(x+3,y,64,64,  50,125,64,64)==false then
     x = x + 3
   end
+end
   if love.keyboard.isDown('left')then
+    if cc(x-3,y,64,64,  50,125,64,64)==false then
     x = x - 3
   end
+  end
   if love.keyboard.isDown('up')then
+    if cc(x,y-3,64,64,  50,125,64,64)==false then
     y = y - 3
   end
+  end
   if love.keyboard.isDown('down')then
+    if cc(x,y+3,64,64,  50,125,64,64)==false then
     y = y + 3
+  end
   end
   cam:setPosition(x, y)
  if cc(x, y, w, h,   100, z, 20, 100) then
+
+   hp = hp - 0.5
+ end
+ if cc(x, y, w, h,   s, 100, 20, 100) then
+
+   hp = hp - 0.5
+ end
+ if cc(x, y, w, h,   t, 100, 20, 100) then
 
    hp = hp - 0.5
  end
@@ -111,11 +144,13 @@ function love.draw()
     map:draw()
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
+    love.graphics.draw(oct3, t, 260)
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
   end
-
     love.graphics.print(hp, 0, 0)
+    love.graphics.print(hp, 600, 0)
+    love.graphics.print(hp, 1200, 0)
 
   end)
 end
