@@ -30,10 +30,17 @@ function love.load()
 
 end
 
+function function love.update(dt)
 
 
+ if love.keyboard. isDown('right') then
+    if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+      x = x + 1
+    end
+end
 
 
+end 
 
 function love.update(dt)
   if love.keyboard.isDown('right') then
