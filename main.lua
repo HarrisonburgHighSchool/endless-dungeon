@@ -96,8 +96,9 @@ if love.keyboard.isDown('right') then
   if love.keyboard.isDown('down') then 
     y = y + 3
 end
-if love.keyboard.isDown('up') then
-   if cc(x, y - 1, w2, h2, w, h) == false then
+
+   if cc(x, y - 1, 192, h2, w, h) == false then
+    if love.keyboard.isDown('up') then
     y = y - 3
   end
 end
