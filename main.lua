@@ -9,7 +9,7 @@ collide = false
   y2 = 450
   w2 = 20
   h2 = 10
-  w = 20
+  w3 = 20
   h = 10
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
@@ -66,7 +66,7 @@ end
 if(y > 450)then 
   y = y - 2
 end
-if(x + w > x2 and y + h > y2 and y2 + h2 > y and x2 + w2 > x) then 
+if(x + w3 > x2 and y + h > y2 and y2 + h2 > y and x2 + w2 > x) then 
   collide = true
 else
   collide = false
