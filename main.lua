@@ -38,11 +38,13 @@ end
   map = Map:new(template)
 x = 400
 y = 300
-playerImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
-w = 64   -- The player's width is 64
-h = 64   -- The player's height is 64
+playerImg = love.graphics.newImage('assets-1/monster/gnome.png')
+w = 200   -- The player's width is 50
+h = 200   -- The player's height is 50
 hp = 100 -- Set the player's HP to 100 at the start of the game
-
+enemyImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+z = 100 -- The enemy's width is 50
+g = 150 -- The enemy's height is 50
 --img = love.graphics.newImage('assets')
 end
 
@@ -62,16 +64,37 @@ end
 -- nothing to update
 end
 -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
- if cc(x1, y1, w1, h1,   x2, y2, w2, h2) then
+
   -- if true, decrease HP:
-   love.graphics.draw(img, x1,y2)
- end
+  if love.keyboard.isDown('right') then  
+   
+    if love.keyboard.isDown('down') then  
+    h = h + 200
+    end
+    if love.keyboard.isDown('left') then  
+    w = w - 200
+    end
+    if love.keyboard.isDown('up') then 
+      h = h - 200
+    end 
+  
+    love.graphics.draw(img, x1,y2)
+    
+    if love.keyboard.isDown ('w') then
+    if cc(x1, y1, -1, w1, h1,    100, 200, 64, 64) ==  false then
+      y = y - 1
+    end
+  end
+end 
 
 
 function love.draw()
   map:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
  
+  -- Draw the enemy
+  love.graphics.draw(enemyImg, z, g)
+
   -- Draw the player
   love.graphics.draw(playerImg, x, y)
  
