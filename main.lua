@@ -2,6 +2,8 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
+local Map = require 'core/map'
+
 function love.load()
   x = 400
   y = 300
