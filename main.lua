@@ -55,7 +55,6 @@ end
 
 function love.draw()
   map:draw()
-
   love.graphics.draw(playerImg, x, y)
 
   love.graphics.print(hp, 0, 0)
