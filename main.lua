@@ -7,7 +7,6 @@ function love.load()
   G = love.math.random(-3, 4);
   H = love.math.random(-3, 4);
   x = 400
-
   y = 300
   l = 0
   t = 0
@@ -22,7 +21,7 @@ function love.load()
   h = 64
   hp = 100
 
-
+  M = love.sound.newSoundData('assets-1/Music1.mp3')
   gate = love.graphics.newImage('assets-1/dungeon/gateways/enter_depths.png')
   c = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_9.png')
   c2 = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
@@ -63,28 +62,38 @@ function love.update(dt)
 
 
   if love.keyboard.isDown('right') and x < 940 then
+    if cc(x+5, y, 64, 64, 400, 570, 64, 64) == false then
   x = x + 5
   X1 = X1 + 5
   X2 = X2 + 5
   end
+end
 
   if love.keyboard.isDown('left') and x > 0 then
+    if cc(x-5, y, 64, 64, 400, 570, 64, 64) == false then
   x = x - 5
   X1 = X1 - 5
   X2 = X2 - 5
   end
+end
+
 
   if love.keyboard.isDown('up') and y > -5 then
+    if cc(x, y-5, 64, 64, 400, 570, 64, 64) == false then
   y = y - 5
   Y1 = Y1 - 5
   Y2 = Y2 - 5
   end
+end
+
 
   if love.keyboard.isDown('down') and y < 945 then
+    if cc(x, y+5, 64, 64, 400, 570, 64, 64) == false then
   y = y + 5
   Y1 = Y1 + 5
   Y2 = Y2 + 5
   end
+end
 
   if cc(x, y, w, h,   385, 190, 64, 64) then
       hp = hp - 1
@@ -96,6 +105,9 @@ function love.update(dt)
   if cc(x, y, w, h,   449, 190, 64, 64) then
         hp = hp - 1
     end
+
+
+
 
 
 
@@ -128,7 +140,6 @@ end
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
   love.graphics.rectangle('line', 449, 190, 64, 64)
-
 
   end)
 
