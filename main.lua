@@ -19,15 +19,16 @@ function love.load()
                  {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, altar,},
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile,  altar, floorTile,floorTile,  altar, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, altar, floorTile, floorTile,floorTile, },
+                 {floorTile,  altar, floorTile,floorTile,  floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, },
+                 {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile,}
                }
     map = Map:new(template)
 cam = gamera.new(-100, -100, 2000, 2000)
@@ -58,7 +59,7 @@ end
  end
  if love.keyboard.isDown('s')then
  b = b + 50
- cam:setPosition(a,b)
+ cam:setPosition(a,b) 
  end
  if love.keyboard.isDown('d')then
  a = a + 5
