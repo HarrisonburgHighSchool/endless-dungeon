@@ -22,7 +22,7 @@ function love.load()
   x = 400
   y = 300
   w1 = 5
-  h1 = 5
+  h1 = 64
   hp = 100
 end
 local Map = require 'core/map'
@@ -30,11 +30,11 @@ local Map = require 'core/map'
 hp = var 0
 
   x1 = 10
-  y1 = 10
-  x2 = 8
-  y2 = 8
-  w2 = 5
-  h2 = 5
+  y1 = 64
+  x2 = 50
+  y2 = 50
+  w2 = 64
+  h2 = 64
 
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
   tile2 = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
@@ -73,35 +73,51 @@ function love.draw()
 end
 
   if love.keyboard.isDown('right') then
-    x=x+7
+    if cc(x + 1, y, w1, h1, x2, y2, w2, h2) == false then
+       x = x + 1
+    end
   end
   if love.keyboard.isDown('left') then
-    x=x-7
+    if cc(x - 1, y, w1, h1, x2, y2, w2, h2) == false then
+       x = x - 1
+    end
   end
   if love.keyboard.isDown('up') then
-    y=y-7
+    if cc(x , y - 1, w1, h1, x2, y2, w2, h2) == false then
+       y = 7 - 1
+    end
   end
   if love.keyboard.isDown('down') then
-    y=y+7
+    if cc(x , y + 1, w1, h1, x2, y2, w2, h2) == false then
+       y = y + 1
+    end
   end
-end
-
-  if cc(x1, y1, w1, h1, x2, y2, w2, h2) then
+  if cc(x, y, w, h, 0, 0, 64, 64) then
     hp = hp - 1
   end
-end
-
-if hp > 0 then
-  love.graphics.draw(img,x1, y1)
 end
 
 
 
 function love.draw()
+  love.graphics.draw(img,x, y)
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+  love.graphics.print(hp, 0, 0)
+end
+
+
+
+
+local gamera = require 'core/gamera'
+cam = gamera.new(0, 0, 2000, 2000)
+cam:setPosition(400, 400)
+
+function love.draw()
+  cam:draw(function(l, t, w, h)
+  love.graphics.draw(playerImg, x, y)
+  end)
+end
   bkgrnd:draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.rectangle('line', x2, y2, w2, h2)
-  love.graphics.print(hp, 0, 0)
 end
