@@ -24,9 +24,9 @@ function love.load()
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,marble,marble,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
+    {limestone,limestone,limestone,limestone,marble,marble,marble,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
@@ -59,10 +59,13 @@ end
  if cc(x, y, w, h,   0, 0, 64, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
-
+ end
+if cc(x, y, 64, 64, 100, 200, 64, 64) == false then 
+  if love.keyboard.isDown ('up') then 
+  y=y-1
+  end
 end
 end
-
 
 function love.draw()
   map:draw()
@@ -82,7 +85,7 @@ function love.draw()
   love.graphics.draw(statue, 385, 250, 0, 2)
   love.graphics.draw(jelly, 513, 193)
   love.graphics.draw(jelly2, 258, 193)
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x, y,0,2)
 
   if cc(x, y, w, h,   0, 0, 64, 64) then
     love.graphics.draw(jelly, x, y)
@@ -93,9 +96,7 @@ function love.draw()
 
    -- Print the player's HP in the top left corner
    love.graphics.print(hp, 0, 0)
-
-   --Draw everything here. For example:
-    love.graphics.draw(playerImg, x, y)
     
     end
 
+  
