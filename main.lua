@@ -43,26 +43,48 @@ function love.update(dt)
  
 -- x, y, w, h all represent the player's rectangle. The other values are blocks you're colliding with.
 -- If the statement is true it will run the code, but if it is false it will skip it.
-if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
-  if love.keyboard.isDown('w') and y > 18 then -- up
-    y = y - 2
-  end
-end 
-if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
-  if love.keyboard.isDown('a') and x > 62 then -- left
-    x = x - 2
-  end
+  
+-- if love.keyboard.isDown('w') and y > 18 then -- up
+--   if cc(x, y - 2, 64, 64,   230, 227, 25, 32) == false then
+--     y = y - 2 -- speed
+--   end
+-- end 
+-- if love.keyboard.isDown('a') and x > 62 then -- left
+--   if cc(x - 2, y, 64, 64,   230, 227, 25, 32) == false then  
+--     x = x - 2 -- speed
+--   end
+-- end
+-- if love.keyboard.isDown('s') and y < 482 then -- down
+--   if cc(x, y + 2, 64, 64,   230, 227, 25, 32) == false then  
+--     y = y + 2 -- speed
+--   end
+-- end
+-- if love.keyboard.isDown('d') and x < 677 then -- right
+--   if cc(x + 2, y, 64, 64,   230, 227, 25, 32) == false then  
+--     x = x + 2 -- speed
+--   end
+--  end
+
+local dx = 0
+local dy = 0
+if love.keyboard.isDown('w') then
+  dy = - 2
 end
-if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
-  if love.keyboard.isDown('s') and y < 482 then -- down
-    y = y + 2
-  end
+if love.keyboard.isDown('a') then
+  dx = - 2
 end
-if cc(x, y, 64, 64,   230, 227, 25, 32) == false then  
-  if love.keyboard.isDown('d') and x < 677 then -- right
-    x = x + 2
-  end
- end
+if love.keyboard.isDown('s') then
+  dy = 2
+end
+if love.keyboard.isDown('d') then
+  dx = 2
+end
+
+if cc(x + dx, y + dy, 64, 64, 230, 227, 25, 32) == false then
+  x = x + dx
+  y = y + dy
+end
+
 end
 
 
@@ -72,6 +94,4 @@ function love.draw()
 
   love.graphics.print(hp, 0, 0)
   
-  -- Draw the rectangle in the upper left corner
-  love.graphics.rectangle('line', 195, 195, 64, 64)
 end
