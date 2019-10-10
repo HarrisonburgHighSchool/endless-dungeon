@@ -8,8 +8,8 @@ function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-2/player/base/merfolk_m.png')
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 32   -- The player's width is 64
+  h = 32   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
   cage = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_3.png')
   cage1 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_4.png')
@@ -44,15 +44,18 @@ function love.load()
   }
 end
   function love.update(dt)
+    if cc(x, y-5, w, h,   385, 130, 16, 16) == false then  
   if love.keyboard.isDown('w') then   
     y = y - 5
   end
+end
     if love.keyboard.isDown('s') then   
       y = y + 5
     end
       if love.keyboard.isDown('a') then  
         x = x - 5
       end
+      
         if love.keyboard.isDown('d') then   
           x = x + 5
   end
@@ -113,17 +116,17 @@ function love.draw()
   love.graphics.draw(wall, 640, 575)
   love.graphics.draw(wall, 705, 575)
 
-  love.graphics.draw(trap, 385, 130, 0, 2)
+  love.graphics.draw(trap, 385, 130, 0, 2) -- Bottom Middle Pit
   love.graphics.draw(trap, 320, 130, 0, 2)
   love.graphics.draw(trap, 450, 130, 0, 2)
   love.graphics.draw(trap, 450, 65, 0, 2)
   love.graphics.draw(trap, 320, 65, 0, 2)
 
 
-  love.graphics.draw(door2, 390, 0, 0, 2)
-  love.graphics.draw(door, 390, 575, 0, 2)
-  love.graphics.draw(door, 740, 325, 0, 2)
-  love.graphics.draw(door, 0, 325, 0, 2)
+  love.graphics.draw(door2, 390, 0, 0, 2) -- Top Door
+  love.graphics.draw(door, 390, 575, 0, 2) -- Bottom Door
+  love.graphics.draw(door, 740, 325, 0, 2) -- Right Door
+  love.graphics.draw(door, 0, 325, 0, 2) -- Left Door
   
   love.graphics.draw(statue1, 65, 65, 0, 2)
 
