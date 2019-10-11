@@ -1,4 +1,5 @@
 local Map = require 'core/map'
+local Util = require 'core/util'
 --local Entity = require 'core/entity'
 function cc(x1, y1, w1, h1, x2, y2, w2, h2)
 end
@@ -36,9 +37,10 @@ end
 
   
   map = Map:new(template)
+
+playerImg = love.graphics.newImage('assets-1/monster/gnome.png')
 x = 400
 y = 300
-playerImg = love.graphics.newImage('assets-1/monster/gnome.png')
 w = 200   -- The player's width is 50
 h = 200   -- The player's height is 50
 hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -48,21 +50,26 @@ g = 150 -- The enemy's height is 50
 --img = love.graphics.newImage('assets')
 end
 
-
-
-
 function love.update(dt)
- if love.keyboard.isDown('right') then  
-x = x + 9
+ if love.keyboard.isDown('right') then
+  if cc(x, y, 128, 128, 300, 400, 128, 128) == false then
+ x = x + 9 
 end
-if love.keyboard.isDown('down') then  
-y = y + 9
 end
-if love.keyboard.isDown('left') then  
-x = x - 9
+if love.keyboard.isDown('down') then
+  if cc(x, y, 128, 128, 300, 400, 128, 128) == false then
+  y = y + 9
+end
+end
+if love.keyboard.isDown('left') then
+  if cc(x, y, 128, 128, 300, 400, 128, 128) == false then
+ x = x - 9
+end
 end
 if love.keyboard.isDown('up') then 
+  if cc(x, y, 128, 128, 300, 400, 128, 128) == false then
   y = y - 9
+end
 end
 -- nothing to update
 end
@@ -89,10 +96,6 @@ end
     end
   end
 end 
-
-
-
-
 
 
 function love.draw()
