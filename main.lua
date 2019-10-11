@@ -19,7 +19,7 @@ function love.load()
   door = love.graphics.newImage ('assets-1/dungeon/doors/runed_door.png')
   door2 = love.graphics.newImage('assets-1/dungeon/doors/sealed_door.png')
   statue1 = love.graphics.newImage ('assets-1/dungeon/statues/statue_sigmund.png')
-  butterfly = love.graphics.newImage('assets-1/monster/animals/butterfly_1.png')
+  camo_hog = love.graphics.newImage('assets-1/monster/animals/camo_hog-1.png.png')
   jackal = love.graphics.newImage('assets-1/monster/animals/jackal.png')
   bat = love.graphics.newImage('assets-1/monster/animals/bat.png')
   raiju = love.graphics.newImage('assets-1/monster/animals/raiju.png')
@@ -41,53 +41,26 @@ function love.load()
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
 
-    collision = { 
-      {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+   
 
-    }
   }
 end
 function love.update(dt)
-  if love.keyboard.isDown('up') then
-    if collision:cc(x, y, 64, 64) then
-      y = y - 1
+  if love.keyboard.isDown('w') then
+      y = y - 5
     end
-  end
-  if love.keyboard.isDown('down') then
-    if collision:cc(x, y, 64, 64) then
-      y = y + 1
+  if love.keyboard.isDown('s') then
+      y = y + 5
     end
-  end
-  if love.keyboard.isDown('right') then
-    if collision:cc(x, y, 64, 64) then
-      x = x + 1
+  
+  if love.keyboard.isDown('d') then
+      x = x + 5
     end
-  end
-  if love.keyboard.isDown('left') then
-    if collision:cc(x, y, 64, 64) then
-      x = x - 1
+  
+  if love.keyboard.isDown('a') then
+      x = x - 5
     end
-  end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
-    end
-  end
-
-
-end
+  end 
 
 
 
@@ -95,8 +68,6 @@ end
 
 function love.draw()
   map = Map:new(background)
-  map = Map:new(collision)
-
   map:draw()
 
  
@@ -115,7 +86,7 @@ function love.draw()
   
   love.graphics.draw(statue1, 65, 65, 0, 2)
 
-  love.graphics.draw(butterfly, 65, 325, 0, 2)
+  love.graphics.draw(camo_hog, 65, 325, 0, 2)
   love.graphics.draw(bat, 675, 325, 0, 2)
   love.graphics.draw(raiju, 385, 65, 0, 2)
 
@@ -125,7 +96,5 @@ function love.draw()
   love.graphics.rectangle('line', 0, 0, 64, 64)
 
   love.graphics.print(hp, 0, 0)
-  love.graphics.print(tostring(mapc), 0, 0)
-
 end
 
