@@ -1,5 +1,6 @@
 local class = require 'core/middleclass'
 local Tile = require 'core/tile'
+local Util = require 'core/util'
 local Map = class('Map')
 
 function Map:constructor(xSize, ySize, x, y)
@@ -11,7 +12,9 @@ function Map:constructor(xSize, ySize, x, y)
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
-    self.gridsize = ySize
+    if ySize then
+      self.gridsize = ySize
+    end
   end
   if not template then
     -- Use the default texture
@@ -39,8 +42,8 @@ function Map:constructor(xSize, ySize, x, y)
         w = self.gridsize
         h = self.gridsize
       else
-        local w = img:getWidth()
-        local h = img:getHeight()
+        w = img:getWidth()
+        h = img:getHeight()
       end
       -- Create the matrix
       self:createTwoD(template, w, h)
@@ -123,6 +126,23 @@ function Map:draw()
   end
 end
 
+function Map:cc(x, y, w, h)
+  local result = false
+  local count = 0
+  -- for x = 1, #self.matrix do
+  --   for y = 1, #self.matrix[x] do
+  for b = 1, #self.matrix do
+    for v = 1, #self.matrix[b] do
+      if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
+      result = true
+      end
+    end
+  end
+  --   end
+  -- end
+  return result
+end
+
 function Map:changeScale(mult)
   self.scale = mult
   for x = 1, #self.matrix do
@@ -139,4 +159,3 @@ function Map:changeScale(mult)
 end
 
 return Map
-  

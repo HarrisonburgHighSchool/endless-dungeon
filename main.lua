@@ -71,6 +71,9 @@ function attack()
   butterfly_alive = false
 end
 
+
+
+
 function love.update(dt)
 
   x_y = love.math.random(1,4)

@@ -11,8 +11,8 @@ function Tile:constructor(x, y, img)
   else
     self.img = img
   end
-  self.w = self.img:getWidth()
-  self.h = self.img:getHeight()
+  self.w = 64
+  self.h = 64
 end
 
 function Tile:draw()
