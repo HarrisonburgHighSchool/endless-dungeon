@@ -1,12 +1,13 @@
 local Map = require 'core/map'
-function love.load()
 local Util = require 'core/util'
+function love.load()
+
 
  
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
   dragon = love.graphics.newImage('assets-1/dungeon/statues/statue_dragon.png')
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/ghoul_2_male.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_2a.png')
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_open_door.png')
@@ -33,30 +34,30 @@ local Util = require 'core/util'
 
   }
 map = Map:new(template)
+
 end
 
 function love.update(dt)
-  
-  
-
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if cc(x, y - 1, w, h, 65, 70) == false then
+      if cc(x, y - 1, w, h, 100, 200, w, h) == false then
       
       y = y - 1
     end
   end  
   if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
-    if cc(x, y + 1, w, h, 65, 70, w, h) == false then
+    if cc(x, y + 1, w, h, 100, 200, w, h) == false then
     
     y = y + 1
   end
-end  if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-  if cc(x, x + 1, w, h, 65, 70) == false then
+end  
+if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
+  if cc(x, x + 1, w, h, 100, 200, w, h) == false then
   
   x = x + 1
   end
-end  if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
-  if cc(x, x - 1, w, h, 65, 70) == false then
+end  
+if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
+  if cc(x, x - 1, w, h, 100, 200, w, h) == false then
   
   x = x - 1
  end
