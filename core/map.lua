@@ -1,5 +1,6 @@
 local class = require 'core/middleclass'
 local Tile = require 'core/tile'
+local Util = require 'core/util'
 local Map = class('Map')
 
 function Map:constructor(xSize, ySize, x, y)
@@ -123,6 +124,23 @@ function Map:draw()
       self.matrix[x][y]:draw()
     end
   end
+end
+
+function Map:cc(x, y, w, h)
+  local result = false
+  local count = 0
+  -- for x = 1, #self.matrix do
+  --   for y = 1, #self.matrix[x] do
+  for b = 1, #self.matrix do
+    for v = 1, #self.matrix[b] do
+      if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
+      result = true
+      end
+    end
+  end
+  --   end
+  -- end
+  return result
 end
 
 function Map:changeScale(mult)

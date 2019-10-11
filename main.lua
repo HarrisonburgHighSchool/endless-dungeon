@@ -38,6 +38,9 @@ function love.load()
 
 end
 
+
+
+
 function love.update(dt)
   player2()
   if love.keyboard.isDown('up')then
@@ -59,6 +62,13 @@ function love.update(dt)
     if cc(x, y, w, h,   0, 0, 64, 64) then
       hp = hp - 1
   end
+  if love.keyboard.isDown('down') then
+    if map:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
+  end
+
+
 end
 
 function player2()
@@ -85,7 +95,6 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-  love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, a, b)
   love.graphics.rectangle('line', 0, 0, 64, 64)
