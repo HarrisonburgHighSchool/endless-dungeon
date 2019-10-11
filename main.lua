@@ -18,10 +18,10 @@ floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
 z=100
 s=100
-t=100
+q=100
 direction = 'down'
 direction2= 'left'
-direction3= 'right'
+direction3= 'left2'
 floor = {
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -67,7 +67,7 @@ function love.update(dt)
     z = z + 5
   end
   if direction == 'up' then
-    z = z -5
+    z = z - 5
   end
 
   if z==500 then
@@ -81,26 +81,26 @@ function love.update(dt)
     s = s + 5
   end
   if direction2 == 'right' then
-    s = s -5
+    s = s - 5
   end
   if s==700 then
     direction2 = 'right'
   end
-  if s==70 then
+  if s==100 then
     direction2 = 'left'
   end
 
-  if direction3 == 'left' then
-    t = t + 5
+  if direction3 == 'left2' then
+    q = q + 5
   end
-  if direction3 == 'right' then
-    t = t - 5
+  if direction3 == 'right2' then
+    q = q - 5
   end
-  if t==700 then
-    direction3 = 'right'
+  if q==700 then
+    direction3 = 'right2'
   end
-  if t==70 then
-    direction3 = 'left'
+  if q==100 then
+    direction3 = 'left2'
   end
 
   if love.keyboard.isDown('right')then
@@ -128,11 +128,11 @@ end
 
    hp = hp - 1
  end
- if cc(x, y, w, h,   s, 100, 20, 100) then
+ if cc(x, y, w, h,   s, 325, 20, 100) then
 
    hp = hp - 1
  end
- if cc(x, y, w, h,   t, 100, 20, 100) then
+ if cc(x, y, w, h,   q, 260, 20, 100) then
 
    hp = hp - 1
  end
@@ -144,7 +144,7 @@ function love.draw()
     map:draw()
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
-    love.graphics.draw(oct3, t, 260)
+    love.graphics.draw(oct3, q, 260)
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
   end
