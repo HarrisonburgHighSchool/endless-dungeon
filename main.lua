@@ -69,11 +69,13 @@ if not cc(x, y, w, h, 0, 0, 1280, 63) then
     y = y - 4
   end
 end
-  if not cc(x, y, w, h, 0, 0, 63, 200) then
+  if not cc(x, y, w, h, 0, 0, 63, 2000) then
     if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-      x = x - 4
+    x = x - 4
   end
  end
+ 
+
 cam:setPosition(x,y)
 end
 
@@ -84,9 +86,12 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+ 
+ --collision:draw()
   love.graphics.draw(playerImg, x, y)
   --love.graphics.rectangle('line', 0, 0, 64, 64)
   --love.graphics.print(hp, 0, 0)
   --end)
- -- love.graphics.print(tostring(mapc), 0, 0)
+--love.graphics.print(tostring(mapc), 0, 0)
+  end)
 end
