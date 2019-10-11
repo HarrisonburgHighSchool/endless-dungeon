@@ -48,6 +48,9 @@ g = 150 -- The enemy's height is 50
 --img = love.graphics.newImage('assets')
 end
 
+
+
+
 function love.update(dt)
  if love.keyboard.isDown('right') then  
 x = x + 9
@@ -86,6 +89,10 @@ end
     end
   end
 end 
+
+
+
+
 
 
 function love.draw()
