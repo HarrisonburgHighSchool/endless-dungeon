@@ -45,6 +45,9 @@ function love.load()
 map = Map:new(template)
 end
 
+
+
+
 function love.update(dt)
   -- Nothing update
  -- Set up player movement
@@ -72,9 +75,37 @@ end
 if love.keyboard.isDown('up') then 
   if cc(x,y,64,64,100,200,64,64)==false then
       y=y-1
+
+  mapc = map:cc(x, y, 64, 64)
+  debug = tostring(mapc)
+  if love.keyboard.isDown('right') then
+    if map:cc(x + 1, y, 64, 64) == false then
+      x = x + 1
+    end
   end
+  if love.keyboard.isDown('left') then
+    if map:cc(x - 1, y, 64, 64) == false then
+      x = x - 1
+    end
+  end
+  if love.keyboard.isDown('up') then
+    if map:cc(x, y-1, 64, 64) == false then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if map:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
+  end
+
+
 end
 --end
+
+
+
+
 
 function love.draw()
  -- player:draw()
