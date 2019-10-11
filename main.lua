@@ -132,7 +132,7 @@ function love.update(dt)
   end
 
   if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    if cc(x, y - 8, w, h, butterfly_x, butterfly_y, 8, 8 or x, y + 8, w, h, butterfly_x, butterfly_y, 8, 8 or x - 8, y, w, h, butterfly_x, butterfly_y, 8, 8 or x + 8, y, w, h, butterfly_x, butterfly_y, 8, 8)== true then 
+    if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 8, 8 or x, y + 16, w, h, butterfly_x, butterfly_y, 8, 8 or x - 16, y, w, h, butterfly_x, butterfly_y, 8, 8 or x + 16, y, w, h, butterfly_x, butterfly_y, 8, 8)== true then 
       attack()
     end
   end
