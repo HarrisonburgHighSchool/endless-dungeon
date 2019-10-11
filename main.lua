@@ -17,6 +17,7 @@ function love.load()
   h=60
   jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
+  water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
 
   mapTemplate = {
@@ -25,9 +26,9 @@ function love.load()
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,marble,marble,marble,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
+    {limestone,limestone,limestone,limestone,marble,water,water,marble,limestone,limestone},
+    {limestone,limestone,limestone,limestone,marble,marble,marble,marble,limestone,limestone},
+    {limestone,limestone,limestone,limestone,marble,water,water,marble,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
@@ -83,8 +84,8 @@ function love.draw()
 
   love.graphics.draw(secretpath, 400, 270)
   love.graphics.draw(statue, 385, 250, 0, 2)
-  love.graphics.draw(jelly, 513, 193)
-  love.graphics.draw(jelly2, 258, 193)
+  love.graphics.draw(jelly, 529, 210)
+  love.graphics.draw(jelly2, 270, 210)
   love.graphics.draw(playerImg, x, y,0,2)
 
   if cc(x, y, w, h,   0, 0, 64, 64) then
