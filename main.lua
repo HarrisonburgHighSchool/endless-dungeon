@@ -1,22 +1,21 @@
 local Map = require 'core/map'
-
 function love.load()
 enter = 1
 collide = false
   x = 385
   y = 60
-  x2 = 715
-  y2 = 450
-  w2 = 20
-  h2 = 10
-  w = 20
-  h = 10
+  x2 = 191
+  y2 = 192
+  w2 = 64
+  h2 = 64
+  w = 64
+  h = 64
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
 
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
   floor1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
-  floor2 = love.graphics.newImage('assets-2/dc-dngn/floor/lava0.png')
+  lava = love.graphics.newImage('assets-2/dc-dngn/floor/lava0.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   banner = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   wall1 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_3.png')
@@ -29,11 +28,11 @@ collide = false
                {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
                {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
                {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
-               {wall3, floor, floor1, floor, floor, floor, floor1, floor, wall1},
+               {wall3, floor, floor, lava, floor, floor, floor1, floor, wall1},
                {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
-               {banner, floor2, floor, floor, floor, floor, floor, floor, wall3},
-               {wall_enter, floor1, floor2, floor, floor, floor, floor, floor, wall1},
-               {banner, floor2, floor1, floor, floor, floor, floor1, floor, wall},
+               {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
+               {wall_enter, floor1, floor, floor, floor, floor, floor, floor, wall1},
+               {banner, floor, floor, floor, floor, floor, floor1, floor, wall},
                {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
                {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
                {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
@@ -79,8 +78,10 @@ end
 if (collide == true) then  
   hp = hp - 0.1
 end
+if(hp < 0)then
+  hp = 0
 end
-
+end
 
 
 
