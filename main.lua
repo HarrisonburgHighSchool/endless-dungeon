@@ -45,7 +45,19 @@ function love.load()
                }
   map = Map:new(template)
   map:changeScale(2)
-
+collision = {
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+ }
 end
 
 
@@ -65,22 +77,22 @@ function love.update(dt)
     y = 960
   end
   if love.keyboard.isDown('right') then
-    if cc(x + 1, y, 36, 36, x2, y2, 36, 36)== false then
+    if collision:cc(x, y, 36, 36)== false then
     x = x + 1
    end
   end
   if love.keyboard.isDown('left') then
-    if cc(x - 1, y, 36, 36, x2, y2, 36, 36)== false then
+    if collision:cc(x, y, 36, 36)== false then
     x = x - 1
    end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y + 1, 36, 36, x2, y2, 36, 36)== false then
+    if collision:cc(x, y, 36, 36)== false then
     y = y + 1
    end
   end
   if love.keyboard.isDown('up') then
-    if cc(x, y - 1, 36, 36, x2, y2, 36, 36)== false then
+    if collision:cc(x, y, 36, 36)== false then
     y = y - 1
    end
   end
@@ -99,13 +111,6 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 1
   end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
-    end
-  end
-
-
 end
 
 
@@ -115,6 +120,7 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+  collision:draw()
   love.graphics.draw(weapon, x, y)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(shield, x + 2, y)
