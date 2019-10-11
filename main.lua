@@ -12,7 +12,7 @@ function love.load()
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
 
-
+map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
 
 
@@ -21,6 +21,22 @@ function love.load()
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
   gate = love.graphics.newImage('assets-1/dungeon/gateways/bazaar_gone.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+    collision = {
+      {wall, wall, wall, wall},
+      {wall, nil, nil, wall},
+      {wall, nil, nil, wall},
+      {wall, nil, nil, wall},
+    }
+
   template = { --a 3 x 3 map with the altar texture in the middle
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
@@ -191,17 +207,17 @@ function love.update(dt)
   mapc = map:cc(x, y, 64, 64)
   debug = tostring(mapc)
   if love.keyboard.isDown('right') then
-    if map:cc(x + 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if map:cc(x - 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       x = x - 1
     end
   end
   if love.keyboard.isDown('up') then
-    if map:cc(x, y-1, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       y = y - 1
     end
   end
