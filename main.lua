@@ -28,6 +28,9 @@ function love.load()
   map = Map:new(template)
 end
 
+
+
+
 function love.update(dt)
   if love.keyboard.isDown('right') and x < 730 then   -- if the 'up' key is being pressed...
     x = x + 1
@@ -47,6 +50,10 @@ function love.update(dt)
     hp = hp + 1
   end
 end
+
+
+
+
 
 function love.draw()
   map:draw()
