@@ -8,20 +8,20 @@ function love.load()
  y = 400
 
  floor = {
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-   {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
  
  }
 
@@ -41,13 +41,27 @@ end
 if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
   y = y - 15
 end
-  -- Nothing to update
-  if keyboard.isDown ('w') then
-    if cc(x,y-1,e,h, 100,200,64,64) == flase than
-    y=y-1
+if love.keyboard.isDown('up') then
+  if cc(x, y, 64, 64, 100, 200, 64, 64) == false then-- if the 'up' key is being pressed
+    y = y - 1
   end
 end
-
+if love.keyboard.isDown('down') then
+  if cc(x, y, 64, 64, 100, 200, 64, 64) == false then-- if the 'up' key is being pressed
+    y = y + 1
+  end
+end
+if love.keyboard.isDown('right') then
+  if cc(x, y, 64, 64, 100, 200, 64, 64) == false then-- if the 'up' key is being pressed
+    x = x + 1
+  end
+end
+if love.keyboard.isDown('left') then
+  if cc(x, y, 64, 64, 100, 200, 64, 64) == false then-- if the 'up' key is being pressed
+    x = x - 1
+   end
+ end
+end
 function love.draw()
   love.graphics.print('Hello, world!', 10, 10)
   map:draw()
