@@ -14,7 +14,7 @@ function love.load()
   hp = 20
   cam = gamera.new(48, 52, 800, 600)
 
-  playerImg = love.graphics.newImage('assets-1/player/base/Octopode_3.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_3.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
