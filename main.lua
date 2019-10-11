@@ -38,7 +38,7 @@ function love.load()
   southwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southwest.png')
   southeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southeast.png')
   northwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northwest.png')
-  butterfly = love.graphics.newImage('assets-2/dc-mon/animals/butterfly6.png')
+  butterfly = love.graphics.newImage('sams_butterfly.png')
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_sparkling_fountain.png')
   template = { --a 3 x 3 map with the altar texture in the middle
 
@@ -67,6 +67,10 @@ function love.load()
 end
 
 
+function attack()
+  butterfly_alive = false
+end
+
 function love.update(dt)
 
   x_y = love.math.random(1,4)
@@ -91,28 +95,42 @@ function love.update(dt)
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y - 5
-    else y = y + 15
+    else if butterfly_alive == true then
+       y = y + 15
+    end
     end
   end
   
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
     if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y + 5
-    else y = y - 15
+    else if butterfly_alive == true then
+       y = y - 15
+    end
     end
   end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
     if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x -5
-    else x = x + 15
+    else if butterfly_alive == true then
+       x = x + 15
+    end
     end
   end
   
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x + 5
-    else x = x - 15
+    else if butterfly_alive == true then
+       x = x - 15
+    end
+    end
+  end
+
+  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+    if cc(x, y - 8, w, h, butterfly_x, butterfly_y, 8, 8 or x, y + 8, w, h, butterfly_x, butterfly_y, 8, 8 or x - 8, y, w, h, butterfly_x, butterfly_y, 8, 8 or x + 8, y, w, h, butterfly_x, butterfly_y, 8, 8)== true then 
+      attack()
     end
   end
   
