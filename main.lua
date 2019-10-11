@@ -9,22 +9,35 @@ function love.load()
   f1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   
 
-  template = {
+  background = {
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1},
+    {f1, f1, f1, f1, f1, f1, f1, f1, f1}}
+  layer1 = {
     {w1, w1, w1, w1, w1, w1, w1, w1, w1},
-    {w1, f1, f1, f1, f1, f1, f1, f1, w1},
-    {w1, f1, w2, w2, w2, w2, w2, f1, w1},
-    {w1, f1, w2, f1, f1, f1, w2, f1, w1},
-    {w1, f1, w2, f1, f1, f1, w2, f1, w1},
-    {w1, f1, w2, f1, w0, f1, w2, f1, w1},
-    {w1, f1, w2, f1, w0, f1, w2, f1, w1},
-    {w1, f1, w2, f1, w0, f1, w2, f1, w1},
-    {w1, f1, w2, f1, w0, f1, w2, f1, w1},
-    {w1, f1, f1, f1, f1, f1, f1, f1, w1},
-    {w1, f1, f1, f1, f1, f1, f1, f1, w1},
-    {w1, w1, w1, w1, w1, w1, w1, f1, w1}}
-  map = Map:new(template)
-  x = 704
-  y = 448
+    {w1, nil, nil, nil, nil, nil, nil, nil, w1},
+    {w1, nil, w0, w0, nil, w0, w0,nil, w1},
+    {w1, nil, w0, nil, nil, nil, w0, nil, w1},
+    {w1, nil, w0, nil, nil, nil, w0, nil, w1},
+    {nil, nil, w0, nil, w2, nil, w0, nil, w1},
+    {nil, nil, w0, nil, w2, nil, w0, nil, w1},
+    {w1, nil, w0, nil, nil, nil, w0, nil, w1},
+    {w1, nil, w0, nil, nil, nil, w0, nil, w1},
+    {w1, nil, w0, w0, nil, w0, w0, nil, w1},
+    {w1, nil, nil, nil, nil, nil, nil, nil, w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1}}
+  
+  x = 128
+  y = 128
   w = 64
   h = 64
   hp = 100
@@ -33,64 +46,38 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('up') then
-  y=y-4
-  end
-  if love.keyboard.isDown('down') then
-  y=y+4
-  end
-  if love.keyboard.isDown('right') then
-  x=x+4
-  end
-  if love.keyboard.isDown('left') then
-  x=x-4
-  end
-
-  if cc(x, y, w, h, 320, 256, 256, 64) then  
+  
+  
     if love.keyboard.isDown('up') then
-    y=y+4
-    if love.keyboard.isDown('left') then
-      x=x-4
-      end
-    if love.keyboard.isDown('right') then
-      x=x+4
+      if layer1:cc(x, y, 64, 64) then
+        y = y - 1
       end
     end
     if love.keyboard.isDown('down') then
-    y=y-4
-    if love.keyboard.isDown('left') then
-      x=x-4
-      end
-    if love.keyboard.isDown('right') then
-      x=x+4
-      end
-    end
-    if love.keyboard.isDown('left') then
-    x=x+4
-    if love.keyboard.isDown('up') then
-      y=y+4
-      end
-    if love.keyboard.isDown('down') then
-      y=y-4
+      if layer1:cc(x, y, 64, 64) then
+        y = y + 1
       end
     end
     if love.keyboard.isDown('right') then
-    x=x-4
-    if love.keyboard.isDown('down') then
-      y=y-4
-      end
-    if love.keyboard.isDown('up') then
-      y=y+4
+      if layer1:cc(x, y, 64, 64) then
+        x = x + 1
       end
     end
-  end
+    if love.keyboard.isDown('left') then
+      if layer1:cc(x, y, 64, 64) then
+        x = x - 1
+      end
+    end
+  
+  
+  
 
 end
 
 
 function love.draw()
-  map:draw()
+  background:draw()
   love.graphics.draw(playerImg, x, y)
-
-  love.graphics.print(hp, 0, 0)
+  layer1:draw()
+ 
 end
