@@ -6,8 +6,7 @@ function love.load()
   cam = gamera.new(0, 0, 1250, 1000)
   x = 400
   y = 325
-  playerImg = love.graphics.newImage('hero/sliced/idle-1.png')
-  Hoplite = love.graphics.newImage('assets-1/item/armor/headgear/helmet_art_3.png')
+  playerImg = love.graphics.newImage('assets-1/monster/knight.png')
   w = 64
   h = 64
   hp = 100
@@ -72,25 +71,25 @@ function love.update(dt)
     y = 950
   end
   if love.keyboard.isDown('right') then
-    x = x + 1
+
 if cc(x + 1, y, 64, 64, c, d, 64, 64) == false then
   x = x + 1
   end
 end
     if love.keyboard.isDown('down') then
-      y = y + 1
+
   if cc(x +1, y, 64, 64, c, d, 64, 64)== false then
     y = y + 1
   end
   end
     if love.keyboard.isDown('up') then
-      y = y - 1
+
       if cc(x + 1, y, 64, 64, c, d, 64, 64)== false then
         y = y - 1
       end
     end
   if love.keyboard.isDown('left') then
-    x = x - 1
+    
     if cc(x + 1, y, 64, 64, c, d, 64, 64)== false then
       x = x - 1
     end
@@ -107,7 +106,6 @@ function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(Hoplite, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, x, y+ -18)
   love.graphics.draw(Img2, a, b)
