@@ -43,6 +43,9 @@ collide = false
     map = Map:new(template)
 end
 
+
+
+
 function love.update(dt)
 if love.keyboard.isDown('right') then 
   x = x + 2
@@ -77,6 +80,10 @@ if (collide == true) then
   hp = hp - 0.1
 end
 end
+
+
+
+
 
 function love.draw()
   map:draw()
