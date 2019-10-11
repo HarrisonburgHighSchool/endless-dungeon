@@ -4,7 +4,7 @@ function love.load()
   map = Map:new(40, 40) -- Create a 5 x 5 map object named "map"
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/monster/dragons/quicksilver_dragon.png')
+  playerImg = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   w = 64
@@ -35,13 +35,13 @@ function love.update(dt)
   if love.keyboard.isDown('right') and x < 730 then   -- if the 'up' key is being pressed...
     x = x + 1
   end
-  if love.keyboard.isDown('down') y < 0 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('down') and y > 298 then   -- if the 'up' key is being pressed...
     y = y + 1
   end
   if love.keyboard.isDown('left') and x > 64 then   -- if the 'up' key is being pressed...
     x = x - 1
   end
-  if love.keyboard.isDown('up') y > then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('up') and y > 65 then   -- if the 'up' key is being pressed...
     y = y - 1
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
