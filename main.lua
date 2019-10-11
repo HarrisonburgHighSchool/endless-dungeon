@@ -14,7 +14,7 @@ function love.load()
 
     floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
-    ground    = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
+    ground    = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
     template = {
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
@@ -55,11 +55,9 @@ function love.update(dt)
   if love.keyboard.isDown('left')then
    x = x - 10
    cam:setPosition(x, y)
-
-  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   0, 0, 64, 64) then
-    -- if true, decrease HP:
-    hp = hp - 1
+  end
+    if cc(x, y, w, h,   0, 0, 64, 64) then
+      hp = hp - 1
   end
 end
 
@@ -79,21 +77,18 @@ function player2()
   if love.keyboard.isDown('a')then
    a = a - 10
    cam:setPosition(a, b)
-
-  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
+  end
   if cc(x, y, w, h,   0, 0, 64, 64) then
-    -- if true, decrease HP:
     hp = hp - 1
   end
 end
 function love.draw()
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, 0, 0)
   cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, a, b)
+  love.graphics.rectangle('line', 0, 0, 64, 64)
+  love.graphics.print(hp, 0, 10)
 end)
 end
