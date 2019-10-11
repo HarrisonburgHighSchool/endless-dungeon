@@ -4,38 +4,36 @@ function love.load()
   map = Map:new(40, 40) -- Create a 5 x 5 map object named "map"
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
+  playerImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
+  door = love.graphics.newImage('assets-1/dungeon/doors/vgate_runed_middle.png')
   w = 64
   h = 64
   hp = 100
   template = { --a 12 x 9 map with the altar texture in the middle
-               {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-               {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-              }
+   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {door, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    }
   map = Map:new(template)
 end
 
-
-
-
 function love.update(dt)
-  if love.keyboard.isDown('right') and x < 730 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('right') and x < 735 then   -- if the 'up' key is being pressed...
     x = x + 1
   end
-  if love.keyboard.isDown('down') and y > 298 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('down') and y < 545 then   -- if the 'up' key is being pressed...
     y = y + 1
   end
   if love.keyboard.isDown('left') and x > 64 then   -- if the 'up' key is being pressed...
@@ -50,10 +48,6 @@ function love.update(dt)
     hp = hp + 1
   end
 end
-
-
-
-
 
 function love.draw()
   map:draw()
