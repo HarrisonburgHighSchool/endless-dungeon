@@ -2,8 +2,13 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 function love.load()
+  direction = 'left'
   x = 400
   y = 300
+  x3 = 400
+  y3 = 300
+  x2 = 400
+  y2 = 300
   a = 400
   b = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
@@ -38,10 +43,24 @@ function love.load()
 
 end
 
-
-
-
 function love.update(dt)
+  if hp > 0 then
+  cam:setPosition(x2, y2)
+end
+  if x < 0  then
+  x = 0
+    end
+  if y < 0  then
+  y = 0
+end
+  if y < 0  then
+  y = 0
+end
+  if y > 950 then
+  y = 950
+end
+  if x > 2400
+  x = 2400
   player2()
   if love.keyboard.isDown('up')then
    y = y - 10
@@ -95,8 +114,12 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+  if hp==0 then
+  love.graphics.print('GAME OVER', x3, y3)
+  end
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, a, b)
+  love.graphics.print(hp, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, 0, 10)
 end)
