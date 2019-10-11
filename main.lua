@@ -36,8 +36,11 @@ function love.load()
     {w1, nil, nil, nil, nil, nil, nil, nil, w1},
     {w1, w1, w1, w1, w1, w1, w1, w1, w1}}
   
-  x = 128
-  y = 128
+map = Map:new(background)
+mapc = Map:new(layer1)
+
+  x = 64
+  y = 64
   w = 64
   h = 64
   hp = 100
@@ -76,8 +79,8 @@ end
 
 
 function love.draw()
-  background:draw()
-  love.graphics.draw(playerImg, x, y)
-  layer1:draw()
  
+  map:draw()
+  mapc:draw()
+  love.graphics.draw(playerImg, x, y)
 end
