@@ -59,7 +59,7 @@ end
  end
  if love.keyboard.isDown('s')then
  b = b + 50
- cam:setPosition(a,b) 
+ cam:setPosition(a,b)
  end
  if love.keyboard.isDown('d')then
  a = a + 5
@@ -70,7 +70,7 @@ end
  cam:setPosition(a,b)
  end
 
- if cc(x, y, w, h,   0, 0, 64, 64) then
+ if cc(x, y, w, h,   220, 220, 64, 64) then
      -- if true, decrease HP:
      hp = hp - 1
    end
@@ -82,7 +82,10 @@ function love.draw()
    map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
+
+  
   love.graphics.draw(playerImg1, a, b)
+  love.graphics.rectangle('line', 220, 220, 64, 64)
   love.graphics.print(hp, 0, 20)
 end)
 end
