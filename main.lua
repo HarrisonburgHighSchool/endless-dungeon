@@ -48,6 +48,9 @@ function love.load()
 
 end
 
+
+
+
 function love.update(dt)
   if x < 0 then
     x = 0
@@ -96,7 +99,18 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 1
   end
+  if love.keyboard.isDown('down') then
+    if map:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
+  end
+
+
 end
+
+
+
+
 
 function love.draw()
   cam:draw(function(l, t, w, h)
