@@ -111,7 +111,6 @@ end
 
 
 
-
   entity.x = entity.x +- G
   entity.y = entity.y +- H
 
