@@ -105,6 +105,10 @@ function love.update(dt)
   cam:setPosition(x, y)
 end
 
+
+
+
+
 function love.draw()
   cam:draw(function(camx, camy)
   map:draw()
