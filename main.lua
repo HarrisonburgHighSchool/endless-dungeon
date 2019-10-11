@@ -27,7 +27,7 @@ function love.load()
 end
 local Map = require 'core/map'
 
-hp = var 0
+
 
   x1 = 10
   y1 = 64
@@ -61,7 +61,6 @@ hp = var 0
   }
   bkgrnd = Map:new(map)
 
-end
 
 
 
@@ -95,7 +94,7 @@ end
   if cc(x, y, w, h, 0, 0, 64, 64) then
     hp = hp - 1
   end
-end
+
 
 
 
@@ -120,4 +119,3 @@ end
   bkgrnd:draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
-end
