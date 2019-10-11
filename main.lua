@@ -80,7 +80,17 @@ function love.update(dt)
       x = x - 1
     end
   end
+  if love.keyboard.isDown('down') then
+    if map:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
+  end
+
+
 end
+
+
+
 
 
 function love.draw()
@@ -115,5 +125,7 @@ function love.draw()
   love.graphics.rectangle('line', 0, 0, 64, 64)
 
   love.graphics.print(hp, 0, 0)
+  love.graphics.print(tostring(mapc), 0, 0)
+
 end
 
