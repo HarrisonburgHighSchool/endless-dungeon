@@ -77,11 +77,16 @@ end
 cam:setPosition(x,y)
 end
 
+
+
+
+
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
   love.graphics.draw(playerImg, x, y)
   --love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, 0, 0)
-  end)
+  --love.graphics.print(hp, 0, 0)
+  --end)
+ -- love.graphics.print(tostring(mapc), 0, 0)
 end
