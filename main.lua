@@ -146,7 +146,7 @@ cam:draw(function(l, t, w, h)
   if hp==0 then
   love.graphics.print('GAME OVER', x3, y3)
   end
-love.graphics.rectangle('line', w, h, x, y)
+
   love.graphics.print(hp, x, y)
   love.graphics.print('Hello, world!', 0, 0)
   --Draw everything here. For example:
