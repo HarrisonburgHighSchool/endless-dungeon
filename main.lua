@@ -94,7 +94,7 @@ function love.update(dt)
     t = t + 5
   end
   if direction3 == 'right' then
-    t = t -5
+    t = t - 5
   end
   if t==700 then
     direction3 = 'right'
@@ -126,15 +126,15 @@ end
   cam:setPosition(x, y)
  if cc(x, y, w, h,   100, z, 20, 100) then
 
-   hp = hp - 0.5
+   hp = hp - 1
  end
  if cc(x, y, w, h,   s, 100, 20, 100) then
 
-   hp = hp - 0.5
+   hp = hp - 1
  end
  if cc(x, y, w, h,   t, 100, 20, 100) then
 
-   hp = hp - 0.5
+   hp = hp - 1
  end
 end
 
