@@ -135,6 +135,10 @@ end
 
 end
 
+
+
+
+
 function love.draw()
 
 cam:draw(function(l, t, w, h)
