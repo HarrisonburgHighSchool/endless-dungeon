@@ -65,8 +65,19 @@ if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
   if love.keyboard.isDown ('up') then 
   y=y-1
   end
+  if love.keyboard.isDown('down') then
+    if map:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
+  end
+
+
 end
 end
+
+
+
+
 
 function love.draw()
   map:draw()
