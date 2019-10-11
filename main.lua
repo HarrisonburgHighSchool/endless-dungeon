@@ -8,8 +8,8 @@ function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-2/player/base/merfolk_m.png')
-  w = 32   -- The player's width is 64
-  h = 32   -- The player's height is 64
+  w = 32   -- The player's width is 32
+  h = 32   -- The player's height is 32
   hp = 100 -- Set the player's HP to 100 at the start of the game
   cage = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_3.png')
   cage1 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_4.png')
@@ -23,98 +23,73 @@ function love.load()
   jackal = love.graphics.newImage('assets-1/monster/animals/jackal.png')
   bat = love.graphics.newImage('assets-1/monster/animals/bat.png')
   raiju = love.graphics.newImage('assets-1/monster/animals/raiju.png')
-  hat = love.graphics.newImage('assets-1/item/armor/headgear/cap_jester.png')
   trap = love.graphics.newImage ('assets-1/dungeon/traps/shaft.png')
 
-  mapTemplate = {
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage1},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage2},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage3},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
-    {cage, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, cage},
+  background = {
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
+
+    collision = { 
+      {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+
+    }
   }
 end
-  function love.update(dt)
-    if cc(x, y-5, w, h,   385, 130, 16, 16) == false then  
-  if love.keyboard.isDown('w') then   
-    y = y - 5
-  end
-end
-    if love.keyboard.isDown('s') then   
-      y = y + 5
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if collision:cc(x, y, 64, 64) then
+      y = y - 1
     end
-      if love.keyboard.isDown('a') then  
-        x = x - 5
-      end
-      
-        if love.keyboard.isDown('d') then   
-          x = x + 5
   end
- 
-  if cc(x, y, w, h,   65, 325, 64, 64) then  
-    -- if true, decrease HP:
-    hp = hp - 1
+  if love.keyboard.isDown('down') then
+    if collision:cc(x, y, 64, 64) then
+      y = y + 1
+    end
   end
-  if cc(x, y, w, h,   675, 325, 64, 64) then  
-    -- if true, decrease HP:
-    hp = hp - 2
+  if love.keyboard.isDown('right') then
+    if collision:cc(x, y, 64, 64) then
+      x = x + 1
+    end
   end
-
-  map = Map:new(mapTemplate)
+  if love.keyboard.isDown('left') then
+    if collision:cc(x, y, 64, 64) then
+      x = x - 1
+    end
+  end
 end
 
 
 function love.draw()
+  map = Map:new(background)
+  map = Map:new(collision)
+
   map:draw()
 
-  love.graphics.draw(wall, 0, 0)
-  love.graphics.draw(wall, 0, 65)
-  love.graphics.draw(wall, 0, 130)
-  love.graphics.draw(wall, 0, 195)
-  love.graphics.draw(wall, 0, 260)
-  love.graphics.draw(wall, 0, 390)
-  love.graphics.draw(wall, 0, 455)
-  love.graphics.draw(wall, 0, 510)
-  love.graphics.draw(wall, 0, 575)
-  love.graphics.draw(wall, 740, 0)
-  love.graphics.draw(wall, 740, 65)
-  love.graphics.draw(wall, 740, 130)
-  love.graphics.draw(wall, 740, 195)
-  love.graphics.draw(wall, 740, 260)
-  love.graphics.draw(wall, 740, 390)
-  love.graphics.draw(wall, 740, 455)
-  love.graphics.draw(wall, 740, 510)
-  love.graphics.draw(wall, 740, 575)
-  love.graphics.draw(wall, 65, 0)
-  love.graphics.draw(wall, 130, 0)
-  love.graphics.draw(wall, 195, 0)
-  love.graphics.draw(wall, 260, 0)
-  love.graphics.draw(wall, 325, 0)
-  love.graphics.draw(wall, 455, 0)
-  love.graphics.draw(wall, 510, 0)
-  love.graphics.draw(wall, 575, 0)
-  love.graphics.draw(wall, 640, 0)
-  love.graphics.draw(wall, 705, 0)
-  
-  love.graphics.draw(wall, 65, 575)
-  love.graphics.draw(wall, 130, 575)
-  love.graphics.draw(wall, 195, 575)
-  love.graphics.draw(wall, 260, 575)
-  love.graphics.draw(wall, 325, 575)
-  love.graphics.draw(wall, 455, 575)
-  love.graphics.draw(wall, 510, 575)
-  love.graphics.draw(wall, 575, 575)
-  love.graphics.draw(wall, 640, 575)
-  love.graphics.draw(wall, 705, 575)
+ 
 
   love.graphics.draw(trap, 385, 130, 0, 2) -- Bottom Middle Pit
   love.graphics.draw(trap, 320, 130, 0, 2)
