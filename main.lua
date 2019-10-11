@@ -67,17 +67,17 @@ function love.update(dt)
     mirrory = mirrory - 3
   end
   if cc(x, y, w, h, 216, 216, 84, 16) then  
-    s = s + 0.5
+    hp = hp - 1
   end
   if cc(x, y, w, h, 344, 410, 16, 16) then  
     hp = hp - 1
   end
-  --if cc(x, y, w, h, 216, 216, 84, 16) then  
-    --hp = hp - 1
-  --end
-  --if cc(x, y, w, h, 216, 216, 84, 16) then  
-    --hp = hp - 1
-  --end
+  if cc(x, y, w, h, 64, 542, 166, 84) then
+    hp = hp - 1
+  end
+  if cc(x, y, w, h, 412, 152, 12, 72) then  
+    hp = hp - 1
+  end
   if cc(x, y, w, h, 64, 0, 768, 64) then  
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
       y = y + 3
@@ -105,15 +105,11 @@ function love.update(dt)
   cam:setPosition(x, y)
 end
 
-
-
-
-
 function love.draw()
   cam:draw(function(camx, camy)
   map:draw()
-  love.graphics.draw(playerImg, x, y, rotation, -1, 1, size, s, s)
-  love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory, 0, s)
+  love.graphics.draw(playerImg, x, y, rotation, -1, 1)
+  love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
   end)
 end
