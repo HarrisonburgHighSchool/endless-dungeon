@@ -60,6 +60,7 @@ function love.draw()
   love.graphics.rectangle('line', 50, 50, 67, 67)
   
   love.graphics.print(hp, 0, 0)
+  
 
   
   
