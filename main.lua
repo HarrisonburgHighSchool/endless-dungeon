@@ -122,6 +122,7 @@ end
     if cc(x,y+3,64,64,  50,125,64,64)==false then
     y = y + 3
   end
+
   end
   cam:setPosition(x, y)
  if cc(x, y, w, h,   100, z, 20, 100) then
@@ -137,6 +138,10 @@ end
    hp = hp - 1
  end
 end
+
+
+
+
 
 function love.draw()
   cam:draw(function(l, t, w, h)
