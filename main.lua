@@ -17,9 +17,11 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_3.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
+
   mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
   w2 = 64  -- The mirror player's width is 64
   h2 = 64  -- The mirror player's height is 64
+  
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
   cobaltMirrorLeft = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_left.png')
