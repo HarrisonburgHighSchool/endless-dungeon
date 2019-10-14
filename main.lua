@@ -6,8 +6,8 @@ function love.load()
   love.window.setMode(768, 576)
   x = 368
   y = 280
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 32   -- The player's width is 64
+  h = 32   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
   playerImg = love.graphics.newImage('assets-1/monster/deep_elf_fighter.png')
 
@@ -41,7 +41,7 @@ function love.load()
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, rect3Floor, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
@@ -53,7 +53,7 @@ function love.load()
 }
 
   map = Map:new(template)
-  ccmap = Map:new(collision)
+  collision = Map:new(collision)
 
 end
 
@@ -63,29 +63,29 @@ function love.update(dt)
 --x, y, w, h all represent the player's rectangle.
 --If the statement is true it will run the code, but if it is false it will skip it.
   
-if love.keyboard.isDown('w') then -- up
-  if collision:cc(x, y - 5 , 64, 64) == false then
+if love.keyboard.isDown('w') and y > 18 then -- up
+  if collision:cc(x, y - 2 , 32, 32) == false then
     y = y - 2 -- speed
   end
 end 
 if love.keyboard.isDown('a') then -- left
-  if collision:cc(x - 5 , y, 64, 64) == false then  
+  if collision:cc(x - 2 , y, 32, 32) == false then  
     x = x - 2 -- speed
   end
 end
 if love.keyboard.isDown('s') then -- down
-  if collision:cc(x, y + 5 , 64, 64) == false then  
+  if collision:cc(x, y + 2 , 32, 32) == false then  
     y = y + 2 -- speed
   end
-
-
 end
 if love.keyboard.isDown('d') then -- right
-  if collision:cc(x , y + 5, 64, 64) == false then  
+  if collision:cc(x + 1  , y , 32, 32) == false then  
     x = x + 2 -- speed
   end
  end
 end
+
+
 -- local dx = 0
 -- local dy = 0
 -- if love.keyboard.isDown('w') and y > 18 then
@@ -114,7 +114,7 @@ end
 
 function love.draw()
   map:draw()
-  ccmap:draw()
+  collision:draw()
   love.graphics.draw(playerImg, x, y)
   
 end
