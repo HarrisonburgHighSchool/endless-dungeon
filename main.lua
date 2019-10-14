@@ -35,7 +35,6 @@ function love.load()
   }
 map = Map:new(template)
 
-  collision = Map:new(collision)
   background = Map:new(background)
 end
 
@@ -72,8 +71,6 @@ end
     -- if true, decrease HP:
     hp = hp - 1
   end
-
-
 end
 
 
