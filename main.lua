@@ -109,6 +109,8 @@ if cc(A,B+5,w,h, 0,0,64,64) == false then
     B=B+5
     cam:setPosition(A, B)
   end
+
+
 end
 if cc(A-5,B,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('a')then
@@ -133,6 +135,10 @@ end
   end
  end
 end
+
+
+
+
 
 function love.draw()
   cam:draw(function(l, t, w, h)
