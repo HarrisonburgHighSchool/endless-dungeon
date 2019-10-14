@@ -1,4 +1,4 @@
-
+local Util = require 'core/util'
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 
@@ -64,44 +64,74 @@ template = {
              {floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile},
 
              }
+w = 64   -- The player's width is 64
+h = 64   -- The player's height is 64
+hp = 100
   map = Map:new(template)
   cam = gamera.new(-100, -100, 2000, 2000)
 end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('up')then
-    y=y-3
-    cam:setPosition(x, y)
+if cc(x,y-3,w,h, 0,0,64,64) == false then
+
+    if love.keyboard.isDown('up')then
+      y=y-3
+      cam:setPosition(x, y)
   end
-  if love.keyboard.isDown('down')then
+ end
+if cc(x,y+3,w,h, 0,0,64,64) == false then
+   if love.keyboard.isDown('down')then
     y=y+3
     cam:setPosition(x, y)
   end
+end
+if cc(x-3,y,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('left')then
     x=x-3
     cam:setPosition(x, y)
   end
+end
+if cc(x+3,y,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('right')then
     x=x+3
     cam:setPosition(x, y)
   end
+end
+if cc(A,B-5,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('w')then
     B=B-5
     cam:setPosition(A, B)
   end
+end
+if cc(A,B+5,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('s')then
     B=B+5
     cam:setPosition(A, B)
   end
+end
+if cc(A-5,B,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('a')then
     A=A-5
     cam:setPosition(A, B)
-  end
+ end
+end
+if cc(A+5,B,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('d')then
     A=A+5
     cam:setPosition(A, B)
+ end
+end
+  if cc(x+1, y, w, h,   0, 0, 64, 64) then
+    -- if true, decrease HP:
+    hp = hp - 1
   end
+  if cc(x+1,y,w,h, 0,0,64,64) == false then
+
+    if love.keyboard.isDown('up')then
+      y=y-3
+  end
+ end
 end
 
 function love.draw()
@@ -111,4 +141,8 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(img, A, B, 0, 2)
  end)
+ love.graphics.rectangle('line', 0, 0, 64, 64)
+
+
+love.graphics.print(hp, 0, 0)
 end
