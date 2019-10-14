@@ -87,6 +87,7 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 | `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
 | `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles. The `Tile` objects will be sized based on the size of the first tile. |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
+| `Map:cc(x, y, w, h)` | `boolean` | Returns a `true` or `false` value based on whether or not the given rectangle is overlapping with a tile in the `matrix` |
 
 ## How to Use
 
@@ -120,7 +121,7 @@ To make a custom table, you can create a `template` data structure that you can 
 local Map = require 'core/map'
 
 function love.load()
-  
+
   floorTile = love.graphics.newImage('asset.png')
   altar     = love.graphics.newImage('altar-asset.png')
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -140,6 +141,119 @@ function love.draw()
 end
 ```
 
+## Collisions in the Map
+
+If you want to check the map for collisions, you can use the `Map:cc(x, y, w, h)` function. The function returns a `true` value if the rectangle is overlapping with any part of the map, and `false` value if it isn't.
+
+Here's how you can use the `Map:cc(x, y, w, h)` function. Follow the steps in order, adding to the code as you go.
+
+#### Step 1: Creating the Collision Map
+
+You will have two maps in your game: the background, and the collision map. The collision map stores all of the tiles that you don't want the character to overlap with. Here's an example of a `love.load()` function that would work for this goal:
+
+```lua
+local Map = require 'core/map'
+local Util = require 'core/util'
+
+function love.load()
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  x = 400
+  y = 300
+
+  -- Create the background map
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  -- Create the collision map, with walls around the edge of the map
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  collision = {
+    {wall, wall, wall, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+  }
+end
+```
+
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
+
+#### Step 2: Collide with the Map
+
+Next, you need to choose which map to collide with. Use the same collision code that you have for your player movement. Right now, it probably looks like this:
+
+```lua
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      y = y + 1
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      x = x + 1
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      x = x - 1
+    end
+  end
+end
+
+```
+
+Instead of just colliding with one tile, you need to collide with the whole collision map. Change your code so it looks like this:
+
+```lua
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if collision:cc(x, y, 64, 64) == false then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if collision:cc(x, y, 64, 64) == false then
+      y = y + 1
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if collision:cc(x, y, 64, 64) == false then
+      x = x + 1
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if collision:cc(x, y, 64, 64) == false then
+      x = x - 1
+    end
+  end
+end
+```
+
+I used `collision:cc(x, y, 64, 64)` because I named my collision map `collision`. I used `x`, `y`, `64`, and `64` because those numbers represent the player rectangle. I don't need to give it a second rectangle because it checks the whole map.
+
+#### Step 3: Draw Your Maps
+
+Finally, you can draw your maps. The order matters; you will want to draw your background map first, followed by your collision map, followed by the character. Here is an example:
+
+```lua
+function love.draw()
+  background:draw()
+  collision:draw()
+  love.graphics.draw(img, x, y)
+end
+```
+
 ----
 
 
@@ -155,7 +269,7 @@ Here's some information about the collision detection function I have provided:
 
 ## Collision Detection: How To
 
-To sense if two rectangles are overlapping, first import the `util.lua` file that contains the function definition for the function that checks collisions. **Put this line of code at the top of your `main.lua` file, before `love.load()`:
+To sense if two rectangles are overlapping, first import the `util.lua` file that contains the function definition for the function that checks collisions. **Put this line of code at the top of your `main.lua` file, before `love.load()`**:
 
 ```lua
 local Util = require 'core/util'
@@ -210,9 +324,163 @@ end
 
 ```
 
-## Collision Resolution
+## Collision with Tiles
 
-Under construction
+Use the following example to prevent player movement into a certain space:
+
+```lua
+local Map = require 'core/map'
+local Util = require 'core/util'
+
+function love.load()
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  x = 400
+  y = 300
+end
+
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+      y = y + 1
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+      x = x + 1
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+      x = x - 1
+    end
+  end
+end
+
+function love.draw()
+  love.graphics.draw(img, x, y)
+end
+
+```
+
+I have not included a map in this example; follow the instructions in the [Map](#maps) section for information on adding a map.
+
+## Collisions in the Map
+
+If you want to check the map for collisions, you can use the `Map:cc(x, y, w, h)` function. The function returns a `true` value if the rectangle is overlapping with any part of the map, and `false` value if it isn't.
+
+Here's how you can use the `Map:cc(x, y, w, h)` function. Follow the steps in order, adding to the code as you go.
+
+#### Step 1: Creating the Collision Map
+
+You will have two maps in your game: the background, and the collision map. The collision map stores all of the tiles that you don't want the character to overlap with. Here's an example of a `love.load()` function that would work for this goal:
+
+```lua
+local Map = require 'core/map'
+local Util = require 'core/util'
+
+function love.load()
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  x = 400
+  y = 300
+
+  -- Create the background map
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  -- Create the collision map, with walls around the edge of the map
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  collision = {
+    {wall, wall, wall, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+  }
+end
+```
+
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
+
+#### Step 2: Collide with the Map
+
+Next, you need to choose which map to collide with. Use the same collision code that you have for your player movement. Right now, it probably looks like this:
+
+```lua
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      y = y + 1
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      x = x + 1
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+      x = x - 1
+    end
+  end
+end
+
+```
+
+Instead of just colliding with one tile, you need to collide with the whole collision map. Change your code so it looks like this:
+
+```lua
+function love.update(dt)
+  if love.keyboard.isDown('up') then
+    if collision:cc(x, y, 64, 64) then
+      y = y - 1
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if collision:cc(x, y, 64, 64) then
+      y = y + 1
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if collision:cc(x, y, 64, 64) then
+      x = x + 1
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if collision:cc(x, y, 64, 64) then
+      x = x - 1
+    end
+  end
+end
+```
+
+I used `collision:cc(x, y, 64, 64)` because I named my collision map `collision`. I used `x`, `y`, `64`, and `64` because those numbers represent the player rectangle. I don't need to give it a second rectangle because it checks the whole map.
+
+#### Step 3: Draw Your Maps
+
+Finally, you can draw your maps. The order matters; you will want to draw your background map first, followed by your collision map, followed by the character. Here is an example:
+
+```lua
+function love.draw()
+  background:draw()
+  collision:draw()
+  love.graphics.draw(img, x, y)
+end
+```
 
 
 
@@ -249,10 +517,10 @@ Finally, you need to invoke the camera when you draw anything to the screen. To 
 ```lua
 function love.draw()
   cam:draw(function(l, t, w, h)
-  
+
   --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
-  
+
   end)
 end
 ```

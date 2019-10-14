@@ -32,6 +32,9 @@ function love.load()
   map = Map:new(mapTemplate)
 end
 
+
+
+
 function love.update(dt)
   cam:setPosition(400, 400)
   if love.keyboard.isDown('right') then
