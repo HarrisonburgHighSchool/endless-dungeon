@@ -103,24 +103,27 @@ function love.update(dt)
     direction3 = 'left2'
   end
 
-  if love.keyboard.isDown('right')then
-    if cc(x+3,y,64,64,  50,125,64,64)==false then
-    x = x + 3
-  end
-end
-  if love.keyboard.isDown('left')then
-    if cc(x-3,y,64,64,  50,125,64,64)==false then
-    x = x - 3
-  end
-  end
-  if love.keyboard.isDown('up')then
-    if cc(x,y-3,64,64,  50,125,64,64)==false then
-    y = y - 3
-  end
-  end
-  if love.keyboard.isDown('down')then
-    if cc(x,y+3,64,64,  50,125,64,64)==false then
-    y = y + 3
+  function love.update(dt)
+    if love.keyboard.isDown('up') then
+      if collision:cc(x, y - 5, 64, 64) == false then
+        y = y - 5
+      end
+    end
+    if love.keyboard.isDown('down') then
+      if collision:cc(x, y + 5, 64, 64) == false then
+        y = y + 5
+      end
+    end
+    if love.keyboard.isDown('right') then
+      if collision:cc(x + 5, y, 64, 64) == false then
+        x = x + 5
+      end
+    end
+    if love.keyboard.isDown('left') then
+      if collision:cc(x - 5, y, 64, 64) == false then
+        x = x - 5
+      end
+    end
   end
 
   end
