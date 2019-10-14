@@ -49,6 +49,8 @@ if love.keyboard.isDown('right') then
   if core/map.cc(x + 1, y, 370, 270) == false then
     x = x + 1
   end
+
+
 end
  if love.keyboard.isDown('up') then
     y = y + -5
@@ -63,6 +65,10 @@ end
        x = x + 5
      end
 end
+
+
+
+
 
 function love.draw()
   map:draw()
