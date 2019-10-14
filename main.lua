@@ -39,6 +39,8 @@ collision = {
   bkgrnd = Map:new(map)
   collision = Map:new(collision)
 
+  collision = Map:new(collision)
+  --background = Map:new(background)
 end
 
 
@@ -64,6 +66,8 @@ function love.update(dt)
       x = x - 10
     end
   end
+
+
 end
 
 
