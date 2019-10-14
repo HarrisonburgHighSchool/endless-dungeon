@@ -220,10 +220,10 @@ function love.update(dt)
     if collision:cc(x, y, 64, 64) == false then
       y = y - 1
     end
-  end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
+    if love.keyboard.isDown('left') then
+      if collision:cc(x - 5, y, 64, 64) == false then
+        x = x - 5
+      end
     end
   end
 
