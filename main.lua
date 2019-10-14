@@ -18,10 +18,10 @@ floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
 z=100
 s=100
-q=100
+q=700
 direction = 'down'
 direction2= 'left'
-direction3= 'left2'
+direction3= 'right2'
 floor = {
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -58,6 +58,45 @@ floor = {
              }
 
   map = Map:new(floor)
+
+
+
+floor2 = {
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile,floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+             }
+
+  floor2 = Map:new(floor2)
 
 
 end
@@ -103,27 +142,24 @@ function love.update(dt)
     direction3 = 'left2'
   end
 
-  function love.update(dt)
-    if love.keyboard.isDown('up') then
-      if collision:cc(x, y - 5, 64, 64) == false then
-        y = y - 5
-      end
-    end
-    if love.keyboard.isDown('down') then
-      if collision:cc(x, y + 5, 64, 64) == false then
-        y = y + 5
-      end
-    end
-    if love.keyboard.isDown('right') then
-      if collision:cc(x + 5, y, 64, 64) == false then
-        x = x + 5
-      end
-    end
-    if love.keyboard.isDown('left') then
-      if collision:cc(x - 5, y, 64, 64) == false then
-        x = x - 5
-      end
-    end
+  if love.keyboard.isDown('right')then
+    if floor2:cc(x + 3, y, 64, 64)==false then
+    x = x + 3
+  end
+end
+  if love.keyboard.isDown('left')then
+    if floor2:cc(x - 3, y, 64, 64)==false then
+    x = x - 3
+  end
+  end
+  if love.keyboard.isDown('up')then
+    if floor2:cc(x, y - 3, 64, 64)==false then
+    y = y - 3
+  end
+  end
+  if love.keyboard.isDown('down')then
+    if floor2:cc(x, y + 3, 64, 64)==false then
+    y = y + 3
   end
 
   end
@@ -150,6 +186,7 @@ function love.draw()
   cam:draw(function(l, t, w, h)
 
     map:draw()
+    floor2:draw()
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 260)
