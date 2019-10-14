@@ -3,6 +3,7 @@ local Entity = require 'core/entity'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
+
 function love.load()
   G = love.math.random(-3, 4);
   H = love.math.random(-3, 4);
