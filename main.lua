@@ -19,16 +19,15 @@ function love.load()
                  {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, altar,},
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile,  altar, floorTile,floorTile,  floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, altar,floorTile, },
+                 {floorTile,  altar, floorTile,floorTile,  altar, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, altar, floorTile, floorTile,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                  {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, },
-                 {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile,}
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
                }
     map = Map:new(template)
 cam = gamera.new(-100, -100, 2000, 2000)
@@ -40,30 +39,17 @@ end
 
 function love.update(dt)
 
-  function love.update(dt)
-    if love.keyboard.isDown('up') then
-      if collision:cc(x, y - 5, 64, 64) == false then
-        y = y - 5
-      end
-    end
-    if love.keyboard.isDown('down') then
-      if collision:cc(x, y + 5, 64, 64) == false then
-        y = y + 5
-      end
-    end
-    if love.keyboard.isDown('right') then
-      if collision:cc(x + 5, y, 64, 64) == false then
-        x = x + 5
-      end
-    end
-    if love.keyboard.isDown('left') then
-      if collision:cc(x - 5, y, 64, 64) == false then
-        x = x - 5
-      end
-    end
-  end
-
-
+ if love.keyboard.isDown('w')then
+ b = b - 5
+ cam:setPosition(a,b)
+ end
+ if love.keyboard.isDown('s')then
+ b = b + 50
+ cam:setPosition(a,b)
+ end
+ if love.keyboard.isDown('d')then
+ a = a + 5
+ cam:setPosition(a,b)
 end
  if love.keyboard.isDown('a')then
  a = a - 5
