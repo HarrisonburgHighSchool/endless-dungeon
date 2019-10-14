@@ -35,7 +35,12 @@ function love.load()
   }
 map = Map:new(template)
 
+  collision = Map:new(collision)
+  background = Map:new(background)
 end
+
+
+
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
@@ -67,6 +72,8 @@ end
     -- if true, decrease HP:
     hp = hp - 1
   end
+
+
 end
 
 
