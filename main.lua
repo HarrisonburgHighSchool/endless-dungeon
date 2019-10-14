@@ -1,5 +1,7 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
+local Entity = require 'core/entity'
+local Util = require 'core/util'
 function love.load()
 
 
@@ -30,30 +32,28 @@ function love.load()
 
 end
 
-function function love.update(dt)
 
-
- if love.keyboard. isDown('right') then
-    if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
-      x = x + 1
-    end
-end
-
-
-end 
 
 function love.update(dt)
-  if love.keyboard.isDown('right') then
-    x=x+10
-  end
-  if love.keyboard.isDown('left') then
-    x=x-10
-  end
   if love.keyboard.isDown('up') then
-    y=y-10
+    if cc(x, y - 10, 64, 64, 100, 200, 64, 64) == false then
+      y = y - 10
+    end
   end
   if love.keyboard.isDown('down') then
-    y=y+10
+    if cc(x, y + 10 , 64, 64, 100, 200, 64, 64)  == false then
+      y = y + 10
+    end
+  end
+  if love.keyboard.isDown('right') then
+    if cc(x + 10, y, 64, 64, 100, 200, 64, 64)  == false then
+      x = x + 10
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if cc(x - 10, y, 64, 64, 100, 200, 64, 64)  == false then
+      x = x - 10
+    end
   end
 end
 
