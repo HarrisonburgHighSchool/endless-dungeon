@@ -45,8 +45,33 @@ end
 
 
 function love.update(dt)
+
+  if x < 0 then
+    x = 0
+  end
+  if y < 0 then
+    y = 0
+  end
+  if y > 540 then
+    y = 540
+  end
+  if x > 1250 then
+    x = 1250
+  end
+  if a < 0 then
+    a = 0
+  end
+  if b < 0 then
+    b = 0
+  end
+  if b > 540 then
+    b = 540
+  end
+  if a > 1250 then
+    a = 1250
+  end
   cam:setPosition(x, y)
-  
+
   if love.keyboard.isDown('right') then
     x = x + 5
   end
