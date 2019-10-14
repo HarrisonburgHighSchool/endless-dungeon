@@ -1,14 +1,14 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
+local Util = require 'core/util'
 
 function love.load()
-  local Map = require 'core/map'
-  local Util = require 'core/util'
+
 
   -- Create the player variables
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 400
-  y = 300
+  x = 200
+  y = 0
 
   -- Create the background map
   floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
@@ -22,14 +22,17 @@ function love.load()
   -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
-    {wall, nil, nil, wall},
-    {nil, nil, nil, nil},
-    {nil, nil, nil, nil},
-    {nil, nil, nil, nil},
+    {wall, wall, wall, wall, wall, wall, wall},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', wall, wall, 'nil'},
+    {'nil', wall, 'nil', 'nil', 'nil', wall, 'nil'},
+    {'nil', wall, wall, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {wall, wall, wall, wall, wall, wall, wall},
   }
 
   collision = Map:new(collision)
-  background = Map:new(background)
+  --background = Map:new(background)
 end
 
 
@@ -68,7 +71,7 @@ end
 
 
 function love.draw()
-  background:draw()
+  --background:draw()
   collision:draw()
   love.graphics.draw(img, x, y)
 end
