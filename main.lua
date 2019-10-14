@@ -6,6 +6,10 @@ function love.load()
   y = 300
   a = 400
   b = 300
+  x1 = 0
+  y1 = 0
+  x2 = 0
+  y2 = 0
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -34,26 +38,23 @@ cam = gamera.new(-100, -100, 2000, 2000)
 
 end
 
-
-
-
 function love.update(dt)
 
  if love.keyboard.isDown('up')then
  y = y - 5
- cam:setPosition(a,b)
+ cam:setPosition(x,y)
  end
  if love.keyboard.isDown('down')then
  y = y + 5
- cam:setPosition(a,b)
+ cam:setPosition(x,y)
  end
  if love.keyboard.isDown('left')then
  x = x - 5
- cam:setPosition(a,b)
+ cam:setPosition(x,y)
 end
  if love.keyboard.isDown('right')then
  x = x + 5
- cam:setPosition(a,b)
+ cam:setPosition(x,y)
  end
 
 end
@@ -61,8 +62,9 @@ end
 
 
 function love.draw()
-  --background:draw()
+  cam:draw(function(x1,y1,x2,y1)
   map:draw()
   --collision:draw()
   love.graphics.draw(playerImg, x, y)
+end)
 end
