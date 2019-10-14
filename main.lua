@@ -5,8 +5,8 @@ local Entity = require 'core/entity'
 function love.load()
 
   cam = gamera.new(0, 0, 1250, 1000)
-  x = 400
-  y = 325
+  x = 100
+  y = 100
   playerImg = love.graphics.newImage('assets-1/monster/knight.png')
   w = 64
   h = 64
@@ -14,7 +14,7 @@ function love.load()
   a = 470
   b = 400
   --Img2 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
-  c = 340
+  c = 400
   d = 400
   Img3 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
 
@@ -46,15 +46,14 @@ function love.load()
              }
   map = Map:new(template)
 
-end
 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_2.png')
 walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {wall, 'nil' ,'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -72,6 +71,9 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
 }
+
+collide = Map:new(walls)
+end
 function love.update(dt)
   if x < 0 then
     x = 0
@@ -85,33 +87,32 @@ function love.update(dt)
   if y > 950 then
     y = 950
   end
-  if love.keyboard.isDown('right') then
 
-if cc(x + 2, y, 64, 64, c, d, 64, 64) == false then
-  x = x + 2
-  end
-end
-  if love.keyboard.isDown('down') then
-
-    if cc(x, y + 2, 64, 64, c, d, 64, 64)== false then
-      y = y + 2
-    end
-  end
     if love.keyboard.isDown('up') then
-
-      if cc(x, y - 2, 64, 64, c, d, 64, 64)== false then
-        y = y - 2
+        if collide:cc(x, y - 1, 64, 64) == false then
+          y = y - 1
+        end
       end
-    end
-  if love.keyboard.isDown('left') then
+      if love.keyboard.isDown('down') then
+        if collide:cc(x, y + 1, 64, 64) == false then
+          y = y + 1
+        end
+      end
+      if love.keyboard.isDown('right') then
+        if collide:cc(x + 1, y, 64, 64) == false then
+          x = x + 1
+        end
+      end
+      if love.keyboard.isDown('left') then
+        if collide:cc(x - 1, y, 64, 64) == false then
+          x = x - 1
+        end
+      end
 
-    if cc(x - 2, y, 64, 64, c, d, 64, 64)== false then
-      x = x - 2
-    end
- end
-if cc(x, y, w, h,  0, 0, 64, 64) then
-  hp = hp - 1
-end
+
+
+
+
 
   cam:setPosition(x, y)
 end
@@ -119,6 +120,7 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+  collide:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
