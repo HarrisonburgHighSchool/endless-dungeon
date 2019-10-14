@@ -54,13 +54,19 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('down') and y < 545 then   -- if the 'up' key is being pressed...
-    y = y + 1
+    if collision:cc(x, y+1, 64, 64) == false then
+      y = y + 1
+    end
   end
   if love.keyboard.isDown('left') and x > 64 then   -- if the 'up' key is being pressed...
-    x = x - 1
+    if collision:cc(x-1, y, 64, 64) == false then
+      x = x - 1
+    end
   end
   if love.keyboard.isDown('up') and y > 65 then   -- if the 'up' key is being pressed...
-    y = y - 1
+    if collision:cc(x, y-1, 64, 64) == false then
+      y = y - 1
+    end
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  

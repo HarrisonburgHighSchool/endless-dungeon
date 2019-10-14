@@ -92,12 +92,17 @@ function Map:createTwoD(template, w, h)
       local img
       if type(template[x][y]) == 'string' then
         img = love.graphics.newImage(template[x][y])
-      else
+      elseif template[x][y] then
         img = template[x][y]
+      else
+        img = nil
       end
-      self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
-      if self.matrix[x][y].img:getWidth() ~= w and self.gridsize == nil then
-        self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+      if img then
+        self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
+        print('Made tile at '..x..", "..y)
+        if self.matrix[x][y].img:getWidth() ~= w and self.gridsize == nil then
+          self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+        end
       end
     end
   end
@@ -121,7 +126,9 @@ end
 function Map:draw()
   for x = 1, #self.matrix do
     for y = 1, #self.matrix[x] do
-      self.matrix[x][y]:draw()
+      if self.matrix[x][y] then
+        self.matrix[x][y]:draw()
+      end
     end
   end
 end
@@ -133,14 +140,17 @@ function Map:cc(x, y, w, h)
   --   for y = 1, #self.matrix[x] do
   for b = 1, #self.matrix do
     for v = 1, #self.matrix[b] do
-      if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
-      result = true
+      if self.matrix[b][v] then
+        if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
+          print('Got tile at '..b..", "..v)
+          return true
+        end
       end
     end
   end
   --   end
   -- end
-  return result
+  return false
 end
 
 function Map:changeScale(mult)
