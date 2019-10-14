@@ -26,12 +26,32 @@ function love.load()
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     }
+
+ walls = { --a 12 x 9 map with the altar texture in the middle
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {door, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+   }
+
   map = Map:new(template)
+  collision = Map:new(walls)
 end
 
 function love.update(dt)
   if love.keyboard.isDown('right') and x < 735 then   -- if the 'up' key is being pressed...
-    x = x + 1
+    if collision:cc(x+1, y, 64, 64) == false then
+      x = x + 1
+    end
   end
   if love.keyboard.isDown('down') and y < 545 then   -- if the 'up' key is being pressed...
     y = y + 1
@@ -51,6 +71,7 @@ end
 
 function love.draw()
   map:draw()
+  collision:draw()
   love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
