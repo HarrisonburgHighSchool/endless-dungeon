@@ -2,19 +2,15 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 
 love.graphics.setDefaultFilter('nearest', 'nearest')
-local Map = require 'core/map'
 
 function love.load()
-  local Map = require 'core/map'
-  local Util = require 'core/util'
-
   -- Create the player variables
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-2/player/base/merfolk_m.png')
-  w = 32   -- The player's width is 32
-  h = 32   -- The player's height is 32
+  w = 16   -- The player's width is 16
+  h = 16   -- The player's height is 16
   hp = 100 -- Set the player's HP to 100 at the start of the game
   cage = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_3.png')
   cage1 = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_4.png')
@@ -43,38 +39,62 @@ function love.load()
     {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
     {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
     {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-
-
-   
+    {wall, wall, wall, wall, wall, door, wall, wall, wall, wall},
 
   }
+
+collision = {
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, cage1, cage2, cage3, cage, cage1, cage2, cage3, cage, wall},
+    {wall, wall, wall, wall, wall, door, wall, wall, wall, wall},
+
+}
+   
+
+  map = Map:new(background)
+  collision = Map:new(collision)
 end
 function love.update(dt)
   if love.keyboard.isDown('w') then
+    if collision:cc(x, y-5, 16, 16) then
       y = y - 5
     end
+  end
   if love.keyboard.isDown('s') then
+    if collision:cc(x, y+5, 16, 16) then
       y = y + 5
     end
-  
+  end
   if love.keyboard.isDown('d') then
+    if collision:cc(x+5, y, 16, 16) then
       x = x + 5
     end
-  
+  end
   if love.keyboard.isDown('a') then
+    if collision:cc(x-5, y, 16, 16) then
       x = x - 5
     end
-  end 
+  end
+end
+   
 
 
 
 
 
 function love.draw()
-  map = Map:new(background)
   map:draw()
-
+  collision:draw()
  
 
   love.graphics.draw(trap, 385, 130, 0, 2) -- Bottom Middle Pit
@@ -86,7 +106,6 @@ function love.draw()
 
   love.graphics.draw(door2, 390, 0, 0, 2) -- Top Door
   love.graphics.draw(door, 390, 575, 0, 2) -- Bottom Door
-  love.graphics.draw(door, 740, 325, 0, 2) -- Right Door
   love.graphics.draw(door, 0, 325, 0, 2) -- Left Door
   
   love.graphics.draw(statue1, 65, 65, 0, 2)
