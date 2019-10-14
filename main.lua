@@ -5,6 +5,11 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 
 function love.load()
+  local Map = require 'core/map'
+  local Util = require 'core/util'
+
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-2/player/base/merfolk_m.png')
