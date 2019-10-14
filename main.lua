@@ -5,24 +5,24 @@ local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 
 function love.load()
-  cam = gamera.new(0, 0, 1000, 1000)
+  cam = gamera.new(0, 0, 960, 625)
   weapon = love.graphics.newImage('assets-1/player/hand_right/long_sword_slant.png')
   shield = love.graphics.newImage('assets-1/player/hand_left/shield_goblin.png')
   playerImg = love.graphics.newImage('assets-1/monster/human.png')
-  x = 400
-  y = 550
+  x = 100
+  y = 250
   enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
-  x2 = 560
-  y2 = 550
+  x2 = 260
+  y2 = 250
   enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  c = 600
-  d = 600
+  c = 300
+  d = 300
   enemy3 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  e = 600
-  f = 500
+  e = 300
+  f = 200
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
-  g = 675
-  b = 550
+  g = 375
+  b = 250
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
   w = 36   -- The player's width is 64
@@ -42,26 +42,33 @@ function love.load()
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
+                 {tile, tile, tile, tile, path, tile, tile, tile, tile},
+                 {tile, tile, tile, tile, path, tile, tile, tile, tile},
+                 {tile, tile, tile, tile, path, tile, tile, tile, tile},
                }
   map = Map:new(template)
-  map:changeScale(2)
+
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/shoals_wall_1.png')
   walls = {
-                  {wall, wall, wall, wall, wall, wall, wall, wall, wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
                 }
     collision = Map:new(walls)
-    collision:changeScale(2)
+
 end
 
 
