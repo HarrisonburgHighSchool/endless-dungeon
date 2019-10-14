@@ -5,10 +5,6 @@ function love.load()
   direction = 'left'
   x = 400
   y = 300
-  x3 = 400
-  y3 = 300
-  x2 = 400
-  y2 = 300
   a = 400
   b = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
@@ -34,14 +30,10 @@ function love.load()
                   {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
                   {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
+                  {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
 
-
-
-
-                }
-    map = Map:new(template)
-    cam = gamera.new(-500, -500, 2000, 2000)
-
+                  map = Map:new(template)
+                  cam = gamera.new(-500, -500, 2000, 2000)
 
 end
 
@@ -64,11 +56,7 @@ function love.update(dt)
    x = x - 10
    cam:setPosition(x, y)
   end
-    if cc(x, y, w, h,   0, 0, 64, 64) then
-      hp = hp - 1
-  end
   if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
       y = y + 1
     end
   end
@@ -98,6 +86,7 @@ function player2()
   end
 end
 function love.draw()
+<<<<<<< HEAD
   cam:draw(function(l, t, w, h)
   map:draw()
   if hp==0 then
@@ -109,7 +98,9 @@ function love.draw()
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, 0, 10)
 end)
+=======
   --background:draw()
   collision:draw()
   love.graphics.draw(img, x, y)
+>>>>>>> upstream/master
 end
