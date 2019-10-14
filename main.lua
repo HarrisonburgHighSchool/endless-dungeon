@@ -73,29 +73,29 @@ function love.update(dt)
   cam:setPosition(x, y)
 
   if love.keyboard.isDown('right') then
-    x = x + 5
+    x = x + 8
   end
   if love.keyboard.isDown('left') then
-      x = x - 5
+      x = x - 8
     end
     if love.keyboard.isDown('down') then
-        y = y + 5
+        y = y + 8
       end
     if love.keyboard.isDown('up') then
-          y = y - 5
+          y = y - 8
         end
 
         if love.keyboard.isDown('d') then
-          a = a + 5
+          a = a + 8
         end
         if love.keyboard.isDown('a') then
-            a = a - 5
+            a = a - 8
           end
           if love.keyboard.isDown('s') then
-              b = b + 5
+              b = b + 8
             end
           if love.keyboard.isDown('w') then
-                b = b - 5
+                b = b - 8
 
           end
   if cc(x, y, w, h,   0, 0, 64, 64) then
