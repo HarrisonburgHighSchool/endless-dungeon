@@ -52,22 +52,22 @@ function love.update(dt)
   
   
     if love.keyboard.isDown('up') then
-      if layer1:cc(x, y, 64, 64) then
+      if mapc:cc(x, y - 1, 64, 64) then
         y = y - 1
       end
     end
     if love.keyboard.isDown('down') then
-      if layer1:cc(x, y, 64, 64) then
+      if mapc:cc(x, y + 1, 64, 64) then
         y = y + 1
       end
     end
     if love.keyboard.isDown('right') then
-      if layer1:cc(x, y, 64, 64) then
+      if mapc:cc(x + 1, y, 64, 64) then
         x = x + 1
       end
     end
     if love.keyboard.isDown('left') then
-      if layer1:cc(x, y, 64, 64) then
+      if mapc:cc(x - 1, y, 64, 64) then
         x = x - 1
       end
     end
