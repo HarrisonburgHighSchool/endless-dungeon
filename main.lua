@@ -30,23 +30,23 @@ function love.load()
   cobaltMirrorRightT = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right_top.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  --Hp = love.graphics.newImage('assets-1/player/hp_bar/template4.png')
+  --Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
 
   mapTemplate = {
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
-    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, hole, hole, wall,},
-    {wall, cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, hole, hole, wall,},
-    {wall, cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall,},
-    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, hole, cobalt, cobalt, cobalt, wall,},
-    {wall, cobalt, hole, hole, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall,},
-    {wall, cobaltMirrorRightT, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, cobaltMirrorRight, wall,},
-    {wall, cobaltMirrorLeftT, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, cobaltMirrorLeft, wall,},
-    {wall, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, wall,},
-    {wall, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, wall,},
-    {wall, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, wall,},
-    {wall, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, wall,}, 
-    {wall, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, wall,},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
+    {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil,},
+    {nil, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, hole, hole, nil,},
+    {nil, cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, hole, hole, nil,},
+    {nil, cobalt, cobalt, hole, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, nil,},
+    {nil, cobalt, cobalt, cobalt, cobalt, cobalt, hole, cobalt, cobalt, cobalt, nil,},
+    {nil, cobalt, hole, hole, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, nil,},
+    {nil, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, nil,},
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,},
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,},
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,},
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,},
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,}, 
+    {nil, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, nil,},
+    {nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil,},
   }
   map = Map:new(mapTemplate)
 end
