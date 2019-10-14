@@ -3,6 +3,11 @@ local Map = require 'core/map'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 local Util = require 'core/util'
 function love.load()
+  local Map = require 'core/map'
+  local Util = require 'core/util'
+
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-2/dc-mon/glowing_shapeshifter.png')
