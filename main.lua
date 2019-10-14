@@ -45,6 +45,7 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
+    
     y = y + 1
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
@@ -71,12 +72,8 @@ if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
     end
   end
 
-
 end
 end
-
-
-
 
 
 function love.draw()
