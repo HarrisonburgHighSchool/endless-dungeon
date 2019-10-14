@@ -34,7 +34,9 @@ function love.load()
                   {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
                   {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
-                  {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+
+
+
 
                 }
     map = Map:new(template)
@@ -44,23 +46,7 @@ function love.load()
 end
 
 function love.update(dt)
-  if hp > 0 then
-  cam:setPosition(x2, y2)
-end
-  if x < 0  then
-  x = 0
-    end
-  if y < 0  then
-  y = 0
-end
-  if y < 0  then
-  y = 0
-end
-  if y > 950 then
-  y = 950
-end
-  if x > 2400
-  x = 2400
+
   player2()
   if love.keyboard.isDown('up')then
    y = y - 10
@@ -123,4 +109,7 @@ function love.draw()
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, 0, 10)
 end)
+  --background:draw()
+  collision:draw()
+  love.graphics.draw(img, x, y)
 end
