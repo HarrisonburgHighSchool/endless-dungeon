@@ -25,7 +25,6 @@ function love.load()
   b = 550
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
-  wall = love.graphics.newImage('assets-1/dungeon/wall/shoals_wall_1.png')
   w = 36   -- The player's width is 64
   h = 36   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -46,21 +45,23 @@ function love.load()
                }
   map = Map:new(template)
   map:changeScale(2)
-  collision = {
+
+  wall = love.graphics.newImage('assets-1/dungeon/wall/shoals_wall_1.png')
+  walls = {
                   {wall, wall, wall, wall, wall, wall, wall, wall, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
-                  {wall, nil, nil, nil, nil, nil, nil, nil, wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                 }
-  backMap = Map:new(collision)
-  backMap:changeScale(2)
+    collision = Map:new(walls)
+    collision:changeScale(2)
 end
 
 
@@ -80,22 +81,22 @@ function love.update(dt)
     y = 960
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x, y, 36, 36) == false then
+    if collision:cc(x + 1, y, 36, 36) == false then
      x = x + 1
    end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x, y, 36, 36) == false then
+    if collision:cc(x - 1, y, 36, 36) == false then
      x = x - 1
    end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y, 36, 36) == false then
+    if collision:cc(x, y + 1, 36, 36) == false then
      y = y + 1
    end
   end
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y, 36, 36) == false then
+    if collision:cc(x, y - 1, 36, 36) == false then
      y = y - 1
    end
   end
@@ -123,7 +124,7 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-  backMap:draw()
+  collision:draw()
   love.graphics.draw(weapon, x, y)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(shield, x + 2, y)
