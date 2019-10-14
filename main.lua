@@ -39,29 +39,30 @@ end
 
 function love.update(dt)
 
- if love.keyboard.isDown('w')then
- b = b - 5
+ if love.keyboard.isDown('up')then
+ y = y - 5
  cam:setPosition(a,b)
  end
- if love.keyboard.isDown('s')then
- b = b + 50
+ if love.keyboard.isDown('down')then
+ y = y + 5
  cam:setPosition(a,b)
  end
- if love.keyboard.isDown('d')then
- a = a + 5
+ if love.keyboard.isDown('left')then
+ x = x - 5
  cam:setPosition(a,b)
 end
- if love.keyboard.isDown('a')then
- a = a - 5
+ if love.keyboard.isDown('right')then
+ x = x + 5
  cam:setPosition(a,b)
  end
 
-
+end
 
 
 
 function love.draw()
   --background:draw()
-  collision:draw()
-  love.graphics.draw(img, x, y)
+  map:draw()
+  --collision:draw()
+  love.graphics.draw(playerImg, x, y)
 end
