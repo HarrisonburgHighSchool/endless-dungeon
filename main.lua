@@ -6,7 +6,7 @@ function love.load()
  
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
-  dragon = love.graphics.newImage('assets-1/dungeon/statues/statue_dragon.png')
+  
   playerImg = love.graphics.newImage('assets-1/player/base/ghoul_2_male.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_2a.png')
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
@@ -58,19 +58,18 @@ collision = {
     {wall, nil, nil, nil, nil, wall, wall, wall, wall, wall},
     {wall, nil, wall, nil, nil, nil, nil, nil, nil, wall},
     {wall, wall, wall, nil, wall, nil, wall, wall, wall, wall},
-    {wall, nil, nil, wall, nil, nil, nil, nil, wall},
+    {wall, nil, nil, nil, wall, nil, nil, nil, nil, wall},
     {wall, nil, wall, wall, wall, nil, wall, wall, nil, wall},
     {wall, nil, nil, wall, nil, nil, wall, nil, nil, wall},
     {wall, nil, nil, wall, nil, nil, wall, nil, nil, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-
 
 }
 
 
 
   map = Map:new(back)
-  map = Map:new(collision)
+  map2 = Map:new(collision)
   
 end
 
@@ -79,25 +78,25 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if collision:cc(x, y, w, h) == false then
+      if map2:cc(x, y - 1, w, h) == false then
       
       y = y - 1
     end
   end  
   if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
-    if collision:cc(x, y, w, h) == false then
+    if map2:cc(x, y + 1, w, h) == false then
     
     y = y + 1
   end
 end  
 if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-  if collision:cc(x, y, w, h) == false then
+  if map2:cc(x + 1, y, w, h) == false then
   
   x = x + 1
   end
 end  
 if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
-  if collision:cc(x, y, w, h) == false then
+  if map2:cc(x - 1, y, w, h) == false then
   
   x = x - 1
  end
@@ -109,10 +108,9 @@ end
 
 function love.draw()
   map:draw()
+map2:draw()
   love.graphics.draw(fountain, 675, 100)
   love.graphics.draw(fountain2, 675, 500)
-  love.graphics.draw(dragon, 400, 200)
   love.graphics.draw(playerImg, x, y)
-  love.graphics.rectangle('line', 0, 0, 64, 64)
- 
+   
 end
