@@ -14,10 +14,10 @@ function love.load()
   x1 = 200
   y1 = 300
   playerImg1 = love.graphics.newImage('assets-2/UNUSED/monsters/giant_lizard.png')
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 100   -- The player's width is 64
+  h = 100  -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
-  cam = gamera.new(-100, -100, 3000, 2400)
+  cam = gamera.new(-50, -50, 2500, 1200)
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
 wall= love.graphics.newImage('assets-1/dungeon/floor/dirt_0.png')
