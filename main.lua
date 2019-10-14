@@ -39,79 +39,77 @@ function love.load()
 
 
  -- Create the collision map, with walls around the edge of the map
---   collision = {
---     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, rect3Floor, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
---   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  collision = {
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, rect3Floor, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
--- }
+}
 
   map = Map:new(template)
-  -- cmap = Map:new(collision)
+  ccmap = Map:new(collision)
 end
+
 function love.update(dt)
  
---x, y, w, h all represent the player's rectangle. The other values are blocks you're colliding with.
+--x, y, w, h all represent the player's rectangle.
 --If the statement is true it will run the code, but if it is false it will skip it.
   
--- if love.keyboard.isDown('w') then -- up
---   if collision:cc(x, y, 64, 64) then
---     y = y - 2 -- speed
---   end
--- end 
--- if love.keyboard.isDown('a') then -- left
---   if collision:cc(x, y, 64, 64) then  
---     x = x - 2 -- speed
---   end
+if love.keyboard.isDown('w') then -- up
+  if collision:cc(x, y , 64, 64) == false then
+    y = y - 2 -- speed
+  end
+end 
+if love.keyboard.isDown('a') then -- left
+  if collision:cc(x , y, 64, 64) == false then  
+    x = x - 2 -- speed
+  end
+end
+if love.keyboard.isDown('s') then -- down
+  if collision:cc(x, y , 64, 64) == false then  
+    y = y + 2 -- speed
+  end
+end
+if love.keyboard.isDown('d') then -- right
+  if collision:cc(x , y, 64, 64) == false then  
+    x = x + 2 -- speed
+  end
+ end
+end
+-- local dx = 0
+-- local dy = 0
+-- if love.keyboard.isDown('w') and y > 18 then
+--   dy = - 2
 -- end
--- if love.keyboard.isDown('s') then -- down
---   if collision:cc(x, y, 64, 64) then  
---     y = y + 2 -- speed
---   end
+-- if love.keyboard.isDown('a') and  x > 61 then
+--   dx = - 2
 -- end
--- if love.keyboard.isDown('d') then -- right
---   if collision:cc(x, y, 64, 64) then  
---     x = x + 2 -- speed
---   end
- 
+-- if love.keyboard.isDown('s') and y < 482 then
+--   dy = 2
+-- end
+-- if love.keyboard.isDown('d') and x < 677 then
+--   dx = 2
+-- end
 
-local dx = 0
-local dy = 0
-if love.keyboard.isDown('w') and y > 18 then
-  dy = - 2
-end
-if love.keyboard.isDown('a') and  x > 61 then
-  dx = - 2
-end
-if love.keyboard.isDown('s') and y < 482 then
-  dy = 2
-end
-if love.keyboard.isDown('d') and x < 677 then
-  dx = 2
-end
-
-if cc(x + dx, y + dy, 64, 64, 230, 227, 21, 30) == false then
-  x = x + dx
-  y = y + dy
-end
-
-end
+-- if cc(x + dx, y + dy, 64, 64, 230, 227, 21, 30) == false then
+--   x = x + dx
+--   y = y + dy
+-- end
+-- end
 
 
 function love.draw()
   map:draw()
-  -- cmap:draw()
+  ccmap:draw()
   love.graphics.draw(playerImg, x, y)
-
-  love.graphics.print(hp, 0, 0)
   
 end
