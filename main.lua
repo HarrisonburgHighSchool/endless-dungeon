@@ -19,6 +19,7 @@ function love.load()
  w = 64
  h = 64
  HP = 100
+  transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
   playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
@@ -65,6 +66,22 @@ function love.load()
             }
 
             map2 = Map:new(template2)
+  
+template3 = {
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, nil, nil, nil, nil, nil, nil},
+            {transp, nil, colbalt, nil, nil, nil, nil, nil},
+            {transp, colbalt1, nil, nil, nil, nil, nil, nil},
+
+            }
+
+            map3 = Map:new(template3)
     
 end
 
@@ -90,28 +107,34 @@ end
 collide1 = false
 
 if cc(x + 3, y, w, h, x2, y2, w2, h2) == false then
+  if map3:cc(x + 3, y, w, h) == false then
 if love.keyboard.isDown('right') then  
     x = x + 3
    
   end
 end
+end
 if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then
+  if map3:cc(x - 3, y, w, h) == false then
     if love.keyboard.isDown('left') then  
       x = x - 3
   end
-
-
+end
 end
   if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
+    if map3:cc(x, y + 3, w, h) == false then
   if love.keyboard.isDown('down') then 
     y = y + 3
 end
 end
+end
 
    if cc(x, y - 3, w, h, x2, y2, w2, h2) == false then
+    if map3:cc(x, y - 3, w, h) == false then
     if love.keyboard.isDown('up') then
     y = y - 3
   end
+end
 end
 
 if(collide1 == true) then
@@ -150,6 +173,8 @@ function love.draw()
   else
     map2:draw()
   end
+  map3:draw()
+
   
   if(collide1 == true) then
     love.graphics.draw(playerImg2, x, y)
