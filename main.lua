@@ -1,17 +1,15 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
-
 love.graphics.setDefaultFilter('nearest', 'nearest')
-local Map = require 'core/map'
 
 function love.load()
   love.window.setMode(768, 576)
   x = 368
   y = 280
-  playerImg = love.graphics.newImage('assets-1/monster/deep_elf_fighter.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
+  playerImg = love.graphics.newImage('assets-1/monster/deep_elf_fighter.png')
 
   rectFloor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
   rect1Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_1.png')
@@ -52,12 +50,13 @@ function love.load()
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-
 }
 
   map = Map:new(template)
   ccmap = Map:new(collision)
+
 end
+
 
 function love.update(dt)
  
@@ -65,22 +64,24 @@ function love.update(dt)
 --If the statement is true it will run the code, but if it is false it will skip it.
   
 if love.keyboard.isDown('w') then -- up
-  if collision:cc(x, y , 64, 64) == false then
+  if collision:cc(x, y - 5 , 64, 64) == false then
     y = y - 2 -- speed
   end
 end 
 if love.keyboard.isDown('a') then -- left
-  if collision:cc(x , y, 64, 64) == false then  
+  if collision:cc(x - 5 , y, 64, 64) == false then  
     x = x - 2 -- speed
   end
 end
 if love.keyboard.isDown('s') then -- down
-  if collision:cc(x, y , 64, 64) == false then  
+  if collision:cc(x, y + 5 , 64, 64) == false then  
     y = y + 2 -- speed
   end
+
+
 end
 if love.keyboard.isDown('d') then -- right
-  if collision:cc(x , y, 64, 64) == false then  
+  if collision:cc(x , y + 5, 64, 64) == false then  
     x = x + 2 -- speed
   end
  end
@@ -105,6 +106,10 @@ end
 --   y = y + dy
 -- end
 -- end
+
+
+
+
 
 
 function love.draw()
