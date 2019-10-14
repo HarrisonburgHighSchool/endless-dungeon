@@ -16,26 +16,62 @@ function love.load()
   y = 70
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
-  hp = 100 -- Set the player's HP to 100 at the start of the game
-  template = {
+  
+  --template = {
+    --{wall, wall, wall, wall, wall, wall, wall, wall, doorc, wall},
+    --{door, floor, floor, floor, wall, floor, floor, floor, floor, wall},
+    --{wall, wall, wall, floor, wall, wall, floor, wall, wall, wall},
+    --{wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
+    --{wall, floor, wall, wall, floor, wall, floor, wall, floor, wall},
+    --{wall, floor, floor, floor, floor, wall, wall, wall, wall, wall},
+    --{wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
+    --{wall, wall, wall, floor, wall, floor, wall, wall, wall, wall},
+    --{wall, floor, floor, floor, wall, floor, floor, floor, floor, wall},
+    --{wall, floor, wall, wall, wall, floor, wall, wall, floor, wall},
+    --{wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
+    --{wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
+    --{wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+
+  --}
+
+back = {
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+  {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+}
+collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, doorc, wall},
-    {door, floor, floor, floor, wall, floor, floor, floor, floor, wall},
-    {wall, wall, wall, floor, wall, wall, floor, wall, wall, wall},
-    {wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
-    {wall, floor, wall, wall, floor, wall, floor, wall, floor, wall},
-    {wall, floor, floor, floor, floor, wall, wall, wall, wall, wall},
-    {wall, floor, wall, floor, floor, floor, floor, floor, floor, wall},
-    {wall, wall, wall, floor, wall, floor, wall, wall, wall, wall},
-    {wall, floor, floor, floor, wall, floor, floor, floor, floor, wall},
-    {wall, floor, wall, wall, wall, floor, wall, wall, floor, wall},
-    {wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
-    {wall, floor, floor, wall, floor, floor, wall, floor, floor, wall},
+    {door, nil, nil, nil, wall, nil, nil, nil, nil, wall},
+    {wall, wall, wall, nil, wall, wall, nil, wall, wall, wall},
+    {wall, nil, wall, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, wall, wall, nil, wall, nil, wall, nil, wall},
+    {wall, nil, nil, nil, nil, wall, wall, wall, wall, wall},
+    {wall, nil, wall, nil, nil, nil, nil, nil, nil, wall},
+    {wall, wall, wall, nil, wall, nil, wall, wall, wall, wall},
+    {wall, nil, nil, wall, nil, nil, nil, nil, wall},
+    {wall, nil, wall, wall, wall, nil, wall, wall, nil, wall},
+    {wall, nil, nil, wall, nil, nil, wall, nil, nil, wall},
+    {wall, nil, nil, wall, nil, nil, wall, nil, nil, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
-  }
-map = Map:new(template)
 
-  background = Map:new(background)
+}
+
+
+
+  map = Map:new(back)
+  map = Map:new(collision)
+  
 end
 
 
@@ -43,34 +79,31 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if cc(x, y - 1, w, h, 100, 200, w, h) == false then
+      if collision:cc(x, y, w, h) == false then
       
       y = y - 1
     end
   end  
   if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
-    if cc(x, y + 1, w, h, 100, 200, w, h) == false then
+    if collision:cc(x, y, w, h) == false then
     
     y = y + 1
   end
 end  
 if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-  if cc(x, x + 1, w, h, 100, 200, w, h) == false then
+  if collision:cc(x, y, w, h) == false then
   
   x = x + 1
   end
 end  
 if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
-  if cc(x, x - 1, w, h, 100, 200, w, h) == false then
+  if collision:cc(x, y, w, h) == false then
   
   x = x - 1
  end
 end  
 
-  if cc(x, y, w, h,   0, 0, 64, 64) then  
-    -- if true, decrease HP:
-    hp = hp - 1
-  end
+ 
 end
 
 
@@ -81,5 +114,5 @@ function love.draw()
   love.graphics.draw(dragon, 400, 200)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, 0, 0)
+ 
 end
