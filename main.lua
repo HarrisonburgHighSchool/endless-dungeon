@@ -40,26 +40,26 @@ end
 
 function love.update(dt)
 
-  mapc = map:cc(x, y, 64, 64)
-  debug = tostring(mapc)
-  if love.keyboard.isDown('right') then
-    if map:cc(x + 1, y, 64, 64) == false then
-      x = x + 1
+  function love.update(dt)
+    if love.keyboard.isDown('up') then
+      if collision:cc(x, y - 5, 64, 64) == false then
+        y = y - 5
+      end
     end
-  end
-  if love.keyboard.isDown('left') then
-    if map:cc(x - 1, y, 64, 64) == false then
-      x = x - 1
+    if love.keyboard.isDown('down') then
+      if collision:cc(x, y + 5, 64, 64) == false then
+        y = y + 5
+      end
     end
-  end
-  if love.keyboard.isDown('up') then
-    if map:cc(x, y-1, 64, 64) == false then
-      y = y - 1
+    if love.keyboard.isDown('right') then
+      if collision:cc(x + 5, y, 64, 64) == false then
+        x = x + 5
+      end
     end
-  end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
+    if love.keyboard.isDown('left') then
+      if collision:cc(x - 5, y, 64, 64) == false then
+        x = x - 5
+      end
     end
   end
 
@@ -75,7 +75,7 @@ end
 
 
 function love.draw()
-  map:draw()
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.print(tostring(mapc), 0, 0)
+  --background:draw()
+  collision:draw()
+  love.graphics.draw(img, x, y)
 end
