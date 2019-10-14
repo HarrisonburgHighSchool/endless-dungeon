@@ -64,7 +64,7 @@ local Map = require 'core/map'
 
   map = Map:new(template)
   debug = false
-end
+
 
 
 
