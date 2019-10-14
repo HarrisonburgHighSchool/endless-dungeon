@@ -39,7 +39,6 @@ collision = {
   bkgrnd = Map:new(map)
   collision = Map:new(collision)
 
-  collision = Map:new(collision)
   --background = Map:new(background)
 end
 
@@ -57,12 +56,13 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x + 10, y, 64, 64, 100, 200, 64, 64)  == false then
+    if collision:cc(x + 10, y, 64, 64)  == false then
+
       x = x + 10
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x - 10, y, 64, 64, 100, 200, 64, 64)  == false then
+    if collision:cc(x - 10, y, 64, 64)  == false then
       x = x - 10
     end
   end
