@@ -24,6 +24,7 @@ function love.load()
   limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
 
   mapTemplate = {
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
@@ -42,25 +43,40 @@ function love.load()
     
   }
 
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  collision = {
+    {wall, wall, wall, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+  }
+
+  
   map = Map:new(mapTemplate)
+  collision = Map:new(mapTemplate)
 end
-
-
 
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    
-    y = y + 1
+    if collision:cc(x, y+1, 64, 64) then
+    y = y + 2
+    end
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+    if collision:cc(x, y-1, 64, 64) then
     y = y - 1
   end
+end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    x = x + 1
+    if collision:cc(x, y+1, 64, 64) then
+    x = x + 2
+  end
 end
 if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-  x = x - 1
+  if collision:cc(x, y-1, 64, 64) then
+  x = x - 2
+  end
 end
  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
  if cc(x, y, w, h,   0, 0, 64, 64) then  
@@ -76,13 +92,12 @@ if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
       y = y + 1
     end
   end
-
 end
-end
-
+            
 
 function love.draw()
   map:draw()
+  collision:draw()
   love.graphics.print('Hello, world!', 0, 0)
   map:draw()
   love.graphics.draw(grass, 513, 258, 0, 2)
@@ -112,5 +127,4 @@ function love.draw()
    love.graphics.print(hp, 0, 0)
     
     end
-
-  
+  end
