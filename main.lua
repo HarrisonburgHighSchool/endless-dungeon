@@ -47,19 +47,19 @@ function love.update(dt)
 
 -- Sense collision moving right
 if love.keyboard.isDown('right') then
-  if collision:cc(x + 1, y, 370, 270) == false then
+  if collision:cc(x + 1, y, 64, 64) == false then
     x = x + 1
   end
 end
 
  if love.keyboard.isDown('up') then
-    y = y + -5
+    y = y - 5
   end
   if love.keyboard.isDown('down') then
      y = y + 5
    end
    if love.keyboard.isDown('left') then
-      x = x + -5
+      x = x - 5
     end
     if love.keyboard.isDown('right') then
        x = x + 5
