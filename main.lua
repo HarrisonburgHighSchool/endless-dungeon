@@ -8,17 +8,17 @@ playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_9.png')
   background = {
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
+    {floorTile, floorTile, floorTile, floorTile},
+    {floorTile, floorTile, floorTile, floorTile},
+    {floorTile, floorTile, floorTile, floorTile},
+    {floorTile, floorTile, floorTile, floorTile},
   }
   wallTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_lightblue.png')
   collision = {
-    {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
+    {wallTile, wallTile, wallTile, wallTile},
+    {wallTile, 'nil', 'nil', wallTile},
+    {wallTile, 'nil', 'nil', wallTile},
+    {wallTile, 'nil', 'nil', wallTile},
   }
   collision = Map:new(collision)
   background = Map:new(background)
@@ -45,13 +45,13 @@ end
 
 function love.update(dt)
 
+-- Sense collision moving right
 if love.keyboard.isDown('right') then
-  if core/map.cc(x + 1, y, 370, 270) == false then
+  if collision:cc(x + 1, y, 370, 270) == false then
     x = x + 1
   end
-
-
 end
+
  if love.keyboard.isDown('up') then
     y = y + -5
   end
