@@ -1,5 +1,6 @@
 local class = require 'core/middleclass'
 local Tile = require 'core/tile'
+local Util = require 'core/util'
 local Map = class('Map')
 
 function Map:constructor(xSize, ySize, x, y)
@@ -11,6 +12,9 @@ function Map:constructor(xSize, ySize, x, y)
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
+    if ySize then
+      self.gridsize = ySize
+    end
   end
   if not template then
     -- Use the default texture
@@ -32,8 +36,15 @@ function Map:constructor(xSize, ySize, x, y)
         img = template[1][1]
       end
       -- Measure the image
-      local w = img:getWidth()
-      local h = img:getHeight()
+      local w
+      local h
+      if self.gridsize then
+        w = self.gridsize
+        h = self.gridsize
+      else
+        w = img:getWidth()
+        h = img:getHeight()
+      end
       -- Create the matrix
       self:createTwoD(template, w, h)
     else -- it's a 1D table
@@ -81,12 +92,17 @@ function Map:createTwoD(template, w, h)
       local img
       if type(template[x][y]) == 'string' then
         img = love.graphics.newImage(template[x][y])
-      else
+      elseif template[x][y] then
         img = template[x][y]
+      else
+        img = nil
       end
-      self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
-      if self.matrix[x][y].img:getWidth() ~= w then
-        self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+      if img then
+        self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
+        print('Made tile at '..x..", "..y)
+        if self.matrix[x][y].img:getWidth() ~= w and self.gridsize == nil then
+          self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+        end
       end
     end
   end
@@ -110,9 +126,31 @@ end
 function Map:draw()
   for x = 1, #self.matrix do
     for y = 1, #self.matrix[x] do
-      self.matrix[x][y]:draw()
+      if self.matrix[x][y] then
+        self.matrix[x][y]:draw()
+      end
     end
   end
+end
+
+function Map:cc(x, y, w, h)
+  local result = false
+  local count = 0
+  -- for x = 1, #self.matrix do
+  --   for y = 1, #self.matrix[x] do
+  for b = 1, #self.matrix do
+    for v = 1, #self.matrix[b] do
+      if self.matrix[b][v] then
+        if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
+          print('Got tile at '..b..", "..v)
+          return true
+        end
+      end
+    end
+  end
+  --   end
+  -- end
+  return false
 end
 
 function Map:changeScale(mult)
@@ -131,4 +169,3 @@ function Map:changeScale(mult)
 end
 
 return Map
-  
