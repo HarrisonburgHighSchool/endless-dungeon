@@ -29,6 +29,22 @@ function love.load()
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
   }
+
+  walls = {
+    {cage, cage, cage, cage, cage,scage,cage,cage,cage,cage,},     
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+  }
   map = Map:new(mapTemplate)
 end
 
@@ -40,21 +56,23 @@ function love.update(dt)
   if love.keyboard.isDown('right') then
     x = x + 6
   end
-    if love.keyboard.isDown('up') then   
-      y = y - 6
-    end
-    if love.keyboard.isDown('down') then   
-      y = y  + 6
-    end
-    if love.keyboard.isDown('left') then   
-      x = x - 6
-    end
+  if love.keyboard.isDown('up') then   
+    y = y - 6
+  end
+  if love.keyboard.isDown('down') then   
+    y = y  + 6
+  end
+  if love.keyboard.isDown('left') then   
+    x = x - 6
+  end
   end
 function love.draw()
-  cam:draw (function(x, y, w, h)
-      love.graphics.draw(playerImg, x, y)
+  
+  cam:draw (function(l, t, w, h)
+     
     
   map:draw()
   love.graphics.print('', 0, 0)
+  love.graphics.draw(playerImg, x, y)
 end)
 end
