@@ -53,7 +53,12 @@ function love.load()
   entity = Entity:new(ent, 100, 200)
   map = Map:new(mapTemplate)
 
+  collision = Map:new(collision)
+  --background = Map:new(background)
 end
+
+
+
 
 function love.update(dt)
 
@@ -75,6 +80,8 @@ end
   X1 = X1 - 5
   X2 = X2 - 5
   end
+
+
 end
 
 
