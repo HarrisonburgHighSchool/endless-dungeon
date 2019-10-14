@@ -8,20 +8,20 @@ function love.load()
  y = 400
 
  floor = {
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt},{cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
+           {cobalt, cobalt, cobalt,cobalt, cobalt, cobalt},
  
  }
 
