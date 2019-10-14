@@ -99,6 +99,8 @@ if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then
     if love.keyboard.isDown('left') then  
       x = x - 3
   end
+
+
 end
   if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
   if love.keyboard.isDown('down') then 
@@ -133,6 +135,10 @@ if(g > 20) then
 end
 cam:setPosition(x,y)
 end
+
+
+
+
 
 
 
