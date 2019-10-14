@@ -15,8 +15,8 @@ function love.load()
 
   
 
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 45   -- The player's width is 64
+  h = 45   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
 
   enemy_x = 100
@@ -24,11 +24,11 @@ function love.load()
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   
-  playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
+  playerImg = love.graphics.newImage('hero/sliced/idle-3.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   map = Map:new(30,30) -- Create a 5 x 5 map object named "map"
- 
-
+  
+  health1 =  love.graphics.newImage('health1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_full.png')
   left_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_west.png')
   right_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_east.png')
@@ -100,7 +100,10 @@ function love.update(dt)
       y = y - 5
     else if butterfly_alive == true then
        y = y + 15
-    end
+  else if butterfly_alive == false then
+    y = y - 5
+  end
+end
     end
   end
   
@@ -109,30 +112,39 @@ function love.update(dt)
       y = y + 5
     else if butterfly_alive == true then
        y = y - 15
+      else if butterfly_alive == false then
+        y = y + 5
+      end
     end
-    end
-  end
+        end
+      end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
     if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-      x = x -5
+      x = x - 5
     else if butterfly_alive == true then
        x = x + 15
+      else if butterfly_alive == false then
+        x = x - 5
+      end
     end
-    end
-  end
+        end
+      end
   
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x + 5
     else if butterfly_alive == true then
        x = x - 15
+      else if butterfly_alive == false then
+        x = x + 5
+      end
     end
-    end
-  end
+        end
+      end
 
   if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 8, 8 or x, y + 16, w, h, butterfly_x, butterfly_y, 8, 8 or x - 16, y, w, h, butterfly_x, butterfly_y, 8, 8 or x + 16, y, w, h, butterfly_x, butterfly_y, 8, 8)== true then 
+    if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x, y + 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x - 16, y, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x + 16, y, w, h, butterfly_x, butterfly_y, 9, 9)== true then 
       attack()
     end
   end
@@ -200,6 +212,7 @@ function love.draw()
   love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
   end
   love.graphics.print(hp, 0, 0)
+ 
   love.graphics.draw(playerImg, x, y) 
 
   if butterfly_alive == true then
@@ -217,3 +230,4 @@ function dist ( x1, y1, x2, y2 )
   local dy = y1 - y2
   return math.sqrt ( dx * dx + dy * dy )
 end
+  
