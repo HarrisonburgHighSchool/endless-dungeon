@@ -11,8 +11,8 @@ function love.load()
   y = 100
   x2 = 400
   y2 = 333
-  x3 = 0
-  y3 = 0
+  x3 = 64
+  y3 = 863
 
   
   
@@ -57,26 +57,26 @@ end
 
 
 
-                {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
-                {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-                {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-                {floorTile2, , floorTile2},
-                {floorTile2, , floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
-
- map = Map:new(template)           
-end
+--               {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
+  --              {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+    --            {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+      --          {floorTile2, , floorTile2},
+        --        {floorTile2, , floorTile2},
+          --      {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+            --    {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
+              --  {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
+                --{floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
+                --{floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
+               -- {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
+            --    {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+          --      {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+        --        {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+      --          {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+    --            {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
+  --              {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
+--
+-- map = Map:new(template)           
+--end
 
 
 
