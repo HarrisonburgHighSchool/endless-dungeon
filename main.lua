@@ -30,15 +30,14 @@ function love.load()
 
 
  wall = {
-       {cobalt, cobalt, cobalt, cobalt},
-       {cobalt, 'nil', 'nil', cobalt},
-       {cobalt, 'nil', 'nil', cobalt},
-       {cobalt, 'nil', 'nil', cobalt},
+       {stone, stone, stone, stone},
+       {stone, 'nil', 'nil', stone},
+       {stone, 'nil', 'nil', stone},
+       {stone, 'nil', 'nil', stone},
 }
 wall = Map:new (wall)
 end
  
-
 
 
 function love.update(dt)
@@ -59,9 +58,13 @@ end
 
 
 
+
+
+
+
 function love.draw()
   love.graphics.print('Hello, world!', 10, 10)
   map:draw()
-  wall:draw ()
+  wall:draw()
   love.graphics.draw(playerImg, x, y)
 end
