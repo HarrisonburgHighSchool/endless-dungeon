@@ -23,10 +23,10 @@ local Util = require 'core/util'
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   -- Create the background map
@@ -79,7 +79,7 @@ local Util = require 'core/util'
   
   map = Map:new(template)
 
-playerImg = love.graphics.newImage('assets-1/monster/gnome.png')
+playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
 x = 400
 y = 300
 w = 200   -- The player's width is 50
@@ -140,7 +140,7 @@ end
 
 
 function love.draw()
-  --map:draw()
+  map:draw()
   collision:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
  
