@@ -8,11 +8,53 @@ local Util = require 'core/util'
   --player = Entity:new() -- Create the Entity object named player
 
  
-
+  -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/zot_blue_0.png')
+  collision = {
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
+  -- Create the background map
   floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
-  template = {-- a 10 x 10 map with the floor texture in the middle
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+  background = {
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+  }
+    --Finally create your maps
+    collision = Map:new (collision)
+    background = Map:new (background)
+    
+    
+    template = {-- a 10 x 10 map with the floor texture in the middle
+ 
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
     {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
     {wall, floor, floor, floor, floor, floor, floor, wall, wall, wall},
@@ -51,22 +93,22 @@ end
 
 function love.update(dt)
  if love.keyboard.isDown('right') then
-  if cc(x + 9, y, 28, 28, 28, 28, 28, 28) == false then
+  if collision:cc(x + 9, y, 64, 64) == false then
  x = x + 9 
 end
 end
 if love.keyboard.isDown('down') then
-  if cc(x, y + 9, 28, 28, 28, 28, 28, 28) == false then
+  if collision:cc(x, y + 9, 64, 64) == false then
   y = y + 9
 end
 end
 if love.keyboard.isDown('left') then
-  if cc(x - 9, y, 28, 28, 28, 28, 28, 28) == false then
+  if collision:cc(x - 9, y, 64, 64) == false then
  x = x - 9
 end
 end
 if love.keyboard.isDown('up') then 
-  if cc(x, y - 9, 28, 28, 28, 28, 28, 28) == false then
+  if collision:cc(x, y - 9, 64, 64) == false then
   y = y - 9
 end
 end
@@ -98,7 +140,8 @@ end
 
 
 function love.draw()
-  map:draw()
+  --map:draw()
+  collision:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
  
   -- Draw the enemy
