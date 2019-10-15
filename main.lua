@@ -45,13 +45,13 @@ function love.load()
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
                  {tile, tile, tile, tile, path, tile, tile, tile, tile},
+                 {tile, tile, tile, tile, path, tile, tile, tile, tile},
                }
   map = Map:new(template)
 
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/shoals_wall_1.png')
   walls = {
-                  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
@@ -65,7 +65,8 @@ function love.load()
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                 }
     collision = Map:new(walls)
 
@@ -112,15 +113,16 @@ function love.update(dt)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   x2, y2, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 1
+    hp = hp - 25
+    x2 = x2 + 25
   end
   if cc(x, y, w, h,   c, d, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 1
+    hp = hp - 25
   end
   if cc(x, y, w, h,   e, f, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 1
+    hp = hp - 25
   end
 end
 
