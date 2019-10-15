@@ -26,9 +26,9 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
     tree = {
-      {tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, },
+      {tree, tree, tree, tree, },
+      {tree, tree, tree, tree, tree,},
+      {tree,  tree, tree, tree, tree, tree, tree, tree, tree,},
       {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, },
       {tree, tree, tree, tree, tree, tree, tree, tree, tree, },
       {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
