@@ -4,7 +4,7 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
-  x = 128
+  x = 64
   camx = 96
   mirrorx = 768
   y = 320
@@ -32,11 +32,11 @@ function love.load()
 
   floor = {
     {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
-    {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, nil, nil,},
-    {cobalt, cobalt, cobalt, nil, cobalt, cobalt, cobalt, cobalt, nil, nil,},
-    {cobalt, cobalt, cobalt, nil, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
-    {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, nil, cobalt, cobalt, cobalt,},
-    {cobalt, cobalt, nil, nil, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
+    {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, 'nil', 'nil',},
+    {cobalt, cobalt, cobalt, 'nil', cobalt, cobalt, cobalt, cobalt, 'nil', 'nil',},
+    {cobalt, cobalt, cobalt, 'nil', cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
+    {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, 'nil', cobalt, cobalt, cobalt,},
+    {cobalt, cobalt, 'nil', 'nil', cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
     {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
     {cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM,},
     {cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM,},
@@ -48,18 +48,18 @@ function love.load()
   }
   wall = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, wall,},
-    {wall, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,}, 
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,}, 
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
   }
   floor = Map:new(floor)
@@ -110,7 +110,7 @@ function love.draw()
   cam:draw(function(camx, camy)
   floor:draw()
   wall:draw()
-  love.graphics.draw(playerImg, x, y, rotation, -1, 1)
+  love.graphics.draw(playerImg, x, y)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
   end)
