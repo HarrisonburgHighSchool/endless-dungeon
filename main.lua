@@ -12,6 +12,16 @@ wall =love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_2.png')
 template = {
 
+             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile,floorTile,floorTile,floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile,floorTile,floorTile,floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
+             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
+             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
+             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
              {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
              {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
              {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
@@ -24,11 +34,16 @@ template = {
              {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
              }
 wall={
-             {wall,wall,wall,wall,wall},
+             {wall,wall,wall,wall,wall,wall,wall},
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
-        
+             {wall,'nil','nil',wall},
+             {wall,'nil','nil',wall},
+             {wall,'nil','nil',wall},
+             {wall,'nil','nil',wall},
+             {wall},
+             {wall},
             }
 
 w = 64   -- The player's width is 64
