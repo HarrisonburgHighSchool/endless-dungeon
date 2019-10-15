@@ -174,14 +174,14 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
     {wall, wall, wall, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
   }
 end
 ```
 
-Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `'nil'` or `'none'` instead of an image variable.
 
 #### Step 2: Collide with the Map
 
@@ -190,22 +190,22 @@ Next, you need to choose which map to collide with. Use the same collision code 
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) then
       x = x - 1
     end
   end
@@ -218,22 +218,22 @@ Instead of just colliding with one tile, you need to collide with the whole coll
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y, 64, 64) == false then
+    if collision:cc(x, y - 1, 64, 64) == false then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y, 64, 64) == false then
+    if collision:cc(x, y + 1, 64, 64) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x, y, 64, 64) == false then
+    if collision:cc(x + 1, y, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x, y, 64, 64) == false then
+    if collision:cc(x - 1, y, 64, 64) == false then
       x = x - 1
     end
   end
@@ -340,22 +340,22 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) == false then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) == false then
       x = x - 1
     end
   end
@@ -402,14 +402,14 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
     {wall, wall, wall, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
   }
 end
 ```
 
-Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `'nil'` or `'none'` instead of an image variable.
 
 #### Step 2: Collide with the Map
 
@@ -418,22 +418,22 @@ Next, you need to choose which map to collide with. Use the same collision code 
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) then
       x = x - 1
     end
   end
@@ -446,22 +446,22 @@ Instead of just colliding with one tile, you need to collide with the whole coll
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y, 64, 64) then
+    if collision:cc(x, y - 1, 64, 64) == false then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y, 64, 64) then
+    if collision:cc(x, y + 1, 64, 64) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x, y, 64, 64) then
+    if collision:cc(x + 1, y, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x, y, 64, 64) then
+    if collision:cc(x - 1, y, 64, 64) == false then
       x = x - 1
     end
   end
@@ -481,8 +481,6 @@ function love.draw()
   love.graphics.draw(img, x, y)
 end
 ```
-
-
 
 ----
 
