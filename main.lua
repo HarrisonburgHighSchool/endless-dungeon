@@ -51,9 +51,9 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil' ,'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall ,'nil', 'nil', wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall},
+  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -89,23 +89,23 @@ function love.update(dt)
   end
 
     if love.keyboard.isDown('up') then
-        if collide:cc(x, y - 1, 64, 64) == false then
-          y = y - 1
+        if collide:cc(x, y - 2, 64, 64) == false then
+          y = y - 2
         end
       end
       if love.keyboard.isDown('down') then
-        if collide:cc(x, y + 1, 64, 64) == false then
-          y = y + 1
+        if collide:cc(x, y + 2, 64, 64) == false then
+          y = y + 2
         end
       end
       if love.keyboard.isDown('right') then
-        if collide:cc(x + 1, y, 64, 64) == false then
-          x = x + 1
+        if collide:cc(x + 2, y, 64, 64) == false then
+          x = x + 2
         end
       end
       if love.keyboard.isDown('left') then
-        if collide:cc(x - 1, y, 64, 64) == false then
-          x = x - 1
+        if collide:cc(x - 2, y, 64, 64) == false then
+          x = x - 2
         end
       end
 
