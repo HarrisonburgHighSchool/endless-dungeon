@@ -74,7 +74,7 @@ map2 = { --a 3 x 3 map with the altar texture in the middle
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar,'nil','  nil',  'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
+{walls, 'nil', 'nil', altar,'nil','nil',  'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
@@ -103,16 +103,23 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('up') then  
-    y = y - 5
+    if map2:cc(x, y - 5, 64, 64) == false then
+      y = y - 5
+    end
   end
   if love.keyboard.isDown('right') then  
+    if map2:cc(x,y +1, 64, 64)==false then
     x = x + 5
+    end
   end
   if love.keyboard.isDown('left') then  
+    if map2:cc(x - 1, y, 64, 64) == false then
     x = x - 5
   end
 if love.keyboard.isDown('down') then  
-    y = y + 5
+  if map2:cc(x, y + 1, 64, 64) == false then
+  y = y + 5
+  end
 end
 cam:setPosition(x,y)
  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
@@ -121,9 +128,11 @@ cam:setPosition(x,y)
   hp = hp - 1
 end
 end
+
 function love.draw()
  cam:draw(function(l,t,w,h)
-    map:draw()
+    --map:draw()
+    map2:draw()
     love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0 , 0, 64, 899) 
