@@ -10,6 +10,9 @@ function love.load()
   y = 300
   --playerImg = love.graphics.newImage('a/images.png')
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
+  playerImg2 = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
+  x2 = 360
+  y2 = 300
   cam = gamera.new(0, 0, 2000, 2000)
   w = 64
   h = 64
@@ -45,22 +48,44 @@ function love.load()
     {wall,wall, wall, wall, wall, wall, wall,wall, wall, wall},
   }
 
+  
+
   map = Map:new(template)
-  --playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  --template = {
-    --{playerImg, playerImg, playerImg},
-    --{playerImg, playerImg, playerImg},
-    --{playerImg, playerImg, playerImg},
-  --}
+  
+  collision = {
+    {wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall,' nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
+    {wall, wall, wall, wall, wall, wall, wall ,wall, wall, wall},
+  }  
+
+  collision = Map:new(collision)
+
+  
 
 end
 
 
 function love.update(dt)
   
-  if love.keyboard.isDown('s') then   -- if the 'up' key is being pressed...
-    y = y + 4
-  end
+  
   if love.keyboard.isDown('d') then   -- if the 'up' key is being pressed...
     x = x + 4
   end
@@ -74,7 +99,27 @@ end
     x = x - 4
   end
  end
- 
+ if not cc(x, y, w, h, 0, 0, 64, 200) then
+  if love.keyboard.isDown('s') then 
+    y = y + 4
+  end
+end
+
+if love.keyboard.isDown('d') then   -- if the 'up' key is being pressed...
+  x2 = x2 + 4
+end
+if love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
+  y2 = y2 - 4
+end
+  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+  x2 = x2 - 4
+end
+
+if love.keyboard.isDown('s') then 
+  y2 = y2 + 4
+end
+
+
 
 cam:setPosition(x,y)
 end
@@ -85,9 +130,10 @@ end
 
 function love.draw()
   cam:draw(function(l, t, w, h)
-  map:draw()
- --collision:draw()
+  --map:draw()
+ collision:draw()
   love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg2, x2, y2)
   --love.graphics.rectangle('line', 0, 0, 64, 64)
   --love.graphics.print(hp, 0, 0)
   --end)
