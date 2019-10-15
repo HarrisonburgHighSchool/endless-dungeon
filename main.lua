@@ -2,10 +2,12 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Entity = require 'core/entity'
 
 function love.load()
+  x = 400
+  y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
-  x = 200
-  y = 0
-
+  w = 64
+  h = 64
+  hp = 100
 end
 
 
@@ -101,18 +103,36 @@ function love.update(dt)
   end
 end
 
+function love.update(dt)
+  -- Set up player movement
+  if love.keyboard.isDown('up') then
+    y = y - 1
+  end
+  if love.keyboard.isDown('down') then
+    y = y + 1
+  end
+  if love.keyboard.isDown('left') then
+    x = x - 1
+  end
+  if love.keyboard.isDown('right') then
+    x = x + 1
+  end
+  
+  if cc(x, y, w, h, 0, 0, 64, 64)
+    hp = hp - 1
+  end
+end
+
 function love.draw()
   background:draw()
   collision:draw()
   love.graphics.draw(img, x, y)
-end
-
-
-function love.draw()
-  love.graphics.draw(img,x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, 0, 0)
 end
+
+
+
 
 
 
@@ -132,7 +152,7 @@ end
 
 function love.draw()
   bkgrnd:draw()
-  love.graphics.print(tostring(mapc), 0, 0)
+  love.graphics.print(tostring(map), 0, 0)
   love.graphics.print('Hello, world!', 0, 0)
 end
 end
