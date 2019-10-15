@@ -78,7 +78,7 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if map2:cc(x, y - 1, w, h) == false then
+      if map2:cc(x, y - 15, w, h) == false then
       
       y = y - 1
     end
