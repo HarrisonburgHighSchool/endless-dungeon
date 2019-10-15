@@ -86,7 +86,6 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
- 
  --collision:draw()
   love.graphics.draw(playerImg, x, y)
   --love.graphics.rectangle('line', 0, 0, 64, 64)
