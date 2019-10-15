@@ -68,16 +68,16 @@ function love.load()
             map2 = Map:new(template2)
   
 template3 = {
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, nil, nil, nil, nil, nil, nil},
-            {transp, nil, colbalt, nil, nil, nil, nil, nil},
-            {transp, colbalt1, nil, nil, nil, nil, nil, nil},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil', 'nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', colbalt, 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
 
             }
 
