@@ -32,7 +32,7 @@ function love.load()
   }
 
   collision = Map:new(collision)
-  --background = Map:new(background)
+  background = Map:new(background)
 end
 
 
@@ -71,7 +71,7 @@ end
 
 
 function love.draw()
-  --background:draw()
+  background:draw()
   collision:draw()
   love.graphics.draw(img, x, y)
 end
