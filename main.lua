@@ -2,6 +2,7 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 function love.load()
   map = Map:new(40, 40) -- Create a 5 x 5 map object named "map"
+  love.window.setMode(830, 640)
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
@@ -11,7 +12,9 @@ function love.load()
   w = 64
   h = 64
   hp = 100
-  template = { --a 12 x 9 map with the altar texture in the middle
+
+  --Creates the map
+  template = { --a 13 x 10 map with the altar texture in the middle
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
@@ -29,17 +32,17 @@ function love.load()
 
  walls = { --a 12 x 9 map with the altar texture in the middle
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {door, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {door, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
    }
 
@@ -47,6 +50,7 @@ function love.load()
   collision = Map:new(walls)
 end
 
+--Moves character up, down, left, and right
 function love.update(dt)
   if love.keyboard.isDown('right') and x < 735 then   -- if the 'up' key is being pressed...
     if collision:cc(x+1, y, 64, 64) == false then
