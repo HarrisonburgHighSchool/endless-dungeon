@@ -41,6 +41,12 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
       {tree, tree, tree, tree, tree, },
       {tree, tree, tree, tree, },
       {tree, tree, tree, tree, tree, },
+      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, },
+      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
+      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
+      {tree, tree, tree, tree, tree, tree, tree, tree, tree, ,},
+      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
+
 
 
 
@@ -119,21 +125,21 @@ cam:setPosition(400, 400)
   y = 300
 
   -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-  background = {
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-  }
+--  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  --background = {
+    --{floor, floor, floor, floor},
+    --{floor, floor, floor, floor},
+    --{floor, floor, floor, floor},
+    --{floor, floor, floor, floor},
+  --}
 
-  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  walls = {
-    {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-  }
+  --wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  --walls = {
+    --{wall, wall, wall, wall},
+    --{wall, 'nil', 'nil', wall},
+    --{wall, 'nil', 'nil', wall},
+    --{wall, 'nil', 'nil', wall},
+  --}
 
   background = Map:new(background)
   collide = Map:new(walls)
