@@ -17,8 +17,6 @@ function love.load()
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
   jelly = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
-  w=60
-  h=60
   jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
@@ -45,9 +43,9 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
     {wall, wall, wall, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
-    {wall, nil, nil, wall},
+    {wall,'nil','nil', wall},
+    {wall,'nil','nil', wall},
+    {wall,'nil','nil', wall},
   }
 
   
@@ -114,10 +112,6 @@ function love.draw()
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
   love.graphics.draw(playerImg, x, y,0,2)
-
-  if cc(x, y, w, h,   0, 0, 64, 64) then
-    love.graphics.draw(jelly, x, y)
-  end
  
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', 0, 0, 64, 64)
