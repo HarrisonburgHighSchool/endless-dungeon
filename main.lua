@@ -48,7 +48,7 @@ function love.load()
   }
   wall = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
-    {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
+    {wall, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
     {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
     {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
     {wall, nil, nil, nil, nil, nil, nil, nil, nil, nil, wall,},
