@@ -22,17 +22,19 @@ function love.load()
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  grey = love.graphics.newImage('assets-2/dc-dngn/floor/rect_gray1.png')
+  pedestal = love.graphics.newImage('assets-2/dc-dngn/floor/pedestal_full.png')
 
   mapTemplate = {
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,marble,water,water,marble,limestone,limestone},
-    {limestone,limestone,limestone,limestone,marble,marble,marble,marble,limestone,limestone},
-    {limestone,limestone,limestone,limestone,marble,water,water,marble,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
+    {limestone,limestone,limestone,grass,grass,grass,grass,limestone,limestone,limestone},
+    {limestone,limestone,grass,marble,water,water,marble,limestone,limestone,limestone},
+    {limestone,limestone,grass,marble,marble,marble,marble,limestone,limestone,limestone},
+    {limestone,limestone,grass,marble,water,water,marble,limestone,limestone,limestone},
+    {limestone,limestone,grass,grass,grass,grass,grass,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
     {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
@@ -46,32 +48,33 @@ function love.load()
     {wall,'nil','nil', wall},
     {wall,'nil','nil', wall},
     {wall,'nil','nil', wall},
+    
   }
 
   
   map = Map:new(mapTemplate)
-  collision = Map:new(mapTemplate)
+  collision = Map:new(collision)
 end
 
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+1, 64, 64) then
+    if collision:cc(x, y+2, 64, 64) == false then
     y = y + 2
     end
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y-1, 64, 64) then
-    y = y - 1
+    if collision:cc(x, y-2, 64, 64) == false then
+    y = y - 2
   end
 end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+1, 64, 64) then
+    if collision:cc(x + 2, y, 64, 64) == false then
     x = x + 2
   end
 end
 if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-  if collision:cc(x, y-1, 64, 64) then
+  if collision:cc(x-2, y, 64, 64) == false then
   x = x - 2
   end
 end
@@ -79,36 +82,18 @@ end
  if cc(x, y, w, h,   0, 0, 64, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
- end
-if cc(x, y, 64, 64, 100, 200, 64, 64) == false then 
-  if love.keyboard.isDown ('up') then 
-  y=y-1
-  end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
-    end
-  end
+ 
 end
-            
+
 
 function love.draw()
   map:draw()
   collision:draw()
   love.graphics.print('Hello, world!', 0, 0)
-  map:draw()
-  love.graphics.draw(grass, 513, 258, 0, 2)
-  love.graphics.draw(grass, 513, 385, 0, 2)
-  love.graphics.draw(grass, 449, 193, 0, 2)
-  love.graphics.draw(grass, 385, 193, 0, 2)
-  love.graphics.draw(grass, 322, 193, 0, 2)
-  love.graphics.draw(grass, 258, 385, 0, 2)
-  love.graphics.draw(grass, 258, 259, 0, 2)
-  love.graphics.draw(grass, 258, 322, 0, 2)
-  love.graphics.draw(grass, 513, 322, 0, 2)
+  --map:draw()
 
   love.graphics.draw(secretpath, 400, 270)
-  love.graphics.draw(statue, 385, 250, 0, 2)
+  love.graphics.draw(statue, 385, 210, 0, 2)
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
   love.graphics.draw(playerImg, x, y,0,2)
@@ -118,6 +103,5 @@ function love.draw()
 
    -- Print the player's HP in the top left corner
    love.graphics.print(hp, 0, 0)
-    
     end
   end
