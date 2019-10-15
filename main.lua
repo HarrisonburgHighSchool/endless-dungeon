@@ -17,7 +17,7 @@ function love.load()
   rect3Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_3.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   doorway = love.graphics.newImage('assets-2/dc-dngn/gateways/dngn_enter_dis.png')
-  
+  trap1 = love.graphics.newImage('assets-2/dc-dngn/dngn_trap_axe.png')
 
   template = {
  
@@ -39,16 +39,16 @@ function love.load()
  -- Create the collision map, with walls around the edge of the map
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
 
@@ -64,22 +64,22 @@ function love.update(dt)
 --If the statement is true it will run the code, but if it is false it will skip it.
   
 if love.keyboard.isDown('w') and y > 18 then -- up
-  if collision:cc(x, y - 2 , 32, 32) == false then
+  if collision:cc(x, y - 2 , 28, 32) == false then
     y = y - 2 -- speed
   end
 end 
 if love.keyboard.isDown('a') then -- left
-  if collision:cc(x - 2 , y, 32, 32) == false then  
+  if collision:cc(x - 2 , y, 28, 32) == false then  
     x = x - 2 -- speed
   end
 end
 if love.keyboard.isDown('s') then -- down
-  if collision:cc(x, y + 2 , 32, 32) == false then  
+  if collision:cc(x, y + 2 , 28, 32) == false then  
     y = y + 2 -- speed
   end
 end
 if love.keyboard.isDown('d') then -- right
-  if collision:cc(x + 1  , y , 32, 32) == false then  
+  if collision:cc(x + 2  , y , 28, 32) == false then  
     x = x + 2 -- speed
   end
  end
