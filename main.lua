@@ -2,7 +2,6 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 function love.load()
-  direction = 'left'
   x = 400
   y = 300
   a = 400
@@ -31,37 +30,39 @@ function love.load()
                   {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-
+                }
                   map = Map:new(template)
                   cam = gamera.new(-500, -500, 2000, 2000)
-
+                  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+                  x = 400
+                  y = 300
 end
 
 function love.update(dt)
-
   player2()
   if love.keyboard.isDown('up')then
+       if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    y = y - 10
    cam:setPosition(x, y)
   end
   if love.keyboard.isDown('down')then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    y = y + 10
    cam:setPosition(x, y)
   end
   if love.keyboard.isDown('right')then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    x = x + 10
    cam:setPosition(x, y)
   end
   if love.keyboard.isDown('left')then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    x = x - 10
    cam:setPosition(x, y)
   end
-  if love.keyboard.isDown('down') then
-      y = y + 1
+   if cc(x, y, w, h,   0, 0, 64, 64) then
+      hp = hp - 1
     end
-  end
-
-
 end
 
 function player2()
@@ -81,26 +82,18 @@ function player2()
    a = a - 10
    cam:setPosition(a, b)
   end
-  if cc(x, y, w, h,   0, 0, 64, 64) then
-    hp = hp - 1
-  end
+   if cc(x, y, w, h,   0, 0, 64, 64) then
+      hp = hp - 1
+end
 end
 function love.draw()
-<<<<<<< HEAD
   cam:draw(function(l, t, w, h)
-  map:draw()
-  if hp==0 then
-  love.graphics.print('GAME OVER', x3, y3)
-  end
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(playerImg1, a, b)
-  love.graphics.print(hp, x, y)
-  love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, 0, 10)
-end)
-=======
-  --background:draw()
-  collision:draw()
-  love.graphics.draw(img, x, y)
->>>>>>> upstream/master
+    map:draw()
+    love.graphics.draw(playerImg, x, y)
+    love.graphics.draw(playerImg1, a, b)
+    love.graphics.print(hp, x, y)
+    love.graphics.draw(playerImg, x, y)
+    love.graphics.rectangle('line', 0, 0, 64, 64)
+    love.graphics.print(hp, 0, 0)
+  end)
 end
