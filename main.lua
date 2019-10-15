@@ -4,79 +4,62 @@
   local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter( 'nearest', 'nearest')
 function love.load()
-  direction = 'left'
-  x = 400
-  y = 300
-  x3 = 400
-  y3 = 300
-  x2 = 400
-  y2 = 300
-  x1 = 200
-  y1 = 300
-  playerImg1 = love.graphics.newImage('assets-2/UNUSED/monsters/giant_lizard.png')
-  w = 100   -- The player's width is 64
-  h = 100  -- The player's height is 64
-  hp = 100 -- Set the player's HP to 100 at the start of the game
-  cam = gamera.new(-50, -50, 2500, 1200)
-  playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
-floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
-wall= love.graphics.newImage('assets-1/dungeon/floor/dirt_0.png')
-template = { --a 3 x 3 map with the altar texture in the middle
-             {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wall},
-             {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-           }
 
-map = Map:new(template)
-map:changeScale(1)
+
+  -- Create the player variables
+  img = love.graphics.newImage('hero/sliced/idle-2.png')
+
+  x = 300
+  y = 400
+  x1 = 300
+  y1 = 400
+  x2 = 300
+  y2 = 400
+  x3 = 300
+  y3 = 400
+  -- Create the background map
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  walls = {
+    {wall, wall, wall, wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+  }
+
+  background = Map:new(background)
+  collide = Map:new(walls)
 end
 function love.update(dt)
-  if hp > 0 then
-    cam:setPosition(x2, y2)
-  end
-  if x < 0 then
-    x = 0
-  end
-  if y < 0 then
-    y = 0
-  end
-  if y > 950 then
-    y = 950
+
+  function love.update(dt)
+    if love.keyboard.isDown('up') then
+      if collide:cc(x, y - 5, 64, 64) == false then
+        y = y - 5
+      end
+    end
+    if love.keyboard.isDown('down') then
+      if collide:cc(x, y + 5, 64, 64) == false then
+        y = y + 5
+      end
+    end
+    if love.keyboard.isDown('right') then
+      if collide:cc(x + 5, y, 64, 64) == false then
+        x = x + 5
+      end
+    end
+    if love.keyboard.isDown('left') then
+      if collide:cc(x - 5, y , 64, 64) == false then
+        x = x - 5
+      end
+    end
   end
   if x > 2400 then
     x = 2400
@@ -152,6 +135,9 @@ cam:draw(function(l, t, w, h)
   --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(playerImg1, x1, y1)
+  background:draw()
+  collide:draw()
+  love.graphics.draw(img, x, y)
 
 end)
 end

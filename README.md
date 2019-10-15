@@ -178,6 +178,10 @@ function love.load()
     {wall, 'nil', 'nil', wall},
     {wall, 'nil', 'nil', wall},
   }
+
+  --Finally, create your maps
+  background = Map:new(background)
+  collision = Map:new(collision)
 end
 ```
 
@@ -406,6 +410,10 @@ function love.load()
     {wall, 'nil', 'nil', wall},
     {wall, 'nil', 'nil', wall},
   }
+
+  --Finally, create your maps
+  background = Map:new(background)
+  collision = Map:new(collision)
 end
 ```
 
