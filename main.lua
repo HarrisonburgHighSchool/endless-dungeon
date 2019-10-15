@@ -2,7 +2,7 @@ local Map = require 'core/map'
 function love.load()
  playerImg = love.graphics.newImage('assets-1/monster/animals/fire_bat.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-  cobalt = love.graphics.newImage('assets-1/dubgeon/wall/cobalt_stone_8.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
 
 
  x = 400
@@ -27,19 +27,17 @@ function love.load()
  }
 
  map = Map:new(floor)
-end
-x = 400
-y = 400
 
 
  wall = {
-       {cobalt, cobalt, cobalt, cobalt}
-       {cobalt, cobalt, cobalt, cobalt}
-       {cobalt, cobalt, cobalt, cobalt}
-       {cobalt, cobalt, cobalt, cobalt}
+       {cobalt, cobalt, cobalt, cobalt},
+       {cobalt, 'nil', 'nil', cobalt},
+       {cobalt, 'nil', 'nil', cobalt},
+       {cobalt, 'nil', 'nil', cobalt},
 }
-map = Map:new (wall)
+wall = Map:new (wall)
 end
+ 
 
 
 
@@ -64,6 +62,6 @@ end
 function love.draw()
   love.graphics.print('Hello, world!', 10, 10)
   map:draw()
-  map:draw ()
+  wall:draw ()
   love.graphics.draw(playerImg, x, y)
 end
