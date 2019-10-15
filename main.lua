@@ -53,19 +53,27 @@ end
 
 
 function love.update(dt)
-  cam:setPosition(400, 400)
+  cam:setPosition(400, 320)
   if love.keyboard.isDown('right') then
-    x = x + 6
+    if collision:cc(x + 4, y, 64, 64) == false then
+    x = x + 4
+    end
   end
   if love.keyboard.isDown('up') then   
-    y = y - 6
+    if collision:cc(x, y - 4, 64, 64) == false then
+    y = y - 4
   end
+end
   if love.keyboard.isDown('down') then   
-    y = y  + 6
+    if collision:cc(x, y + 4, 64, 64) == false then
+    y = y  + 4
   end
+end
   if love.keyboard.isDown('left') then   
-    x = x - 6
+    if collision:cc(x - 4, y, 64, 64) == false then
+    x = x - 4
   end
+end
 end
 function love.draw()
   
