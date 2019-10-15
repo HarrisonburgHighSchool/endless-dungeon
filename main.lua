@@ -32,20 +32,21 @@ function love.load()
 
   walls = {
     {cage, cage, cage, cage, cage,scage,cage,cage,cage,cage,},     
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
-    {cage,nil, nil, nil, nil,nil, nil,nil, nil,cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
   }
   map = Map:new(mapTemplate)
+  collisionMap = Map:new(walls)
 end
 
 
@@ -65,13 +66,14 @@ function love.update(dt)
   if love.keyboard.isDown('left') then   
     x = x - 6
   end
-  end
+end
 function love.draw()
   
   cam:draw (function(l, t, w, h)
      
     
   map:draw()
+  collisionMap:draw()
   love.graphics.print('', 0, 0)
   love.graphics.draw(playerImg, x, y)
 end)
