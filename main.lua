@@ -113,6 +113,30 @@ x = 400
 cam:setPosition(400, 400)
 
 
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  x = 400
+  y = 300
+
+  -- Create the background map
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  walls = {
+    {wall, wall, wall, wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+  }
+
+  background = Map:new(background)
+  collide = Map:new(walls)
 end
 
 
@@ -137,8 +161,18 @@ function love.update(dt)
       y = y - 3
   end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 3, 64, 64, 100, 200, 64, 64) == false then
-        y = y + 3
+      if collide:cc(x, y + 5, 64, 64) == false then
+        y = y + 5
+      end
+    end
+    if love.keyboard.isDown('right') then
+      if collide:cc(x + 5, y, 64, 64) == false then
+        x = x + 5
+      end
+    end
+    if love.keyboard.isDown('left') then
+      if collide:cc(x - 5, y , 64, 64) == false then
+        x = x - 5
       end
     end
   end
