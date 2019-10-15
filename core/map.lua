@@ -87,21 +87,25 @@ end
 
 function Map:createTwoD(template, w, h)
   for x = 1, #template do
-    self.matrix[x] = {}
     for y = 1, #template[x] do
       local img
       if type(template[x][y]) == 'string' then
-        img = love.graphics.newImage(template[x][y])
-      elseif template[x][y] then
-        img = template[x][y]
+        if template[x][y] == 'none' or template[x][y] == 'nil' then
+          img = nil
+        else
+          img = love.graphics.newImage(template[x][y])
+        end
       else
-        img = nil
+        img = template[x][y]
+        
       end
+      
       if img then
-        self.matrix[x][y] = Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img)
-        print('Made tile at '..x..", "..y)
-        if self.matrix[x][y].img:getWidth() ~= w and self.gridsize == nil then
-          self.matrix[x][y]:changeScale(w/self.matrix[x][y].img:getWidth())
+        print("Got img at "..x..", "..y)
+        table.insert(self.matrix, Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img))
+        print('Made tile at '..x..", "..y..": "..tostring(img))
+        if self.matrix[#self.matrix].img:getWidth() ~= w and self.gridsize == nil then
+          self.matrix[#self.matrix]:changeScale(w/self.matrix[#self.matrix].img:getWidth())
         end
       end
     end
@@ -125,11 +129,9 @@ end
 
 function Map:draw()
   for x = 1, #self.matrix do
-    for y = 1, #self.matrix[x] do
-      if self.matrix[x][y] then
-        self.matrix[x][y]:draw()
+      if self.matrix[x] then
+        self.matrix[x]:draw()
       end
-    end
   end
 end
 
@@ -139,12 +141,10 @@ function Map:cc(x, y, w, h)
   -- for x = 1, #self.matrix do
   --   for y = 1, #self.matrix[x] do
   for b = 1, #self.matrix do
-    for v = 1, #self.matrix[b] do
-      if self.matrix[b][v] then
-        if cc(x, y, w, h, self.matrix[b][v].x, self.matrix[b][v].y, 64, 64) then
-          print('Got tile at '..b..", "..v)
-          return true
-        end
+    if self.matrix[b] then
+      if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, 64, 64) then
+        print('Got tile at '..b)
+        return true
       end
     end
   end
