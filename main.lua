@@ -21,29 +21,40 @@ function love.load()
   map = Map:new(template)
 map: changeScale(3)
 end
-  function love.update(dt)
-    local Map = require 'core/map'
-    local Util = require 'core/util'
-
-    end
-
+function love.update(dt)
+  local Map = require 'core/map'
+  local Util = require 'core/util'
+  end
+ if love.keyboard.isDown('left')then
+   if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+     x = x + 1
+   end
    if love.keyboard.isDown('right')then
      if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
        x = x + 1
      end
-   end
+     if love.keyboard.isDown('up')then
+       if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+         x = x + 1
+      end
+      if love.keyboard.isDown('down')then
+        if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+          x = x + 1
+        end
+end
 
+   if love.keyboard.isDown("right") then
+       x = x - 1
 
-   love.keyboard.isDown("left") then
-        x = x + 4
+   if love.keyboard.isDown("left") then
+       x = x + 1
 
-    love.keyboard.isDown("right") then
-        x = x - 4
+   if love.keyboard.isDown("up") then
+       x = x + 1
 
-     love.keyboard.isDown("up") then
-        y = y + 4
-     love.keyboard.isDown("down") then
-        y = y - 4
+   if love.keyboard.isDown("down") then
+       x = x + 1
+ end
 
 function love.draw()
   map:draw()
