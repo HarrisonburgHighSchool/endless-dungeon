@@ -3,7 +3,7 @@ local Map = require 'core/map'
 function love.load()
 
 
-  x = 400
+  9p0x = 400
   y = 300
 
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
