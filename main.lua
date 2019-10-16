@@ -14,9 +14,9 @@ function love.load()
   a = 470
   b = 400
   --Img2 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
-  c = 400
-  d = 400
-  Img3 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
+  ex = 520
+  ey = 550
+  Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
 
   crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
@@ -75,6 +75,12 @@ walls = {
 collide = Map:new(walls)
 end
 function love.update(dt)
+
+  if ey < 635 then
+    ey = ey + 1
+  end
+
+
   if x < 0 then
     x = 0
   end
@@ -126,6 +132,6 @@ function love.draw()
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, x, y+ -18)
   --love.graphics.draw(Img2, a, b)
-  love.graphics.draw(Img3, c, d)
+  love.graphics.draw(Img3, ex, ey)
  end)
 end
