@@ -14,6 +14,7 @@ function love.load()
   enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
   x2 = 260
   y2 = 250
+  dir = 'right'
   enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
   c = 300
   d = 300
@@ -52,6 +53,7 @@ function love.load()
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/shoals_wall_1.png')
   walls = {
+                  {wall, tile, tile, tile, path, tile, tile, tile, tile, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
@@ -65,8 +67,7 @@ function love.load()
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, tile, tile, tile, path, tile, tile, tile, tile, wall},
                 }
     collision = Map:new(walls)
 
@@ -108,6 +109,34 @@ function love.update(dt)
      y = y - 1
    end
   end
+  -- Enemy movement stuff
+  if x2 < 500 then
+    x2 = x2 + 1
+  end
+  if x > x2 then
+    x2 = x2 + 1
+  end
+  if y2 < 500 then
+    y2 = y2 + 1
+  end
+  if y > y2 then
+    y2 = y2 + 1
+  end
+  if ex < 10 then
+
+  end
+  if ex > 200 then
+
+  end
+  if dir == 'left'  then
+    x2 = x2 - 1
+  end
+  if dir == 'right'  then
+    y2 = y2 - 1
+  end
+  
+
+
 
   cam:setPosition(x, y)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
