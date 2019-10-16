@@ -11,8 +11,8 @@ function love.load()
   oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
   oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
-  w=64
-  h=64
+  w=60
+  h=60
   hp=100
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
@@ -101,7 +101,7 @@ floor2 = {
 
 end
 function love.update(dt)
-
+--Enemies
   if direction == 'down' then
     z = z + 5
   end
@@ -141,28 +141,29 @@ function love.update(dt)
   if q==100 then
     direction3 = 'left2'
   end
-
+--Player Movement
   if love.keyboard.isDown('right')then
-    if floor2:cc(x + 3, y, 64, 64)==false then
+    if floor2:cc(x + 3, y, 60, 60)==false then
     x = x + 3
   end
 end
   if love.keyboard.isDown('left')then
-    if floor2:cc(x - 3, y, 64, 64)==false then
+    if floor2:cc(x - 3, y, 60, 60)==false then
     x = x - 3
   end
   end
   if love.keyboard.isDown('up')then
-    if floor2:cc(x, y - 3, 64, 64)==false then
+    if floor2:cc(x, y - 3, 60, 60)==false then
     y = y - 3
   end
   end
   if love.keyboard.isDown('down')then
-    if floor2:cc(x, y + 3, 64, 64)==false then
+    if floor2:cc(x, y + 3, 60, 60)==false then
     y = y + 3
   end
 
   end
+  --Player Damage
   cam:setPosition(x, y)
  if cc(x, y, w, h,   100, z, 20, 100) then
 
