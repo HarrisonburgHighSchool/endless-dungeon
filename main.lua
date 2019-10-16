@@ -29,14 +29,16 @@ template = {
 
 }
 wall={
-             {wall,wall,wall,wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
+             -- {wall,wall,wall,wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             -- {wall,'nil','nil',wall},
+             {wall, wall, wall, wall},
+             {wall, wall, 'nil', wall},
 
             }
 
