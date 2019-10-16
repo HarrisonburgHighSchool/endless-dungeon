@@ -22,6 +22,13 @@ function love.load()
   h = 64
   hp = 100
 
+  ex = 100
+  ey = 100
+  dir = 'left'
+  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+
+
+
   M = love.sound.newSoundData('assets-1/Music1.mp3')
   gate = love.graphics.newImage('assets-1/dungeon/gateways/enter_depths.png')
   c = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_9.png')
@@ -64,7 +71,7 @@ end
 function love.update(dt)
 
 
-  cam:setPosition(X1, Y1)
+  cam:setPosition(x, y)
 
 
   if love.keyboard.isDown('right') and x < 940 then
@@ -86,6 +93,15 @@ end
 end
 
 
+
+
+
+
+
+
+
+
+
   if love.keyboard.isDown('up') and y > -5 then
     if cc(x, y-5, 64, 64, 400, 570, 64, 64) == false then
   y = y - 5
@@ -104,7 +120,7 @@ end
 end
 
   if cc(x, y, w, h,   385, 190, 64, 64) then
-      hp = hp - 1
+      x = x - 3000
     end
 
   if cc(x, y, w, h,   321, 190, 64, 64) then
@@ -115,13 +131,68 @@ end
     end
 
 
+   if x > ex then
+    ex = ex + 3
+    end
+
+    if x < ex then
+     ex = ex - 3
+   end
+
+    if y > ey then
+      ey = ey + 3
+    end
+
+    if y < ey then
+      ey = ey - 3
+    end
+
+  --  if ey < 200 then
+  --    dir = 'up'
+  --  end
+
+    --if ey > 800 then
+  ---    dir = 'down'
+    --end
+
+    --if dir == 'up'  then
+  --    ey = ey + 3
+  --  end
+
+  ---  if dir == 'down'  then
+  --    ey = ey - 3
+    --end
 
 
 
+  --  if ex < 200 then
+    --  dir = 'left'
+  --  end
+
+  --  if ex > 800 then
+    --  dir = 'right'
+  --  end
+
+  --  if dir == 'left'  then
+    --  ex = ex + 3
+  --  end
+
+  ----  if dir == 'right'  then
+    --  ex = ex - 3
+  --  end
 
   entity.x = entity.x +- G
   entity.y = entity.y +- H
 
+  if x < 250 and x > 150 and y < 250 and y > 150 then
+    y = y + 200
+    x = x + 400
+end
+
+if x < 650 and x > 550 and y < 650 and y > 550 then
+  y = y - 600
+  x = x - 600
+end
 
 
 end
@@ -138,11 +209,18 @@ function love.draw()
 
   love.graphics.print('Level 1, Practice Level!', 0, 0)
   love.graphics.draw(ent, 400, 130)
-  if (hp > 0) then
+--  if (hp > 0) then   -- kill the player
   love.graphics.draw(playerImg, x, y)
-  love.graphics.print(hp, X2, Y2)
-end
+
+  love.graphics.print(hp, x + 18, y - 15)
+--end
+
+  love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(gate, 400, 570)
+  love.graphics.rectangle('line', 200, 200, 63, 63)
+  love.graphics.rectangle('line', 600, 600, 63, 63)
+
+
 
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
