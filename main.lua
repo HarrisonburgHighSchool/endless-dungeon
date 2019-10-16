@@ -1,10 +1,27 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
+local Util = require 'core/util'
+
 local Entity = require 'core/entity'
+
+function love.load()
+  img = love.graphics.newImage('player.png')
+  player = Entity:new(img, 200, 200)
+end
+
+function love.update(dt)
+end
+
+function love.draw()
+  player:draw()
+end
 
 function love.load()
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
+  ex = 100
+  ey = 100
+  enemyImg = love.graphics.newImage('assets-1/player/base/lorc_female_6.png')
   w = 64
   h = 64
   hp = 100
@@ -12,12 +29,28 @@ end
 
 
 
+function love.update(dt)
+  if x > ex then
+    ex = ex + 3
+  end
+  if y > ey then
+    ey = ey + 3
+  end
+  if ex > x then
+    ex = ex - 3
+  end
+  if ey > y then
+    ey = ey - 3
+  end
+end
+
+
+local Map = requiew 'core/map'
+
+function love.load()
+
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
   floor = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
-  background = {
-
-
-  }
   wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
   tile4 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_0.png')
   tile5 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_1.png')
@@ -39,10 +72,20 @@ end
     {tile4, tile5, tile6, wall, wall, wall, tile7, tile4, tile5, tile6},
     {tile5, tile6, tile7, wall, 'nil', wall, tile4, tile5, tile6, tile7}
   }
+    map = Map:new(template)
+  end
+
+  function love.update(dt)
+  end
+
+  function love.draw()
+    map:draw()
+  end
 
   collision = Map:new(collision)
+
   bkgrnd = Map:new(background)
-  map = Map:new(template)
+
   debug = false
 
 
@@ -71,12 +114,6 @@ end
   end
 end
 
-
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+5, 64, 64, 100, 200, 64, 64) then
-      y = y + 5
-    end
-  end
 
 
 
@@ -117,7 +154,9 @@ function love.update(dt)
   if love.keyboard.isDown('right') then
     x = x + 1
   end
-  
+
+  ex = ex + 1
+
   if cc(x, y, w, h, 0, 0, 64, 64)
     hp = hp - 1
   end
@@ -126,7 +165,8 @@ end
 function love.draw()
   background:draw()
   collision:draw()
-  love.graphics.draw(img, x, y)
+  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(enemyImg, ex, ey)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, 0, 0)
 end
