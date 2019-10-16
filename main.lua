@@ -17,6 +17,9 @@ function love.load()
   y2 = 400
   x3 = 300
   y3 = 400
+  w = 30
+  h = 30
+hp = 100 
   -- Create the background map
   floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   background = {
