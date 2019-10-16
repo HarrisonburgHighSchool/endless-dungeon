@@ -15,10 +15,21 @@ playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
   }
   wallTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_lightblue.png')
   collision = {
-    {wallTile, wallTile, wallTile, wallTile},
-    {wallTile, 'nil', 'nil', wallTile},
-    {wallTile, 'nil', 'nil', wallTile},
-    {wallTile, 'nil', 'nil', wallTile},
+    {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wallTile,'nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
   }
   collision = Map:new(collision)
   background = Map:new(background)
@@ -27,15 +38,15 @@ playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
   template = { --a 3 x 3 map with the altar texture in the middle
                {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wallTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, wallTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, wallTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
              }
