@@ -22,7 +22,10 @@ function love.load()
 map: changeScale(3)
 end
   function love.update(dt)
+    local Map = require 'core/map'
+    local Util = require 'core/util'
 
+    end
 
    if love.keyboard.isDown('right')then
      if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
@@ -31,30 +34,19 @@ end
    end
 
 
-  if love.keyboard.isDown("left") then
-        x = x - 4
-   end
-
-   if love.keyboard.isDown("right") then
+   love.keyboard.isDown("left") then
         x = x + 4
-    end
 
-    if love.keyboard.isDown("up") then
-        y = y - 4
-    end
-    if love.keyboard.isDown("down") then
+    love.keyboard.isDown("right") then
+        x = x - 4
+
+     love.keyboard.isDown("up") then
         y = y + 4
-       end
-
-
-end
-
+     love.keyboard.isDown("down") then
+        y = y - 4
 
 function love.draw()
   map:draw()
   love.graphics.print('play here !', 0, 0)
   love.graphics.draw(playerImg, x, y)
-end
-if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-  x = x + 1
 end
