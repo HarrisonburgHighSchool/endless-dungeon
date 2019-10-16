@@ -33,9 +33,7 @@ function love.load()
                 }
                   map = Map:new(template)
                   cam = gamera.new(-500, -500, 2000, 2000)
-                  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-                  x = 400
-                  y = 300
+
 end
 
 function love.update(dt)
@@ -45,43 +43,55 @@ function love.update(dt)
    y = y - 10
    cam:setPosition(x, y)
   end
+end
   if love.keyboard.isDown('down')then
     if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    y = y + 10
    cam:setPosition(x, y)
   end
+end
   if love.keyboard.isDown('right')then
     if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    x = x + 10
    cam:setPosition(x, y)
   end
+end
   if love.keyboard.isDown('left')then
     if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    x = x - 10
    cam:setPosition(x, y)
-  end
+ end
+end
    if cc(x, y, w, h,   0, 0, 64, 64) then
       hp = hp - 1
-    end
+end
 end
 
 function player2()
   if love.keyboard.isDown('w')then
    b = b - 10
+   if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    cam:setPosition(a, b)
   end
+end
   if love.keyboard.isDown('s')then
    b = b + 10
+   if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    cam:setPosition(a, b)
   end
+end
   if love.keyboard.isDown('d')then
    a = a + 10
+   if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    cam:setPosition(a, b)
   end
+end
   if love.keyboard.isDown('a')then
    a = a - 10
+   if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
    cam:setPosition(a, b)
   end
+end
    if cc(x, y, w, h,   0, 0, 64, 64) then
       hp = hp - 1
 end
@@ -92,6 +102,9 @@ function love.draw()
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(playerImg1, a, b)
     love.graphics.print(hp, x, y)
+    love.graphics.draw(playerImg, x, y)
+    love.graphics.rectangle('line', 0, 0, 64, 64)
+    love.graphics.print(hp, 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
