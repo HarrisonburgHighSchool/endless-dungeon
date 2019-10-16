@@ -9,32 +9,27 @@ function love.load()
 playerImg = love.graphics.newImage('assets-1/player/base/kobold_male.png')
 wall =love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
-  altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_2.png')
+  altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
 template = {
 
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile,floorTile,floorTile,floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile,floorTile,floorTile,floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             {floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,floorTile},
-             {floorTile, altar, floorTile,floorTile, altar, floorTile, floorTile},
-             }
+
+       {floorTile,floorTile,},
+                 {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, altar,},
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile,  altar, floorTile,floorTile,  altar, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, altar, floorTile, floorTile,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+
+}
 wall={
-             {wall,wall,wall,wall,wall,wall,wall},
+             {wall,wall,wall,wall},
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
@@ -42,8 +37,7 @@ wall={
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
              {wall,'nil','nil',wall},
-             {wall},
-             {wall},
+
             }
 
 w = 64   -- The player's width is 64
