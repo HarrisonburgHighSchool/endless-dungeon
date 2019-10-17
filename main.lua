@@ -2,12 +2,13 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local Entity = require 'core/entity'
 local Util = require 'core/util'
+local gamera = require 'core/gamera'
 function love.load()
 
 
   x = 400
   y = 300
-
+cam = gamera.new(10, 10, 2000, 2000)
   tile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   tile2 = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_9.png')
   tile3 = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
@@ -34,8 +35,9 @@ collision = {
     {wall, 'nil', 'nil', wall},
     {wall, 'nil', 'nil', wall},
     {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
   }
-
+cam:setPosition(400, 400)
   bkgrnd = Map:new(map)
   collision = Map:new(collision)
 
@@ -70,7 +72,14 @@ function love.update(dt)
 
 end
 
+function love.draw()
+  cam:draw(function(l, t, w, h)
 
+  --Draw everything here. For example:
+  love.graphics.draw(playerImg, x, y)
+
+  end)
+end
 
 
 function love.draw()
