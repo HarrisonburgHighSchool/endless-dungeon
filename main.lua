@@ -1,6 +1,13 @@
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
+local anim8 = require 'core/anim8'
 function love.load()
+
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+
 
   enemy_draw = false
   butterfly_alive = true
@@ -83,6 +90,9 @@ end
 
 
 function love.update(dt)
+  walk:update(dt)
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
   x_y = love.math.random(1,4)
 
@@ -190,7 +200,7 @@ end
   end
 
   
-
+  
  c = dist(enemy_x, enemy_y, x, y)
  a = y - enemy_y
  b = x - enemy_x
@@ -220,6 +230,8 @@ function love.draw()
   love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
   end
   love.graphics.print(hp, 0, 0)
+
+  walk:draw()
  
   love.graphics.draw(playerImg, x, y) 
 
