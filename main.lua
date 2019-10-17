@@ -19,6 +19,13 @@ function love.load()
  w = 64
  h = 64
  HP = 100
+ ex = 100
+ ey = 100
+ ew = 32
+ eh = 32
+ collide2 = false
+  
+  e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
   playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
@@ -34,9 +41,9 @@ function love.load()
               {colbalt, colbalt, colbalt, colbalt, cobble, colbalt, colbalt, colbalt, colbalt,},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble1, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, lava2, lava1, lava2, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, lava3, lava2, lava3, cobble, cobble, colbalt},
-              {colbalt, cobble, cobble, lava2, lava1, lava2, cobble, cobble1, colbalt},
+              {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
+              {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
+              {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble1, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
@@ -52,9 +59,9 @@ function love.load()
               {colbalt1, colbalt1, colbalt1, colbalt1, cobble, colbalt1, colbalt1, colbalt1, colbalt1,},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble1, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, lava1, lava, lava1, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, lava, lava3, lava2, cobble, cobble, colbalt1},
-              {colbalt1, cobble, cobble, lava3, lava, lava3, cobble, cobble1, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
+              {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble1, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
               {colbalt1, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt1},
@@ -106,35 +113,61 @@ end
 
 collide1 = false
 
-if cc(x + 3, y, w, h, x2, y2, w2, h2) == false then
+
   if map3:cc(x + 3, y, w, h) == false then
 if love.keyboard.isDown('right') then  
     x = x + 3
    
-  end
-end
-end
-if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then
-  if map3:cc(x - 3, y, w, h) == false then
-    if love.keyboard.isDown('left') then  
-      x = x - 3
-  end
-end
-end
-  if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
-    if map3:cc(x, y + 3, w, h) == false then
-  if love.keyboard.isDown('down') then 
-    y = y + 3
-end
+ 
 end
 end
 
-   if cc(x, y - 3, w, h, x2, y2, w2, h2) == false then
+  if map3:cc(x - 3, y, w, h) == false then
+    if love.keyboard.isDown('left') then  
+      x = x - 3
+  
+end
+end
+  
+    if map3:cc(x, y + 3, w, h) == false then
+  if love.keyboard.isDown('down') then 
+    y = y + 3
+
+end
+end
+
+   
     if map3:cc(x, y - 3, w, h) == false then
     if love.keyboard.isDown('up') then
     y = y - 3
   end
 end
+if cc(x, y, w, h, ex, ey, ew, eh) == false then
+if x > ex then
+  ex = ex + 1
+ 
+end
+end
+if cc(x, y, w, h, ex, ey, ew, eh) == false then
+if x < ex then
+  ex = ex - 1
+end
+end
+if cc(x, y, w, h, ex, ey, ew, eh) == false then
+if y > ey then
+  ey = ey + 1
+end
+end
+if cc(x, y, w, h, ex, ey, ew, eh) == false then
+if y < ey then
+  ey = ey - 1
+end
+end
+if cc(x, y, w, h, ex, ey, ew, eh) == true then
+  HP = HP - 10
+  ex = 10000000
+  
+   
 end
 
 if(collide1 == true) then
@@ -188,6 +221,7 @@ function love.draw()
   love.graphics.print(y, 30 ,30)
   love.graphics.print(HP, 100, 100)
   love.graphics.print(tostring(collide1), 0, 0)
+  love.graphics.draw(e, ex, ey)
   love.graphics.draw(playerImg, x, y)
 end)
 end
