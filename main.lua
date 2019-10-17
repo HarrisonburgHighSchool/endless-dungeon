@@ -12,23 +12,26 @@ function love.load()
   x = 100
   y = 250
   enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
-  x2 = 260
+  x2 = 460
   y2 = 250
-  dir = 'right'
+  dir = 'left'
   enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  c = 300
+  c = 500
   d = 300
   enemy3 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  e = 300
+  e = 500
   f = 200
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
-  g = 375
+  g = 575
   b = 250
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
   w = 36   -- The player's width is 64
   h = 36   -- The player's height is 64
-  hp = 100 -- Set the player's HP to 100 at the start of the game
+  hp = 100
+  ehp1 = 100
+  ehp2 = 100
+  ehp3 = 100 -- Set the player's HP to 100 at the start of the game
 
 
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -89,52 +92,52 @@ function love.update(dt)
   if y > 960 then
     y = 960
   end
+  if x2 < 60 then
+    x2 = 60
+  end
+  if y2 < 60 then
+    y2 = 60
+  end
+  if x2 > 900 then
+    x2 = 900
+  end
+  if y2 > 800 then
+    y2 = 800
+  end
   if love.keyboard.isDown('right') then
     if collision:cc(x + 1, y, 36, 36) == false then
-     x = x + 1
+     x = x + 2
    end
   end
   if love.keyboard.isDown('left') then
     if collision:cc(x - 1, y, 36, 36) == false then
-     x = x - 1
+     x = x - 2
    end
   end
   if love.keyboard.isDown('down') then
     if collision:cc(x, y + 1, 36, 36) == false then
-     y = y + 1
+     y = y + 2
    end
   end
   if love.keyboard.isDown('up') then
     if collision:cc(x, y - 1, 36, 36) == false then
-     y = y - 1
+     y = y - 2
    end
   end
   -- Enemy movement stuff
-  if x2 < 500 then
-    x2 = x2 + 1
-  end
+
   if x > x2 then
     x2 = x2 + 1
   end
-  if y2 < 500 then
-    y2 = y2 + 1
+  if x < x2 then
+    x2 = x2 - 1
   end
   if y > y2 then
     y2 = y2 + 1
   end
-  if ex < 10 then
-
-  end
-  if ex > 200 then
-
-  end
-  if dir == 'left'  then
-    x2 = x2 - 1
-  end
-  if dir == 'right'  then
+  if y < y2 then
     y2 = y2 - 1
   end
-  
 
 
 
@@ -170,11 +173,15 @@ function love.draw()
   love.graphics.draw(enemy2, c, d)
   love.graphics.draw(enemy3, e, f)
   love.graphics.draw(questItem, g, b)
-  if hp < 0 then
+  if hp < 1 then
     love.graphics.print('GAME OVER', x + 50, y + -50)
+    hp = 0
   end
   -- Print the player's HP in the top left corner
   love.graphics.print(hp, x, y + -18)
+  love.graphics.print(ehp1, x2, y2 + -18)
+  love.graphics.print(ehp2, c, d + -18)
+  love.graphics.print(ehp2, e, f + -18)
     --Draw everything here. For example:
   end)
 end
