@@ -16,6 +16,8 @@ function love.load()
   --Img2 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
   ex = 520
   ey = 550
+  dir = 'right'
+
   Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
 
   crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
@@ -76,11 +78,23 @@ collide = Map:new(walls)
 end
 function love.update(dt)
 
-  if ey < 635 then
-    ey = ey + 1
-  end
+  --if ey < 635 then
+    --ey = ey + 1
+  --end
+if dir == 'left'  then
+  ey = ey + 3
+end
 
+  if dir == 'right'  then
+    ey = ey - 3
+end
 
+if ey < 500 then
+  dir = 'left'
+end
+if ey > 635 then
+  dir = 'right'
+end
   if x < 0 then
     x = 0
   end
