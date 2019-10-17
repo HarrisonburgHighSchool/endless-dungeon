@@ -9,6 +9,10 @@ function love.load()
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_runed_middle.png')
+  ex = 100
+  ey = 100
+  dir = 'left'
+  enemyImg = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   w = 64
   h = 64
   hp = 100
@@ -72,10 +76,21 @@ function love.update(dt)
       y = y - 1
     end
   end
+  --Enemy movement stuff
+  ex = ex + 1
+
+  --Enemy movement stuff
+  if ex < 500 then
+    ex = ex + 1
+  end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
     hp = hp + 1
+  end
+
+  if dir == 'left' then
+    ex = ex - 1
   end
 end
 
@@ -84,5 +99,6 @@ function love.draw()
   collision:draw()
   love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(enemyImg, ex, ey)
   love.graphics.rectangle('line', 0, 0, 64, 64)
 end
