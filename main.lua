@@ -1,5 +1,6 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
+local anim8 = require 'core/anim8'
 --local Entity = require 'core/entity'
 
 
@@ -30,7 +31,7 @@ local Util = require 'core/util'
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/limestone_0.png')
   background = {
     {floor, floor, floor, floor, floor, floor},
     {floor, floor, floor, floor, floor, floor},
@@ -79,13 +80,19 @@ local Util = require 'core/util'
   
   map = Map:new(template)
 
-playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
+
+  spritesheet = love.graphics.newImage('assets-1/player/base/formicid.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+
+
+  playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
 x = 400
 y = 300
 w = 200   -- The player's width is 50
 h = 200   -- The player's height is 50
 hp = 100 -- Set the player's HP to 100 at the start of the game
-enemyImg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+PNG = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 z = 100 -- The enemy's width is 50
 g = 150 -- The enemy's height is 50
 --img = love.graphics.newImage('assets')
@@ -145,7 +152,7 @@ function love.draw()
   love.graphics.print('Octopod-cast!', 0, 0)
  
   -- Draw the enemy
-  love.graphics.draw(enemyImg, z, g)
+  love.graphics.draw(PNG, z, g)
 
   -- Draw the player
   love.graphics.draw(playerImg, x, y)
@@ -155,9 +162,14 @@ function love.draw()
 
  -- Print the player's HP in the top left corner
  love.graphics.print(hp, 0, 0)
+
+ love.graphics.print("So you must be Bob? If you wondering where you are at, then you are in a puzzle.",  100, 100)
+if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
+ -- What should go here?
 end
-  --player:draw() -- Draw the entity object named player
-  
+walk:draw()
+end
+ --player:draw() -- Draw the entity object named player 
 
 
 
