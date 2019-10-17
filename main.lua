@@ -1,6 +1,5 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
-local anim8 = require 'core/anim8'
 --local Entity = require 'core/entity'
 
 
@@ -10,7 +9,7 @@ local anim8 = require 'core/anim8'
 
  
   -- Create the collision map, with walls around the edge of the map
-  wall = love.graphics.newImage('assets-1/dungeon/wall/zot_blue_0.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
@@ -31,7 +30,7 @@ local anim8 = require 'core/anim8'
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/limestone_0.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_0.png')
   background = {
     {floor, floor, floor, floor, floor, floor},
     {floor, floor, floor, floor, floor, floor},
@@ -80,13 +79,9 @@ local anim8 = require 'core/anim8'
   
   map = Map:new(template)
 
+  sound = love.audio.newSource('jute-dh-steps.7z', 'static')
 
-  spritesheet = love.graphics.newImage('assets-1/player/base/formicid.png')
-  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
-  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
-
-
-  playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
+playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
 x = 400
 y = 300
 w = 200   -- The player's width is 50
@@ -167,9 +162,12 @@ function love.draw()
 if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
-walk:draw()
 end
  --player:draw() -- Draw the entity object named player 
-
+ function love.keypressed(key)
+  if key == 'space' then
+    sound:play()
+  end
+end
 
 
