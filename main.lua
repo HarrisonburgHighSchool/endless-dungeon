@@ -6,7 +6,7 @@ function love.load()
  
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
-  
+  sound = love.audio.newSource('jackson-assets/Cave 02.ogg', 'static')
   playerImg = love.graphics.newImage('assets-1/player/base/ghoul_2_male.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_2a.png')
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
@@ -17,6 +17,9 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   
+  sound:setVolume(0,35)
+  sound:setLooping(true)
+  sound:play()
   --template = {
     --{wall, wall, wall, wall, wall, wall, wall, wall, doorc, wall},
     --{door, floor, floor, floor, wall, floor, floor, floor, floor, wall},
