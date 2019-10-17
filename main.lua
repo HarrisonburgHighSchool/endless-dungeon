@@ -4,9 +4,9 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
-  cam = gamera.new(0, 0, 2000, 600) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+  cam = gamera.new(0, 0, 2000, 800) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
   x = 1
-  y = 235
+  y = 275
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
   oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
   oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
@@ -16,6 +16,8 @@ function love.load()
   hp=100
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
+wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+door = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
 z=100
 s=100
 q=700
@@ -23,38 +25,38 @@ direction = 'down'
 direction2= 'left'
 direction3= 'right2'
 floor = {
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile,floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, path, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, path, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, path, path, path, path, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, path, path, path, path, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile,floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
              }
 
   map = Map:new(floor)
@@ -62,38 +64,38 @@ floor = {
 
 
 floor2 = {
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile,floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, wall, wall, wall, wall, door, wall, wall, wall, wall, wall, wall},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile,floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
              }
 
   floor2 = Map:new(floor2)
@@ -165,15 +167,15 @@ end
   end
   --Player Damage
   cam:setPosition(x, y)
- if cc(x, y, w, h,   100, z, 20, 100) then
+ if cc(x, y, w, h,   100, z, 60, 60) then
 
    hp = hp - 1
  end
- if cc(x, y, w, h,   s, 325, 20, 100) then
+ if cc(x, y, w, h,   s, 325, 60, 60) then
 
    hp = hp - 1
  end
- if cc(x, y, w, h,   q, 260, 20, 100) then
+ if cc(x, y, w, h,   q, 385, 60, 60) then
 
    hp = hp - 1
  end
@@ -186,17 +188,22 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
 
-    map:draw()
+
+    if hp > 0 then
+  map:draw()
+end
+if hp > 0 then
     floor2:draw()
+end
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
-    love.graphics.draw(oct3, q, 260)
+    love.graphics.draw(oct3, q, 385)
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
   end
-    love.graphics.print(hp, 0, 0)
-    love.graphics.print(hp, 600, 0)
-    love.graphics.print(hp, 1200, 0)
+  if hp > 0 then
+  love.graphics.print(hp, x, y)
+end
 
   end)
 end
