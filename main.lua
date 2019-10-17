@@ -6,6 +6,9 @@ function love.load()
   
   x = 400
   y = 300
+  -- Enemy Coordinates
+ex = 100
+ey = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   w = 67   -- The player's width is 67
   h = 67   -- The player's height is 67
@@ -59,7 +62,7 @@ function love.draw()
   end
   love.graphics.rectangle('line', 50, 50, 67, 67)
   
-  love.graphics.print(hp, 0, 0)
+  love.graphics.print(hp, 0, 0) 
   
 
   
