@@ -1,10 +1,38 @@
+love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
+local Util = require 'core/util'
 
 function love.load()
+
+
+  -- Create the player variables
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+
+  -- Create the background map
+  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  background = {
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+    {floor, floor, floor, floor},
+  }
+
+  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  walls = {
+    {wall, wall, wall, wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', wall},
+  }
+
+  background = Map:new(background)
+  collide = Map:new(walls)
 end
+
+
+
 
 function love.update(dt)
   if love.keyboard.isDown('right') then
@@ -18,7 +46,8 @@ end
 
 
 function love.draw()
-  love.graphics.print('Hello, world!', 0, 0)
-  love.graphics.draw(playerImg, x, y)
+  background:draw()
+  collide:draw()
+  love.graphics.draw(img, x, y)
 end
 c

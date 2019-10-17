@@ -1,5 +1,6 @@
 local class = require 'core/middleclass'
 local Tile = require 'core/tile'
+local Util = require 'core/util'
 local Map = class('Map')
 
 function Map:constructor(xSize, ySize, x, y)
@@ -11,34 +12,100 @@ function Map:constructor(xSize, ySize, x, y)
   if type(xSize) == 'table' then
     template = xSize
     --Render table as map
+    if ySize then
+      self.gridsize = ySize
+    end
   end
   if not template then
+    -- Use the default texture
     for x = 1, xSize do
       self.matrix[x] = {}
       for y = 1, ySize do
         self.matrix[x][y] = Tile:new((x-1)*64 + self.x, (y-1)*64 + self.y)
       end
     end
-  else
-    for x = 1, #template do
-      if type(template[1]) == 'table' then
-        self.matrix[x] = {}
-        for y = 1, #template[1] do
-          if type(template[x][y]) == 'string' then
-            local img = love.graphics.newImage(template[x][y])
-            self.matrix[x][y] = Tile:new(((x-1)*img:getWidth() + self.x) * self.scale, ((y-1)*img:getHeight() + self.y) * self.scale, img)
-          else
-            local img = template[x][y]
-            self.matrix[x][y] = Tile:new(((x-1)*img:getWidth() + self.x) * self.scale, ((y-1)*img:getHeight() + self.y) * self.scale, img)
-          end
+  end
+  if template then
+    -- Check to see if 2D or 1D
+    if type(template[1]) == 'table' then -- it's a 2D table
+      local img
+      -- Get the image to measure
+      if type(template[1][1]) == 'string' then
+        img = love.graphics.newImage(template[1][1])
+      else
+        img = template[1][1]
+      end
+      -- Measure the image
+      local w
+      local h
+      if self.gridsize then
+        w = self.gridsize
+        h = self.gridsize
+      else
+        w = img:getWidth()
+        h = img:getHeight()
+      end
+      -- Create the matrix
+      self:createTwoD(template, w, h)
+    else -- it's a 1D table
+      local img
+      -- Get the image to measure
+      if type(template[1]) == 'string' then
+        img = love.graphics.newImage(template[1])
+      else
+        img = template[1]
+      end
+      -- Measure the img
+      local w = img:getWidth()
+      local h = img:getHeight()
+      -- Create the matrix
+      self:createOneD(template, w, h)
+    end
+  end
+  if x then
+    self:move(x, 0)
+  end
+  if y then
+    self:move(0, y)
+  end
+end
+
+function Map:createOneD(template, w, h)
+  for x = 1, #template do
+    local img
+    if type(template[x]) == 'string' then
+      img = love.graphics.newImage(template[x])
+    else
+      img = template[x]
+    end
+    self.matrix[x] = Tile:new(((x-1)*w + self.x) * self.scale, self.y * self.scale, img)
+    if self.matrix[x].img:getWidth() ~= w then
+      self.matrix[x]:changeScale(w/self.matrix[x].img:getWidth())
+    end
+  end
+end
+
+function Map:createTwoD(template, w, h)
+  for x = 1, #template do
+    for y = 1, #template[x] do
+      local img
+      if type(template[x][y]) == 'string' then
+        if template[x][y] == 'none' or template[x][y] == 'nil' then
+          img = nil
+        else
+          img = love.graphics.newImage(template[x][y])
         end
       else
-        if type(template[x][y]) == 'string' then
-          local img = template[x]
-          self.matrix[x] = Tile:new(((x-1)*img:getWidth() + self.x) * self.scale, (y + self.y) * self.scale, img)
-        else
-          local img = love.graphics.newImage(template[x])
-          self.matrix[x] = Tile:new(((x-1)*img:getWidth() + self.x) * self.scale, (y + self.y) * self.scale, img)
+        img = template[x][y]
+        
+      end
+      
+      if img then
+        print("Got img at "..x..", "..y)
+        table.insert(self.matrix, Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img))
+        print('Made tile at '..x..", "..y..": "..tostring(img))
+        if self.matrix[#self.matrix].img:getWidth() ~= w and self.gridsize == nil then
+          self.matrix[#self.matrix]:changeScale(w/self.matrix[#self.matrix].img:getWidth())
         end
       end
     end
@@ -62,10 +129,28 @@ end
 
 function Map:draw()
   for x = 1, #self.matrix do
-    for y = 1, #self.matrix[1] do
-      self.matrix[x][y]:draw()
+      if self.matrix[x] then
+        self.matrix[x]:draw()
+      end
+  end
+end
+
+function Map:cc(x, y, w, h)
+  local result = false
+  local count = 0
+  -- for x = 1, #self.matrix do
+  --   for y = 1, #self.matrix[x] do
+  for b = 1, #self.matrix do
+    if self.matrix[b] then
+      if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, 64, 64) then
+        print('Got tile at '..b)
+        return true
+      end
     end
   end
+  --   end
+  -- end
+  return false
 end
 
 function Map:changeScale(mult)
@@ -84,4 +169,3 @@ function Map:changeScale(mult)
 end
 
 return Map
-  
