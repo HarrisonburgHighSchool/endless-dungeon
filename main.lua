@@ -9,6 +9,7 @@ function love.load()
   x = 400
   y = 300
   --playerImg = love.graphics.newImage('a/images.png')
+  sound = love.audio.newSource('Sound Effects/boing_jack_01.wav', 'static')
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
   x2 = 400
   y2 = 100
@@ -101,7 +102,11 @@ end
     y = y + 4
   end
 end
-
+function love.keypressed(key)
+  if key == 'space' then
+    sound:play()
+  end
+end
 cam:setPosition(x,y)
 end
 
