@@ -14,11 +14,11 @@ function love.load()
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
@@ -34,8 +34,10 @@ function love.load()
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
+       {stone, stone, stone, stone},
+
 }
-wall = Map:new (wall)
+wall = Map:new(wall)
 end
  
 
