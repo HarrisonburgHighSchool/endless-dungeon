@@ -13,12 +13,12 @@ function love.load()
   hp = 100
   a = 470
   b = 400
-  --Img2 = love.graphics.newImage('assets-1/monster/statues/chilling_statue.png')
+  Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
   ex = 520
   ey = 550
   dir = 'right'
 
-  Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
+  --Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
 
   crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
