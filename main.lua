@@ -56,6 +56,9 @@ template = {--a 3 x 3 map with the altar texture in the middle
   collision = Map:new(collision)
 end
 
+
+
+
 function love.update(dt)
   if love.keyboard.isDown('right') then
     if collision:cc(x + 10, y, 64, 64) == false then
@@ -71,6 +74,8 @@ end
     if collision:cc(x, y - 10, 64, 64) == false then
     y = y - 10
   end
+
+
 end
   if love.keyboard.isDown('left') then
       if collision:cc(x - 10, y, 64, 64) == false then
@@ -81,6 +86,10 @@ cam:setPosition(x, y)
 
   -- Nothing to update yet
 end
+
+
+
+
 
 function love.draw()
   cam:draw(function(l, t, w, h)
