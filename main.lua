@@ -8,6 +8,9 @@ function love.load()
   b = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   playerImg1 = love.graphics.newImage('assets-1/player/base/gargoyle_female.png')
+  ex = 100
+  ey = 100
+  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -15,6 +18,8 @@ function love.load()
     floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
     ground    = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
+    obstacle  = love.graphics.newImage('assets-1/dungeon/altars/ashenzari.png')
+    entrance  = love.graphics.newImage('assets-1/dungeon/altars/vehumet_1.png')
     template = {
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
@@ -42,19 +47,30 @@ function love.load()
                 -- Create the collision map, with walls around the edge of the map
                 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
                 collision = {
-                  {wall, wall, wall, wall},
-                  {wall, 'nil', 'nil', },
-                  {wall, 'nil', 'nil', wall},
-                  {wall, 'nil', 'nil', wall},
+                  {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
+                  {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+                  {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
+                  {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
+                  {'nil', 'nil', 'nil', wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil'},
+                  {'nil', 'nil', 'nil', entrance, 'nil', 'nil', entrance, 'nil', 'nil', 'nil'}
                 }
-                  background = Map:new(background)
-                  collision = Map:new(collision)
-                  map = Map:new(template)
-                  cam = gamera.new(-500, -500, 2000, 2000)
-                  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-                  x = 400
-                  y = 300
-
+                background = Map:new(background)
+                collision = Map:new(collision)
+                map = Map:new(template)
+                cam = gamera.new(-500, -500, 2000, 2000)
+                img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+                x = 400
+                y = 300
 end
 
 function love.update(dt)
@@ -130,7 +146,7 @@ function love.draw()
     love.graphics.draw(playerImg1, a, b)
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
-    background:draw()
+    --background:draw()
     collision:draw()
   end)
 end
