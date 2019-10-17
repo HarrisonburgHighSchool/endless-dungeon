@@ -93,27 +93,35 @@ end
   
 function love.update(dt)
   if walls:cc(x + 3, y, 64, 64) == false then
-    if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-      x = x + 3
-      mirrorx = mirrorx - 3
+    if mirror:cc(x - 54, y, 64, 64) == false then
+      if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
+        x = x + 3
+        mirrorx = mirrorx - 3
+        walk:update(dt)
+      end
     end
   end
   if walls:cc(x, y + 3, 64, 64) == false then
     if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
       y = y + 3
       mirrory = mirrory + 3
+      walk:update(dt)
     end
   end
   if walls:cc(x - 3, y, 64, 64) == false then
-    if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-      x = x - 3
-      mirrorx = mirrorx + 3
+    if mirror:cc(x - 64, y, 64, 64) == false then
+      if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
+        x = x - 3
+        mirrorx = mirrorx + 3
+        walk:update(dt)
+      end
     end
   end
   if walls:cc(x, y - 3, 64, 64) == false then
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
       y = y - 3
       mirrory = mirrory - 3
+      walk:update(dt)
     end
   end
   if cc(x, y, w, h, 216, 216, 84, 16) then  
@@ -129,7 +137,6 @@ function love.update(dt)
     hp = hp - 1
   end
   cam:setPosition(x, y)
-  walk:update(dt)
 end
 
 function love.draw()
