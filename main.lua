@@ -1,5 +1,6 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
+local anim8 = require 'core/anim8'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 
 function love.load()
@@ -9,7 +10,9 @@ function love.load()
   w = 32   -- The player's width is 64
   h = 32   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
-  playerImg = love.graphics.newImage('assets-1/monster/deep_elf_fighter.png')
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
   rectFloor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
   rect1Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_1.png')
@@ -55,14 +58,16 @@ function love.load()
   map = Map:new(template)
   collision = Map:new(collision)
 
+
 end
 
 
 function love.update(dt)
  
+  walk:update(dt)
+
 --x, y, w, h all represent the player's rectangle.
 --If the statement is true it will run the code, but if it is false it will skip it.
-  
 if love.keyboard.isDown('w') and y > 18 then -- up
   if collision:cc(x, y - 2 , 28, 32) == false then
     y = y - 2 -- speed
@@ -116,5 +121,6 @@ function love.draw()
   map:draw()
   collision:draw()
   love.graphics.draw(playerImg, x, y)
-  
+  walk:draw()
+
 end
