@@ -2,6 +2,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
+--local anim8 = require 'core/anim8'
 
 function love.load()
   x = 64
@@ -46,7 +47,7 @@ function love.load()
     {cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM,},
     {cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM, cobaltM,},
   }
-  wall = {
+  walls = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
@@ -63,7 +64,7 @@ function love.load()
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
   }
   mirror = {
-    {wall,'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
@@ -77,32 +78,35 @@ function love.load()
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+   
   }
+
+
   floor = Map:new(floor)
-  wall = Map:new(wall)
+  walls = Map:new(walls)
   mirror = Map:new(mirror)
 end
   
 function love.update(dt)
-  if wall:cc(x + 3, y, 64, 64) == false then
+  if walls:cc(x + 3, y, 64, 64) == false then
     if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
       x = x + 3
       mirrorx = mirrorx - 3
     end
   end
-  if wall:cc(x, y + 3, 64, 64) == false then
+  if walls:cc(x, y + 3, 64, 64) == false then
     if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
       y = y + 3
       mirrory = mirrory + 3
     end
   end
-  if wall:cc(x - 3, y, 64, 64) == false then
+  if walls:cc(x - 3, y, 64, 64) == false then
     if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
       x = x - 3
       mirrorx = mirrorx + 3
     end
   end
-  if wall:cc(x, y - 3, 64, 64) == false then
+  if walls:cc(x, y - 3, 64, 64) == false then
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
       y = y - 3
       mirrory = mirrory - 3
@@ -126,7 +130,7 @@ end
 function love.draw()
   cam:draw(function(camx, camy)
   floor:draw()
-  wall:draw()
+  walls:draw()
   mirror:draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
