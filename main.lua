@@ -1,6 +1,7 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
+local gamera = require 'core/gamera'
 
 function love.load()
   
@@ -9,9 +10,9 @@ function love.load()
   w2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_2.png')
   f = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_0.png')
   
-  -- spritesheet = love.graphics.newImage('hero/Old hero.png')
-  -- grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
-  -- walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
   background = {
     {f, f, f, f, f, f, f, f, f, f, f, f, f},
@@ -28,7 +29,7 @@ function love.load()
     {f, f, f, f, f, f, f, f, f, f, f, f, f},
   }
   layer1 = {
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
@@ -39,14 +40,15 @@ function love.load()
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
     {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
   }
 
 
   
-map = Map:new(background)
-mapc = Map:new(layer1)
+  map = Map:new(background)
+  mapc = Map:new(layer1)
 
+  s = 5
   x = 64
   y = 64
   w = 32
@@ -57,39 +59,39 @@ end
 
 
 function love.update(dt)
-  
+    walk:update(dt)
   
     if love.keyboard.isDown('up') then
-      if mapc:cc(x, y - 4, w, h) == false then
-        y = y - 4
+      if mapc:cc(x, y - s, w, h) == false then
+        y = y - s
       end
     end
     if love.keyboard.isDown('down') then
-      if mapc:cc(x, y + 4, w, h) == false then
-        y = y + 4
+      if mapc:cc(x, y + s, w, h) == false then
+        y = y + s
       end
     end
     if love.keyboard.isDown('right') then
-      if mapc:cc(x + 4, y, w, h) == false then
-        x = x + 4
+      if mapc:cc(x + s, y, w, h) == false then
+        x = x + s
       end
     end
     if love.keyboard.isDown('left') then
-      if mapc:cc(x - 4, y, w, h) == false then
-        x = x - 4
+      if mapc:cc(x - s, y, w, h) == false then
+        x = x - sS
       end
     end
   
-  
+    --cam:setPosition(400, 400)
   
 
 end
 
 
 function love.draw()
- 
+  --cam:draw(function(l, t, w, h)
   map:draw()
   mapc:draw()
- -- walk:draw()
+  walk:draw(spritesheet, 400, 300)
   love.graphics.draw(playerImg, x, y)
 end
