@@ -6,30 +6,30 @@ function love.load()
   y = 270
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
-  floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_9.png')
+  floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_1.png')
   background = {
     {floorTile, floorTile, floorTile, floorTile},
     {floorTile, floorTile, floorTile, floorTile},
     {floorTile, floorTile, floorTile, floorTile},
     {floorTile, floorTile, floorTile, floorTile},
   }
-  wallTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_lightblue.png')
+  wallTile = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_1.png')
   collision = {
     {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wallTile,'nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil'},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, wallTile, wallTile, wallTile, 'nil', 'nil', wallTile, wallTile, wallTile, wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
+    {wallTile},
+    {wallTile},
   }
   collision = Map:new(collision)
   background = Map:new(background)
@@ -58,23 +58,27 @@ function love.update(dt)
 
 -- Sense collision moving right
 if love.keyboard.isDown('right') then
-  if collision:cc(x + 1, y, 64, 64) == false then
-    x = x + 1
+  if collision:cc(x + 6, y, 64, 64) == false then
+    x = x + 6
   end
 end
 
  if love.keyboard.isDown('up') then
-    y = y - 5
+    if collision:cc(x, y - 6, 64, 64) == false then
+      y = y - 6
+    end
   end
   if love.keyboard.isDown('down') then
-     y = y + 5
+     if collision:cc(x, y + 6, 64, 64) == false then
+       y = y + 6
+     end
    end
    if love.keyboard.isDown('left') then
-      x = x - 5
+      if collision:cc(x - 6, y, 64, 64) == false then
+        x = x - 6
+      end
     end
-    if love.keyboard.isDown('right') then
-       x = x + 5
-     end
+
 end
 
 
