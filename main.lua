@@ -1,5 +1,5 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
-local Util = require 'core/util'
+
 
 local Entity = require 'core/entity'
 
@@ -45,103 +45,104 @@ function love.update(dt)
 end
 
 
-local Map = requiew 'core/map'
 
 function love.load()
 
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
   floor = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
+  wall2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   tile4 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_0.png')
   tile5 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_1.png')
   tile6 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_2.png')
   tile7 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_3.png')
 
-  map = {
+  background = {
     {tile4, tile5, tile6, floor, floor, floor, tile4, tile5, tile6, tile7},
     {tile7, tile4, tile5, floor, floor, floor, tile7, tile4, tile5, tile6},
     {tile6, tile7, tile4, floor, floor, floor, tile6, tile7, tile4, tile5},
     {tile5, tile6, tile7, floor, floor, floor, tile5, tile6, tile7, tile4},
     {tile4, tile5, tile6, floor, floor, floor, tile4, tile5, tile6, tile7},
-    {floor, floor, floor, floor, floor, floor, floor, floor, wall, wall},
-    {floor, floor, floor, floor, floor, floor, floor, floor, wall, 'nil'},
-    {floor, floor, floor, floor, floor, floor, floor, floor, wall, wall},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
     {tile5, tile6, tile7, floor, floor, floor, tile4, tile5, tile6, tile7},
     {tile6, tile7, tile4, floor, floor, floor, tile5, tile6, tile7, tile4},
     {tile7, tile4, tile5, floor, floor, floor, tile6, tile7, tile4, tile5},
-    {tile4, tile5, tile6, wall, wall, wall, tile7, tile4, tile5, tile6},
-    {tile5, tile6, tile7, wall, 'nil', wall, tile4, tile5, tile6, tile7}
+    {tile4, tile5, tile6, floor, floor, floor, tile7, tile4, tile5, tile6},
+    {tile5, tile6, tile7, floor, floor, floor, tile4, tile5, tile6, tile7}
   }
-    map = Map:new(template)
+
+  collision= {
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {wall2, wall2, wall2, nil, nil, nil, wall2, wall2, wall2, wall2},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
+      {wall2, wall2, wall2, nil, nil, nil, wall2, wall2, wall2, wall2},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
+      {nil, nil, wall2, wall, wall, wall, wall2, nil, nil, nil}
+  }
+    collision = Map:new(collision)
+    background = Map:new(background)
   end
 
   function love.update(dt)
+    if love.keyboard.isDown('right') then
+      if collision:cc(x + 5, y, 64, 64) == false then
+         x = x + 5
+      end
+    end
+    if love.keyboard.isDown('left') then
+      if collision:cc(x - 5, y, 64, 64) == false then
+         x = x - 5
+      end
+    end
+    if love.keyboard.isDown('up') then
+      if collision:cc(x, y - 5, 64, 64) == false then
+         y = y - 5
+      end
+    end
+    if love.keyboard.isDown('down') then
+      if collision:cc(x , y + 5, 64, 64) == false then
+         y = y + 5
+      end
+    end
   end
 
   function love.draw()
-    map:draw()
+    background:draw()
+    collision:draw()
+    love.graphics.draw(playerImg,x,y)
   end
 
-  collision = Map:new(collision)
-
-  bkgrnd = Map:new(background)
+    background = Map:new(template)
+  end
 
   debug = false
 
 
-  map = map:cc(x, y, 64, 64)
+  background = map:cc(x, y, 64, 64)
   debug = tostring(mapc)
-  function love.update(dt)
-    if love.keyboard.isDown('right') then
-      if map:cc(x + 5, y, 64, 64, 100, 200, 64, 64) then
-        x = x + 5
-      end
-    end
-    if love.keyboard.isDown('left') then
-      if map:cc(x - 5, y, 64, 64, 100, 200, 64, 64) then
-        x = x - 5
-      end
-    end
-    if love.keyboard.isDown('up') then
-      if map:cc(x, y-5, 64, 64, 100, 200, 64, 64) then
-        y = y - 5
-      end
-    end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+5, 64, 64, 100, 200, 64, 64) then
-      y = y + 5
-    end
-  end
-end
+
+  local Map = require 'core/map'
+  localUtil = require 'core/util'
+
+
+
+
+
 
 
 
 
 function love.update(dt)
-  if love.keyboard.isDown('right') then
-    if collision:cc(x + 5, y, 64, 64) == false then
-       x = x + 5
-    end
-  end
-  if love.keyboard.isDown('left') then
-    if collision:cc(x - 5, y, 64, 64) == false then
-       x = x - 5
-    end
-  end
-  if love.keyboard.isDown('up') then
-    if collision:cc(x, y - 5, 64, 64) == false then
-       y = y - 5
-    end
-  end
-  if love.keyboard.isDown('down') then
-    if collision:cc(x , y + 5, 64, 64) == false then
-       y = y + 5
-    end
-  end
-end
 
-function love.update(dt)
-  -- Set up player movement
   if love.keyboard.isDown('up') then
     y = y - 1
   end
