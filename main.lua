@@ -1,5 +1,6 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
+local anim8 = require 'core/anim8'
 
 function love.load()
   
@@ -8,35 +9,37 @@ function love.load()
   w2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_2.png')
   f = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_0.png')
   
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
   background = {
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f},
-    {f, f, f, f, f, f, f, f, f, f}
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
+    {f, f, f, f, f, f, f, f, f, f, f, f, f},
   }
   layer1 = {
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, "nil", w0, w0, "nil", w0, w0,"nil", w1},
-    {w1, "nil", w0, "nil", "nil", "nil", w0, "nil", w1},
-    {w1, "nil", w0, "nil", "nil", "nil", w0, "nil", w1},
-    {"nil", "nil", w0, "nil", w2, "nil", w0, "nil", w1},
-    {"nil", "nil", w0, "nil", w2, "nil", w0, "nil", w1},
-    {w1, "nil", w0, "nil", "nil", "nil", w0, "nil", w1},
-    {w1, "nil", w0, "nil", "nil", "nil", w0, "nil", w1},
-    {w1, "nil", w0, w0, "nil", w0, w0, "nil", w1},
-    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", w1},
-    {w1, w1, w1, w1, w1, w1, w1, w1, w1}
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil", "nil," w1},
+    {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
   }
 
 
