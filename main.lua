@@ -5,6 +5,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 
 function love.load()
   love.window.setMode(768, 576)
+
   x = 368
   y = 280
   w = 32   -- The player's width is 64
@@ -38,29 +39,25 @@ function love.load()
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
 
-
  -- Create the collision map, with walls around the edge of the map
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
-  {nil, nil, nil, nil, trap1, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
 
   map = Map:new(template)
   collision = Map:new(collision)
-
-
 end
-
 
 function love.update(dt)
  
@@ -90,37 +87,9 @@ if love.keyboard.isDown('d') then -- right
  end
 end
 
-
--- local dx = 0
--- local dy = 0
--- if love.keyboard.isDown('w') and y > 18 then
---   dy = - 2
--- end
--- if love.keyboard.isDown('a') and  x > 61 then
---   dx = - 2
--- end
--- if love.keyboard.isDown('s') and y < 482 then
---   dy = 2
--- end
--- if love.keyboard.isDown('d') and x < 677 then
---   dx = 2
--- end
-
--- if cc(x + dx, y + dy, 64, 64, 230, 227, 21, 30) == false then
---   x = x + dx
---   y = y + dy
--- end
--- end
-
-
-
-
-
-
 function love.draw()
   map:draw()
   collision:draw()
-  love.graphics.draw(playerImg, x, y)
-  walk:draw()
+  walk:draw(spritesheet, x, y, 0, 2)
 
 end
