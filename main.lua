@@ -2,7 +2,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
---local anim8 = require 'core/anim8'
+local anim8 = require 'core/anim8'
 
 function love.load()
   x = 64
@@ -23,6 +23,10 @@ function love.load()
   w2 = 64  -- The mirror player's width is 64
   h2 = 64  -- The mirror player's height is 64
   
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
   MirrorL = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_left.png')
@@ -70,8 +74,8 @@ function love.load()
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
-    {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
-    {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+    {'nil', MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, MirrorR, 'nil',},
+    {'nil', MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, MirrorL, 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
@@ -125,6 +129,7 @@ function love.update(dt)
     hp = hp - 1
   end
   cam:setPosition(x, y)
+  walk:update(dt)
 end
 
 function love.draw()
@@ -132,6 +137,7 @@ function love.draw()
   floor:draw()
   walls:draw()
   mirror:draw()
+  walk:draw(spritesheet, 400, 300)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
