@@ -3,6 +3,7 @@ function love.load()
  playerImg = love.graphics.newImage('assets-1/monster/animals/fire_bat.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  sound = love.audio.newSource('pathtoasset', 'static')
 
 
  x = 400
@@ -54,6 +55,9 @@ function love.update(dt)
 end
 if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
   y = y - 15
+end
+if key == 'space' then
+  sound:play()
 end
  end
 
