@@ -4,39 +4,60 @@
   local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter( 'nearest', 'nearest')
 function love.load()
-
+cam = gamera.new(0, 0, 2000, 2000)
 
   -- Create the player variables
   img = love.graphics.newImage('hero/sliced/idle-2.png')
-
-  x = 300
-  y = 400
+img1 = love.graphics.newImage('hero/sliced/idle-2.png')
+  x = 200
+  y = 200
   x1 = 300
   y1 = 400
   x2 = 300
   y2 = 400
-  x3 = 300
-  y3 = 400
+  x3 = 100
+  y3 = 100
   w = 30
   h = 30
-hp = 100 
+hp = 100
   -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
   background = {
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor},
   }
 
-  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  wall = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
   walls = {
-    {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-  }
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
 
+
+
+
+  }
+map = Map:new(background)
   background = Map:new(background)
   collide = Map:new(walls)
 end
@@ -129,15 +150,14 @@ function love.draw()
 
 cam:draw(function(l, t, w, h)
   map:draw()
+    love.graphics.print(hp, 10, 10)
   if hp==0 then
   love.graphics.print('GAME OVER', x3, y3)
   end
-
-  love.graphics.print(hp, x, y)
   love.graphics.print('Hello, world!', 0, 0)
   --Draw everything here. For example:
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(playerImg1, x1, y1)
+  love.graphics.draw(img, x, y)
+  love.graphics.draw(img1, x2, y2)
   background:draw()
   collide:draw()
   love.graphics.draw(img, x, y)
