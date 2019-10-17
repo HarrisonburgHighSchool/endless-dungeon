@@ -147,6 +147,15 @@ end
       ey = ey - 3
     end
 
+
+
+  --  if cc(x, y, 64, 64,   300, 400, 40, 40) == true then
+
+
+    --end
+
+
+
   --  if ey < 200 then
   --    dir = 'up'
   --  end
@@ -194,6 +203,10 @@ if x < 650 and x > 550 and y < 650 and y > 550 then
   x = x - 600
 end
 
+if x < 850 and x > 750 and y < 50 and y > 0 then
+  y = 550
+  x = 380
+end
 
 end
 
@@ -207,6 +220,7 @@ function love.draw()
 
   entity:draw();
 
+
   love.graphics.print('Level 1, Practice Level!', 0, 0)
   love.graphics.draw(ent, 400, 130)
 --  if (hp > 0) then   -- kill the player
@@ -219,8 +233,9 @@ function love.draw()
   love.graphics.draw(gate, 400, 570)
   love.graphics.rectangle('line', 200, 200, 63, 63)
   love.graphics.rectangle('line', 600, 600, 63, 63)
+  love.graphics.rectangle('line', 800, 0, 63, 63)
 
-
+  love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
 
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
