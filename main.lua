@@ -46,7 +46,12 @@ img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
         collision = Map:new(collision)
 
 
+  background = Map:new(background)
+  collide = Map:new(walls)
 end
+
+
+
 
 function love.update(dt)
   if love.keyboard.isDown('up') then
@@ -69,6 +74,8 @@ function love.update(dt)
       x = x - 1
     end
   end
+
+
 end
 
 
