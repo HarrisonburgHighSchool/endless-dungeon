@@ -7,6 +7,14 @@ function love.load()
 
   local Util = require 'core/util'
 
+  src1 = love.audio.newSource("BeepBox-Song.wav", "static")
+
+
+  src1:setVolume(0.35)
+  src1:setLooping(true)
+  src1:play()
+
+
   x = 400
   y = 300
 
@@ -161,7 +169,7 @@ end
 end
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-   if cc(x, y, w, h,   1, -50, 880, 1) then  
+   if cc(x, y, w, h,   1, -30, 880, 1) then  
     -- if true, decrease HP:
     y = y + 5
   end
@@ -171,12 +179,12 @@ end
     x = x + 5
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   1, 445, 880, 1) then  
+  if cc(x, y, w, h,   1, 460, 880, 1) then  
     -- if true, decrease HP:
     y = y - 5
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   900, 1, 1, 850) then  
+  if cc(x, y, w, h,   915, 1, 1, 850) then  
     -- if true, decrease HP:
     x = x - 5
   end
