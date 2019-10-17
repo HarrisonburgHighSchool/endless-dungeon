@@ -2,7 +2,7 @@ local Map = require 'core/map'
 local Entity = require 'core/entity'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
-
+local anim8 = require 'core/anim8'
 
 function love.load()
   G = love.math.random(-3, 4);
@@ -22,11 +22,19 @@ function love.load()
   h = 64
   hp = 100
 
+
+
+
+
   ex = 100
   ey = 100
   dir = 'left'
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
+
+  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  swim = anim8.newAnimation(grid('1-6', 4), 0.065)
 
 
   M = love.sound.newSoundData('assets-1/Music1.mp3')
@@ -73,6 +81,10 @@ function love.update(dt)
 
   cam:setPosition(x, y)
 
+
+
+
+  swim:update(dt)
 
   if love.keyboard.isDown('right') and x < 940 then
     if cc(x+5, y, 64, 64, 400, 570, 64, 64) == false then
@@ -147,7 +159,9 @@ end
       ey = ey - 3
     end
 
-
+    if ex > x - 3 and ex < x + 3 and ey > y - 3 and ex < y + 3 then
+      hp = hp - 1
+    end
 
   --  if cc(x, y, 64, 64,   300, 400, 40, 40) == true then
 
@@ -193,7 +207,7 @@ end
   entity.x = entity.x +- G
   entity.y = entity.y +- H
 
-  if x < 250 and x > 150 and y < 250 and y > 150 then
+  if x < 250 and x > 150 and y < 240 and y > 140 then
     y = y + 200
     x = x + 400
 end
@@ -213,14 +227,14 @@ end
 function love.draw()
 
 
-
+  if (hp > 0) then
   cam:draw(function(l, t, w, h)
 
   map:draw()
 
   entity:draw();
 
-
+  swim:draw(spritesheet, 500, 300, 12 ,12)
   love.graphics.print('Level 1, Practice Level!', 0, 0)
   love.graphics.draw(ent, 400, 130)
 --  if (hp > 0) then   -- kill the player
@@ -229,18 +243,24 @@ function love.draw()
   love.graphics.print(hp, x + 18, y - 15)
 --end
 
+
+
   love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(gate, 400, 570)
-  love.graphics.rectangle('line', 200, 200, 63, 63)
+  love.graphics.rectangle('line', 200, 190, 63, 63)
   love.graphics.rectangle('line', 600, 600, 63, 63)
   love.graphics.rectangle('line', 800, 0, 63, 63)
 
   love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
+
+  love.graphics.print('True Road Is At          /!', 450, 250, 6, 3)
 
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
   love.graphics.rectangle('line', 449, 190, 64, 64)
 
   end)
+
+end
 
 end
