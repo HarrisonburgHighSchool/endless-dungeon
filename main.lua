@@ -10,8 +10,8 @@ function love.load()
   i = 1
   g = 0
  bossdefeated = 1
- x = 500
- y = 300
+ x = 200
+ y = 200
   x2 = 193
   y2 = 192
   w2 = 192
@@ -24,8 +24,15 @@ function love.load()
  ew = 32
  eh = 32
  collide2 = false
+ bx = 638
+ by = 257
+ bw = 64
+ bh = 64
+ attack = false
+ bosshealth = 6
   
   e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
+  boss = love.graphics.newImage('assets-1/monster/demons/eye1.png')
   transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
   playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
@@ -75,16 +82,18 @@ function love.load()
             map2 = Map:new(template2)
   
 template3 = {
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil', 'nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', colbalt, 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
-            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil'},
+            {transp, transp, transp, transp, 'nil', transp, transp, transp},
+            {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', colbalt, 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+            {transp, transp, transp, transp, transp, transp, transp, transp},
 
             }
 
@@ -98,99 +107,96 @@ function love.update(dt)
 
 
 
-if(x > 640) then
-  x = x - 3
-end
-if (x < 50 and i == 1) then
-x = x + 3
-end
-if(y > 448) then
-  y = y - 3
-end
-if(y < 60) then
-  y = y + 3
-end
 
-collide1 = false
+
+  collide1 = false
 
 
   if map3:cc(x + 3, y, w, h) == false then
-if love.keyboard.isDown('right') then  
-    x = x + 3
+    if love.keyboard.isDown('right') then  
+      x = x + 3
    
  
-end
-end
+    end
+  end
 
   if map3:cc(x - 3, y, w, h) == false then
     if love.keyboard.isDown('left') then  
       x = x - 3
   
-end
-end
-  
-    if map3:cc(x, y + 3, w, h) == false then
-  if love.keyboard.isDown('down') then 
-    y = y + 3
-
-end
-end
-
-   
-    if map3:cc(x, y - 3, w, h) == false then
-    if love.keyboard.isDown('up') then
-    y = y - 3
+    end
   end
-end
-if cc(x, y, w, h, ex, ey, ew, eh) == false then
-if x > ex then
-  ex = ex + 1
- 
-end
-end
-if cc(x, y, w, h, ex, ey, ew, eh) == false then
-if x < ex then
-  ex = ex - 1
-end
-end
-if cc(x, y, w, h, ex, ey, ew, eh) == false then
-if y > ey then
-  ey = ey + 1
-end
-end
-if cc(x, y, w, h, ex, ey, ew, eh) == false then
-if y < ey then
-  ey = ey - 1
-end
-end
-if cc(x, y, w, h, ex, ey, ew, eh) == true then
-  HP = HP - 10
-  ex = 10000000
   
+  if map3:cc(x, y + 3, w, h) == false then
+    if love.keyboard.isDown('down') then 
+      y = y + 3
+
+    end
+  end
+
    
+  if map3:cc(x, y - 3, w, h) == false then
+    if love.keyboard.isDown('up') then
+      y = y - 3
+    end
+  end
+  if cc(x, y, w, h, ex, ey, ew, eh) == false then
+    if x > ex then
+      ex = ex + 1
+    
+    end
+  end
+  if cc(x, y, w, h, ex, ey, ew, eh) == false then
+    if x < ex then
+      ex = ex - 1
+    end
+  end
+  if cc(x, y, w, h, ex, ey, ew, eh) == false then
+    if y > ey then
+      ey = ey + 1
+    end
+  end
+  if cc(x, y, w, h, ex, ey, ew, eh) == false then
+    if y < ey then
+      ey = ey - 1
+    end
+  end
+  if cc(x, y, w, h, ex, ey, ew, eh) == true then
+    HP = HP - 10
+    ex = 10000000
+    
+    
+  end
+
+  if(collide1 == true) then
+    HP = HP - 0.1
+  end
+  if(HP < 0) then
+    HP = 0
+  end
+
+  if(g < 20) then
+  g = g + 0.1
+  end
+  if(g > 20) then
+    g = 0
+  end
+
+  if love.keyboard.isDown('a') then
+    attack = true
+  else
+    attack = false
+  end
+  
+  if cc(x, y, w, h, bx, by, bw, bh) == true and attack == true then
+    bosshealth = bosshealth - 1
+    x = 70
+    y = 257
+  end
+
+  cam:setPosition(x,y)
 end
 
-if(collide1 == true) then
-  HP = HP - 0.1
-end
-if(HP < 0) then
-  HP = 0
-end
-if(y == 260 and x == 50) then
-  x = x + 0
-  i = 2
-end
-if(x > 50) then
-i = 1
-end
-if(g < 20) then
-g = g + 0.1
-end
-if(g > 20) then
-  g = 0
-end
-cam:setPosition(x,y)
-end
 
 
 
@@ -216,12 +222,15 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   end
  
-  love.graphics.print(x, 10, 20)
+  love.graphics.print(x, 400, 20)
   love.graphics.print(g, 50, 50)
-  love.graphics.print(y, 30 ,30)
+  love.graphics.print(y, 400 ,30)
   love.graphics.print(HP, 100, 100)
+  love.graphics.print(bosshealth, 400, 50)
   love.graphics.print(tostring(collide1), 0, 0)
   love.graphics.draw(e, ex, ey)
+  love.graphics.draw(boss, bx, by)
   love.graphics.draw(playerImg, x, y)
+  
 end)
 end
