@@ -11,16 +11,21 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/monster/human.png')
   x = 100
   y = 250
-  enemy = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
+  enemy = {
   x2 = 460
   y2 = 250
-  dir = 'left'
-  enemy2 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  c = 500
-  d = 300
-  enemy3 = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
-  e = 500
-  f = 200
+  img = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
+ }
+  knight1 = {
+  x2 = 500,
+  y2 = 300,
+  img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
+ }
+  knight2 = {
+  x2 = 500,
+  y2 = 200,
+  img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
+ }
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
   g = 575
   b = 250
@@ -80,6 +85,7 @@ end
 
 
 function love.update(dt)
+  knight1.x = knight1.x + 1
   if x < 0 then
     x = 0
   end
@@ -124,6 +130,12 @@ function love.update(dt)
      y = y - 2
    end
   end
+  if love.keyboard.isDown('w') then
+   if cc(x + 20, y + 20, w, h,   x2, y2, 36, 36) then
+     ehp1 = ehp1 - 25
+     x2 = x2 + 25
+   end
+  end
   -- Enemy movement stuff
 
   if x > x2 then
@@ -146,7 +158,6 @@ function love.update(dt)
   if cc(x, y, w, h,   x2, y2, 36, 36) then
     -- if true, decrease HP:
     hp = hp - 25
-    x2 = x2 + 25
   end
   if cc(x, y, w, h,   c, d, 36, 36) then
     -- if true, decrease HP:
@@ -176,6 +187,21 @@ function love.draw()
   if hp < 1 then
     love.graphics.print('GAME OVER', x + 50, y + -50)
     hp = 0
+  end
+  if ehp1 < 1 then
+    ehp1 = 0
+    x2 = 10000000
+    y2 = 10000000
+  end
+  if ehp2 < 1 then
+    ehp2 = 0
+        c = 10000000
+    d = 10000000
+  end
+  if ehp3 < 1 then
+    ehp3 = 0
+    e = 10000000
+    f = 10000000
   end
   -- Print the player's HP in the top left corner
   love.graphics.print(hp, x, y + -18)
