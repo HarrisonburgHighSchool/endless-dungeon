@@ -18,12 +18,13 @@ function love.load()
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
   jelly = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
   jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
-  limestone = love.graphics.newImage('assets-1/dungeon/floor/limestone_1.png')
+  mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   grey = love.graphics.newImage('assets-2/dc-dngn/floor/rect_gray1.png')
-  pedestal = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_3.png')
+  mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
+  lair = love.graphics.newImage('assets-1/dungeon/floor/lair3b.png')
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
@@ -31,28 +32,37 @@ currentDoor = closedDoor
 
 
   mapTemplate = {
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,pedestal,grass,grass,grass,grass,limestone,limestone,limestone},
-    {limestone,limestone,grass,marble,water,water,marble,limestone,limestone,limestone},
-    {limestone,limestone,grass,marble,marble,marble,marble,limestone,limestone,limestone},
-    {limestone,limestone,grass,marble,water,water,marble,limestone,limestone,limestone},
-    {limestone,limestone,pedestal,grass,grass,grass,grass,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
-    {limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone,limestone},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,mud,mud,mud,mud,mud,marble,marble,mud,mud},
+    {mud,mud,mud,grass,grass,grass,grass,marble,mud,mud},
+    {mud,mud,grass,marble,water,water,marble,marble,mud,mud,mud},
+    {mud,mud,grass,marble,marble,marble,marble,marble,mud,mud,mud},
+    {mud,mud,grass,marble,water,water,marble,marble,mud,mud,mud},
+    {mud,mud,mud,grass,grass,grass,grass,marble,mud,mud},
+    {mud,mud,mud,mud,mud,mud,marble,marble,mud,mud},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
     
   }
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil',wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil',wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    
     
   }
 
@@ -86,6 +96,7 @@ end
  if cc(x, y, w, h,   0, 0, 64, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
+ end
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = openDoor
   end
@@ -98,18 +109,19 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
 
-  love.graphics.draw(secretpath, 400, 270)
-  love.graphics.draw(statue, 385, 210, 0, 2)
+  --love.graphics.draw(secretpath, 400, 270)
+  love.graphics.draw(statue, 385, 198, 0, 2)
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
-  love.graphics.draw(playerImg, x, y,0,2)
   love.graphics.draw(currentDoor, 500, 500)
-love.graphics.draw(switch, 200, 200)
+love.graphics.draw(switch, 200, 200,0,2)
+  love.graphics.draw(playerImg, x, y,0,2)
+  
  
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', 0, 0, 64, 64)
 
    -- Print the player's HP in the top left corner
    love.graphics.print(hp, 0, 0)
-    end
+
   end
