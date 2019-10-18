@@ -3,7 +3,7 @@ function love.load()
  playerImg = love.graphics.newImage('assets-1/monster/animals/fire_bat.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  sound = love.audio.newSource('pathtoasset', 'static')
+  sound = love.audio.newSource('', 'static')
 
 
  x = 400
