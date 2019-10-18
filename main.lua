@@ -9,9 +9,7 @@ function love.load()
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.01)
 
-  spritesheet2 = love.graphics.newImage('hero/2.png')
-  grid2 = anim8.newGrid(16, 16, spritesheet2:getWidth(), spritesheet2:getHeight())
-  walk2 = anim8.newAnimation(grid2('1-6', 2), 0.01)
+  walk2 = anim8.newAnimation(grid('1-6', 2), 0.01)
 
   enemy_draw = false
   butterfly_alive = true
@@ -243,7 +241,7 @@ function love.draw()
 
   walk:draw(spritesheet, x, y, 0, 2.5)
  
-  walk2:draw(spritesheet2, x, y, 0, 2.5)
+  walk2:draw(spritesheet, x, y, 0, -2.5, 2.5)
 
   if butterfly_alive == true then
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
