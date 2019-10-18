@@ -6,6 +6,10 @@ function love.load()
   y = 270
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
+ex = 100
+ey = 100
+eimg = love.graphics.newImage('assets-1/monster/aquatic/lava_snake.png')
+
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_1.png')
   background = {
     {floorTile, floorTile, floorTile, floorTile},
@@ -19,7 +23,7 @@ playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
@@ -77,13 +81,17 @@ end
       if collision:cc(x - 6, y, 64, 64) == false then
         x = x - 6
       end
+
+      if ex < 500 then
+        ex = ex + 1
+
+        if x > ex then
+          ex = ex + 1
+        end
+      end
     end
 
 end
-
-
-
-
 
 function love.draw()
   map:draw()
@@ -91,4 +99,5 @@ function love.draw()
   collision:draw()
   love.graphics.print('Yo!', 0, 0)
   love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(eimg, ex, ey)
 end
