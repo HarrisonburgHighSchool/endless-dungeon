@@ -79,7 +79,7 @@ local Util = require 'core/util'
   
   map = Map:new(template)
 
-  sound = love.audio.newSource('jute-dh-steps.7z', 'static')
+ 
 
 playerImg = love.graphics.newImage('assets-1/player/base/formicid.png')
 x = 400
