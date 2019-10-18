@@ -12,14 +12,14 @@ img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   tile4 = love.graphics.newImage('assets-1/dungeon/traps/shadow.png')
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_female_5.png')
 
-  map = {
+  background = {
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile ,tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
     {tile, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
-    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
-    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
+`    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
+`    {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
     {tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile3},
     {tile4, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
     {tile4, tile2, tile2, tile2, tile2, tile2, tile2, tile2, tile, tile},
@@ -27,27 +27,40 @@ img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
     {tile4, tile4, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile4, tile, tile, tile3, tile3, tile3, tile, tile, tile, tile}
   }
+
+  collision = {
+    {tile, tile, tile, 'nil', 'nil', 'nil', tile, tile, tile, tile},
+    {tile, tile, tile ,'nil', 'nil', 'nil', tile, tile, tile, tile},
+    {tile, tile, tile, 'nil', 'nil', 'nil', tile, tile, tile, tile},
+    {tile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile, tile},
+    {tile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile, tile},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile3},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile3},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile3},
+    {tile4, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile, tile},
+    {tile4, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile, tile},
+    {tile, tile4, tile4, 'nil', 'nil', 'nil', tile, tile, tile, tile},
+    {tile4, tile4, tile, 'nil', 'nil', 'nil', tile, tile, tile, tile},
+    {tile4, tile, tile, tile3, tile3, tile3, tile, tile, tile, tile}
+  }
   bkgrnd = Map:new(map)
-  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-    background = {
-      {floor, floor, floor, floor},
-      {floor, floor, floor, floor},
-      {floor, floor, floor, floor},
-      {floor, floor, floor, floor},
-    }
-    wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
-      collision = {
-        {wall, wall, wall, wall},
-        {wall, 'nil', 'nil', wall},
-        {wall, 'nil', 'nil', wall},
-        {wall, 'nil', 'nil', wall},
-      }
+  -- floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
+  --   background = {
+  --     {tile2, tile2, tile2, tile2},
+  --     {tile2, tile2, tile2, tile2},
+  --     {tile2, tile2, tile2, tile2},
+  --     {tile2, tile2, tile2, tile2},
+  --   }
+  --   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  --     collision = {
+  --       {tile, tile, tile, tile},
+  --       {tile, 'nil', 'nil', tile},
+  --       {tile, 'nil', 'nil', tile},
+  --       {tile, 'nil', 'nil', tile},
+  --     }
       background = Map:new(background)
         collision = Map:new(collision)
 
-
-  background = Map:new(background)
-  collide = Map:new(walls)
 end
 
 
@@ -81,7 +94,7 @@ end
 
 
 function love.draw()
-  bkgrnd:draw()
+  --bkgrnd:draw()
   background:draw()
   collision:draw()
   love.graphics.print('Hello, world!', 0, 0)
