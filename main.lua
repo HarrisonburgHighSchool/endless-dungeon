@@ -5,14 +5,15 @@ function love.load()
   love.window.setMode(830, 640)
   x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
+  playerImg = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_runed_middle.png')
   ex = 100
   ey = 100
   dir = 'left'
-  enemyImg = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
+  --dir = 'right'
+  enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
   h = 64
   hp = 100
@@ -77,12 +78,12 @@ function love.update(dt)
     end
   end
   --Enemy movement stuff
-  ex = ex + 1
+  -- ex = ex + 1
 
   --Enemy movement stuff
-  if ex < 500 then
-    ex = ex + 1
-  end
+  -- if ex < 500 then
+  --   ex = ex - 1
+  -- end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
@@ -91,6 +92,17 @@ function love.update(dt)
 
   if dir == 'left' then
     ex = ex - 1
+  end
+  if dir == 'right' then
+    ex = ex + 1
+  end
+
+  --Changes left & right
+  if ex < 70 then
+    dir = 'right' 
+  end
+  if ex > 735 then
+    dir = 'left'
   end
 end
 
