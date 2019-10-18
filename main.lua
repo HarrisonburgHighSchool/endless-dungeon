@@ -1,10 +1,17 @@
 local Map = require 'core/map'
 function love.load()
 collide = false
+collide2 = false
+collide3 = false
+col = 1
   x = 385
   y = 60
   w = 38
-  h = 55
+  h = 54
+  x2 = 730
+  y2 = 68
+  w2 = 64
+  h2 = 64
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
 
@@ -74,7 +81,6 @@ end
 
 
 function love.update(dt)
-
   if love.keyboard.isDown('right') then 
     x = x + 2
   end
@@ -99,8 +105,15 @@ end
 if(y > 450)then 
   y = y - 2
 end
-if (collide == true) then  
-  hp = hp - 1
+if cc(x, y, w, h, x2, y2, w2, h2) == true then
+ collide2 = true
+ col = 2
+end
+if (collide == true and col == 1) then  
+  hp = hp - 0.1
+end
+if (collide3 == true and col == 2) then  
+  hp = hp - 0.1
 end
 if(hp < 0)then
   hp = 0
@@ -110,17 +123,29 @@ if map2:cc(x , y , w , h) == true then
 else
   collide = false
 end
+if map3:cc(x , y , w , h) == true then
+  collide3 = true
+else
+  collide3 = false
+end
 end
 
 
 
 
+
+
 function love.draw()
-  map2:draw()
   map:draw()
+  map2:draw()
+  if(collide2 == true)then 
+    map:draw()
+    map3:draw()
+  end
   love.graphics.draw(playerImg, x, y)
-  love.graphics.print(x, 1, 12)
-  love.graphics.print(y, 1, 24)
+  love.graphics.print(x, 1, 24)
+  love.graphics.print(y, 1, 34)
   love.graphics.print(tostring(collide), 0, 0)
+  love.graphics.print(tostring(collide2), 1, 12)
   love.graphics.print(hp, 30, 30)
 end
