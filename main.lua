@@ -2,7 +2,7 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 
 function love.load()
-  x = 370
+  x = 80
   y = 270
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
@@ -81,15 +81,16 @@ end
       if collision:cc(x - 6, y, 64, 64) == false then
         x = x - 6
       end
+    end
 
-      if ex < 500 then
-        ex = ex + 1
+      if ex > 500 then
+        ex = ex - 1
+      end
 
         if x > ex then
           ex = ex + 1
         end
-      end
-    end
+
 
 end
 
