@@ -4,7 +4,7 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 
 function love.load()
-  cam = gamera.new(0, 0, 2000, 800) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+  cam = gamera.new(0, 0, 2000, 800)
   x = 1
   y = 275
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
@@ -26,18 +26,18 @@ direction2= 'left'
 direction3= 'right2'
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, path, path, path, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, path, path, path, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, path, path, path, path, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
+               {floorTile, path, path, path, path, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, path, path, path, path, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, path, path, path, path, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, path, path, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, path, path, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, path, path, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -65,18 +65,18 @@ floor = {
 
 floor2 = {
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, 'nil', 'nil', floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
+               {floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -84,7 +84,7 @@ floor2 = {
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, wall, wall, wall, wall, door, wall, wall, wall, wall, wall, wall},
+               {wall, wall, wall, wall, wall, door, wall, wall, wall, wall, wall, wall, wall},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -111,7 +111,7 @@ function love.update(dt)
     z = z - 5
   end
 
-  if z==500 then
+  if z==400 then
     direction = 'up'
   end
   if z==50 then
@@ -145,23 +145,23 @@ function love.update(dt)
   end
 --Player Movement
   if love.keyboard.isDown('right')then
-    if floor2:cc(x + 3, y, 60, 60)==false then
-    x = x + 3
+    if floor2:cc(x + 4, y, 60, 60)==false then
+    x = x + 4
   end
 end
   if love.keyboard.isDown('left')then
-    if floor2:cc(x - 3, y, 60, 60)==false then
-    x = x - 3
+    if floor2:cc(x - 4, y, 60, 60)==false then
+    x = x - 4
   end
   end
   if love.keyboard.isDown('up')then
-    if floor2:cc(x, y - 3, 60, 60)==false then
-    y = y - 3
+    if floor2:cc(x, y - 4, 60, 60)==false then
+    y = y - 4
   end
   end
   if love.keyboard.isDown('down')then
-    if floor2:cc(x, y + 3, 60, 60)==false then
-    y = y + 3
+    if floor2:cc(x, y + 4, 60, 60)==false then
+    y = y + 4
   end
 
   end
@@ -195,9 +195,11 @@ end
 if hp > 0 then
     floor2:draw()
 end
+if hp > 0 then
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
+  end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
   end
