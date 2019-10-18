@@ -1,4 +1,8 @@
 love.graphics.setDefaultFilter('nearest', 'nearest')
+local Map = require 'core/map'
+localUtil = require 'core/util'
+function love.load()
+
 
 
 local Entity = require 'core/entity'
@@ -74,19 +78,19 @@ function love.load()
   }
 
   collision= {
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {wall2, wall2, wall2, nil, nil, nil, wall2, wall2, wall2, wall2},
-      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-      {nil, nil, nil, nil, nil, nil, nil, nil, nil, wall},
-      {wall2, wall2, wall2, nil, nil, nil, wall2, wall2, wall2, wall2},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, nil, nil, nil, wall2, nil, nil, nil},
-      {nil, nil, wall2, wall, wall, wall, wall2, nil, nil, nil}
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {wall2, wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, wall2},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {wall2, wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, wall2},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, wall, wall, wall, wall2, 'nil', 'nil', 'nil'}
   }
     collision = Map:new(collision)
     background = Map:new(background)
