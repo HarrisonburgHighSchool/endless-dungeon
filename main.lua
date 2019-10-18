@@ -91,16 +91,16 @@ function love.update(dt)
       mirrory = mirrory - 3
     end
   end
-  if cc(x, y, w, h, 216, 216, 84, 16) then  
+  if cc(x, y, w, h, 158, 216, 80, 16) then  
     hp = hp - 1
   end
   if cc(x, y, w, h, 344, 410, 16, 16) then  
     hp = hp - 1
   end
-  if cc(x, y, w, h, 64, 542, 166, 84) then
+  if cc(x, y, w, h, 60, 542, 99, 84) then
     hp = hp - 1
   end
-  if cc(x, y, w, h, 412, 152, 12, 72) then  
+  if cc(x, y, w, h, 348, 152, 12, 72) then  
     hp = hp - 1
   end
   cam:setPosition(x, y)
