@@ -7,7 +7,13 @@ local Util = require 'core/util'
  
   --player = Entity:new() -- Create the Entity object named player
 
- 
+  openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_middle.png')
+  closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_middle.png')
+  switch = love.graphics.newImage('assets-1/dungeon/vaults/disco_ball.png')
+  
+  currentDoor = closedDoor
+  currentDoor2 = closedDoor2
+
   -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
   collision = {
@@ -94,7 +100,10 @@ g = 150 -- The enemy's height is 50
 end
 
 function love.update(dt)
- if love.keyboard.isDown('right') then
+  if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
+    -- What goes here?
+  end
+  if love.keyboard.isDown('right') then
   if collision:cc(x + 9, y, 64, 64) == false then
  x = x + 9 
 end
@@ -145,7 +154,10 @@ function love.draw()
   map:draw()
   collision:draw()
   love.graphics.print('Octopod-cast!', 0, 0)
- 
+  
+  love.graphics.draw(currentDoor, 764, 92)
+  love.graphics.draw(switch, 200, 200)
+  
   -- Draw the enemy
   love.graphics.draw(PNG, z, g)
 
