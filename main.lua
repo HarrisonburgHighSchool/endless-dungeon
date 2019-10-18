@@ -11,6 +11,7 @@ function love.load()
   oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
   oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
+    oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
   w=60
   h=60
   hp=100
@@ -21,6 +22,7 @@ door = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
 z=100
 s=100
 q=700
+c=100
 direction = 'down'
 direction2= 'left'
 direction3= 'right2'
@@ -103,6 +105,7 @@ floor2 = {
 
 end
 function love.update(dt)
+
 --Enemies
   if direction == 'down' then
     z = z + 5
@@ -117,7 +120,7 @@ function love.update(dt)
   if z==50 then
     direction = 'down'
   end
-
+--
   if direction2 == 'left' then
     s = s + 5
   end
@@ -130,7 +133,7 @@ function love.update(dt)
   if s==100 then
     direction2 = 'left'
   end
-
+--
   if direction3 == 'left2' then
     q = q + 5
   end
@@ -143,15 +146,30 @@ function love.update(dt)
   if q==100 then
     direction3 = 'left2'
   end
+--
+  if direction4 == 'diagonal' then
+    c = c + 5
+  end
+  if direction4 == 'diagonal1' then
+    c = c - 5
+  end
+  if c==700 then
+    direction4 = 'diagonal1'
+  end
+  if c==100 then
+    direction4 = 'diagonal'
+  end
 --Player Movement
   if love.keyboard.isDown('right')then
     if floor2:cc(x + 4, y, 60, 60)==false then
     x = x + 4
   end
 end
+if x > 0 then
   if love.keyboard.isDown('left')then
     if floor2:cc(x - 4, y, 60, 60)==false then
     x = x - 4
+  end
   end
   end
   if love.keyboard.isDown('up')then
@@ -199,6 +217,7 @@ if hp > 0 then
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
+    love.graphics.draw(oct4, c)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
