@@ -3,7 +3,7 @@ local Util = require 'core/util'
 function love.load()
 
 
- 
+  torch = love.graphics.newImage('jackson-assets/torch2.png')
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
   sound = love.audio.newSource('jackson-assets/Cave 02.ogg', 'static')
@@ -17,9 +17,9 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   
-  sound:setVolume(0,35)
+  sound:setVolume(0.35)
   sound:setLooping(true)
-  sound:play()
+  love.audio.play( sound )
   --template = {
     --{wall, wall, wall, wall, wall, wall, wall, wall, doorc, wall},
     --{door, floor, floor, floor, wall, floor, floor, floor, floor, wall},
@@ -114,6 +114,7 @@ function love.draw()
 map2:draw()
   love.graphics.draw(fountain, 675, 100)
   love.graphics.draw(fountain2, 675, 500)
+  love.graphics.draw(torch, 208, 75)
   love.graphics.draw(playerImg, x, y)
    
 end
