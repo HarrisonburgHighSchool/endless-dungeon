@@ -24,13 +24,20 @@ end
 Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, Cpbalt, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, Cobalt, Cobalt, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, Cobalt, Cobalt, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, Cobalt, Cobalt, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            
              }
   
 
