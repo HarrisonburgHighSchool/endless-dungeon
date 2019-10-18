@@ -24,8 +24,8 @@ function love.load()
   ay = 895
   dir2 = 'right'
   Img5 = love.graphics.newImage('assets-1/monster/hello.png')
-  rx = 400
-  ry = 1000
+  rx = 600
+  ry = 900
   dir3 = 'right'
   f = 470
   g = 400
@@ -93,8 +93,18 @@ function love.update(dt)
 
   --end
 
-
-
+if dir3 == 'left' then
+  ry = ry + 1
+end
+if dir3 == 'right' then
+  ry = ry - 1
+end
+if ey < 950 then
+ dir3 = 'left'
+end
+if ey > 960 then
+  --dir3 = 'right'
+--end
 if dir2 == 'left' then
   ay = ay + 1
 end
