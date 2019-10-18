@@ -17,8 +17,18 @@ function love.load()
   ex = 520
   ey = 550
   dir = 'right'
-
-  --Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
+  e = 470
+  d = 400
+  Img4 = love.graphics.newImage('assets-1/monster/EvilKnight.png')
+  ax = 320
+  ay = 895
+  dir2 = 'right'
+  Img5 = love.graphics.newImage('assets-1/monster/hello.png')
+  rx = 400
+  ry = 1000
+  dir3 = 'right'
+  f = 470
+  g = 400
 
   crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
@@ -80,7 +90,24 @@ function love.update(dt)
 
   --if ey < 635 then
     --ey = ey + 1
+
   --end
+
+
+
+if dir2 == 'left' then
+  ay = ay + 1
+end
+if dir2 == 'right' then
+  ay = ay - 1
+end
+if ay < 800 then
+  dir2 = 'left'
+end
+if ay > 910 then
+  dir2 = 'right'
+end
+
 if dir == 'left'  then
   ey = ey + 3
 end
@@ -145,7 +172,8 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, x, y+ -18)
-  --love.graphics.draw(Img2, a, b)
+  love.graphics.draw(Img4, ax, ay)
   love.graphics.draw(Img3, ex, ey)
+  love.graphics.draw(Img5, rx, ry)
  end)
 end
