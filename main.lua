@@ -43,7 +43,7 @@ function love.load()
     {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
   }
 
-
+  cam = gamera.new(0, 0, 2000, 2000) 
   
   map = Map:new(background)
   mapc = Map:new(layer1)
@@ -51,10 +51,10 @@ function love.load()
   s = 5
   x = 64
   y = 64
-  w = 32
-  h = 32
+  w = 64
+  h = 64
   hp = 100
-  playerImg = love.graphics.newImage('assets-1/monster/aberration/unseen_horror.png')
+  playerImg = love.graphics.newImage('assets-1/player/base/octopode_4.png')
 end
 
 
@@ -78,18 +78,18 @@ function love.update(dt)
     end
     if love.keyboard.isDown('left') then
       if mapc:cc(x - s, y, w, h) == false then
-        x = x - sS
+        x = x - s
       end
     end
   
-    --cam:setPosition(400, 400)
+    cam:setPosition(400, 400)
   
 
 end
 
 
 function love.draw()
-  --cam:draw(function(l, t, w, h)
+  --cam:draw(function()
   map:draw()
   mapc:draw()
   walk:draw(spritesheet, 400, 300)
