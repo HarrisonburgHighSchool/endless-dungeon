@@ -4,6 +4,7 @@ local gamera = require 'core/gamera'
 function love.load()
   ex = 100
   ey = 100
+  dir = 'right'
   eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
 
 
@@ -108,10 +109,19 @@ end
 
 
 function love.update(dt)
-  
-  --if ex < 500 then
-    ex = ex + 1
-  --end
+  if ex < 10 then
+end
+  if ex > 200 then
+end
+  if dir == 'right' then
+  ex = ex + 3
+  end
+  if dir == 'left' then 
+    ex = ex - 3
+  end
+   if ex < 1950 then
+     ex = ex + 3
+   end
   if love.keyboard.isDown('up') then  
     if map2:cc(x, y - 5, 64, 64) == false then
       y = y - 5
