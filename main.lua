@@ -14,7 +14,7 @@ function love.load()
   x3 = 64
   y3 = 863
 
-  
+end
   
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
  w = 64   -- The player's width is 64
@@ -58,20 +58,20 @@ function love.load()
 
 map2 = { --a 20 x 20 map with the altar texture in the middle
                {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill, altar,altar,altar,altar,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
                {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
 
 
@@ -85,57 +85,37 @@ map2 = { --a 20 x 20 map with the altar texture in the middle
  map2 = Map:new(map2)           
 
 
-
-
-
-
-
+if love.keyboard.isDown('w') then
+  if map2:cc(x,y-5,64,64)== false then
+    y = y - 5
+  end
+end
 function love.update(dt)
-  -- Nothing update
+   --Nothing update
  -- Set up player movement
  if cc(x, y - 3, w, h, x3, y3, w3, h3) == false then
-if cc(x, y - 3, w, h, x2, y2, w2, h2) == false then
  if love.keyboard.isDown('w') then
   y = y - 3
   end
 end
 end
-
-
-
 if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
-  if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
   if love.keyboard.isDown('s') then
     y = y + 3
   end
 end
-end
-
 if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then 
   if love.keyboard.isDown('a') then
     x = x - 3
-  end  
+ end  
 end
 if cc(x + 3, y, w, h, x2, y2, w2, h2) == false then 
  if love.keyboard.isDown('d') then
   x = x + 3
   end
 end
-end
+
   cam:setPosition(x,y)
-
-  if not cc(x, y, w, h,  0, 0, 64, 899) then  
-    -- if true, decrease HP: 1
-    if love.keyboard.isDown('left') then
-      x = x - 3
-    end
-end
-
-if love.keyboard.isDown('up') then 
-  if cc(x,y,64,64,100,200,64,64)==false then
-      y = y - 1
-  end
-end
 
 function love.draw()
  -- player:draw()
@@ -150,5 +130,4 @@ function love.draw()
   --  love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
 end)
-end
 end
