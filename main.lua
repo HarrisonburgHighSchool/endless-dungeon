@@ -18,12 +18,13 @@ function love.load()
   h = 64
   hp = 100
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
+  cobalt2 = love.graphics.newImage('a/mesh&coin.png')
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal90CCW.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
   
   template = {
     {wall, wall, wall, wall, prtl, wall, wall, wall, wall, wall},
-    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+    {wall, cobalt2, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
@@ -50,7 +51,7 @@ function love.load()
   map = Map:new(template)
   
   collision = {
-    {wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, wall, wall},
+    {wall, wall, wall, wall, 'nil', wall, wall, wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', wall},
@@ -83,23 +84,24 @@ end
 
 function love.update(dt)
   
-  
+  if not collision:cc(x2 + 4, y2, w, h) then
   if love.keyboard.isDown('d') then   -- if the 'up' key is being pressed...
-    x = x + 4
-  end
-if not cc(x, y, w, h, 0, 0, 1280, 63) then  
-  if love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
-    y = y - 4
+    x2 = x2 + 4
   end
 end
-  if not cc(x, y, w, h, 0, 0, 63, 2000) then
+if not collision:cc(x2, y2 - 4, w, h) then  
+  if love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
+    y2 = y2 - 4
+  end
+end
+  if not collision:cc(x2 - 4, y2, w, h) then
     if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    x = x - 4
+    x2 = x2 - 4
   end
  end
- if not cc(x, y, w, h, 0, 0, 64, 200) then
+ if not collision:cc(x2, y2 + 4, w, h) then
   if love.keyboard.isDown('s') then 
-    y = y + 4
+    y2 = y2 + 4
   end
 end
 function love.keypressed(key)
@@ -107,7 +109,7 @@ function love.keypressed(key)
     sound:play()
   end
 end
-cam:setPosition(x,y)
+cam:setPosition(x2,y2)
 end
 
 
@@ -118,7 +120,7 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
  collision:draw()
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x2, y2)
   --love.graphics.rectangle('line', 0, 0, 64, 64)
   --love.graphics.print(hp, 0, 0)
   --end)
