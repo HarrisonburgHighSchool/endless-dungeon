@@ -146,10 +146,9 @@ function love.draw()
   floor:draw()
   walls:draw()
   mirror:draw()
-  love.graphics.draw(playerImg, x, y)
+  
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
-  walk:draw(spritesheet, x + 10, y + 10)
-  idle:draw(spritesheet, x + 10, y + 10)
+  idle:draw(spritesheet, x, y)
   end)
 end
