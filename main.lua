@@ -1,19 +1,10 @@
 local Map = require 'core/map'
 function love.load()
-enter = 1
 collide = false
   x = 385
   y = 60
   w = 38
   h = 55
-  x2 = 189
-  y2 = 190
-  w2 = 64
-  h2 = 64
-  x3 = 447
-  y3 = 62
-  w3 = 192
-  h3 = 192
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
 
@@ -27,28 +18,27 @@ collide = false
   wall3 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_5.png')
   wall_enter = love.graphics.newImage('assets-1/dungeon/wall/catacombs_12.png')
 
-
-  template = { 
-               {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
-               {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
-               {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
-               {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
-               {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
-               {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
-               {wall_enter, floor1, floor, floor, floor, floor, floor, floor, wall1},
-               {banner, floor, floor, floor, floor, floor, floor, floor, wall},
-               {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
-               {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
-               {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
-               {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
-               {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
-             }
+    template = { 
+      {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
+      {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
+      {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
+      {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
+      {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
+      {wall_enter, floor1, floor, floor, floor, floor, floor, floor, wall1},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall},
+      {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
+      {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
+      {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
+      {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
+      {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
+    }
     map = Map:new(template)
     
     template2 = { 
       {wall , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
       {'nil', 'nil', 'nil', 'nil', lava , 'nil', 'nil', 'nil', 'nil'},
-      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', lava , 'nil', 'nil'},
+      {'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil', 'nil'},
       {'nil', 'nil', lava , lava , lava , lava , 'nil', 'nil', 'nil'},
       {'nil', 'nil', 'nil', lava , lava , 'nil', 'nil', lava , 'nil'},
       {'nil', lava , 'nil', lava , 'nil', 'nil', lava , lava , 'nil'},
@@ -63,19 +53,19 @@ collide = false
     map2 = Map:new(template2)
 
     template3 = { 
-      {wall , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-      {'nil', 'nil', 'nil', 'nil', lava , 'nil', 'nil', 'nil', 'nil'},
-      {'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil', 'nil'},
-      {'nil', 'nil', lava , lava , lava , lava , 'nil', 'nil', 'nil'},
-      {'nil', 'nil', 'nil', lava , lava , 'nil', 'nil', lava , 'nil'},
-      {'nil', lava , 'nil', lava , lava , lava , lava , lava , 'nil'},
-      {'nil', 'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil'},
-      {'nil', 'nil', lava , lava , 'nil', lava , 'nil', 'nil', 'nil'},
-      {'nil', 'nil', 'nil', 'nil', 'nil', lava , lava , 'nil', 'nil'},
-      {'nil', lava , lava , lava , lava , lava , 'nil', 'nil', 'nil'},
-      {'nil', lava , 'nil', 'nil', 'nil', lava , 'nil', lava , 'nil'},
-      {'nil', 'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil'},
-      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+      {wall1 , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+      {'nil' , 'nil', 'nil', 'nil', lava , 'nil', 'nil', 'nil', 'nil'},
+      {'nil' , 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil', 'nil'},
+      {'nil' , 'nil', lava , lava , lava , lava , 'nil', 'nil', 'nil'},
+      {'nil' , 'nil', 'nil', lava , lava , 'nil', 'nil', lava , 'nil'},
+      {'nil' , lava , 'nil', lava , lava , lava , lava , lava , 'nil'},
+      {'nil' , 'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil'},
+      {'nil' , 'nil', lava , lava , 'nil', lava , 'nil', 'nil', 'nil'},
+      {'nil' , 'nil', 'nil', 'nil', 'nil', lava , lava , 'nil', 'nil'},
+      {'nil' , lava , lava , lava , lava , lava , 'nil', 'nil', 'nil'},
+      {'nil' , lava , 'nil', 'nil', 'nil', lava , 'nil', lava , 'nil'},
+      {'nil' , 'nil', 'nil', lava , 'nil', 'nil', 'nil', lava , 'nil'},
+      {'nil' , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
     }
     map3 = Map:new(template3)
 end
@@ -97,13 +87,13 @@ function love.update(dt)
   if love.keyboard.isDown('down') then 
      y = y + 2
   end
-if(x < 51)then 
+if(x < 67)then 
     x = x + 2
 end
-if(x > 715)then 
+if(x > 720)then 
   x = x - 2
 end
-if(y < 60)then 
+if(y < 67)then 
   y = y + 2
 end
 if(y > 450)then 
@@ -126,13 +116,11 @@ end
 
 
 function love.draw()
+  map2:draw()
   map:draw()
-  
-  map3:draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.print(x, 1, 12)
   love.graphics.print(y, 1, 24)
   love.graphics.print(tostring(collide), 0, 0)
   love.graphics.print(hp, 30, 30)
-
 end
