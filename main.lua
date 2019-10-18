@@ -51,32 +51,39 @@ function love.load()
 
 
               }
-map = Map:new(template)
-end
 
 
 
 
---               {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
-  --              {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-    --            {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
-      --          {floorTile2, , floorTile2},
-        --        {floorTile2, , floorTile2},
-          --      {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-            --    {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-              --  {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                --{floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-                --{floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-               -- {floorTile2, floorTile, floorTile,floorTile, floorTile, altar,altar,altar,altar,floorTile, floorTile, floorTile,floorTile, floorTile2},
-            --    {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-          --      {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-        --        {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-      --          {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-    --            {floorTile2, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile2},
-  --              {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
---
--- map = Map:new(template)           
---end
+
+map2 = { --a 20 x 20 map with the altar texture in the middle
+               {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill, altar,altar,altar,altar,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill, altar,altar,altar,altar,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill,nill, floorTile2},
+               {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
+
+
+
+
+
+
+
+              }
+ map = Map:new(template)
+ map2 = Map:new(map2)           
+
 
 
 
@@ -93,11 +100,15 @@ if cc(x, y - 3, w, h, x2, y2, w2, h2) == false then
   end
 end
 end
+
+
+
 if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
   if cc(x, y + 3, w, h, x2, y2, w2, h2) == false then
   if love.keyboard.isDown('s') then
     y = y + 3
   end
+end
 end
 
 if cc(x - 3, y, w, h, x2, y2, w2, h2) == false then 
@@ -110,52 +121,21 @@ if cc(x + 3, y, w, h, x2, y2, w2, h2) == false then
   x = x + 3
   end
 end
+end
   cam:setPosition(x,y)
 
- -- if not cc(x, y, w, h,  0, 0, 64, 899) then  
-    -- if true, decrease HP:
-  --  if love.keyboard.isDown('left') then
-  --    x = x - 3
-   -- end
+  if not cc(x, y, w, h,  0, 0, 64, 899) then  
+    -- if true, decrease HP: 1
+    if love.keyboard.isDown('left') then
+      x = x - 3
+    end
 end
-  
+
 if love.keyboard.isDown('up') then 
   if cc(x,y,64,64,100,200,64,64)==false then
       y = y - 1
   end
-
-  function love.update(dt)
-    if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 5, 64, 64) == false then
-        y = y - 5
-      end
-    end
-    if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 64, 64) == false then
-        y = y + 5
-      end
-    end
-    if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 64, 64) == false then
-        x = x + 5
-      end
-    end
-  end
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-  if love.keyboard.isDown('down') then
-    if map:cc(x, y+1, 64, 64) == false then
-      y = y + 1
-    end
-  end
 end
-
-end
-end
-
-
-
-
 
 function love.draw()
  -- player:draw()
@@ -170,5 +150,5 @@ function love.draw()
   --  love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
 end)
-
+end
 end
