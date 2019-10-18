@@ -5,15 +5,19 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 
 function love.load()
   love.window.setMode(768, 576)
-
+player = {
   x = 368
   y = 280
-  w = 32   -- The player's width is 64
-  h = 32   -- The player's height is 64
+  w = 64   -- The player's width is 64
+  h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
+  moving = false
+  flip = 2
+  playerImg = love.graphics.newImage('hero/sliced/idle-1.png')
   spritesheet = love.graphics.newImage('hero/Old hero.png')
+}
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
-  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+  player.walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
   rectFloor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
   rect1Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_1.png')
@@ -61,16 +65,19 @@ end
 
 function love.update(dt)
  
-  walk:update(dt)
-
+  player.walk:update(dt)
+  moving = false
 --x, y, w, h all represent the player's rectangle.
 --If the statement is true it will run the code, but if it is false it will skip it.
 if love.keyboard.isDown('w') and y > 18 then -- up
+  
   if collision:cc(x, y - 2 , 28, 32) == false then
     y = y - 2 -- speed
   end
 end 
 if love.keyboard.isDown('a') then -- left
+  moving = true
+  flip = -2
   if collision:cc(x - 2 , y, 28, 32) == false then  
     x = x - 2 -- speed
   end
@@ -81,6 +88,8 @@ if love.keyboard.isDown('s') then -- down
   end
 end
 if love.keyboard.isDown('d') then -- right
+  moving = true
+  flip = 2
   if collision:cc(x + 2  , y , 28, 32) == false then  
     x = x + 2 -- speed
   end
@@ -90,6 +99,12 @@ end
 function love.draw()
   map:draw()
   collision:draw()
-  walk:draw(spritesheet, x, y, 0, 2)
+  if moving == true then
+    player.walk:draw(spritesheet, x, y, 0, flip, 2, 9)
+  else
+    love.graphics.draw(playerImg, x, y, 0, 2, 2, 9)
+  end
+
 
 end
+
