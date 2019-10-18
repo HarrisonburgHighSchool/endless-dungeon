@@ -14,23 +14,25 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   wall =love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
-  altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
+      altar = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
+     ground = love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
 
-       {floorTile,floorTile,},
-                 {floorTile, altar, altar,altar, altar, altar,altar, altar, altar,floorTile, altar,},
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile,  altar, floorTile,floorTile,  altar, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile, altar, floorTile, floorTile,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
-                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile,floorTile, floorTile, altar,floorTile, },
+  {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+            {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground,  altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
+            {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
 
 }
 wall={
@@ -88,7 +90,7 @@ end
   end
  end
 
- if x < 150 and x > 50 and y > 450 and y < 550 then
+ if x < 950 and x > 750 and y > 450 and y < 550 then
    y = y - 200
    x = x + 400
 end
@@ -126,7 +128,7 @@ cam:draw(function(l, t, w, h)
   love.graphics.setColor(1, 0,0)
   love.graphics.rectangle('line', 100, 300, 64, 64)
   love.graphics.rectangle('line', 100, 400, 64, 64)
-  love.graphics.rectangle('line', 100, 500, 64, 64)
+  love.graphics.rectangle('line', 800, 500, 64, 64)
   love.graphics.setColor(1, 1, 1, 1)
 
 
