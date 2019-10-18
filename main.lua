@@ -5,11 +5,12 @@ local gamera = require 'core/gamera'
 local anim8 = require 'core/anim8'
 function love.load()
 
+  flip = 2.5
   spritesheet = love.graphics.newImage('hero/Old hero.png')
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
-  walk = anim8.newAnimation(grid('1-6', 2), 0.01)
+  walk = anim8.newAnimation(grid('1-6', 2), 0.08)
 
-  walk2 = anim8.newAnimation(grid('1-6', 2), 0.01)
+  idle = anim8.newAnimation(grid('1-4', 1), 0.08)
 
   enemy_draw = false
   butterfly_alive = true
@@ -53,8 +54,8 @@ function love.load()
   bottom_edge_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_south.png')
   northeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northeast.png')
   southwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southwest.png')
-  southeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southeast.png')
-  northwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northwest.png')
+  southeast_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_southeast.png') 
+  northwest_tile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_northwest.png') 
   butterfly = love.graphics.newImage('sams_butterfly.png')
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_sparkling_fountain.png')
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -93,15 +94,8 @@ end
 
 function love.update(dt)
   
-  if love.keyboard.isDown('up') or love.keyboard.isDown('right') then
-  walk:update(dt)
- 
-  end
-  if love.keyboard.isDown('down') or love.keyboard.isDown('left') then
-    walk2:update(dt)
-   
-    end
 
+    
   x_y = love.math.random(1,4)
 
   if x_y == 1 then
@@ -122,6 +116,12 @@ function love.update(dt)
     end 
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+    if flip == 2.5 then
+    flip = 2.5
+  else flip = -2.5
+  end
+ 
+    walk:update(dt)
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y - 5
     else if butterfly_alive == true then
@@ -134,6 +134,12 @@ end
   end
   
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
+    if flip == 2.5 then
+      flip = 2.5
+    else flip = -2.5
+    end
+    flip = 2.5
+    walk:update(dt)
     if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y + 5
     else if butterfly_alive == true then
@@ -146,6 +152,8 @@ end
       end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
+    flip = -2.5
+    walk:update(dt)
     if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x - 5
     else if butterfly_alive == true then
@@ -157,7 +165,9 @@ end
         end
       end
   
-  if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('right') then
+    flip = 2.5   -- if the 'up' key is being pressed...
+    walk:update(dt)
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x + 5
     else if butterfly_alive == true then
@@ -239,9 +249,10 @@ function love.draw()
   end
   love.graphics.print(hp, 0, 0)
 
-  walk:draw(spritesheet, x, y, 0, 2.5)
- 
-  walk2:draw(spritesheet, x, y, 0, -2.5, 2.5)
+  -- if love.keyboard.isDown('up') or love.keyboard.isDown('right') then
+  walk:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
+  -- end
+  
 
   if butterfly_alive == true then
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
@@ -249,6 +260,7 @@ function love.draw()
   if enemy_draw == true then
   love.graphics.draw(enemyImg, enemy_x, enemy_y) 
   end
+  
   end)
 end
 
