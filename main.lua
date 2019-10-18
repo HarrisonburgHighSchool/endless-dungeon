@@ -24,8 +24,9 @@ function love.load()
   h2 = 64  -- The mirror player's height is 64
   
   spritesheet = love.graphics.newImage('hero/Old hero.png')
-  grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
+  grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+  idle = anim8.newAnimation(grid('1-4', 1), 0.2)
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
@@ -136,6 +137,7 @@ function love.update(dt)
   if cc(x, y, w, h, 412, 152, 12, 72) then  
     hp = hp - 1
   end
+  idle:update(dt)
   cam:setPosition(x, y)
 end
 
@@ -144,9 +146,10 @@ function love.draw()
   floor:draw()
   walls:draw()
   mirror:draw()
-  walk:draw(spritesheet, 400, 300)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
+  walk:draw(spritesheet, x + 10, y + 10)
+  idle:draw(spritesheet, x + 10, y + 10)
   end)
 end
