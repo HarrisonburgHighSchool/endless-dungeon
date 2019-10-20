@@ -149,6 +149,6 @@ function love.draw()
   
   love.graphics.draw(mirrorPlayerImg, mirrorx, mirrory)
   love.graphics.print(hp, x, y)
-  idle:draw(spritesheet, x, y)
+  walk:draw(spritesheet, x, y)
   end)
 end
