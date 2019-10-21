@@ -12,19 +12,19 @@ function love.load()
   x = 100
   y = 250
   enemy = {
-  x2 = 460
-  y2 = 250
-  img = love.graphics.newImage('assets-1/monster/ironheart_preserver.png')
+   x2 = 460,
+   y2 = 250,
+   img = love.graphics.newImage('assets-1/monster/ironheart_preserver.png'),
  }
   knight1 = {
-  x2 = 500,
-  y2 = 300,
-  img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
+   x2 = 500,
+   y2 = 300,
+   img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png'),
  }
   knight2 = {
-  x2 = 500,
-  y2 = 200,
-  img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png')
+   x2 = 500,
+   y2 = 200,
+   img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png'),
  }
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
   g = 575
@@ -85,7 +85,13 @@ end
 
 
 function love.update(dt)
-  knight1.x = knight1.x + 1
+  enemy.x2 = enemy.x2 + 1
+  enemy.y2 = enemy.y2 + 1
+  knight1.x2 = knight1.x2 + 1
+  knight1.y2 = knight1.y2 + 1
+  knight2.x2 = knight2.x2 + 1
+  knight2.y2 = knight2.y2 + 1
+
   if x < 0 then
     x = 0
   end
@@ -98,17 +104,17 @@ function love.update(dt)
   if y > 960 then
     y = 960
   end
-  if x2 < 60 then
-    x2 = 60
+  if enemy.x2 < 60 then
+    enemy.x2 = 60
   end
-  if y2 < 60 then
-    y2 = 60
+  if enemy.y2 < 60 then
+    enemy.y2 = 60
   end
-  if x2 > 900 then
-    x2 = 900
+  if enemy.x2 > 900 then
+    enemy.x2 = 900
   end
-  if y2 > 800 then
-    y2 = 800
+  if enemy.y2 > 800 then
+    enemy.y2 = 800
   end
   if love.keyboard.isDown('right') then
     if collision:cc(x + 1, y, 36, 36) == false then
@@ -138,32 +144,32 @@ function love.update(dt)
   end
   -- Enemy movement stuff
 
-  if x > x2 then
-    x2 = x2 + 1
+  if x > enemy.x2 then
+    enemy.x2 = enemy.x2 + 1
   end
-  if x < x2 then
-    x2 = x2 - 1
+  if x < enemy.x2 then
+    enemy.x2 = enemy.x2 - 1
   end
-  if y > y2 then
-    y2 = y2 + 1
+  if y > enemy.y2 then
+    enemy.y2 = enemy.y2 + 1
   end
-  if y < y2 then
-    y2 = y2 - 1
+  if y < enemy.y2 then
+    enemy.y2 = enemy.y2 - 1
   end
 
 
 
   cam:setPosition(x, y)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   x2, y2, 36, 36) then
+  if cc(x, y, w, h,   enemy.x2, enemy.y2, 36, 36) then
     -- if true, decrease HP:
     hp = hp - 25
   end
-  if cc(x, y, w, h,   c, d, 36, 36) then
+  if cc(x, y, w, h,   knight1.x2, knight1.y2, 36, 36) then
     -- if true, decrease HP:
     hp = hp - 25
   end
-  if cc(x, y, w, h,   e, f, 36, 36) then
+  if cc(x, y, w, h,   knight2.x2, knight2.y2, 36, 36) then
     -- if true, decrease HP:
     hp = hp - 25
   end
@@ -180,9 +186,9 @@ function love.draw()
   love.graphics.draw(weapon, x, y)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(shield, x + 2, y)
-  love.graphics.draw(enemy, x2, y2)
-  love.graphics.draw(enemy2, c, d)
-  love.graphics.draw(enemy3, e, f)
+  love.graphics.draw(enemy.img, enemy.x2, enemy.y2)
+  love.graphics.draw(knight1.img, knight1.x2, knight1.y2)
+  love.graphics.draw(knight2.img, knight2.x2, knight2.y2)
   love.graphics.draw(questItem, g, b)
   if hp < 1 then
     love.graphics.print('GAME OVER', x + 50, y + -50)
@@ -205,9 +211,9 @@ function love.draw()
   end
   -- Print the player's HP in the top left corner
   love.graphics.print(hp, x, y + -18)
-  love.graphics.print(ehp1, x2, y2 + -18)
-  love.graphics.print(ehp2, c, d + -18)
-  love.graphics.print(ehp2, e, f + -18)
+  love.graphics.print(ehp1, enemy.x2, enemy.y2 + -18)
+  love.graphics.print(ehp2, knight1.x2, knight1.y2 + -18)
+  love.graphics.print(ehp2, knight2.x2, knight2.y2 + -18)
     --Draw everything here. For example:
   end)
 end
