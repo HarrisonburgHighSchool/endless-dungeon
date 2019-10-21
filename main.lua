@@ -43,12 +43,12 @@ function love.load()
     {w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1, w1},
   }
 
-  cam = gamera.new(0, 0, 2000, 2000) 
+  cam = gamera.new(0, 0, 768, 768) 
   
   map = Map:new(background)
   mapc = Map:new(layer1)
 
-  s = 5
+  s = 6
   x = 64
   y = 64
   w = 64
@@ -82,16 +82,19 @@ function love.update(dt)
       end
     end
   
-    cam:setPosition(400, 400)
+    cam:setPosition(x, y)
   
 
 end
 
 
 function love.draw()
-  --cam:draw(function()
-  map:draw()
-  mapc:draw()
-  walk:draw(spritesheet, 400, 300)
-  love.graphics.draw(playerImg, x, y)
+  cam:draw(function(l, t, w, h)
+    map:draw()
+    mapc:draw()
+    walk:draw(spritesheet, 400, 300)
+    love.graphics.draw(playerImg, x, y)
+
+
+  end)
 end
