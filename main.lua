@@ -7,7 +7,7 @@ col = 1
   x = 385
   y = 60
   w = 38
-  h = 54
+  h = 60
   x2 = 730
   y2 = 68
   w2 = 64
@@ -24,6 +24,7 @@ col = 1
   wall2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_7.png')
   wall3 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_5.png')
   wall_enter = love.graphics.newImage('assets-1/dungeon/wall/catacombs_12.png')
+  
 
     template = { 
       {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
@@ -75,6 +76,23 @@ col = 1
       {'nil' , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
     }
     map3 = Map:new(template3)
+
+    template = { 
+      {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
+      {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
+      {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
+      {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
+      {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
+      {wall, floor1, floor, floor, floor, floor, floor, floor, wall1},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall},
+      {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
+      {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
+      {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
+      {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
+      {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
+    }
+    map = Map:new(template)
 end
 
 
@@ -110,10 +128,10 @@ if cc(x, y, w, h, x2, y2, w2, h2) == true then
  col = 2
 end
 if (collide == true and col == 1) then  
-  hp = hp - 0.1
+  hp = hp - 1
 end
 if (collide3 == true and col == 2) then  
-  hp = hp - 0.1
+  hp = hp - 1
 end
 if(hp < 0)then
   hp = 0
