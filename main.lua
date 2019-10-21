@@ -19,7 +19,6 @@ function love.load()
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
     ground    = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
     obstacle  = love.graphics.newImage('assets-1/dungeon/altars/ashenzari.png')
-    entrance  = love.graphics.newImage('assets-1/dungeon/altars/vehumet_1.png')
     template = {
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
@@ -62,7 +61,7 @@ function love.load()
                   {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
                   {'nil', 'nil', 'nil', wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil'},
-                  {'nil', 'nil', 'nil', entrance, 'nil', 'nil', entrance, 'nil', 'nil', 'nil'}
+                  {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'}
                 }
                 background = Map:new(background)
                 collision = Map:new(collision)
@@ -103,8 +102,19 @@ end
       hp = hp - 1
     end
   end
-
-
+function enemy()
+ if love.keyboard.isDown('i')then
+   if collision:cc(ex, ey - 5, 64, 64) == false then
+      ey = ey - 10
+      cam:setPosition(ex, ey)
+  end
+end
+if love.keyboard.isDown('i')then
+  if collision:cc(ex, ey - 5, 64, 64) == false then
+     ey = ey - 10
+     cam:setPosition(ex, ey)
+ end
+end
 function player2()
   if love.keyboard.isDown('w')then
     if collision:cc(a, b - 10, 64, 64) == false then
@@ -148,5 +158,6 @@ function love.draw()
     love.graphics.print(hp, 0, 0)
     --background:draw()
     collision:draw()
+    love.graphics.draw(eimg, ex, ey)
   end)
 end
