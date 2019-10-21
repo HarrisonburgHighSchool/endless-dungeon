@@ -7,6 +7,9 @@ local anim8 = require 'core/anim8'
 function love.load()
   G = love.math.random(-3, 4);
   H = love.math.random(-3, 4);
+  xx = love.math.random(0, 1000);
+  yy = love.math.random(0, 1000);
+
   x = 400
   y = 300
   l = 0
@@ -39,6 +42,7 @@ function love.load()
 
   M = love.sound.newSoundData('assets-1/Music1.mp3')
   gate = love.graphics.newImage('assets-1/dungeon/gateways/enter_depths.png')
+  gate2 = love.graphics.newImage('assets-1/dungeon/gateways/abyssal_stair.png')
   c = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_9.png')
   c2 = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
   c3 = love.graphics.newImage('assets-1/dungeon/floor/green_bones_12.png')
@@ -217,10 +221,28 @@ if x < 650 and x > 550 and y < 650 and y > 550 then
   x = x - 600
 end
 
+if x < 250 and x > 150 and y < 950 and y > 850 then
+  y = y + 50
+  x = x + 700
+end
+
 if x < 850 and x > 750 and y < 50 and y > 0 then
   y = 550
   x = 380
 end
+
+if x < 850 and x > 750 and y < 0 and y > -50 then
+  y = 1500
+  x = 1500
+end
+
+
+
+if x < 150 and x > 50 and y < 440 and y > 340 then
+  y = yy
+  x = xx
+end
+
 
 end
 
@@ -247,17 +269,33 @@ function love.draw()
 
   love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(gate, 400, 570)
+  love.graphics.draw(gate2, 800, 950)
+
+
+
+
+  love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
+  love.graphics.print('True Road Is At          /!', 450, 250, 6, 3)
+
+  love.graphics.setColor(0, 1, 6, 6)
+
   love.graphics.rectangle('line', 200, 190, 63, 63)
+  love.graphics.rectangle('line', 100, 390, 63, 63)
+  love.graphics.rectangle('line', 200, 900, 63, 63)
   love.graphics.rectangle('line', 600, 600, 63, 63)
   love.graphics.rectangle('line', 800, 0, 63, 63)
 
-  love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
 
-  love.graphics.print('True Road Is At          /!', 450, 250, 6, 3)
+
+
+  love.graphics.setColor(1, 0, 0)
 
   love.graphics.rectangle('line', 385, 190, 64, 64)
   love.graphics.rectangle('line', 321, 190, 64, 64)
   love.graphics.rectangle('line', 449, 190, 64, 64)
+
+  love.graphics.setColor(1, 1, 1, 1)
+
 
   end)
 
@@ -266,7 +304,7 @@ end
 end
 
 function love.keypressed(key)
-  if key == 'escape' then
+  if x > 1100 and y > 1100 then
     love.exitModule()
   end
 end
