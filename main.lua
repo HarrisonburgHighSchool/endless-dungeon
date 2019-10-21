@@ -92,24 +92,28 @@ end
 
   end
  end
-if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
+
   if ex < x then
-   ex = ex + 2
-  end
-if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
+    if collision:cc(ex + 2, ey, 64, 64) == false then
+       ex = ex + 2
+     end
+   end
   if ex > x then
- ex = ex - 2
+    if collision:cc(ex - 2, ey, 64, 64) == false then
+       ex = ex - 2
+    end
   end
-
-if collision:cc(x+2,y,w,h, 0,0,64,64) == false then  if ey > y then
- ey = ey - 2
+  if ey > y then
+    if collision:cc(ey - 2, ex, 64, 64) == false then
+      ey = ey - 2
+    end
   end
-if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
   if ey < y then
- ey = ey + 2
-  end
+    if collision:cc(ey + 2, ex, 64, 64) == false then
+       ey = ey + 2
+   end
+ end
 end
-
 function love.draw()
 
 cam:draw(function(l, t, w, h)
