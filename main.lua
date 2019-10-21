@@ -8,16 +8,16 @@ function love.load()
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   altar     = love.graphics.newImage('assets-1/dungeon/altars/ru.png')
-  --door     = love.graphics.newImage('')
+  doors     = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 
   template = { --a 3 x 3 map with the altar texture in the middle
                {floorTile, floorTile, floorTile, 'nil'},
-               {floorTile, altar, floorTile, floorTile},
+               {floorTile, altar, floorTile, 'nil'},
                {floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, altar, floorTile},
-               {floorTile, floorTile, floorTile, floorTile},
-               {floorTile, 'nil', 'nil', floorTile},
+               {floorTile, floorTile, altar, 'nil'},
+               {floorTile, floorTile, floorTile, 'nil'},
+               {floorTile, doors, floorTile, 'nil'},
              }
   map = Map:new(template)
 end
