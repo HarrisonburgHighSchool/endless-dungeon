@@ -210,3 +210,9 @@ function love.draw()
     --Draw everything here. For example:
   end)
 end
+
+function love.keypressed(key)
+  if key == 'escape' then
+    love.exitModule()
+  end
+end
