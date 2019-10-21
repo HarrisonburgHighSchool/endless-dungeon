@@ -4,11 +4,10 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Util = require 'core/util'
 function love.load()
 
-
   -- Create the player variables
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 400
-  y = 300
+  x = 387
+  y = 45
   playerImg = love.graphics.newImage('assets-2/dc-mon/glowing_shapeshifter.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -18,7 +17,6 @@ function love.load()
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
   jelly = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
   jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
-  mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
@@ -33,17 +31,17 @@ currentDoor = closedDoor
 
   mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,mud,mud,mud,mud,mud,marble,marble,mud,mud},
-    {mud,mud,mud,grass,grass,grass,grass,marble,mud,mud},
-    {mud,mud,grass,marble,water,water,marble,marble,mud,mud,mud},
-    {mud,mud,grass,marble,marble,marble,marble,marble,mud,mud,mud},
-    {mud,mud,grass,marble,water,water,marble,marble,mud,mud,mud},
-    {mud,mud,mud,grass,grass,grass,grass,marble,mud,mud},
-    {mud,mud,mud,mud,mud,mud,marble,marble,mud,mud},
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
+    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
+    {mud,grass,marble,marble,marble,marble,marble,marble,grass},
+    {mud,marble,marble,grass,grass,grass,grass,marble,grass,grass},
+    {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
+    {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
+    {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
+    {mud,marble,marble,grass,grass,grass,grass,marble,grass,grass},
+    {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
+    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
+    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
     
   }
@@ -110,7 +108,7 @@ function love.draw()
   --map:draw()
 
   --love.graphics.draw(secretpath, 400, 270)
-  love.graphics.draw(statue, 385, 198, 0, 2)
+  love.graphics.draw(statue, 385, 175, 0, 2)
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
   love.graphics.draw(currentDoor, 500, 500)
