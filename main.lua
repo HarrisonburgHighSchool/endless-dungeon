@@ -44,6 +44,7 @@ wall={
              {wall,'nil','nil',wall},
              {wall},
              {wall},
+             {wall},
              {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
 
             }
@@ -91,16 +92,19 @@ end
 
   end
  end
-
+if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
   if ex < x then
    ex = ex + 2
   end
+if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
   if ex > x then
  ex = ex - 2
   end
-  if ey > y then
+
+if collision:cc(x+2,y,w,h, 0,0,64,64) == false then  if ey > y then
  ey = ey - 2
   end
+if collision:cc(x+2,y,w,h, 0,0,64,64) == false then
   if ey < y then
  ey = ey + 2
   end
