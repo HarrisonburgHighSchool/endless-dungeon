@@ -10,7 +10,9 @@ function love.load()
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.08)
 
-  idle = anim8.newAnimation(grid('1-4', 1), 0.08)
+  idle = anim8.newAnimation(grid('1-4', 1), 0.15)
+
+  anim = idle
 
   enemy_draw = false
   butterfly_alive = true
@@ -41,10 +43,24 @@ function love.load()
   enemy_y = 400
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
+
+  
+  
+    floorTile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png')
+  left_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
+  right_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
+  top_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
+  bottom_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
+  northeast_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png')
+  southwest_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png')
+  southeast_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png') 
+  northwest_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png') 
+
   
   playerImg = love.graphics.newImage('hero/sliced/idle-3.png')
   enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   map = Map:new(30,30) -- Create a 5 x 5 map object named "map"
+  map2 = Map:new(30,30) -- Create a 5 x 5 map object named "map"
   
   health1 =  love.graphics.newImage('health1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_full.png')
@@ -77,13 +93,32 @@ function love.load()
  
 
 }
+template2 = { --a 3 x 3 map with the altar texture in the middle
+
+{northwest_tile2, left_edge_tile2,left_edge_tile2, left_edge_tile2,left_edge_tile2, left_edge_tile2,southwest_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, },
+{top_edge_tile2, floorTile2,floorTile2, floorTile2,floorTile2, floorTile2,  bottom_edge_tile2, }, 
+{northeast_tile2, right_edge_tile2,right_edge_tile2, right_edge_tile2,right_edge_tile2, right_edge_tile2, southeast_tile2, }, 
+
+
+}
+
   map = Map:new(template, 64)
   
-            
+  map2 = Map:new(template2, 64)    
   
-  
-end
 
+end
 
 function attack()
   butterfly_alive = false
@@ -93,8 +128,12 @@ end
 
 
 function love.update(dt)
-  
 
+
+
+  
+  anim:update(dt)
+  anim = idle
     
   x_y = love.math.random(1,4)
 
@@ -120,8 +159,8 @@ function love.update(dt)
     flip = 2.5
   else flip = -2.5
   end
- 
-    walk:update(dt)
+    anim = walk
+    --walk:update(dt)
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y - 5
     else if butterfly_alive == true then
@@ -139,7 +178,8 @@ end
     else flip = -2.5
     end
     flip = 2.5
-    walk:update(dt)
+    anim = walk
+    --walk:update(dt)
     if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y + 5
     else if butterfly_alive == true then
@@ -153,7 +193,8 @@ end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
     flip = -2.5
-    walk:update(dt)
+    anim = walk
+    --walk:update(dt)
     if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x - 5
     else if butterfly_alive == true then
@@ -167,7 +208,8 @@ end
   
   if love.keyboard.isDown('right') then
     flip = 2.5   -- if the 'up' key is being pressed...
-    walk:update(dt)
+    anim = walk
+    --walk:update(dt)
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x + 5
     else if butterfly_alive == true then
@@ -244,15 +286,20 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
+  if butterfly_alive == false then
+    
+    map2:draw()
+  end
   if butterfly_alive == true then
   love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
   end
   love.graphics.print(hp, 0, 0)
 
   -- if love.keyboard.isDown('up') or love.keyboard.isDown('right') then
-  walk:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
+  anim:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
   -- end
   
+  --idle:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
 
   if butterfly_alive == true then
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
