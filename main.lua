@@ -15,13 +15,14 @@ function love.load()
   wall =love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
       altar = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
-     ground = love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
+     ground = love.graphics.newImage('assets-1/dungeon/floor/mesh_1.png')
+      flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
 
   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
             {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
-            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+            {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile,},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
             {floorTile, altar, ground, ground, ground, ground, ground, ground,  altar, floorTile},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
@@ -95,7 +96,7 @@ end
    x = x + 400
 end
 
-if x < 150 and x > 50 and y > 250 and y < 350 then
+if x < 120 and x > 30 and y > 30 and y < 120 then
   y = y + 200
   x = x + 300
 
@@ -106,10 +107,18 @@ end
     y = y + 200
     x = x + 300
 end
-if ex < 500 then
-   ex = ex + 1
+if ex < x then
+   ex = ex + 3
  end
-
+ if ex > x then
+    ex = ex - 3
+  end
+  if ey > y then
+     ey = ey - 3
+   end
+   if ey < y then
+      ey = ey + 3
+    end
 
 
 end
@@ -125,8 +134,9 @@ cam:draw(function(l, t, w, h)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(eimg, ex, ey)
 
-  love.graphics.setColor(1, 0,0)
-  love.graphics.rectangle('line', 100, 300, 64, 64)
+--box
+  love.graphics.setColor(0, 0,1)
+  love.graphics.rectangle('line', 67, 67, 64, 64)
   love.graphics.rectangle('line', 100, 400, 64, 64)
   love.graphics.rectangle('line', 800, 500, 64, 64)
   love.graphics.setColor(1, 1, 1, 1)
