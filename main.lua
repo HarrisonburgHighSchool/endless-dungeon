@@ -22,6 +22,7 @@ function love.load()
   map = Map:new(template)
 end
 
+
 function love.update(dt)
   if love.keyboard.isDown('right') then
     x = x + 1
@@ -36,6 +37,7 @@ function love.update(dt)
     y = y + 2
   end
 end
+
 
 function love.draw()
   map:draw()
