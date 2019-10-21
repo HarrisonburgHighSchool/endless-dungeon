@@ -25,37 +25,24 @@ function love.update(dt)
   local Map = require 'core/map'
   local Util = require 'core/util'
   end
- if love.keyboard.isDown('left')then
-   if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
-     x = x + 1
+ if love.keyboard.isDown('up') then
+   if cc(x, y - 1, 64, 64) == false then
+     y = y - 1
    end
-   if love.keyboard.isDown('right')then
-     if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
-       x = x + 1
-     end
-     if love.keyboard.isDown('up')then
-       if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
+   if love.keyboard.isDown('down') then
+     if cc(x, y + 1, 64, 64) == false then
+       y = y + 1
+   end
+     if love.keyboard.isDown('right') then
+       if cc(x, y + 1,64, 64) == false then
          x = x + 1
-      end
-      if love.keyboard.isDown('down')then
-        if cc(x + 1, y, 64, 64, 50, 50, 64, 64) == false then
-          x = x + 1
+   end
+      if love.keyboard.isDown('left') then
+        if cc(x, y -1 ,64, 64) == false then
+          x = x - 1
         end
-end
-
-   if love.keyboard.isDown("right") then
-       x = x - 1
-
-   if love.keyboard.isDown("left") then
-       x = x + 1
-
-   if love.keyboard.isDown("up") then
-       x = x + 1
-
-   if love.keyboard.isDown("down") then
-       x = x + 1
- end
-
+      end
+    end
 function love.draw()
   map:draw()
   love.graphics.print('play here !', 0, 0)
