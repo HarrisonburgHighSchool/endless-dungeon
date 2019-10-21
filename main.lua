@@ -119,9 +119,9 @@ end
   if dir == 'left' then 
     ex = ex - 3
   end
-   if ex < 1950 then
-     ex = ex + 3
-   end
+  -- if ex < 1950 then
+  --   ex = ex + 3
+  -- end
   if love.keyboard.isDown('up') then  
     if map2:cc(x, y - 5, 64, 64) == false then
       y = y - 5
