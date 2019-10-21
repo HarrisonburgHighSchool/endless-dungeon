@@ -80,6 +80,8 @@ function love.draw()
   love.graphics.print(hp, 0, 0) 
 
   love.graphics.draw(eimg, ex, ey)
+
+  
   
 
   
