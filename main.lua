@@ -24,7 +24,8 @@ col = 1
   wall2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_7.png')
   wall3 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_5.png')
   wall_enter = love.graphics.newImage('assets-1/dungeon/wall/catacombs_12.png')
-  wall_end = love.graphics.newImage('assets-1/dungeon/floor/white_tile.png')
+  wall_end = love.graphics.newImage('assets-1/dungeon/floor/white_marble_0.png')
+  wall_end2 = love.graphics.newImage('assets-1/dungeon/floor/limestone_2.png')
 
     template = { 
       {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
@@ -77,22 +78,24 @@ col = 1
     }
     map3 = Map:new(template3)
 
-    template4 = { 
-      {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
-      {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
-      {wall, wall_end, floor, floor, floor, floor, floor, floor1, wall},
-      {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
-      {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
-      {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
-      {wall, floor1, floor, floor, floor, floor, floor, floor, wall1},
-      {banner, floor, floor, floor, floor, floor, floor, floor, wall},
-      {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
-      {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
-      {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
-      {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
+    
+
+    template5 = { 
+      {wall, floor, wall_end, wall_end, wall_end, wall_end, wall_end, floor1, wall},
+      {wall3, floor, wall_end, floor, floor, floor, wall_end, floor, wall1},
+      {wall3, floor, floor, wall_end, wall_end, wall_end, floor1, floor, wall1},
+      {wall1, floor, wall_end2, wall_end2, wall_end2, wall_end2, wall_end2, floor, wall},
+      {banner, floor, wall_end2, floor, wall_end2, floor, wall_end2, floor, wall3},
+      {wall, floor1, wall_end2, floor, floor, floor, wall_end2, floor, wall1},
+      {banner, floor, wall_end, wall_end, wall_end, wall_end, wall_end, floor, wall},
+      {wall, floor, wall_end, floor, wall_end, floor, floor, floor, wall1},
+      {wall1, floor, wall_end, wall_end, wall_end, wall_end, wall_end, floor, wall2},
+      {wall3, floor1, wall_end2, wall_end2, wall_end2, wall_end2, wall_end2, floor1, wall1},
+      {wall3, floor1, wall_end2, floor, floor, floor, wall_end2, floor1, wall1},
+      {wall, floor1, floor, wall_end2, wall_end2, wall_end2, floor1, floor, wall3},
       {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
     }
-    map4 = Map:new(template4)
+    map5 = Map:new(template5)
 end
 
 
@@ -154,17 +157,17 @@ end
 
 
 function love.draw()
-  map4:draw()
-  --map:draw()
-  --map2:draw()
+  map:draw()
+  map2:draw()
   if(collide2 == true)then 
-   -- map:draw()
-   -- map3:draw()
+    map:draw()
+    map3:draw()
   end
-  love.graphics.draw(playerImg, x, y)
-  love.graphics.print(x, 1, 24)
-  love.graphics.print(y, 1, 34)
-  love.graphics.print(tostring(collide), 0, 0)
-  love.graphics.print(tostring(collide2), 1, 12)
-  love.graphics.print(hp, 30, 30)
+  if(hp == 0)then
+    map4:draw()
+  end
+  if(hp > 0)then
+    love.graphics.draw(playerImg, x, y)
+  end
+  love.graphics.print(hp, 10, 10)
 end
