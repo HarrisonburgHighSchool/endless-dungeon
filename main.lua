@@ -14,10 +14,22 @@ function love.load()
 
 map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
-ex = 100
-ey = 100
-eimg = love.graphics.newImage('assets-1/player/body/PixelArt.png')
+indian = {
 
+  x = 100,
+  y = 100,
+  img = love.graphics.newImage('assets-1/player/body/PixelArt.png')
+
+  }
+
+indian2 = {
+
+  x = 100,
+  y = 100,
+  img = love.graphics.newImage('assets-1/player/body/PixelArt.png')
+
+
+}
 
 
   cam = gamera.new(0, 0, 2000, 2000)
@@ -116,6 +128,7 @@ eimg = love.graphics.newImage('assets-1/player/body/PixelArt.png')
 
   map = Map:new(template)
   collide = Map:new(tree, 32)
+
 x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
@@ -162,25 +175,42 @@ function love.update(dt)
         y = y + 1
       end
     end
-    if x > ex then
-        ex = ex + 1
+    if x > indian.x then
+        indian.x = indian.x + 1
       end
 
-    if x < ex then
-       ex = ex - 1
+    if x < indian.x then
+       indian.x = indian.x - 1
      end
 
-    if y < ey then
-      ey = ey - 1
+    if y < indian.y then
+      indian.y = indian.y - 1
     end
 
-    if y > ey then
-      ey = ey + 1
+    if y > indian.y then
+      indian.y = indian.y + 1
     end
 
+    if x > indian2.x then
+        indian2.x = indian2.x + 1
+      end
 
---ex = ex + 1
+    if x < indian2.x then
+       indian2.x = indian2.x - 1
+     end
 
+    if y < indian2.y then
+      indian2.y = indian2.y - 1
+    end
+
+    if y > indian2.y then
+      indian2.y = indian2.y + 1
+    end
+
+indian.x = indian.x + 1
+indian.y = indian.y + 1
+indian2.x = indian.x + 1
+indian2.y = indian.y + 1
   end
 
 
@@ -190,12 +220,11 @@ function love.draw()
   --map:draw()
 collide:draw()
   love.graphics.draw(playerImg, x, y, 0, 0.06)
-  love.graphics.draw(eimg, ex, ey, 0, 0.12)
 
 
   love.graphics.rectangle('line', x, y, 16, 16)
-
-
+  love.graphics.draw(indian.img, indian.x, indian.y)
+  love.graphics.draw(indian2.img, indian2.x, indian2.y)
 
 
   end)
