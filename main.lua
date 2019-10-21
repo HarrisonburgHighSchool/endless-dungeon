@@ -123,9 +123,3 @@ cam:draw(function(l, t, w, h)
 
 love.graphics.print(hp, 0, 0)
 end
-
-function love.keypressed(key)
-  if key == 'escape' then
-    love.exitModule()
-  end
-end
