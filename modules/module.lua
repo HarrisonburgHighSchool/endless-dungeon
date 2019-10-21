@@ -187,3 +187,9 @@ function love.draw()
   love.graphics.draw(Img5, rx, ry)
  end)
 end
+
+function love.keypressed(key)
+  if key == 'escape' then
+    love.exitModule()
+  end
+end
