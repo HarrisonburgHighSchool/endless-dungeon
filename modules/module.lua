@@ -201,3 +201,9 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
 end
 end
+
+function love.keypressed(key)
+  if key == 'escape' then
+    love.exitModule()
+  end
+end
