@@ -1,73 +1,28 @@
-love.graphics.setDefaultFilter('nearest', 'nearest')
-local Map = require 'core/map'
-local Util = require 'core/util'
+require 'core/require'
 
-function love.load()
+modules = love.filesystem.getDirectoryItems('modules')
 
-
-  -- Create the player variables
-  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 400
-  y = 300
-
-  -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-  background = {
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-    {floor, floor, floor, floor},
-  }
-
-  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  walls = {
-    {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-  }
-
-  background = Map:new(background)
-  collide = Map:new(walls)
+for i = 1, #modules do
+  modules[i] = string.gsub(modules[i], ".lua", "")
 end
 
+local n = love.math.random(1, #modules)
+require('modules/'..modules[n])
+table.remove(modules, n)
 
-
-
-function love.update(dt)
-
-  function love.update(dt)
-    if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 5, 64, 64) == false then
-        y = y - 5
-      end
-    end
-    if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 64, 64) == false then
-        y = y + 5
-      end
-    end
-    if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 64, 64) == false then
-        x = x + 5
-      end
-    end
-    if love.keyboard.isDown('left') then
-      if collide:cc(x - 5, y , 64, 64) == false then
-        x = x - 5
-      end
-    end
+function love.exitModule()
+  love.load = nil
+  love.update = nil
+  love.draw = nil
+  love.keypressed = nil
+  if #modules >=1 then
+    local index = love.math.random(1, #modules)
+    local m = 'modules/'..modules[index]
+    require(m)
+    table.remove(modules, index)
+    love.load()
+  else
+    love.event.quit()
   end
-
-
 end
 
-
-
-
-
-function love.draw()
-  background:draw()
-  collide:draw()
-  love.graphics.draw(img, x, y)
-end
