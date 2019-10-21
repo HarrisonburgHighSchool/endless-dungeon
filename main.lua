@@ -9,11 +9,12 @@ function love.load()
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_runed_middle.png')
+  block = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   ex = 100
   ey = 100
   dir = 'left'
   --dir = 'right'
-  enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
+  enemyImg = love.graphics.newImage('assets-2/spells/fire/fireball.png')
   w = 64
   h = 64
   hp = 100
@@ -23,13 +24,13 @@ function love.load()
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, block, cobalt, cobalt, block, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, block, cobalt, cobalt, block, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {door, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-   {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, block, cobalt, cobalt, block, cobalt, cobalt, wall},
+   {wall, cobalt, cobalt, block, cobalt, cobalt, block, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
