@@ -24,7 +24,7 @@ col = 1
   wall2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_7.png')
   wall3 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_5.png')
   wall_enter = love.graphics.newImage('assets-1/dungeon/wall/catacombs_12.png')
-  
+  wall_end = love.graphics.newImage('assets-1/dungeon/floor/white_tile.png')
 
     template = { 
       {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
@@ -77,10 +77,10 @@ col = 1
     }
     map3 = Map:new(template3)
 
-    template = { 
+    template4 = { 
       {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
       {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
-      {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
+      {wall, wall_end, floor, floor, floor, floor, floor, floor1, wall},
       {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
       {wall1, floor, floor, floor, floor, floor, floor, floor, wall},
       {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
@@ -92,7 +92,7 @@ col = 1
       {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
       {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
     }
-    map = Map:new(template)
+    map4 = Map:new(template4)
 end
 
 
@@ -154,11 +154,12 @@ end
 
 
 function love.draw()
-  map:draw()
-  map2:draw()
+  map4:draw()
+  --map:draw()
+  --map2:draw()
   if(collide2 == true)then 
-    map:draw()
-    map3:draw()
+   -- map:draw()
+   -- map3:draw()
   end
   love.graphics.draw(playerImg, x, y)
   love.graphics.print(x, 1, 24)
