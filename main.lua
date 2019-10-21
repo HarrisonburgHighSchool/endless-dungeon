@@ -1,8 +1,8 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
 function love.load()
-
-
+  key = love.graphics.newImage('jackson-assets/key.png')
+  --wall2 = love.graphics.newImage('assets-1/dungeon/wall/orc_11.png')
   torch = love.graphics.newImage('jackson-assets/torch2.png')
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
@@ -12,6 +12,7 @@ function love.load()
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_open_door.png')
   doorc = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
+  furnace = love.graphics.newImage('assets-2/dc-dngn/wall/stone_gray0.png')
   x = 65
   y = 70
   w = 64   -- The player's width is 64
@@ -59,7 +60,7 @@ collision = {
     {wall, nil, wall, nil, nil, nil, nil, nil, nil, wall},
     {wall, nil, wall, wall, nil, wall, nil, wall, nil, wall},
     {wall, nil, nil, nil, nil, wall, wall, wall, wall, wall},
-    {wall, nil, wall, nil, nil, nil, nil, nil, nil, wall},
+    {wall, nil, wall, nil, nil, nil, nil, nil, furnace, wall},
     {wall, wall, wall, nil, wall, nil, wall, wall, wall, wall},
     {wall, nil, nil, nil, wall, nil, nil, nil, nil, wall},
     {wall, nil, wall, wall, wall, nil, wall, wall, nil, wall},
@@ -81,7 +82,7 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if map2:cc(x, y - 15, w, h) == false then
+      if map2:cc(x, y - 1, w, h) == false then
       
       y = y - 1
     end
@@ -116,5 +117,5 @@ map2:draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(playerImg, x, y)
-   
+  love.graphics.draw(key, 280, 100)
 end
