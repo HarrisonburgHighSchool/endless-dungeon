@@ -14,6 +14,9 @@ function love.load()
 
 map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
+ex = 100
+ey = 100
+eimg = love.graphics.newImage('assets-1/player/body/PixelArt.png')
 
 
 
@@ -26,26 +29,32 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
     tree = {
-      {tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree,},
-      {tree,  tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, },
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, ,},
-      {tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree, tree,},
+      {tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, tree, tree, },
+      {'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree,  },
+      {'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree,  },
+      {'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree, tree, 'nil', tree,  },
+      {tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',  },
+      {tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree,  },
+      {tree, tree, 'nil', tree, tree, 'nil', 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree,  },
+      {tree, tree, 'nil', tree, tree, 'nil', 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree,  },
+      {tree, tree, 'nil', 'nil', tree, 'nil', 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree,  },
+      {'nil', 'nil', 'nil', 'nil', tree, 'nil', 'nil', tree, 'nil', 'nil', 'nil', tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree,  },
+      {tree, tree, 'nil', 'nil', tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree,  },
+      {tree, tree, 'nil', 'nil', tree, 'nil', tree, tree, 'nil', 'nil', 'nil', tree, tree, tree, tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree, tree,  },
+      {tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', 'nil', 'nil', tree, tree, tree, tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree, tree,  },
+      {'nil', 'nil', 'nil', tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, tree, tree, tree,  },
+      {tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, tree, tree, tree, 'nil', tree, tree, tree, tree,  },
+      {tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, tree, 'nil', tree, tree, tree, tree, tree, tree, 'nil', 'nil', 'nil', tree, tree,  },
+      {tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', tree, tree, tree, 'nil', tree, tree, tree, tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree,  },
+      {tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', tree, tree, 'nil', tree, tree, tree, tree, tree, tree, tree, tree, 'nil', tree, tree, tree, tree,  },
+      {tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, 'nil', tree, tree, tree, tree, tree, tree, tree, tree, tree, 'nil', tree, tree, tree, tree,  },
+      {tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, tree,  },
+      {'nil', 'nil', tree, tree, tree, 'nil', 'nil', tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', tree,  },
+      {'nil', 'nil', tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', tree,  },
+      {'nil', 'nil', tree, tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, 'nil', 'nil', 'nil', tree, 'nil', tree,  },
+      {'nil', 'nil', 'nil', tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', tree, 'nil', tree,  },
+      {'nil', 'nil', 'nil', tree, tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', tree, 'nil', tree,  },
+
 
 
 
@@ -106,10 +115,10 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
 
   map = Map:new(template)
-  collide = Map:new(tree)
+  collide = Map:new(tree, 32)
 x = 400
   y = 300
-  playerImg = love.graphics.newImage('assets-1/player/base/naga_blue_male.png')
+  playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
 
 
 
@@ -119,30 +128,13 @@ x = 400
 cam:setPosition(400, 400)
 
 
-  -- Create the player variables
+
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   x = 400
   y = 300
 
-  -- Create the background map
---  floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-  --background = {
-    --{floor, floor, floor, floor},
-    --{floor, floor, floor, floor},
-    --{floor, floor, floor, floor},
-    --{floor, floor, floor, floor},
-  --}
 
-  --wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  --walls = {
-    --{wall, wall, wall, wall},
-    --{wall, 'nil', 'nil', wall},
-    --{wall, 'nil', 'nil', wall},
-    --{wall, 'nil', 'nil', wall},
-  --}
 
-  background = Map:new(background)
-  collide = Map:new(walls)
 end
 
 
@@ -153,37 +145,43 @@ function love.update(dt)
   mapc = map:cc(x, y, 64, 64)
   debug = tostring(mapc)
   if love.keyboard.isDown('right') then
-    if collide:cc(x + 3, y, 64, 64, 100, 200, 64, 64) == false then
-      x = x + 3
+    if collide:cc(x + 1, y, 16, 16) == false then
+      x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if collide:cc(x - 3, y, 64, 64, 100, 200, 64, 64) == false then
-      x = x - 3
+    if collide:cc(x - 1, y, 16, 16) == false then
+      x = x - 1
    end
   end
   if love.keyboard.isDown('up') then
-    if collide:cc(x, y - 3, 64, 64, 100, 200, 64, 64) == false then
-      y = y - 3
+    if collide:cc(x, y - 1, 16, 16) == false then
+      y = y - 1
+    end
   end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 64, 64) == false then
-        y = y + 5
+      if collide:cc(x, y + 1, 16, 16) == false then
+        y = y + 1
       end
     end
-    if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 64, 64) == false then
-        x = x + 5
+    if x > ex then
+        ex = ex + 1
       end
+
+    if x < ex then
+       ex = ex - 1
+     end
+
+    if y < ey then
+      ey = ey - 1
     end
-    if love.keyboard.isDown('left') then
-      if collide:cc(x - 5, y , 64, 64) == false then
-        x = x - 5
-      end
+
+    if y > ey then
+      ey = ey + 1
     end
-  end
 
 
+--ex = ex + 1
 
   end
 
@@ -191,10 +189,13 @@ function love.update(dt)
 
 function love.draw()
   cam:draw(function(l, t, w, h)
-  map:draw()
+  --map:draw()
 collide:draw()
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x, y, 0, 0.06)
+  love.graphics.draw(eimg, ex, ey, 0, 0.12)
 
+
+  love.graphics.rectangle('line', x, y, 16, 16)
 
 
 
