@@ -85,6 +85,7 @@ end
 
 
 function love.update(dt)
+  knight1.x = knight1.x + 1
   if x < 0 then
     x = 0
   end
