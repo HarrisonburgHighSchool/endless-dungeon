@@ -6,8 +6,8 @@ function love.load()
   y = 270
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
-ex = 100
-ey = 100
+ex = 300
+ey = 300
 eimg = love.graphics.newImage('assets-1/monster/aquatic/lava_snake.png')
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_1.png')
@@ -83,15 +83,21 @@ end
       end
     end
 
-      if ex > 500 then
-        ex = ex - 1
+      if ex > 504 then
+        ex = ex - 4
       end
 
         if x > ex then
-          ex = ex + 1
+          ex = ex + 4
         end
 
+        if ey > 490 then
+          ey = ey - 4
+        end
 
+        if x > ey then
+          ey = ey + 4
+        end
 end
 
 function love.draw()
