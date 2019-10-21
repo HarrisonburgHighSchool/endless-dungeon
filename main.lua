@@ -138,8 +138,6 @@ cam:setPosition(400, 400)
 end
 
 
-
-
 function love.update(dt)
 
   mapc = map:cc(x, y, 64, 64)
