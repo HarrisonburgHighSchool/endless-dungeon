@@ -12,7 +12,7 @@ local Util = require 'core/util'
   switch = love.graphics.newImage('assets-1/dungeon/vaults/disco_ball.png')
   
   currentDoor = closedDoor
-  currentDoor2 = closedDoor2
+
 
   -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
@@ -55,7 +55,7 @@ local Util = require 'core/util'
   }
     --Finally create your maps
     collision = Map:new (collision)
-    background = Map:new (background)
+    --background = Map:new (background)
     
     
     template = {-- a 10 x 10 map with the floor texture in the middle
@@ -101,7 +101,7 @@ end
 
 function love.update(dt)
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
-    -- What goes here?
+    currentDoor = openDoor
   end
   if love.keyboard.isDown('right') then
   if collision:cc(x + 9, y, 64, 64) == false then
@@ -170,16 +170,10 @@ function love.draw()
  -- Print the player's HP in the top left corner
  love.graphics.print(hp, 0, 0)
 
- love.graphics.print("So you must be Bob? If you wondering where you are at, then you are in a puzzle.",  100, 100)
+ love.graphics.print("So you must be Bob? You have to solve all the puzzles in order to get out of here.",  100, 100)
 if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
 end
  --player:draw() -- Draw the entity object named player 
- function love.keypressed(key)
-  if key == 'space' then
-    sound:play()
-  end
-end
-
-
+ 
