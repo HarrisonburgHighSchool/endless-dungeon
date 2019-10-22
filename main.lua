@@ -83,7 +83,9 @@ map2 = { --a 20 x 20 map with the altar texture in the middle
               }
  map = Map:new(template)
  map2 = Map:new(map2)           
-
+w = 64
+h = 64 
+hp
 
 if love.keyboard.isDown('w') then
   if map2:cc(x,y-5,64,64)== false then
