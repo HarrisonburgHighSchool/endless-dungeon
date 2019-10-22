@@ -84,7 +84,7 @@ end
 
 
 function love.update(dt)
-  enemy.x2 = enemy.x2 + 1
+  enemy.x2 = enemy.x2 - 1
   enemy.y2 = enemy.y2 + 1
   knight1.x2 = knight1.x2 + 1
   knight1.y2 = knight1.y2 + 1
@@ -136,9 +136,9 @@ function love.update(dt)
    end
   end
   if love.keyboard.isDown('w') then
-   if cc(x + 20, y + 20, w, h,   x2, y2, 36, 36) then
+   if cc(x + 20, y + 20, w, h,   enemy.x2, enemy.y2, 36, 36) then
      ehp1 = ehp1 - 25
-     x2 = x2 + 25
+     enemy.x2 = enemy.x2 + 25
    end
   end
   -- Enemy movement stuff
@@ -221,4 +221,9 @@ function love.keypressed(key)
   if key == 'escape' then
     love.exitModule()
   end
+end
+
+if love.keyboard.isDown('p') then
+  function love.exitModule()
+ end
 end
