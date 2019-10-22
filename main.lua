@@ -11,7 +11,9 @@ function love.load()
   w = 1000
   h = 1000
   hp = 100 --set the player's HP to 100 at the start of the game
-
+--effect = love.graohics.newImage('assets-1/effect/cloud_forest_fire.png')
+--{effect, effect},
+--}
   playerImg = love.graphics.newImage('assets-2/player/transform/dragon_form.png')
   --playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_0.png')
@@ -26,11 +28,11 @@ background = {
 wall  = love.graphics.newImage('assets-1/dungeon/wall/orc_6.png')
 collision = {
   {wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil'},
+  {wall, 'nil', 'nil', 'nil', 'nil'},
+  {wall, 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', wall, wall},
+  {wall, 'nil', 'nil', wall, wall},
 }
 wall2  = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_2.png')
 template = {--a 3 x 3 map with the altar texture in the middle
@@ -90,10 +92,11 @@ end
 
 
 
-
 function love.draw()
-  cam:draw(function(l, t, w, h)
-  floorm:draw()
+ cam:draw(function(l, t, w, h)
+  --floorm:draw()
+  background:draw()
+  collision:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line' ,50, 50, 64, 64)
