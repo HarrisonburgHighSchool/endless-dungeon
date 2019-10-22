@@ -50,3 +50,4 @@ function love.exitModule()
     love.event.quit()
   end
 end
+
