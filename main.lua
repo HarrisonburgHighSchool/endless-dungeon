@@ -39,8 +39,8 @@ function love.load()
   h = 45   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
 
-  enemy_x = 100
-  enemy_y = 400
+  enemy_x = 0
+  enemy_y = 0
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
@@ -120,9 +120,9 @@ template2 = { --a 3 x 3 map with the altar texture in the middle
 
 end
 
-function attack()
-  butterfly_alive = false
-end
+
+  
+
 
 
 
@@ -170,6 +170,11 @@ function love.update(dt)
   end
 end
     end
+    if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true
+ then
+       y = y + 15
+
+  end
   end
   
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
@@ -183,12 +188,15 @@ end
     if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y + 5
     else if butterfly_alive == true then
-       y = y - 15
-      else if butterfly_alive == false then
+      if butterfly_alive == false then
         y = y + 5
       end
     end
         end
+        if cc(x, y + 5, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
+        then
+           y = y - 15
+      end
       end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
@@ -199,11 +207,13 @@ end
       x = x - 5
     else if butterfly_alive == true then
        x = x + 15
-      else if butterfly_alive == false then
-        x = x - 5
-      end
+      
     end
         end
+        if cc(x - 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
+        then
+           x = x + 15
+      end
       end
   
   if love.keyboard.isDown('right') then
@@ -219,11 +229,20 @@ end
       end
     end
         end
+        if cc(x + 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
+        then
+           x = x - 15
+          end
       end
 
   if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
     if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x, y + 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x - 16, y, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x + 16, y, w, h, butterfly_x, butterfly_y, 9, 9)== true then 
-      attack()
+      butterfly_alive = false
+    end
+      
+     if cc(x, y - 16, w, h, enemy_x, enemy_y, 128, 128) or cc(x, y + 16, w, h, enemy_x, enemy_y, 128, 128) or cc(x - 16, y, w, h, enemy_x, enemy_y, 128, 128) or cc(x + 16, y, w, h, enemy_x, enemy_y, 128, 128)== true then
+      enemy_draw = false
+   
     end
   end
   
@@ -288,6 +307,7 @@ function love.draw()
   map:draw()
   if butterfly_alive == false then
     
+    enemy_draw = true
     map2:draw()
   end
   if butterfly_alive == true then
