@@ -117,7 +117,7 @@ end
 
 end
 function love.draw()
- --player:draw()
+ player:draw()
   cam:draw(function(l, t, w, h)
     map:draw()
     map2:draw()
