@@ -47,8 +47,6 @@ function love.load()
     {wall,wall, wall, wall, wall, wall, wall, wall, wall, wall},
   }
 
-  
-
   map = Map:new(template)
   
   collision = {
@@ -75,34 +73,7 @@ function love.load()
     {wall, wall, wall, wall, wall, wall, wall ,wall, wall, wall},
   }  
 
-  coincollision = {
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', cobalt, cobalt, 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', cobalt, 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', cobalt, cobalt, 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
-  }  
-
-
   collision = Map:new(collision)
-
-
   
 
 end
@@ -130,12 +101,17 @@ end
     y2 = y2 + 5
   end
 end
+
+if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
+  gotCoin = false
+end
+
 function love.keypressed(key)
   if key == 'space' then
     sound:play()
   end
 end
-cam:setPosition(x2,y2)
+cam:setPosition(x2,y)
 end
 
 
