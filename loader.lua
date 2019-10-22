@@ -2,7 +2,7 @@
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
-LOAD_MODULE = 'game'
+LOAD_MODULE = nil
 
 -- /////////////////////////////////////////////////////////////////////////
 
@@ -50,4 +50,3 @@ function love.exitModule()
     love.event.quit()
   end
 end
-
