@@ -1,13 +1,3 @@
-function love.load()
+-- DON'T MAKE ANY CHANGES TO THIS FILE!!!
 
-end
-
-
-function love.update()
-
-end
-
-function love.draw()
-
-end
-
+require 'loader'
