@@ -6,8 +6,8 @@ function love.load()
 
   -- Create the player variables
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 387
-  y = 45
+  x = 385
+  y = 65
   playerImg = love.graphics.newImage('assets-2/dc-mon/glowing_shapeshifter.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
@@ -26,23 +26,23 @@ function love.load()
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
-currentDoor = closedDoor
+currentDoor = openDoor
 
 
   mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
-    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
+    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
+    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass},
-    {mud,marble,marble,grass,grass,grass,grass,marble,grass,grass},
+    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
     {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-    {mud,marble,marble,grass,grass,grass,grass,marble,grass,grass},
+    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
+    {mud,grass,grass,grass,marble,marble,grass,grass,grass},
+    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
     {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
-    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
     
   }
 
@@ -54,13 +54,13 @@ currentDoor = closedDoor
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {'nil','nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,grass,'nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     
   }
 
@@ -96,7 +96,7 @@ end
   hp = hp - 1
  end
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
-  currentDoor = openDoor
+  currentDoor = closedDoor
   end
 end
 
@@ -111,7 +111,7 @@ function love.draw()
   love.graphics.draw(statue, 385, 175, 0, 2)
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
-  love.graphics.draw(currentDoor, 500, 500)
+  love.graphics.draw(currentDoor, 385, 1 ,0,2)
 love.graphics.draw(switch, 200, 200,0,2)
   love.graphics.draw(playerImg, x, y,0,2)
   
