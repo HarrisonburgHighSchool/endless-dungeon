@@ -58,22 +58,22 @@ end
 
 --Moves character up, down, left, and right
 function love.update(dt)
-  if love.keyboard.isDown('right') and x < 735 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('right') and x < 680 then   -- if the 'up' key is being pressed...
     if collision:cc(x+1, y, 64, 64) == false then
       x = x + 1
     end
   end
-  if love.keyboard.isDown('down') and y < 545 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('down') and y < 500 then   -- if the 'up' key is being pressed...
     if collision:cc(x, y+1, 64, 64) == false then
       y = y + 1
     end
   end
-  if love.keyboard.isDown('left') and x > 64 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('left') and x > 60 then   -- if the 'up' key is being pressed...
     if collision:cc(x-1, y, 64, 64) == false then
       x = x - 1
     end
   end
-  if love.keyboard.isDown('up') and y > 65 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('up') and y > 75 then   -- if the 'up' key is being pressed...
     if collision:cc(x, y-1, 64, 64) == false then
       y = y - 1
     end
@@ -92,11 +92,13 @@ function love.update(dt)
   end
 
   if dir == 'left' then
+
     ex = ex - 1
   end
   if dir == 'right' then
     ex = ex + 1
   end
+
 
   --Changes left & right
   if ex < 70 then
@@ -106,7 +108,6 @@ function love.update(dt)
     dir = 'left'
   end
 end
-
 function love.draw()
   map:draw()
   collision:draw()
