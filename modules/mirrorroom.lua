@@ -184,7 +184,7 @@ function love.update(dt)
       {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
       {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,}, 
       {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall,},
-      {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall,},
+      {wall, wall, wall, wall, wall, 'nil', wall, wall, wall, wall, wall,},
     }
     mirror = {
       {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
