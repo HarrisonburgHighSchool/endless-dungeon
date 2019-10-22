@@ -13,7 +13,7 @@ LOAD_MODULE = 'game'
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
-require = require 'core/require'
+require 'core/require'
 modules = love.filesystem.getDirectoryItems('modules')
 
 for i = 1, #modules do
