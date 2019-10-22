@@ -53,4 +53,5 @@ function love.draw()
   map:draw()
   love.graphics.print('play here !', 0, 0)
   love.graphics.draw(playerImg, x, y)
+  love.exitModule();
 end
