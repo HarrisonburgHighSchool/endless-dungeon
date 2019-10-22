@@ -2,7 +2,7 @@
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
-LOAD_MODULE = nil
+LOAD_MODULE = '0_Jacob_Yeary'
 
 -- /////////////////////////////////////////////////////////////////////////
 
@@ -22,7 +22,7 @@ end
 
 local n = love.math.random(1, #modules)
 if LOAD_MODULE then
-  require('modules/'..LOAD_MODULE)
+  require 'modules/'..LOAD_MODULE
 else
   require('modules/'..modules[n])
   table.remove(modules, n)
