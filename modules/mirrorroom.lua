@@ -145,7 +145,7 @@ function love.update(dt)
     hp = hp - 1
   end
   if cc(x, y, w, h, 344, 510, 64, 64) then
-    if mirrorshatttered == false  
+    if mirrorshatttered == false then
         mirrorshatttered = true
     end
   end
