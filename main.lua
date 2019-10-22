@@ -32,7 +32,31 @@ function love.load()
                 {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
                 {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
                 {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
-              }
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile ,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, altar, floorTile,floorTile, floorTile, floorTile},
+                {floorTile, floorTile, floorTile,floorTile, floorTile, floorTile}
+           }
    map = Map:new(template)
 end
 
@@ -54,12 +78,4 @@ function love.draw()
   map:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
-end
-wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
-  collision = {
-    {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-
 end
