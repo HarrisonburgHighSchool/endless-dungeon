@@ -18,21 +18,21 @@ local Util = require 'core/util'
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, wall, wall, 'main', 'main', wall, wall, wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, 'main', 'main', 'main', 'main', 'main', 'main', wall, wall, wall},
-    {wall, wall, wall, 'main', 'main', wall, wall, wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+    {wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},}
   -- Create the background map
@@ -170,7 +170,7 @@ function love.draw()
  -- Print the player's HP in the top left corner
  love.graphics.print(hp, 0, 0)
 
- love.graphics.print("So you must be Bob the shape-shifting alien? You have to solve all the puzzles in order to get out of here.",  100, 100)
+ love.graphics.print("So you must be Bob? You have to solve all the puzzles in order to get out of here.",  100, 100)
 if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
