@@ -45,7 +45,6 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   --Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
 
-  if mirrorshatttered == false then
     floor = {
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, 'nil', 'nil',},
@@ -94,7 +93,6 @@ function love.load()
       {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
       {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     }
-  end
 
   floor = Map:new(floor)
   walls = Map:new(walls)
