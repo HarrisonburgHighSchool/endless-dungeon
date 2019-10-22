@@ -229,6 +229,9 @@ collide:draw()
 
   end)
 
-
+if love.keyboard.isDown(K) then
+  function love.exitModule
+  end
+end
 
 end
