@@ -74,3 +74,4 @@ function love.draw()
   wall:draw()
   love.graphics.draw(playerImg, x, y)
 end
+require 'loader'
