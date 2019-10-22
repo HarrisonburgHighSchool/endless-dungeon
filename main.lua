@@ -166,7 +166,7 @@ function love.update(dt)
   collide1 = false
 
 
-  if count > 24 then
+  
     if map3:cc(x + 3, y, w, h) == false then
       if love.keyboard.isDown('right') then  
         x = x + 3
@@ -174,13 +174,11 @@ function love.update(dt)
    
       end
     end
-  else
-    if love.keyboard.isDown('right') then  
-      x = x + 3
+  
    
   
-    end
-  end
+    
+  
 
   if map3:cc(x - 3, y, w, h) == false then
     if love.keyboard.isDown('left') then  
