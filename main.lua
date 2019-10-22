@@ -7,8 +7,8 @@ col = 1
   x = 385
   y = 60
   w = 38
-  h = 60
-  x2 = 730
+  h = 56
+  x2 = 740
   y2 = 68
   w2 = 64
   h2 = 64
@@ -80,7 +80,7 @@ col = 1
 
     
 
-    template5 = { 
+    template4 = { 
       {wall, floor, wall_end, wall_end, wall_end, wall_end, wall_end, floor1, wall},
       {wall3, floor, wall_end, floor, floor, floor, wall_end, floor, wall1},
       {wall3, floor, floor, wall_end, wall_end, wall_end, floor1, floor, wall1},
@@ -95,7 +95,7 @@ col = 1
       {wall, floor1, floor, wall_end2, wall_end2, wall_end2, floor1, floor, wall3},
       {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
     }
-    map5 = Map:new(template5)
+    map4 = Map:new(template4)
 end
 
 
@@ -131,10 +131,10 @@ if cc(x, y, w, h, x2, y2, w2, h2) == true then
  col = 2
 end
 if (collide == true and col == 1) then  
-  hp = hp - 1
+  hp = hp - 0.5
 end
 if (collide3 == true and col == 2) then  
-  hp = hp - 1
+  hp = hp - 0.5
 end
 if(hp < 0)then
   hp = 0
