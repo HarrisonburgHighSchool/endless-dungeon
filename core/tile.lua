@@ -11,6 +11,8 @@ function Tile:constructor(x, y, img)
   else
     self.img = img
   end
+  self.w = 64
+  self.h = 64
 end
 
 function Tile:draw()
