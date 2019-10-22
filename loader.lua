@@ -13,7 +13,7 @@ LOAD_MODULE = mirrorroom -- change this to the name of your file if you want to 
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
 -- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
-require 'core/require'
+require = 'core/require'
 modules = love.filesystem.getDirectoryItems('modules')
 
 for i = 1, #modules do
