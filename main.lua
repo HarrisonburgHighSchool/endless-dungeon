@@ -8,9 +8,9 @@ function love.load()
   b = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   playerImg1 = love.graphics.newImage('assets-1/player/base/gargoyle_female.png')
-  ex = 100
-  ey = 100
-  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  ex = 200
+  ey = 200
+  enemyimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
@@ -66,7 +66,7 @@ function love.load()
                 background = Map:new(background)
                 collision = Map:new(collision)
                 map = Map:new(template)
-                cam = gamera.new(-500, -500, 2000, 2000)
+                cam = gamera.new(-100, -100, 2000, 2000)
                 img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
                 x = 400
                 y = 300
@@ -100,20 +100,27 @@ end
 end
    if cc(x, y, w, h,   0, 0, 64, 64) then
       hp = hp - 1
+  end
+if ex < x then
+   if collision:cc(ex + 5, ey, 64, 64) == false then
+      ex = ex + 5
+   end
+ end
+if ex > x then
+   if collision:cc(ex - 5 , ey, 64, 64) == false then
+     ex = ex - 5
+   end
+ end
+if ey > y then
+    if collision:cc(ey - 5 , ex, 64, 64) == false then
+      ey = ey - 5
     end
   end
-function enemy()
- if love.keyboard.isDown('i')then
-   if collision:cc(ex, ey - 5, 64, 64) == false then
-      ey = ey - 10
-      cam:setPosition(ex, ey)
+  if ey < y then
+    if collision:cc(ey + 5 , ex, 64, 64) == false then
+      ey = ey + 5
+    end
   end
-end
-if love.keyboard.isDown('i')then
-  if collision:cc(ex, ey - 5, 64, 64) == false then
-     ey = ey - 10
-     cam:setPosition(ex, ey)
- end
 end
 function player2()
   if love.keyboard.isDown('w')then
@@ -158,7 +165,9 @@ function love.draw()
     love.graphics.print(hp, 0, 0)
     --background:draw()
     collision:draw()
-    love.graphics.draw(eimg, ex, ey)
+    love.graphics.draw(enemyimg, ex, ey)
+    love.graphics.rectangle('line', 0, 0, 64, 64)
+    love.graphics.print(hp, 0, 0)
   end)
 end
 
