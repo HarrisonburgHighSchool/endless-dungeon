@@ -249,7 +249,7 @@ end
   if enemy_draw == true then
   
    if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
-  
+  love.exitModule();
     hp = hp - .2
   end
   
@@ -279,7 +279,7 @@ end
   end
 
   
-  
+  if enemy_draw == true then
  c = dist(enemy_x, enemy_y, x, y)
  a = y - enemy_y
  b = x - enemy_x
@@ -290,6 +290,7 @@ end
  enemy_x = enemy_x + dx
  enemy_y = enemy_y + dy
  cam:setPosition(x, y)
+  end
 end
 
 
