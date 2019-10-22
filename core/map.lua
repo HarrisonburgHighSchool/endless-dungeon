@@ -97,9 +97,9 @@ function Map:createTwoD(template, w, h)
         end
       else
         img = template[x][y]
-        
+
       end
-      
+
       if img then
         print("Got img at "..x..", "..y)
         table.insert(self.matrix, Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img))
