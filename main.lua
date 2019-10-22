@@ -17,7 +17,8 @@ function love.load()
   y = 70
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
-  
+  keytouch = (false) 
+  doortouch = (false)
   sound:setVolume(0.35)
   sound:setLooping(true)
   love.audio.play( sound )
@@ -104,10 +105,15 @@ if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
  end
 end  
 
- 
+if keytouch == (true) then
+  
+end
+if doortouch == (true) and keytouch == (true) then
+  love.exitmodule()
 end
 
 
+end
 function love.draw()
   map:draw()
 map2:draw()
@@ -115,5 +121,8 @@ map2:draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(key, 280, 100)
+  if keytouch == (false) then
+  love.graphics.draw(key, 400, 480)
+  
+  end
 end
