@@ -32,7 +32,7 @@ function love.load()
 
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
---switch = love.graphics.newImage('switchasset')
+switch = love.graphics.newImage('assets-1/dungeon/altars/cheibriados.png')
 
 currentDoor = closedDoor
 
@@ -92,18 +92,19 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
 }
-
 collide = Map:new(walls)
 end
 function love.update(dt)
 
-  --if ey < 635 then
-    --ey = ey + 1
 
-  --end
 
 
 --if cc(x, y, 64, 64,  1080, 500, 200, 200) == true then
+  --(currentDoor 0, 0, 0)
+--end
+
+
+
 
 
 
@@ -122,12 +123,7 @@ if ry > 910 then
   dir3 = 'right'
 end
 
---if ey < 950 then
- --dir3 = 'left'
---end
---if ey > 960 then
-  --dir3 = 'right'
---end
+
 if dir2 == 'left' then
   ay = ay + 1
 end
@@ -223,6 +219,6 @@ function love.draw()
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
   love.graphics.draw(currentDoor, 1080, 500)
-  --love.graphics.draw(switch, 200, 200)
+  love.graphics.draw(switch, 200, 200)
  end)
 end
