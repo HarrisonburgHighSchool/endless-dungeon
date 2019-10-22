@@ -164,3 +164,4 @@ cam:draw(function(l, t, w, h)
 
 end)
 end
+function love.exitmodule()
