@@ -69,8 +69,8 @@ function love.update(dt)
   moving = false
 --x, y, w, h all represent the player's rectangle.
 --If the statement is true it will run the code, but if it is false it will skip it.
+
 if love.keyboard.isDown('w') and player.y > 18 then -- up
-  
   if collision:cc(player.x, player.y - 1.5 , 32, 32) == false then
     player.y = player.y - 1.5 -- speed
   end
