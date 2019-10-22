@@ -269,7 +269,7 @@ function love.draw()
 
   love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(gate, 400, 570)
-  love.graphics.draw(gate2, 800, 950)
+  love.graphics.draw(gate2, 950, 950)
 
 
 
