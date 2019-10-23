@@ -18,7 +18,6 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   keytouch = (false) 
-  doortouch = (false)
   sound:setVolume(0.35)
   sound:setLooping(true)
   love.audio.play( sound )
@@ -80,37 +79,34 @@ end
 
 
 function love.update(dt)
-    if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if map2:cc(x, y - 1, w, h) == false then
+    if love.keyboard.isDown('up') or love.keyboard.isDown('w') then   -- if the 'right' key is being pressed...
+      if map2:cc(x, y - 4, w, h) == false then
       
-      y = y - 1
+      y = y - 4
     end
   end  
-  if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
-    if map2:cc(x, y + 1, w, h) == false then
+  if love.keyboard.isDown('down') or love.keyboard.isDown('s') then   -- if the 'right' key is being pressed...
+    if map2:cc(x, y + 4, w, h) == false then
     
-    y = y + 1
+    y = y + 4
   end
 end  
-if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-  if map2:cc(x + 1, y, w, h) == false then
+if love.keyboard.isDown('right') or love.keyboard.isDown('d') then   -- if the 'right' key is being pressed...
+  if map2:cc(x + 4, y, w, h) == false then
   
-  x = x + 1
+  x = x + 4
   end
 end  
-if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
-  if map2:cc(x - 1, y, w, h) == false then
+if love.keyboard.isDown('left') or love.keyboard.isDown('a') then   -- if the 'right' key is being pressed...
+  if map2:cc(x - 4, y, w, h) == false then
   
-  x = x - 1
+  x = x - 4
  end
 end  
 
 if keytouch == (true) then
   
-end
-if doortouch == (true) and keytouch == (true) then
-  love.exitmodule()
-end
+
 
 
 end
@@ -121,7 +117,6 @@ map2:draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(playerImg, x, y)
-  if keytouch == (false) then
   love.graphics.draw(key, 400, 480)
   
   end
