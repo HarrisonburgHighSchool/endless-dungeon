@@ -58,7 +58,7 @@ end
 
 --Moves character up, down, left, and right
 function love.update(dt)
-  if love.keyboard.isDown('right') and x < 680 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('right') and x < 815 then   -- if the 'up' key is being pressed...
     if collision:cc(x+1, y, 64, 64) == false then
       x = x + 1
     end
