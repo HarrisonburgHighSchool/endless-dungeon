@@ -19,6 +19,7 @@ function love.load()
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
     ground    = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
     obstacle  = love.graphics.newImage('assets-1/dungeon/altars/ashenzari.png')
+    obstacle1 = love.graphics.newImage('assets-1/dungeon/traps/shadow.png')
     template = {
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
@@ -47,7 +48,7 @@ function love.load()
                 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
                 collision = {
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
-                  {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
+                  {wall, obstacle, 'nil', obstacle1, 'nil', 'nil', obstacle1, 'nil', obstacle, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
