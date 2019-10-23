@@ -6,8 +6,8 @@ function love.load()
   x = 400
   y = 300
 
-  ex = 100
-  ey = 100
+  ex = 150
+  ey = 150
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
 
@@ -107,20 +107,29 @@ end
     y = y + 200
     x = x + 300
 end
-if ex < x then
+ if ex < x then
+  if collision:cc(ex + 3, ey + 2,64,64) then
    ex = ex + 3
+  end
  end
  if ex > x then
+   if collision:cc(ex - 3, ey + 2,64,64) then
     ex = ex - 3
-  end
-  if ey > y then
-     ey = ey - 3
    end
+ end
+  if ey > y then
+    if collision:cc(ex, ey - 3,64,64) then
+     ey = ey - 3
+    end
+  end
    if ey < y then
+     if collision:cc(ex, ey + 3,64,64) then
       ey = ey + 3
     end
-
-
+  end
+ if cc(x, y, 32, 32, ex, ey,32,32) then
+  love.exitModule()
+ end
 end
 
 function love.draw()
@@ -142,7 +151,7 @@ cam:draw(function(l, t, w, h)
   love.graphics.setColor(1, 1, 1, 1)
 
 
-  
+
 
 
 
