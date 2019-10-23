@@ -61,7 +61,7 @@ function love.load()
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
-                  {'nil', 'nil', 'nil', wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil'},
+                  {'nil', 'nil', 'nil', wall, obstacle1, obstacle1, wall, 'nil', 'nil', 'nil'},
                   {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'}
                 }
                 background = Map:new(background)
