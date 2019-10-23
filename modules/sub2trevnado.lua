@@ -48,7 +48,7 @@ function love.load()
   map = Map:new(background)
   mapc = Map:new(layer1)
 
-  s = 6
+  s = 4
   x = 64
   y = 64
   w = 64
@@ -61,22 +61,22 @@ end
 function love.update(dt)
     walk:update(dt)
   
-    if love.keyboard.isDown('up') then
+    if love.keyboard.isDown('up' or 'w') then
       if mapc:cc(x, y - s, w, h) == false then
         y = y - s
       end
     end
-    if love.keyboard.isDown('down') then
+    if love.keyboard.isDown('down' or 's') then
       if mapc:cc(x, y + s, w, h) == false then
         y = y + s
       end
     end
-    if love.keyboard.isDown('right') then
+    if love.keyboard.isDown('right' or 'd') then
       if mapc:cc(x + s, y, w, h) == false then
         x = x + s
       end
     end
-    if love.keyboard.isDown('left') then
+    if love.keyboard.isDown('left' or 'a') then
       if mapc:cc(x - s, y, w, h) == false then
         x = x - s
       end
