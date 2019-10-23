@@ -123,11 +123,11 @@ function love.draw()
     map2:draw()
     love.graphics.print(x, 50, 50)
     love.graphics.print(y, 60, 60)
-    love.graphics.print('', 0, 0)
+   --love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     if map:cc(x, y+1, 64, 64) == false then
     end
-  --  love.graphics.rectangle('line', 0, 0, 64, 899)
+   love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
 end)
 end
