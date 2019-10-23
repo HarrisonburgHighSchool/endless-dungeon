@@ -11,7 +11,7 @@ function love.load()
   
   cam = gamera.new(0, 0, 2000, 2000) 
   cam:setPosition(400, 400)
-  x = 400
+  x = 800
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
@@ -53,7 +53,7 @@ function love.load()
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls, walls, walls, walls, walls, walls, walls}, 
+                 {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls, walls, walls, walls, walls, walls, walls},
   
   
   
