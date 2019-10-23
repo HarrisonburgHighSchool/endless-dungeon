@@ -22,7 +22,7 @@ end
 
 local n = love.math.random(1, #modules)
 if LOAD_MODULE then
-  require 'modules/'..LOAD_MODULE
+  require('modules/'..LOAD_MODULE)
 else
   require('modules/'..modules[n])
   table.remove(modules, n)
