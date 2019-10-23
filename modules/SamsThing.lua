@@ -249,11 +249,9 @@ end
   if enemy_draw == true then
   
    if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
-  love.exitModule();
     hp = hp - .2
   end
   
-
 
 end
 
@@ -289,8 +287,14 @@ end
  dx = b * cRatio
  enemy_x = enemy_x + dx
  enemy_y = enemy_y + dy
- cam:setPosition(x, y)
+ 
   end
+  cam:setPosition(x, y)
+
+
+  if love.keyboard.isDown('escape') then
+    love.exitModule();
+    end
 end
 
 
