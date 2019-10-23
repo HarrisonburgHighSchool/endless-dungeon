@@ -142,34 +142,35 @@ function love.update(dt)
 
   end
 
-    if x_y == 2 then
-      butterfly_x = butterfly_x -2
-    end
+  if x_y == 2 then
+    butterfly_x = butterfly_x -2
+  end
 
-    if x_y == 3 then
-      butterfly_y = butterfly_y +2
-    end
+  if x_y == 3 then
+    butterfly_y = butterfly_y +2
+  end
 
-    if x_y == 4 then
-      butterfly_y = butterfly_y -2
-    end 
+  if x_y == 4 then
+    butterfly_y = butterfly_y -2
+  end 
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     if flip == 2.5 then
-    flip = 2.5
-  else flip = -2.5
-  end
+      flip = 2.5
+    else 
+      flip = -2.5
+    end
     anim = walk
     --walk:update(dt)
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y - 5
     else if butterfly_alive == true then
        y = y + 15
-  else if butterfly_alive == false then
-    y = y - 5
+    else if butterfly_alive == false then
+      y = y - 5
+    end
   end
 end
-    end
     if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true
  then
        y = y + 15
@@ -192,12 +193,12 @@ end
         y = y + 5
       end
     end
-        end
+  end
         if cc(x, y + 5, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
         then
            y = y - 15
       end
-      end
+end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
     flip = -2.5
@@ -240,7 +241,7 @@ end
       butterfly_alive = false
     end
       
-     if cc(x, y - 16, w, h, enemy_x, enemy_y, 128, 128) or cc(x, y + 16, w, h, enemy_x, enemy_y, 128, 128) or cc(x - 16, y, w, h, enemy_x, enemy_y, 128, 128) or cc(x + 16, y, w, h, enemy_x, enemy_y, 128, 128)== true then
+     if cc(x, y - 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x, y + 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x - 16, y, w, h, enemy_x, enemy_y, 32, 32) or cc(x + 16, y, w, h, enemy_x, enemy_y, 32, 32)== true then
       enemy_draw = false
    
     end
@@ -256,22 +257,22 @@ end
 end
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-   if cc(x, y, w, h,   1, -30, 880, 1) then  
+   if cc(x, y, w, h,   1, -40, 880, 1) then  
     -- if true, decrease HP:
     y = y + 5
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   -15, 1, 1, 880) then  
+  if cc(x, y, w, h,   -20, 1, 1, 880) then  
     -- if true, decrease HP:
     x = x + 5
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   1, 460, 880, 1) then  
+  if cc(x, y, w, h,   1, 440, 880, 1) then  
     -- if true, decrease HP:
     y = y - 5
   end
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-  if cc(x, y, w, h,   915, 1, 1, 850) then  
+  if cc(x, y, w, h,   900, 1, 1, 850) then  
     -- if true, decrease HP:
     x = x - 5
   end
