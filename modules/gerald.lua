@@ -89,7 +89,7 @@ if collision:cc(x-3,y,w,h, 0,0,64,64) == false then
   end
 end
  if collision:cc(x+3,y,w,h, 0,0,64,64) == false then
- if love.keyboard.isDown('right')then
+  if love.keyboard.isDown('right')then
     x=x+3
     cam:setPosition(x, y)
 
@@ -107,14 +107,17 @@ end
     end
   end
   if ey > y then
-    if collision:cc(ey - 2, ex, 64, 64) == false then
+    if collision:cc(ex, ey - 2, 64, 64) == false then
       ey = ey - 2
     end
   end
   if ey < y then
-    if collision:cc(ey + 2, ex, 64, 64) == false then
+    if collision:cc(ex, ey + 2, 64, 64) == false then
        ey = ey + 2
    end
+ end
+ if cc(x, y, 32, 32, ex, ey, 32, 32) then
+   love.exitModule()
  end
 end
 
