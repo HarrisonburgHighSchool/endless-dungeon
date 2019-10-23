@@ -2,7 +2,7 @@
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
-LOAD_MODULE = nil
+LOAD_MODULE = 'mirrorroom' -- change this to the name of your file if you want to test your file
 
 -- /////////////////////////////////////////////////////////////////////////
 
