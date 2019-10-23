@@ -154,38 +154,68 @@ function love.update(dt)
     walk:update(dt)
     facingR = true
     facingL = false
-    if walls:cc(x + 3, y, 64, 64) == false then
-      if mirror:cc(x - 54, y, 64, 64) == false then 
+    if mirrorshatttered == false then
+      if walls:cc(x + 3, y, 64, 64) == false then
+        if mirror:cc(x - 54, y, 64, 64) == false then 
           x = x + 3
           mirrorx = mirrorx - 3
         end
       end
     end
+      if mirrorshatttered == true then
+        if wallsm:cc(x + 3, y, 64, 64) == false then
+          x = x + 3
+          mirrorx = mirrorx - 3
+      end
+    end
+  end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
       walk:update(dt)  
-      if walls:cc(x, y + 3, 64, 64) == false then
+      if mirrorshatttered == false then
+        if walls:cc(x, y + 3, 64, 64) == false then
           y = y + 3
           mirrory = mirrory + 3
         end
       end
+      if mirrorshatttered == true then
+        if wallsm:cc(x, y + 3, 64, 64) == false then
+          y = y + 3
+          mirrory = mirrory - 3
+        end
+      end
+    end
   if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
     walk:update(dt)
     facingR = false
     facingL = true  
-    if walls:cc(x - 3, y, 64, 64) == false then
-      if mirror:cc(x - 64, y, 64, 64) == false then
+    if mirrorshatttered == false then
+      if walls:cc(x - 3, y, 64, 64) == false then
+        if mirror:cc(x - 64, y, 64, 64) == false then
           x = x - 3
           mirrorx = mirrorx + 3
         end
       end
     end
+    if mirrorshatttered == true then
+      if wallsm:cc(x - 3, y, 64, 64) == false then
+        x = x - 3
+        mirrorx = mirrorx + 3
+      end
+    end
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     walk:update(dt)
-    if walls:cc(x, y - 3, 64, 64) == false then
+    if mirrorshatttered == false then
+      if walls:cc(x, y - 3, 64, 64) == false then
         y = y - 3
         mirrory = mirrory - 3
       end
     end
+    if mirrorshatttered == true then
+      if wallsm:cc(x, y - 3, 64, 64) == false then
+        y = y - 3
+        mirrory = mirrory - 3
+    end
+  end
   if cc(x, y, w, h, 158, 216, 80, 16) then  
     hp = hp - 1
   end
