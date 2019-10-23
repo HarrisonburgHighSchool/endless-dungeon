@@ -16,17 +16,17 @@ function love.load()
    img = love.graphics.newImage('assets-1/monster/ironheart_preserver.png'),
  }
   knight1 = {
-   x2 = 500,
-   y2 = 300,
+   x2 = 600,
+   y2 = 350,
    img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png'),
  }
   knight2 = {
-   x2 = 500,
-   y2 = 200,
+   x2 = 700,
+   y2 = 100,
    img = love.graphics.newImage('assets-1/monster/ironbrand_convoker.png'),
  }
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
-  g = 575
+  g = 775
   b = 250
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
@@ -78,18 +78,19 @@ function love.load()
                 }
     collision = Map:new(walls)
 
+
 end
 
 
 
 
 function love.update(dt)
-  enemy.x2 = enemy.x2 - 1
-  enemy.y2 = enemy.y2 + 1
-  knight1.x2 = knight1.x2 + 1
-  knight1.y2 = knight1.y2 + 1
-  knight2.x2 = knight2.x2 + 1
-  knight2.y2 = knight2.y2 + 1
+  enemy.x2 = enemy.x2
+  enemy.y2 = enemy.y2
+  knight1.x2 = knight1.x2
+  knight1.y2 = knight1.y2
+  knight2.x2 = knight2.x2
+  knight2.y2 = knight2.y2
 
   if x < 0 then
     x = 0
@@ -136,9 +137,21 @@ function love.update(dt)
    end
   end
   if love.keyboard.isDown('w') then
-   if cc(x + 20, y + 20, w, h,   enemy.x2, enemy.y2, 36, 36) then
+   if cc(x + 20, x - 20, y + 20, y - 20, w, h,   enemy.x2, enemy.y2, 36, 36) then
      ehp1 = ehp1 - 25
-     enemy.x2 = enemy.x2 + 25
+
+   end
+  end
+  if love.keyboard.isDown('w') then
+   if cc(x + 20, y + 20, y + 20, y - 20, w, h,   knight1.x2, knight1.y2, 36, 36) then
+     ehp2 = ehp2 - 25
+
+   end
+  end
+  if love.keyboard.isDown('w') then
+   if cc(x + 20, y + 20, y + 20, y - 20, w, h,   knight2.x2, knight2.y2, 36, 36) then
+     ehp3 = ehp3 - 25
+
    end
   end
   -- Enemy movement stuff
@@ -155,8 +168,30 @@ function love.update(dt)
   if y < enemy.y2 then
     enemy.y2 = enemy.y2 - 1
   end
-
-
+  if x > knight1.x2 then
+    knight1.x2 = knight1.x2 + 1
+  end
+  if x < knight1.x2 then
+    knight1.x2 = knight1.x2 - 1
+  end
+  if y > knight1.y2 then
+    knight1.y2 = knight1.y2 + 1
+  end
+  if y < knight1.y2 then
+    knight1.y2 = knight1.y2 - 1
+  end
+  if x > knight2.x2 then
+    knight2.x2 = knight2.x2 + 1
+  end
+  if x < knight2.x2 then
+    knight2.x2 = knight2.x2 - 1
+  end
+  if y > knight2.y2 then
+    knight2.y2 = knight2.y2 + 1
+  end
+  if y < knight2.y2 then
+    knight2.y2 = knight2.y2 - 1
+  end
 
   cam:setPosition(x, y)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
@@ -172,7 +207,11 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 25
   end
-end
+  if cc(x, y, w, h,   g, b, 36, 36) then
+   love.exitModule()
+  end
+ end
+
 
 
 
@@ -190,29 +229,31 @@ function love.draw()
   love.graphics.draw(knight2.img, knight2.x2, knight2.y2)
   love.graphics.draw(questItem, g, b)
   if hp < 1 then
+    x = x
+    y = y
     love.graphics.print('GAME OVER', x + 50, y + -50)
     hp = 0
   end
   if ehp1 < 1 then
     ehp1 = 0
-    x2 = 10000000
-    y2 = 10000000
+    enemy.x2 = 10000000
+    enemy.y2 = 10000000
   end
   if ehp2 < 1 then
     ehp2 = 0
-        c = 10000000
-    d = 10000000
+    knight1.x2 = 10000000
+    knight1.y2 = 10000000
   end
   if ehp3 < 1 then
     ehp3 = 0
-    e = 10000000
-    f = 10000000
+    knight2.x2 = 10000000
+    knight2.y2 = 10000000
   end
   -- Print the player's HP in the top left corner
   love.graphics.print(hp, x, y + -18)
   love.graphics.print(ehp1, enemy.x2, enemy.y2 + -18)
   love.graphics.print(ehp2, knight1.x2, knight1.y2 + -18)
-  love.graphics.print(ehp2, knight2.x2, knight2.y2 + -18)
+  love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
     --Draw everything here. For example:
   end)
 end
@@ -221,9 +262,4 @@ function love.keypressed(key)
   if key == 'escape' then
     love.exitModule()
   end
-end
-
-if love.keyboard.isDown('p') then
-  function love.exitModule()
- end
 end
