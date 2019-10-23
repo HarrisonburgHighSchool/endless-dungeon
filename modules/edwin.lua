@@ -83,21 +83,26 @@ end
       end
     end
 
-      if ex > 505 then
-        ex = ex - 4
+    if ex < x then
+      if collision:cc(ex + 2, ey, 64, 64) == false then
+         ex = ex + 2
+       end
+     end
+    if ex > x then
+      if collision:cc(ex - 2, ey, 64, 64) == false then
+         ex = ex - 2
       end
-
-        if x > ex then
-          ex = ex + 4
-        end
-
-        if ey > 500 then
-          ey = ey - 4
-        end
-
-        if x > ey then
-          ey = ey + 4
-        end
+    end
+    if ey > y then
+      if collision:cc(ey - 2, ex, 64, 64) == false then
+        ey = ey - 2
+      end
+    end
+    if ey < y then
+      if collision:cc(ey + 2, ex, 64, 64) == false then
+         ey = ey + 2
+     end
+   end
 end
 
 function love.draw()
