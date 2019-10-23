@@ -1,6 +1,6 @@
 # Endless Dungeon Documentation
 
-This is the documentation for the Endless Dungeon Project.
+This is the documentation f33or the Endless Dungeon Project.
 
 ### Table of Contents
 
@@ -87,7 +87,6 @@ The `Map` class is used to create `Map` objects, which are 2D matrices filled wi
 | `Map:new(x, y)` | `object` | Creates an `Map` object with dimensions `x` by `y` using default texture|
 | `Map:new(template)` | `object` | Create a `Map` object that mirrors `template`. `template` is a 1D or 2D table with image data representing the different tiles. The `Tile` objects will be sized based on the size of the first tile. |
 | `Map:draw()` | `nil` | Calls `Tile:draw()` on every tile in the `matrix` |
-| `Map:cc(x, y, w, h)` | `boolean` | Returns a `true` or `false` value based on whether or not the given rectangle is overlapping with a tile in the `matrix` |
 
 ## How to Use
 
@@ -121,7 +120,7 @@ To make a custom table, you can create a `template` data structure that you can 
 local Map = require 'core/map'
 
 function love.load()
-
+  
   floorTile = love.graphics.newImage('asset.png')
   altar     = love.graphics.newImage('altar-asset.png')
   template = { --a 3 x 3 map with the altar texture in the middle
@@ -141,6 +140,7 @@ function love.draw()
 end
 ```
 
+<<<<<<< HEAD
 ## Collisions in the Map
 
 If you want to check the map for collisions, you can use the `Map:cc(x, y, w, h)` function. The function returns a `true` value if the rectangle is overlapping with any part of the map, and `false` value if it isn't.
@@ -174,9 +174,9 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
     {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
   }
 
   --Finally, create your maps
@@ -185,7 +185,7 @@ function love.load()
 end
 ```
 
-Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `'nil'` or `'none'` instead of an image variable.
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
 
 #### Step 2: Collide with the Map
 
@@ -194,22 +194,22 @@ Next, you need to choose which map to collide with. Use the same collision code 
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       x = x - 1
     end
   end
@@ -222,22 +222,22 @@ Instead of just colliding with one tile, you need to collide with the whole coll
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y - 1, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y + 1, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x + 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x - 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) == false then
       x = x - 1
     end
   end
@@ -258,6 +258,8 @@ function love.draw()
 end
 ```
 
+=======
+>>>>>>> parent of 9305786... Updated docs
 ----
 
 
@@ -273,7 +275,7 @@ Here's some information about the collision detection function I have provided:
 
 ## Collision Detection: How To
 
-To sense if two rectangles are overlapping, first import the `util.lua` file that contains the function definition for the function that checks collisions. **Put this line of code at the top of your `main.lua` file, before `love.load()`**:
+To sense if two rectangles are overlapping, first import the `util.lua` file that contains the function definition for the function that checks collisions. **Put this line of code at the top of your `main.lua` file, before `love.load()`:
 
 ```lua
 local Util = require 'core/util'
@@ -328,8 +330,9 @@ end
 
 ```
 
-## Collision with Tiles
+## Collision Resolution
 
+<<<<<<< HEAD
 Use the following example to prevent player movement into a certain space:
 
 ```lua
@@ -344,22 +347,22 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) == false then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) == false then
       x = x - 1
     end
   end
@@ -406,9 +409,9 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   collision = {
     {wall, wall, wall, wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
+    {wall, nil, nil, wall},
   }
 
   --Finally, create your maps
@@ -417,7 +420,7 @@ function love.load()
 end
 ```
 
-Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `'nil'` or `'none'` instead of an image variable.
+Add to your code so you have two maps, each with a different name. One map will store the tiles you want to collide with, one will store the background. Create blank spaces by using `nil` instead of an image variable.
 
 #### Step 2: Collide with the Map
 
@@ -426,22 +429,22 @@ Next, you need to choose which map to collide with. Use the same collision code 
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if cc(x, y - 1, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if cc(x, y + 1, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if cc(x + 1, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if cc(x - 1, y, 64, 64, 100, 200, 64, 64) then
+    if cc(x, y, 64, 64, 100, 200, 64, 64) then
       x = x - 1
     end
   end
@@ -454,22 +457,22 @@ Instead of just colliding with one tile, you need to collide with the whole coll
 ```lua
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y - 1, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) then
       y = y - 1
     end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y + 1, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) then
       y = y + 1
     end
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x + 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) then
       x = x + 1
     end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x - 1, y, 64, 64) == false then
+    if collision:cc(x, y, 64, 64) then
       x = x - 1
     end
   end
@@ -489,6 +492,11 @@ function love.draw()
   love.graphics.draw(img, x, y)
 end
 ```
+=======
+Under construction
+>>>>>>> parent of 9305786... Updated docs
+
+
 
 ----
 
@@ -523,10 +531,10 @@ Finally, you need to invoke the camera when you draw anything to the screen. To 
 ```lua
 function love.draw()
   cam:draw(function(l, t, w, h)
-
+  
   --Draw everything here. For example:
   love.graphics.draw(playerImg, x, y)
-
+  
   end)
 end
 ```
