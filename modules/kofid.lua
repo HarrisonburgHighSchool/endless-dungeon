@@ -170,54 +170,60 @@ function love.update(dt)
       y = y - 1
     end
   end
-    if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 1, 16, 16) == false then
-        y = y + 1
-      end
+  if love.keyboard.isDown('down') then
+    if collide:cc(x, y + 1, 16, 16) == false then
+      y = y + 1
     end
-    if x > indian.x then
+  end
+  if x > indian.x then
         indian.x = indian.x + 1
-      end
+  end
 
-    if x < indian.x then
+  if x < indian.x then
        indian.x = indian.x - 1
-     end
+  end
 
-    if y < indian.y then
+  if y < indian.y then
       indian.y = indian.y - 1
-    end
+  end
 
-    if y > indian.y then
+  if y > indian.y then
       indian.y = indian.y + 1
-    end
+  end
 
-    if x > indian2.x then
+  if x > indian2.x then
         indian2.x = indian2.x + 1
-      end
+  end
 
-    if x < indian2.x then
+  if x < indian2.x then
        indian2.x = indian2.x - 1
-     end
+  end
 
-    if y < indian2.y then
+  if y < indian2.y then
       indian2.y = indian2.y - 1
-    end
+  end
 
-    if y > indian2.y then
+  if y > indian2.y then
       indian2.y = indian2.y + 1
-    end
+  end
 
 indian.x = indian.x + 1
 indian.y = indian.y + 1
 indian2.x = indian.x + 1
 indian2.y = indian.y + 1
+
+  if love.keyboard.isDown('k') then
+    love.exitModule()
+
   end
+end
+
 
 
 
 function love.draw()
   cam:draw(function(l, t, w, h)
-  --map:draw()
+  map:draw()
 collide:draw()
   love.graphics.draw(playerImg, x, y, 0, 0.06)
 
@@ -226,12 +232,5 @@ collide:draw()
   love.graphics.draw(indian.img, indian.x, indian.y)
   love.graphics.draw(indian2.img, indian2.x, indian2.y)
 
-
   end)
-
-if love.keyboard.isDown(K) then
-  function love.exitModule
-  end
-end
-
 end
