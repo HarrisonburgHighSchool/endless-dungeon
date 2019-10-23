@@ -100,5 +100,6 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line' ,50, 50, 64, 64)
-end)
+  love.exitModule();
+ end)
 end
