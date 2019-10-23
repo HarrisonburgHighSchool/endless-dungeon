@@ -103,24 +103,24 @@ function love.update(dt)
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
     currentDoor = openDoor
   end
-  if love.keyboard.isDown('right') then
-  if collision:cc(x + 9, y, 64, 64) == false then
- x = x + 9 
+  if love.keyboard.isDown('right') or ('D') then
+  if collision:cc(x + 4, y, 64, 64) == false then
+ x = x + 4
 end
 end
-if love.keyboard.isDown('down') then
-  if collision:cc(x, y + 9, 64, 64) == false then
-  y = y + 9
+if love.keyboard.isDown('down') or ('S') then
+  if collision:cc(x, y + 4, 64, 64) == false then
+  y = y + 4
 end
 end
-if love.keyboard.isDown('left') then
-  if collision:cc(x - 9, y, 64, 64) == false then
- x = x - 9
+if love.keyboard.isDown('left') or ('A')then
+  if collision:cc(x - 4, y, 64, 64) == false then
+ x = x - 4
 end
 end
-if love.keyboard.isDown('up') then 
-  if collision:cc(x, y - 9, 64, 64) == false then
-  y = y - 9
+if love.keyboard.isDown('up') or ('W') then 
+  if collision:cc(x, y - 4, 64, 64) == false then
+  y = y - 4
 end
 end
 -- nothing to update
