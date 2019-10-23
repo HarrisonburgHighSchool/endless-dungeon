@@ -2,6 +2,7 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
 
+
   cam = gamera.new(0, 0, 2000, 2000) --
 
 
