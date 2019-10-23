@@ -15,7 +15,6 @@ function love.load()
   y = 320
   camy = 256
   mirrory = 320
-  s = 1
   hp = 20
   cam = gamera.new(48, 52, 800, 600)
   
@@ -43,7 +42,7 @@ function love.load()
   MirrorR = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  --Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
+  Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
 
     floor = {
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
@@ -155,32 +154,32 @@ function love.update(dt)
     facingR = true
     facingL = false
     if mirrorshatttered == false then
-      if walls:cc(x + 3, y, 64, 64) == false then
+      if walls:cc(x + 4, y, 64, 64) == false then
         if mirror:cc(x - 54, y, 64, 64) == false then 
-          x = x + 3
-          mirrorx = mirrorx - 3
+          x = x + 4
+          mirrorx = mirrorx - 4
         end
       end
     end
       if mirrorshatttered == true then
-        if wallsm:cc(x + 3, y, 64, 64) == false then
-          x = x + 3
-          mirrorx = mirrorx - 3
+        if wallsm:cc(x + 4, y, 64, 64) == false then
+          x = x + 4
+          mirrorx = mirrorx - 4
       end
     end
   end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
       walk:update(dt)  
       if mirrorshatttered == false then
-        if walls:cc(x, y + 3, 64, 64) == false then
-          y = y + 3
-          mirrory = mirrory + 3
+        if walls:cc(x, y + 4, 64, 64) == false then
+          y = y + 4
+          mirrory = mirrory + 4
         end
       end
       if mirrorshatttered == true then
-        if wallsm:cc(x, y + 3, 64, 64) == false then
-          y = y + 3
-          mirrory = mirrory - 3
+        if wallsm:cc(x, y + 4, 64, 64) == false then
+          y = y + 4
+          mirrory = mirrory - 4
         end
       end
     end
@@ -189,33 +188,35 @@ function love.update(dt)
     facingR = false
     facingL = true  
     if mirrorshatttered == false then
-      if walls:cc(x - 3, y, 64, 64) == false then
+      if walls:cc(x - 4, y, 64, 64) == false then
         if mirror:cc(x - 64, y, 64, 64) == false then
-          x = x - 3
-          mirrorx = mirrorx + 3
+          x = x - 4
+          mirrorx = mirrorx + 4
         end
       end
     end
     if mirrorshatttered == true then
-      if wallsm:cc(x - 3, y, 64, 64) == false then
-        x = x - 3
-        mirrorx = mirrorx + 3
+      if wallsm:cc(x - 4, y, 64, 64) == false then
+        x = x - 4
+        mirrorx = mirrorx + 4
       end
     end
+  end
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
     walk:update(dt)
     if mirrorshatttered == false then
-      if walls:cc(x, y - 3, 64, 64) == false then
-        y = y - 3
-        mirrory = mirrory - 3
+      if walls:cc(x, y - 4, 64, 64) == false then
+        y = y - 4
+        mirrory = mirrory - 4
       end
     end
     if mirrorshatttered == true then
-      if wallsm:cc(x, y - 3, 64, 64) == false then
-        y = y - 3
-        mirrory = mirrory - 3
+      if wallsm:cc(x, y - 4, 64, 64) == false then
+        y = y - 4
+        mirrory = mirrory - 4
     end
   end
+end
   if cc(x, y, w, h, 158, 216, 80, 16) then  
     hp = hp - 1
   end
