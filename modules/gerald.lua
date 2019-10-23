@@ -3,6 +3,7 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 
 function love.load()
+
   x = 400
   y = 300
 
@@ -58,6 +59,7 @@ firemap  = {
 w = 64   -- The player's width is 64
 h = 64   -- The player's height is 64
 hp = 100
+
   collision = Map:new(wall)
   map = Map:new(template)
   cam = gamera.new(-100, -100, 2000, 2000)
@@ -67,6 +69,7 @@ end
 
 
 function love.update(dt)
+
 if collision:cc(x,y-3,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('up')then
       y=y-3
@@ -114,6 +117,7 @@ end
    end
  end
 end
+
 function love.draw()
 
 cam:draw(function(l, t, w, h)
@@ -127,7 +131,5 @@ cam:draw(function(l, t, w, h)
   firemap:draw()
  end)
  love.graphics.rectangle('line', 0, 0, 64, 64)
-
-
 love.graphics.print(hp, 0, 0)
 end
