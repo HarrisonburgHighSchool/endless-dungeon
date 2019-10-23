@@ -30,6 +30,8 @@ function love.load()
   f = 64
   g = 64
 
+  portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
+
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/altars/cheibriados.png')
@@ -166,28 +168,36 @@ end
 
     if love.keyboard.isDown('up') then
         if collide:cc(x, y - 2, 64, 64) == false then
-          y = y - 1.5
+          y = y - 2
         end
       end
       if love.keyboard.isDown('down') then
         if collide:cc(x, y + 2, 64, 64) == false then
-          y = y + 1.5
+          y = y + 2
         end
       end
       if love.keyboard.isDown('right') then
         if collide:cc(x + 2, y, 64, 64) == false then
-          x = x + 1.5
+          x = x + 2
         end
       end
       if love.keyboard.isDown('left') then
         if collide:cc(x - 2, y, 64, 64) == false then
-          x = x - 1.5
+          x = x - 2
         end
       end
 
 if hp == 0 then
   x = -300
 
+end
+
+if cc(x, y, w, h, 450, 600, 64, 64)
+then currentDoor = openDoor
+end
+
+if cc(x, y, w, h, 450, 160, 64, 64)
+then love.exitModule()
 end
 
 if cc(x, y, w, h, ax, ay, 64, 64)
@@ -219,6 +229,7 @@ function love.draw()
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
   love.graphics.draw(currentDoor, 1080, 500)
-  love.graphics.draw(switch, 200, 200)
+  love.graphics.draw(portal, 450, 160)
+  love.graphics.draw(switch, 450, 600)
  end)
 end
