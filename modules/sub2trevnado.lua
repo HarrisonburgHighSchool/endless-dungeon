@@ -10,7 +10,7 @@ function love.load()
   w2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_2.png')
   f = love.graphics.newImage('assets-1/dungeon/floor/floor_vines_0.png')
   
-  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  shopkeep = love.graphics.newImage('assets-1.png')
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
@@ -81,7 +81,9 @@ function love.update(dt)
         x = x - s
       end
     end
-  
+    if love.keyboard.isDown('esc') then
+      love.exitModule()
+    end
     cam:setPosition(x, y)
   
 
