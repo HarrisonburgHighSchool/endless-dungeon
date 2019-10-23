@@ -52,22 +52,22 @@ end
 
 function love.update(dt)
   cam:setPosition(400, 320)
-  if love.keyboard.isDown('right') then
+  if love.keyboard.isDown('right') or love.keyboard.isDown('s') then
     if collisionMap:cc(x + 4, y, 64, 64) == false then
     x = x + 4
     end
   end
-  if love.keyboard.isDown('up') then   
+  if love.keyboard.isDown('up') or love.keyboard.isDown('w') then   
     if collisionMap:cc(x, y - 4, 64, 64) == false then
     y = y - 4
   end
 end
-  if love.keyboard.isDown('down') then   
+  if love.keyboard.isDown('down') or love.keyboard.isDown('z') then   
     if collisionMap:cc(x, y + 4, 64, 64) == false then
     y = y  + 4
   end
 end
-  if love.keyboard.isDown('left') then   
+  if love.keyboard.isDown('left') or love.keyboard.isDown('a')then   
     if collisionMap:cc(x - 4, y, 64, 64) == false then
     x = x - 4
   end
@@ -77,7 +77,7 @@ function love.draw()
   
   cam:draw (function(l, t, w, h)
      
-    
+     
   map:draw()
   collisionMap:draw()
   love.graphics.print('', 0, 0)
