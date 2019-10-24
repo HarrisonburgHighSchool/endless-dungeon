@@ -104,25 +104,28 @@ function love.update(dt)
     currentDoor = openDoor
   end
   if love.keyboard.isDown('right') then
-  if collision:cc(x + 4, y, 64, 64) == false then
- x = x + 4
-end
-end
-if love.keyboard.isDown('down') then
-  if collision:cc(x, y + 4, 64, 64) == false then
-  y = y + 4
-end
-end
-if love.keyboard.isDown('left') then
-  if collision:cc(x - 4, y, 64, 64) == false then
- x = x - 4
-end
-end
-if love.keyboard.isDown('up') then 
-  if collision:cc(x, y - 4, 64, 64) == false then
-  y = y - 4
-end
-end
+    if collision:cc(x + 4, y, 64, 64) == false then
+      x = x + 4
+    end
+  end
+  if love.keyboard.isDown('down') then
+    if collision:cc(x, y + 4, 64, 64) == false then
+      y = y + 4
+    end
+  end
+  if love.keyboard.isDown('left') then
+    if collision:cc(x - 4, y, 64, 64) == false then
+      x = x - 4
+    end
+  end
+  if love.keyboard.isDown('up') then 
+    if collision:cc(x, y - 4, 64, 64) == false then
+      y = y - 4
+    end
+  end
+  if love.keyboard.isDown ('escape') then 
+    love.exitModule();
+  end
 -- nothing to update
 end
 -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
@@ -142,14 +145,11 @@ end
   
     love.graphics.draw(img, x1,y2)
     
-    if love.keyboard.isDown ('w') then
-    if cc(x1, y1, -1, w1, h1,    100, 200, 64, 64) ==  false then
-      y = y - 1
+    if love.keyboard.isDown ('B') then
+      if cc(x1, y1, -1, w1, h1,    100, 200, 64, 64) ==  false then
+        y = y - 1
+      end
     end
-    if love.keyboard.isDown ('escape') then 
-      love.exitModule();
-    end
-  end
 end 
 
 
