@@ -4,9 +4,11 @@ local Util = require 'core/util'
 local Entity = require 'core/entity'
 function love.load()
 
+  speed = 1.7
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
   y = 100
+  open = false
   playerImg = love.graphics.newImage('assets-1/monster/knight.png')
   w = 64
   h = 64
@@ -35,7 +37,8 @@ function love.load()
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/altars/cheibriados.png')
-
+dx = 1080
+dy = 500
 currentDoor = closedDoor
 
 
@@ -166,24 +169,36 @@ end
     y = 950
   end
 
+    local tx = x
+    local ty = y
     if love.keyboard.isDown('up') then
-        if collide:cc(x, y - 2, 64, 64) == false then
-          y = y - 2
-        end
+
+          ty = ty - speed
+
       end
       if love.keyboard.isDown('down') then
-        if collide:cc(x, y + 2, 64, 64) == false then
-          y = y + 2
-        end
+          ty = ty + speed
       end
       if love.keyboard.isDown('right') then
-        if collide:cc(x + 2, y, 64, 64) == false then
-          x = x + 2
-        end
+          tx = tx + speed
+
       end
       if love.keyboard.isDown('left') then
-        if collide:cc(x - 2, y, 64, 64) == false then
-          x = x - 2
+
+          tx = tx - speed
+
+      end
+
+
+      if collide:cc(tx, ty, 64, 64) == false then
+        if open == true then
+          x = tx
+          y = ty
+        else
+          if cc(tx, ty, 64, 64,  dx, dy, 128, 128) == false then
+            x = tx
+            y = ty
+          end
         end
       end
 
@@ -193,7 +208,9 @@ if hp == 0 then
 end
 
 if cc(x, y, w, h, 450, 600, 64, 64)
-then currentDoor = openDoor
+then
+  currentDoor = openDoor
+  open = true
 end
 
 if cc(x, y, w, h, 450, 160, 64, 64)
@@ -228,7 +245,7 @@ function love.draw()
   love.graphics.draw(Img4, ax, ay)
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
-  love.graphics.draw(currentDoor, 1080, 500)
+  love.graphics.draw(currentDoor, dx, dy)
   love.graphics.draw(portal, 450, 160)
   love.graphics.draw(switch, 450, 600)
  end)
