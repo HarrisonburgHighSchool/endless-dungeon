@@ -11,7 +11,7 @@ function love.load()
   x = 400
   y = 300
   img = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
-  ex = 100
+  ex = 200
   ey = 100
 
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
@@ -25,21 +25,29 @@ function love.load()
   tile5 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_1.png')
   tile6 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_2.png')
   tile7 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_3.png')
+  tile8 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_left.png')
+  tile9 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_middle.png')
+  tile10 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_right.png')
+
 
   background = {
-    {tile4, tile5, wall2, floor, floor, floor, wall2, tile5, tile6, tile7},
-    {tile7, wall2, wall2, floor, floor, floor, wall2, wall2, wall2, tile6},
-    {tile6, wall2, floor, floor, floor, floor, floor, floor, wall2, tile5},
-    {tile5, wall2, floor, floor, floor, floor, floor, floor, wall2, tile4},
-    {wall2, wall2, floor, floor, floor, floor, floor, floor, wall2, wall2},
-    {floor, floor, floor, floor, floor, floor, floor, floor, floor, wall3},
-    {floor, floor, floor, floor, floor, floor, floor, floor, floor, wall},
-    {floor, floor, floor, floor, floor, floor, floor, floor, floor, wall4},
-    {wall2, wall2, floor, floor, floor, floor, floor, floor, wall2, wall2},
-    {tile6, wall2, floor, floor, floor, floor, floor, floor, wall2, tile4},
-    {tile7, wall2, floor, floor, floor, floor, floor, floor, wall2, tile5},
-    {tile4, wall2, wall2, floor, floor, floor, wall2, wall2, wall2, tile6},
-    {tile5, tile6, wall2, wall, wall, wall, wall2, tile5, tile6, tile7}
+    {tile4, tile5, wall2, floor, floor, floor, wall2, tile5, tile6, tile7, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5},
+    {tile7, wall2, wall2, floor, floor, floor, wall2, wall2, wall2, tile6, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, floor, floor, floor, floor, floor, floor},
+    {tile6, wall2, floor, floor, floor, floor, floor, floor, wall2, tile5, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, floor, floor, floor, floor, floor, floor},
+    {tile5, wall2, floor, floor, floor, floor, floor, floor, wall2, tile4, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, floor, floor, tile6, tile7, floor, floor},
+    {wall2, wall2, floor, floor, floor, floor, floor, floor, wall2, wall2, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, floor, floor, tile6, tile7, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, wall3, floor, floor, floor, floor, floor, floor, tile7, tile5, tile6, floor, floor, tile5, tile6, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, tile7, tile5, tile6, floor, floor, tile5, tile6, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, floor, tile7, tile5, tile6, floor, floor, tile5, tile6, floor, floor},
+    {wall2, wall2, floor, floor, floor, floor, floor, floor, wall2, wall2, wall2, wall2, wall2, tile5, floor, floor, tile5, tile6, tile7, floor, floor, tile6, tile7, floor, floor},
+    {tile6, wall2, floor, floor, floor, floor, floor, floor, wall2, tile4, tile5, tile6, tile7, tile5, floor, floor, tile5, tile6, tile7, floor, floor, tile6, tile7, floor, floor},
+    {tile7, wall2, floor, floor, floor, floor, floor, floor, wall2, tile5, tile5, tile6, tile7, tile5, floor, floor, floor, floor, floor, floor, floor, tile6, tile7, floor, floor},
+    {tile4, wall2, wall2, floor, floor, floor, wall2, wall2, wall2, tile6, tile5, tile6, tile7, tile5, floor, floor, floor, floor, floor, floor, floor, tile6, tile7, floor, floor},
+    {tile5, tile6, wall2, wall, wall, wall, wall2, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, floor, floor},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, floor, floor},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile8, tile9, tile9},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile9, tile9, tile9},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9}
   }
 
   collision = {
@@ -48,32 +56,18 @@ function love.load()
     {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
     {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
     {wall2, wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, wall2},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall2, wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, wall2},
-    {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, tile4},
-    {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, tile5},
-    {'nil', wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, tile6},
-    {'nil', 'nil', wall2, wall, wall, wall, wall2, tile5, tile6, tile7}
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {wall2, wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, wall2, wall2, wall2, wall2},
+    {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
+    {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
+    {'nil', wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, 'nil'},
+    {'nil', 'nil', wall2, wall, wall, wall, wall2, 'nil', 'nil', 'nil'}
   }
 
 
-  --bkgrnd = Map:new(map)
-  -- floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
-  --   background = {
-  --     {tile2, tile2, tile2, tile2},
-  --     {tile2, tile2, tile2, tile2},
-  --     {tile2, tile2, tile2, tile2},
-  --     {tile2, tile2, tile2, tile2},
-  --   }
-  --   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
-  --     collision = {
-  --       {tile, tile, tile, tile},
-  --       {tile, 'nil', 'nil', tile},
-  --       {tile, 'nil', 'nil', tile},
-  --       {tile, 'nil', 'nil', tile},
-  --     }
+
       background = Map:new(background)
         collision = Map:new(collision)
 
@@ -105,6 +99,13 @@ function love.update(dt)
     end
   end
 
+  if cc(x, y, w, h, ex, ey, 5, 5) then
+    hp = hp - .5
+  end
+  if hp == 0 then
+    love.exitModule()
+  end
+
 
 
   cam:setPosition(x, y)
@@ -131,6 +132,7 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   collision:draw()
   background:draw()
+  love.graphics.print(hp, x, y+ -18)
   love.graphics.draw(img, x, y)
   love.graphics.draw(eimg, ex, ey)
 end)
