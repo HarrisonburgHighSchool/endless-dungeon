@@ -108,6 +108,13 @@ if y > ey then
 end
 
 
+if  x == 80 and y == 315  then
+  love.exitModule()
+end
+
+
+
+
 end
 
 function love.draw()
