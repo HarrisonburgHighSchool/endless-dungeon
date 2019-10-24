@@ -8,11 +8,11 @@ cam = gamera.new(0, 0, 2000, 2000)
 
   -- Create the player variables
   img = love.graphics.newImage('hero/sliced/idle-2.png')
-img1 = love.graphics.newImage('hero/sliced/idle-2.png')
+  img1 =love.graphics.newImage('assets-1/monster/animals/emperor_scorpion.png')
   x = 200
   y = 200
-  x1 = 400
-  y1 = 500
+  ex = 400
+  ey = 500
   x2 = 300
   y2 = 400
   x3 = 100
@@ -21,39 +21,39 @@ img1 = love.graphics.newImage('hero/sliced/idle-2.png')
   h = 30
 hp = 100
   -- Create the background map
-  floor = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_2.png')
+  floor = love.graphics.newImage('assets-1/dungeon/floor/dirt_full.png')
   background = {
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
-    {floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor},
   }
 
-  wall = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/lab-rock_2.png')
   walls = {
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+{wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
 
   }
@@ -62,25 +62,27 @@ map = Map:new(background)
   collide = Map:new(walls)
 end
 function love.update(dt)
-
+cam:setPosition(x, y)
   function love.update(dt)
+
+
     if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 5, 64, 64) == false then
+      if collide:cc(x, y - 5, 0, 0) == false then
         y = y - 5
       end
     end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 64, 64) == false then
+      if collide:cc(x, y + 5, 0, 0) == false then
         y = y + 5
       end
     end
     if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 64, 64) == false then
+      if collide:cc(x + 5, y, 0, 0) == false then
         x = x + 5
       end
     end
     if love.keyboard.isDown('left') then
-      if collide:cc(x - 5, y , 64, 64) == false then
+      if collide:cc(x - 5, y , 0, 0) == false then
         x = x - 5
       end
     end
@@ -112,7 +114,7 @@ end
 if love.keyboard.isDown('up') then
 y2 = y2 - 5
 end
-if cc(x, y, w, h,   x1, y1, 30, 30 ) then
+if cc(x, y, w, h,   ex, ey, 30, 30 ) then
   -- if true, decrease HP:
   hp = hp - 1
 end
@@ -125,10 +127,10 @@ x2 = 1000
 y2 = 500
 end
 
-if x1 < 20 then
+if ex < 20 then
   direction = 'right'
 end
-if x1 > 400 then
+if ex > 400 then
   direction = 'left'
 end
 
@@ -157,11 +159,10 @@ cam:draw(function(l, t, w, h)
   love.graphics.print('Hello, world!', 0, 0)
   --Draw everything here. For example:
   love.graphics.draw(img, x, y)
-  love.graphics.draw(img1, x1, y1)
+  love.graphics.draw(img1, ex, ex)
   background:draw()
   collide:draw()
   love.graphics.draw(img, x, y)
 
 end)
 end
-function love.exitmodule()
