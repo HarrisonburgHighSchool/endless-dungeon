@@ -140,8 +140,9 @@ end
 if direction == 'left' then
   x1 = x1 - 1
 end
---if hp == 0 then
-
+if love.keyboard.isDown('escape')then
+  love.exitModule()
+end
 end
 
 
