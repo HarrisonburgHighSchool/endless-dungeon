@@ -18,24 +18,25 @@ function love.load()
   hp = 100 -- Set the player's HP to 100 at the start of the game
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   floorTile2 = love.graphics.newImage('assets-1/dungeon/wall/pebble_red_0.png')
-  altar     = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_3.png')
-  template = { --a 20 x 20 map with the altar texture in the middle
-                
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                 floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,
-                
+  altar = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_3.png')
+  map = { --a 20 x 20 map with the altar texture in the middle  
+                {floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile2, floorTile2 ,floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2},
                 
 
 
@@ -73,13 +74,16 @@ map2 = { --a 20 x 20 map with the altar texture in the middle
 
 
               }
- map = Map:new(template) 
+ map = Map:new(map) 
  map2 = Map:new(map2)          
 end
 
 
 
 function love.update(dt)
+  if love.keyboard.isDown('escape') then
+    love.exitModule();
+  end
 if ex < 10 then
 end
 if ex >200 then
@@ -92,27 +96,22 @@ ex = ex - 3
 end
    --Nothing update
  -- Set up player movement
- if love.keyboard.isDown('w') or 
- if love.keyboard.isDown('up') then
+ if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
     if map2:cc(x, y - 5, w, h) == false then
     y = y - 5
   end
 end
-end
-  if love.keyboard.isDown('s') or
-  if love.keyboard.isDown('down') then
+  if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
     if map2:cc(x, y + 5, w, h) == false then
     y = y + 5
   end
 end
-  if love.keyboard.isDown('a') or 
-  if love.keyboard.isDown('left')then
+  if love.keyboard.isDown('a') or  love.keyboard.isDown('left')then
     if map2:cc(x - 5 ,y, w, h) == false then 
     x = x - 3
   end  
 end
- if love.keyboard.isDown('d') or
- if love.keyboard.isDown('right')then
+ if love.keyboard.isDown('d') or love.keyboard.isDown('right')then
    if map2:cc(x + 5, y, w, h) == false then 
    x = x + 3
   end
@@ -121,6 +120,8 @@ end
   cam:setPosition(x,y)
 
 end
+
+
 function love.draw()
  --player:draw()
   cam:draw(function(l, t, w, h)
