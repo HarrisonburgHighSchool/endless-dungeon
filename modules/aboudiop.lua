@@ -1,4 +1,4 @@
-ocal Map = require 'core/map'
+local Map = require 'core/map'
 
 local Util = require 'core/util'
 

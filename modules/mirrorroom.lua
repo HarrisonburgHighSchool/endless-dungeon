@@ -17,24 +17,22 @@ function love.load()
   mirrory = 320
   hp = 20
   cam = gamera.new(48, 52, 800, 600)
-  
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_3.png')
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
+  w = 64
+  h = 64
 
-  mirrorPlayerImg = love.graphics.newImage('assets-1/player/base/Octopode_2.png')
-  w2 = 64  -- The mirror player's width is 64
-  h2 = 64  -- The mirror player's height is 64
-  
-  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.2)
-  idle = anim8.newAnimation(grid('1-4', 1), 0.2)
+  idle = anim8.newAnimation(grid('1-4', 1), 0.3)
+
+  anim = idle
 
   spritesheetM = love.graphics.newImage('hero/Old hero M.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
-  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
-  idle = anim8.newAnimation(grid('1-4', 1), 0.2)
+  walkm = anim8.newAnimation(grid('1-6', 2), 0.2)
+  idlem = anim8.newAnimation(grid('1-4', 1), 0.3)
+
+  anim = idlem
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
@@ -42,6 +40,7 @@ function love.load()
   MirrorR = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
   Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
 
     floor = {
@@ -140,17 +139,36 @@ function love.load()
       {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
       {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
     }
+    doors = {
+      {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',},
+      {'nil','nil', 'nil', 'nil', 'nil', door, 'nil', 'nil', 'nil', 'nil', 'nil',},
+    }
   floor = Map:new(floor)
   walls = Map:new(walls)
   mirror = Map:new(mirror)
   floorm = Map:new(floorm)
   wallsm = Map:new(wallsm)
   mirrorm = Map:new(mirrorm)
+  doors = Map:new(doors)
 end
   
 function love.update(dt)
   if love.keyboard.isDown('right') then --if the 'right' key is being pressed...
+    anim = walk
     walk:update(dt)
+    walkm:update(dt)
     facingR = true
     facingL = false
     if mirrorshatttered == false then
@@ -169,7 +187,9 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-      walk:update(dt)  
+      anim = walk
+      walk:update(dt) 
+      walkm:update(dt) 
       if mirrorshatttered == false then
         if walls:cc(x, y + 4, 64, 64) == false then
           y = y + 4
@@ -184,7 +204,9 @@ function love.update(dt)
       end
     end
   if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
+    anim = walk
     walk:update(dt)
+    walkm:update(dt)
     facingR = false
     facingL = true  
     if mirrorshatttered == false then
@@ -203,7 +225,9 @@ function love.update(dt)
     end
   end
     if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+    anim = walk
     walk:update(dt)
+    walkm:update(dt)
     if mirrorshatttered == false then
       if walls:cc(x, y - 4, 64, 64) == false then
         y = y - 4
@@ -234,6 +258,10 @@ end
   if cc(x, y, w, h, 348, 152, 12, 72) then  
     hp = hp - 1
   end
+  if x > 864 then
+    love.exitModule()
+  end
+  anim = idle
   idle:update(dt)
   cam:setPosition(x, y)
 end
@@ -250,30 +278,82 @@ function love.draw()
     floorm:draw()
     wallsm:draw()
     mirrorm:draw()
+    doors:draw()
   end
-  
+
   love.graphics.print(hp, x, y)
+  if love.keyboard.isDown('down') == false then
+    if love.keyboard.isDown('up') == false then
+      if love.keyboard.isDown('left') == false then
+        if love.keyboard.isDown('right') == false then
+          if mirrorshatttered == false then
+            idle:draw(spritesheet, x, y)
+            idle:draw(spritesheetM, mirrorx, mirrory)
+          end
+          if mirrorshatttered == true then
+            idle:draw(spritesheet, x, y)
+          end
+        end
+      end
+    end
+  end
   if mirrorshatttered == true then
     if facingR == true then
-      walk:draw(spritesheet, x, y)
+      if love.keyboard.isDown('up') then
+        walk:draw(spritesheet, x, y)
+        end
+        if love.keyboard.isDown('down') then
+          walk:draw(spritesheet, x, y)
+        end
+        if love.keyboard.isDown('right') then
+          walk:draw(spritesheet, x, y)
+      end
     end
   end
   if mirrorshatttered == false then
     if facingR == true then
-      walk:draw(spritesheet, x, y)
-      walk:draw(spritesheetM, mirrorx, mirrory)
+      if love.keyboard.isDown('up') then
+        walk:draw(spritesheet, x, y)
+        walkm:draw(spritesheetM, mirrorx, mirrory)
+        end
+        if love.keyboard.isDown('down') then
+          walk:draw(spritesheet, x, y)
+          walkm:draw(spritesheetM, mirrorx, mirrory)
+        end
+        if love.keyboard.isDown('right') then
+          walk:draw(spritesheet, x, y)
+          walkm:draw(spritesheetM, mirrorx, mirrory)
+        end
     end
   end
   if mirrorshatttered == true then
     if facingL == true then
-      walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+      if love.keyboard.isDown('up') then
+        walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+      end
+      if love.keyboard.isDown('down') then
+        walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)        
+      end
+      if love.keyboard.isDown('left') then
+        walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0) 
+      end
     end
   end
-  if mirrorshatttered == false then
-    if facingL == true then
-      walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-      walk:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+    if mirrorshatttered == false then
+      if facingL == true then
+        if love.keyboard.isDown('up') then
+          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+        end
+        if love.keyboard.isDown('down') then
+          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+        end
+        if love.keyboard.isDown('left') then
+          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+        end
+      end
     end
-  end
-end)
+  end)
 end
