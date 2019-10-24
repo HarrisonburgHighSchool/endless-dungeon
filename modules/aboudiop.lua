@@ -1,4 +1,4 @@
-ocal Map = require 'core/map'
+local Map = require 'core/map'
 
 local Util = require 'core/util'
 
@@ -23,10 +23,11 @@ end
 
 Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
+  Door = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-            {Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
+            {Cobalt, Cobalt, Cobalt, Cobalt, Door, Cobalt, Cobalt, Cobalt, Cobalt, Cobalt},
             {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
-            {Cobalt, Cpbalt, nil, nil, nil, nil, nil, nil, nil, Cobalt},
+            {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
             {Cobalt, nil, nil, nil, nil, nil, nil, Cobalt, Cobalt, Cobalt},
             {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
             {Cobalt, nil, nil, nil, nil, nil, nil, nil, nil, Cobalt},
@@ -45,18 +46,21 @@ map = Map:new(template)
             
 
 function love.update(dt)
-  if love.keyboard.isDown('up') and y > 0 then   -- if the 'up' key is being pressed...
-    y = y - 10
+  if love.keyboard.isDown('up') or love.keyboard.isDown('w') and y > 0 then   -- if the 'up' key is being pressed...
+    y = y - 4
   end
-  if love.keyboard.isDown('down')  then   -- if the 'down' key is being pressed...
-    y = y + 10
+  if love.keyboard.isDown('down') or love.keyboard.isDown('s') then   -- if the 'down' key is being pressed...
+    y = y + 4
   end
-  if love.keyboard.isDown('left') and x > 0 then   -- if the 'left' key is being pressed...
-    x = x - 10
+  if love.keyboard.isDown('left') or love.keyboard.isDown('a') and x > 0 then   -- if the 'left' key is being pressed...
+    x = x - 4
   end
-  if love.keyboard.isDown('right')  then   -- if the 'right' key is being pressed...
-    x = x + 10
+  if love.keyboard.isDown('right') or love.keyboard.isDown('d') then   -- if the 'right' key is being pressed...
+    x = x + 4
   end
+
+
+
 
   ex = ex + 1
   

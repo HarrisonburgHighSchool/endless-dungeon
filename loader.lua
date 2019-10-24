@@ -2,7 +2,7 @@
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
-LOAD_MODULE = nil
+LOAD_MODULE = 'aboudiop'
 
 -- /////////////////////////////////////////////////////////////////////////
 
@@ -50,3 +50,4 @@ function love.exitModule()
     love.event.quit()
   end
 end
+
