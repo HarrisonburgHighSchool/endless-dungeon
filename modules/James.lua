@@ -3,7 +3,6 @@ local gamera = require 'core/gamera'
 --local Entity = require 'core/entity'
 
 function love.load()
- -- -img = love.graphics.newImage(,player.png)
   --player = Entity:new(img, 200, 200)
   cam = gamera.new(0,0,2000,2000)
   x = 100
@@ -84,16 +83,18 @@ function love.update(dt)
   if love.keyboard.isDown('escape') then
     love.exitModule();
   end
-if ex < 10 then
-end
-if ex >200 then
-end
-if dir =='d' then
-ex = ex + 3
-end
-if dir == 'a' then
-ex = ex - 3 
-end
+  if ex < 100 then
+    dir = 'right'
+      end
+      if ex > 1900 then
+    dir = 'left'
+      end
+      if dir == 'right' then
+      ex = ex + 10
+      end
+      if dir == 'left' then 
+        ex = ex - 10
+      end
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
