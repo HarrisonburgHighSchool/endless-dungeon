@@ -15,7 +15,7 @@ function love.load()
   x = 65
   y = 70
   w = 60   -- The player's width is 64
-  h = 60   -- The player's height is 64 
+  h = 60   -- The player's height is 64
   sound:setVolume(0.35)
   sound:setLooping(true)
   love.audio.play( sound )
@@ -77,25 +77,25 @@ end
 
 
 function love.update(dt)
-    if love.keyboard.isDown('up') or love.keyboard.isDown('w') then   -- if the 'right' key is being pressed...
+    if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
       if map2:cc(x, y - 4, w, h) == false then
       
       y = y - 4
     end
   end  
-  if love.keyboard.isDown('down') or love.keyboard.isDown('s') then   -- if the 'right' key is being pressed...
+  if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
     if map2:cc(x, y + 4, w, h) == false then
     
     y = y + 4
   end
 end  
-if love.keyboard.isDown('right') or love.keyboard.isDown('d') then   -- if the 'right' key is being pressed...
+if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
   if map2:cc(x + 4, y, w, h) == false then
   
   x = x + 4
   end
 end  
-if love.keyboard.isDown('left') or love.keyboard.isDown('a') then   -- if the 'right' key is being pressed...
+if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
   if map2:cc(x - 4, y, w, h) == false then
   
   x = x - 4
@@ -104,7 +104,6 @@ end
 
 if (x > 145) then
   love.exitModule();
- 
 end
 function love.draw()
   map:draw()
