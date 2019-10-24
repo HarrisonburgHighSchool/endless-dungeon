@@ -16,7 +16,6 @@ function love.load()
 
   mapTemplate = {
     {cage, cage, cage, cage, cage,scage,cage,cage,cage,cage,},     
-    {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
@@ -28,22 +27,23 @@ function love.load()
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
     {cage, cobalt, cobalt, cobalt,cobalt,cobalt,cobalt,cobalt,cobalt,cage,},
+    {cage, cage, cage, cage,cage,cage,cage,cage,cage,cage,},
   }
 
   walls = {
     {cage, cage, cage, cage, cage,scage,cage,cage,cage,cage,},     
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
-    {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,'nil', 'nil', 'nil', 'nil','nil', 'nil','nil', 'nil',cage,},
+     {cage,cage, cage, cage, cage,cage, cage,cage, cage,},
   }
   map = Map:new(mapTemplate)
   collisionMap = Map:new(walls)
@@ -52,7 +52,10 @@ end
 
 function love.update(dt)
   cam:setPosition(400, 320)
-  if love.keyboard.isDown('right') or love.keyboard.isDown('s') then
+  if love.keyboard.isDown('escape') then
+    love.exitModule();
+  end
+  if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
     if collisionMap:cc(x + 4, y, 64, 64) == false then
     x = x + 4
     end
@@ -62,7 +65,7 @@ function love.update(dt)
     y = y - 4
   end
 end
-  if love.keyboard.isDown('down') or love.keyboard.isDown('z') then   
+  if love.keyboard.isDown('down') or love.keyboard.isDown('s') then   
     if collisionMap:cc(x, y + 4, 64, 64) == false then
     y = y  + 4
   end
@@ -72,6 +75,7 @@ end
     x = x - 4
   end
 end
+cam:setPosition (x,y)
 end
 function love.draw()
   
