@@ -92,22 +92,27 @@ ex = ex - 3
 end
    --Nothing update
  -- Set up player movement
- if love.keyboard.isDown('w') then
+ if love.keyboard.isDown('w') or 
+ if love.keyboard.isDown('up') then
     if map2:cc(x, y - 5, w, h) == false then
     y = y - 5
   end
 end
-  if love.keyboard.isDown('s') then
+end
+  if love.keyboard.isDown('s') or
+  if love.keyboard.isDown('down') then
     if map2:cc(x, y + 5, w, h) == false then
     y = y + 5
   end
 end
-  if love.keyboard.isDown('a') then
+  if love.keyboard.isDown('a') or 
+  if love.keyboard.isDown('left')then
     if map2:cc(x - 5 ,y, w, h) == false then 
     x = x - 3
   end  
 end
- if love.keyboard.isDown('d') then
+ if love.keyboard.isDown('d') or
+ if love.keyboard.isDown('right')then
    if map2:cc(x + 5, y, w, h) == false then 
    x = x + 3
   end
