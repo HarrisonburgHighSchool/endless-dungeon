@@ -60,7 +60,7 @@ end
 
 function love.update(dt)
 
--- Sense collision moving to the right
+-- Sense collision moving right
 if love.keyboard.isDown('right') then
   if collision:cc(x + 6, y, 64, 64) == false then
     x = x + 6
