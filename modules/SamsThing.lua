@@ -46,7 +46,7 @@ function love.load()
 
   
   
-    floorTile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_1b.png')
+    floorTile2 = love.graphics.newImage('assets-1/dungeon/floor/grey_dirt_4.png')
   left_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
   right_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
   top_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
@@ -164,100 +164,87 @@ function love.update(dt)
     --walk:update(dt)
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       y = y - 5
-    else if butterfly_alive == true then
-       y = y + 15
-    else if butterfly_alive == false then
+    elseif butterfly_alive == true then
+     y = y + 15
+    elseif butterfly_alive == false then
       y = y - 5
+      
     end
+  
+ 
+    if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true then
+      y = y + 15
+
+    end
+ end
+  
+  
+ if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
+  if flip == 2.5 then
+    flip = 2.5
+  else 
+    flip = -2.5
   end
-end
-    if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true
- then
-       y = y + 15
+  anim = walk
+  --walk:update(dt)
+  if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+    y = y + 5
+  elseif butterfly_alive == true then
+   y = y - 15
+  elseif butterfly_alive == false then
+    y = y + 5
+    
+  end
+
+
+  if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true then
+    y = y - 15
 
   end
-  end
-  
-  if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    if flip == 2.5 then
-      flip = 2.5
-    else flip = -2.5
-    end
-    flip = 2.5
-    anim = walk
-    --walk:update(dt)
-    if cc(x, y + 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-      y = y + 5
-    else if butterfly_alive == true then
-      if butterfly_alive == false then
-        y = y + 5
-      end
-    end
-  end
-        if cc(x, y + 5, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
-        then
-           y = y - 15
-      end
 end
   
   if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
     flip = -2.5
     anim = walk
     --walk:update(dt)
-    if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
+   if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
       x = x - 5
-    else if butterfly_alive == true then
-       x = x + 15
-      
-    end
-        end
-        if cc(x - 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
-        then
-           x = x + 15
-      end
-      end
+    elseif butterfly_alive == true then
+      x = x + 15
+    elseif butterfly_alive == false then
+      x = x - 5
+   end
+  
+    if cc(x - 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true then
+      x = x + 15
+   end
+ end
   
   if love.keyboard.isDown('right') then
     flip = 2.5   -- if the 'up' key is being pressed...
     anim = walk
     --walk:update(dt)
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-      x = x + 5
-    else if butterfly_alive == true then
-       x = x - 15
-      else if butterfly_alive == false then
         x = x + 5
-      end
-    end
-        end
-        if cc(x + 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true
-        then
-           x = x - 15
-          end
-      end
-
-  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
-    if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x, y + 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x - 16, y, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x + 16, y, w, h, butterfly_x, butterfly_y, 9, 9)== true then 
-      butterfly_alive = false
-    end
+    elseif butterfly_alive == true then
+      x = x - 15
+    elseif butterfly_alive == false then
+      x = x + 5
       
-     if cc(x, y - 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x, y + 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x - 16, y, w, h, enemy_x, enemy_y, 32, 32) or cc(x + 16, y, w, h, enemy_x, enemy_y, 32, 32)== true then
-      enemy_draw = false
-   
+    end
+        
+    if cc(x + 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true then
+      x = x - 15
     end
   end
+
   
-  if enemy_draw == true then
-  
-   if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
-    hp = hp - .2
-  end
   
 
-end
+
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
-   if cc(x, y, w, h,   1, -40, 880, 1) then  
+  if cc(x, y, w, h,   1, -40, 880, 1) then  
     -- if true, decrease HP:
     y = y + 5
   end
@@ -279,23 +266,40 @@ end
 
   
   if enemy_draw == true then
- c = dist(enemy_x, enemy_y, x, y)
- a = y - enemy_y
- b = x - enemy_x
- speed = 3
- cRatio = speed/c
- dy = a * cRatio
- dx = b * cRatio
- enemy_x = enemy_x + dx
- enemy_y = enemy_y + dy
+    c = dist(enemy_x, enemy_y, x, y)
+    a = y - enemy_y
+    b = x - enemy_x
+    speed = 3
+    cRatio = speed/c
+    dy = a * cRatio
+    dx = b * cRatio
+    enemy_x = enemy_x + dx
+    enemy_y = enemy_y + dy
  
   end
   cam:setPosition(x, y)
 
+  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+    if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x, y + 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x - 16, y, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x + 16, y, w, h, butterfly_x, butterfly_y, 9, 9)== true then 
+      butterfly_alive = false
+      enemyD()
+    end
+      
+    if cc(x, y - 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x, y + 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x - 16, y, w, h, enemy_x, enemy_y, 32, 32) or cc(x + 16, y, w, h, enemy_x, enemy_y, 32, 32)== true then
+      enemy_draw = false
+    end
+  end
+    if enemy_draw == true then
+      if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
+        hp = hp - .2
+      end
+    end
+
 
   if love.keyboard.isDown('escape') then
     love.exitModule();
-    end
+    
+  end
 end
 
 
@@ -312,8 +316,7 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
   if butterfly_alive == false then
-    
-    enemy_draw = true
+   
     map2:draw()
   end
   if butterfly_alive == true then
@@ -344,3 +347,7 @@ function dist ( x1, y1, x2, y2 )
   return math.sqrt ( dx * dx + dy * dy )
 end
   
+
+function enemyD()
+  enemy_draw = true
+end
