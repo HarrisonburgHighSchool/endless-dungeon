@@ -4,8 +4,8 @@ local gamera = require 'core/gamera'
 
 function love.load()
 
-  x = 400
-  y = 300
+  x = 250
+  y = 100
 
  ex = 100
  ey = 100
@@ -35,17 +35,18 @@ template = {
            }
 wall={
              {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall},
-             {wall},
-             {wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, wall, 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil','nil', 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil','nil', 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil','nil', 'nil', 'nil', wall, 'nil', 'nil', 'nil','nil'},
+             {wall,'nil','nil','nil', 'nil', 'nil', wall, 'nil', 'nil', 'nil','nil'},
              {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
 
             }
@@ -70,25 +71,25 @@ end
 
 function love.update(dt)
 
-if collision:cc(x,y-3,w,h, 0,0,64,64) == false then
+if collision:cc(x,y-3,w,h, 0,0,32,32) == false then
   if love.keyboard.isDown('up')then
       y=y-3
       cam:setPosition(x, y)
   end
  end
-if collision:cc(x,y+3,w,h, 0,0,64,64) == false then
+if collision:cc(x,y+3,w,h, 0,0,32,32) == false then
    if love.keyboard.isDown('down')then
     y=y+3
     cam:setPosition(x, y)
   end
 end
-if collision:cc(x-3,y,w,h, 0,0,64,64) == false then
+if collision:cc(x-3,y,w,h, 0,0,32,32) == false then
   if love.keyboard.isDown('left')then
     x=x-3
     cam:setPosition(x, y)
   end
 end
- if collision:cc(x+3,y,w,h, 0,0,64,64) == false then
+ if collision:cc(x+3,y,w,h, 0,0,32,32) == false then
   if love.keyboard.isDown('right')then
     x=x+3
     cam:setPosition(x, y)
@@ -116,8 +117,12 @@ end
        ey = ey + 2
    end
  end
- if cc(x, y, 32, 32, ex, ey, 32, 32) then
+ if hp == 0 then
    love.exitModule()
+ end
+ if cc(x, y, 32, 64,   ex, ey, 64, 64)then
+
+   hp = hp - 1
  end
 end
 
