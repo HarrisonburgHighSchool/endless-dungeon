@@ -7,15 +7,15 @@ function love.load()
   y = 300
 
   ex = 150
-  ey = 150
+  ey = 100
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
 
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  wall =love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_7.png')
-      altar = love.graphics.newImage('assets-1/dungeon/floor/cage_3.png')
-     ground = love.graphics.newImage('assets-1/dungeon/floor/mesh_1.png')
+  wall =love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_yellow.png')
+  floorTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
+      altar = love.graphics.newImage('assets-1/dungeon/wall/bars_red_4.png')
+     ground = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_lightcyan.png')
       flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
@@ -61,7 +61,7 @@ end
 
 
 function love.update(dt)
-
+--Player movement
 if collision:cc(x,y-5,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('up')then
       y=y-5
@@ -82,6 +82,8 @@ if collision:cc(x-5,y,w,h, 0,0,64,64) == false then
     x=x-5
     cam:setPosition(x, y)
   end
+else
+  hp = hp - 1
 end
 
  if collision:cc(x+5,y,w,h, 0,0,64,64) == false then
@@ -108,27 +110,30 @@ end
     x = x + 300
 end
  if ex < x then
-  if collision:cc(ex + 3, ey + 2,64,64) then
+  if collision:cc(ex + 5, ey,64,64) == false then
    ex = ex + 3
   end
  end
  if ex > x then
-   if collision:cc(ex - 3, ey + 2,64,64) then
+   if collision:cc(ex - 5, ey,64,64) == false then
     ex = ex - 3
    end
  end
   if ey > y then
-    if collision:cc(ex, ey - 3,64,64) then
+    if collision:cc(ex, ey - 5,64,64)== false then
      ey = ey - 3
     end
   end
    if ey < y then
-     if collision:cc(ex, ey + 3,64,64) then
+     if collision:cc(ex, ey + 5,64,64)== false then
       ey = ey + 3
     end
   end
- if cc(x, y, 32, 32, ex, ey,32,32) then
+ if cc(x, y, 32, 32, ex, ey,32,32)then
   love.exitModule()
+ end
+ if hp == 0 then
+   love.exitModule()
  end
 end
 
@@ -143,7 +148,7 @@ cam:draw(function(l, t, w, h)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(eimg, ex, ey)
 
---box
+--box color
   love.graphics.setColor(0, 0,1)
   love.graphics.rectangle('line', 67, 67, 64, 64)
   love.graphics.rectangle('line', 100, 400, 64, 64)
@@ -158,6 +163,6 @@ cam:draw(function(l, t, w, h)
  end)
 
 
-
+--player hp
 love.graphics.print(hp, 0, 0)
 end
