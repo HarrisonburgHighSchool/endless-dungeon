@@ -11,6 +11,7 @@ function love.load()
   oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
+    gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
   w=60
   h=60
   hp=100
@@ -18,6 +19,7 @@ floorTile = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
 path = love.graphics.newImage('assets-1/dungeon/floor/mud_0.png')
 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
 door = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
+openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 z=100
 s=100
 q=700
@@ -46,7 +48,7 @@ floor = {
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, openDoor, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -85,7 +87,7 @@ floor2 = {
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {wall, wall, wall, wall, wall, door, wall, wall, wall, wall, wall, wall, wall},
+               {wall, wall, wall, wall, wall, 'nil', wall, wall, wall, wall, wall, wall, wall},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -200,6 +202,10 @@ if cc(x, y, w, h,   c, 190, 60, 60) then
 
   hp = hp - 1
 end
+if cc(x, y, w, h,   1650, 375, 60, 60) then
+
+  love.exitModule()
+end
 end
 
 
@@ -209,7 +215,9 @@ end
 function love.draw()
   cam:draw(function(l, t, w, h)
 
-
+if hp < 0 then
+  love.exitModule()
+end
     if hp > 0 then
   map:draw()
 end
@@ -217,6 +225,7 @@ if hp > 0 then
     floor2:draw()
 end
 if hp > 0 then
+    love.graphics.draw(gold, 1650, 375)
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
