@@ -19,6 +19,11 @@ function love.load()
   h = 64
   hp = 100
 
+  ax = 100
+  ay = 100
+  aimg = love.graphics.newImage('assets-2/spells/fire/fireball.png')
+
+
   --Creates the map
   template = { --a 13 x 10 map with the altar texture in the middle
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -34,19 +39,19 @@ function love.load()
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    }
+  }
 
  walls = { --a 12 x 9 map with the altar texture in the middle
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {door, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -85,6 +90,8 @@ function love.update(dt)
   -- if ex < 500 then
   --   ex = ex - 1
   -- end
+  ay = ay + 1
+
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
@@ -107,7 +114,12 @@ function love.update(dt)
   if ex > 735 then
     dir = 'left'
   end
+
+ if love.keyboard.isDown('escape') then
+    love.exitModule();
+ end
 end
+
 function love.draw()
   map:draw()
   collision:draw()
