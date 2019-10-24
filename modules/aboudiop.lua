@@ -19,6 +19,8 @@ function love.load()
 
 alive = true
 
+endGame = false
+
 end
 
 Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
@@ -58,9 +60,7 @@ function love.update(dt)
   if love.keyboard.isDown('right') or love.keyboard.isDown('d') then   -- if the 'right' key is being pressed...
     x = x + 4
   end
-
-
-
+  
 
   ex = ex + 1
   
@@ -68,6 +68,14 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 1
   end
+
+  if cc(x, y, w, h,   0, 0, 67, 67) then
+  endGame = true
+  end
+  
+
+ 
+
 end
 
 function love.draw()
@@ -84,6 +92,10 @@ function love.draw()
   love.graphics.print(hp, 0, 0) 
 
   love.graphics.draw(eimg, ex, ey)
+
+
+
+
 
   
   
