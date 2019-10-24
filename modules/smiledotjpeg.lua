@@ -168,8 +168,8 @@ function love.update(dt)
 
   
     if map3:cc(x + 3, y, w, h) == false then
-      if love.keyboard.isDown('right') then  
-        x = x + 3
+      if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
+        x = x + 4
      
    
       end
@@ -181,28 +181,28 @@ function love.update(dt)
   
 
   if map3:cc(x - 3, y, w, h) == false then
-    if love.keyboard.isDown('left') then  
-      x = x - 3
+    if love.keyboard.isDown('left') or love.keyboard.isDown('a')then  
+      x = x - 4
   
     end
   end
   
   if map3:cc(x, y + 3, w, h) == false then
-    if love.keyboard.isDown('down') then 
-      y = y + 3
+    if love.keyboard.isDown('down') or love.keyboard.isDown('s') then 
+      y = y + 4
 
     end
   end
 
    
   if map3:cc(x, y - 3, w, h) == false then
-    if love.keyboard.isDown('up') then
-      y = y - 3
+    if love.keyboard.isDown('up') or love.keyboard.isDown('w') then
+      y = y - 4
     end
   end
   if cc(x, y, w, h, ex, ey, ew, eh) == false then
     if x > ex then
-      ex = ex + 1
+      ex = ex + 2
     
     end
   end
@@ -210,21 +210,21 @@ function love.update(dt)
 if(summon == 1) then
   if cc(x, y, w, h, ex, ey, ew, eh) == false then
     if x < ex then
-      ex = ex - 1
+      ex = ex - 2
     end
   end
 end
 if(summon == 1) then
   if cc(x, y, w, h, ex, ey, ew, eh) == false then
     if y > ey then
-      ey = ey + 1
+      ey = ey + 2
     end
   end
 end
 if(summon == 1) then
   if cc(x, y, w, h, ex, ey, ew, eh) == false then
     if y < ey then
-      ey = ey - 1
+      ey = ey - 2
     end
   end
 end
@@ -251,7 +251,7 @@ end
     g = 0
   end
 
-  if love.keyboard.isDown('a') then
+  if love.keyboard.isDown('x') then
     attack = true
   else
     attack = false
