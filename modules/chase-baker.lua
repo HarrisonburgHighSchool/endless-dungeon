@@ -27,7 +27,7 @@ function love.load()
  }
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
   g = 775
-  b = 250
+  b = 270
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
   w = 36   -- The player's width is 64
@@ -137,21 +137,18 @@ function love.update(dt)
    end
   end
   if love.keyboard.isDown('w') then
-   if cc(x + 20, x - 20, y + 20, y - 20, w, h,   enemy.x2, enemy.y2, 36, 36) then
-     ehp1 = ehp1 - 25
-
+   if cc(x - 25, y - 25, 86, 86,   enemy.x2, enemy.y2, 36, 36) then
+     ehp1 = ehp1 - 10
    end
   end
   if love.keyboard.isDown('w') then
-   if cc(x + 20, y + 20, y + 20, y - 20, w, h,   knight1.x2, knight1.y2, 36, 36) then
-     ehp2 = ehp2 - 25
-
+   if cc(x - 25, y - 25, 86, 86,   knight1.x2, knight1.y2, 36, 36) then
+     ehp2 = ehp2 - 10
    end
   end
   if love.keyboard.isDown('w') then
-   if cc(x + 20, y + 20, y + 20, y - 20, w, h,   knight2.x2, knight2.y2, 36, 36) then
-     ehp3 = ehp3 - 25
-
+   if cc(x - 25, y - 25, 86, 86,   knight2.x2, knight2.y2, 36, 36) then
+     ehp3 = ehp3 - 10
    end
   end
   -- Enemy movement stuff
@@ -197,15 +194,15 @@ function love.update(dt)
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   enemy.x2, enemy.y2, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 25
+    hp = hp - 10
   end
   if cc(x, y, w, h,   knight1.x2, knight1.y2, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 25
+    hp = hp - 10
   end
   if cc(x, y, w, h,   knight2.x2, knight2.y2, 36, 36) then
     -- if true, decrease HP:
-    hp = hp - 25
+    hp = hp - 10
   end
   if cc(x, y, w, h,   g, b, 36, 36) then
    love.exitModule()
@@ -256,10 +253,4 @@ function love.draw()
   love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
     --Draw everything here. For example:
   end)
-end
-
-function love.keypressed(key)
-  if key == 'escape' then
-    love.exitModule()
-  end
 end
