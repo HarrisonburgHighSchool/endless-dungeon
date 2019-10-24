@@ -15,6 +15,10 @@ function love.load()
   ey = 210
   eimg = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
 
+  ex = 270
+  ey = 210
+  eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
+
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
@@ -99,7 +103,7 @@ end
   hp = hp - 1
  end
  ex = ex + 1
-
+ 
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = closedDoor
 
@@ -125,7 +129,7 @@ love.graphics.draw(switch, 200, 200,0,2)
   love.graphics.draw(playerImg, x, y,0,2)
 
   love.graphics.draw(eimg, ex, ey)
- 
+  love.graphics.draw(eimg2, ex, ey)
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', 0, 0, 64, 64)
 
