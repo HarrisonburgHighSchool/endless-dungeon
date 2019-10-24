@@ -102,7 +102,9 @@ function love.update(dt)
       currentDoor = openDoor
     end
   end
-  
+  if cc(x, y, 64, 64,   0, 319, 64, 64) == true then
+    love.exitModule{};
+  end
 end
    
 
