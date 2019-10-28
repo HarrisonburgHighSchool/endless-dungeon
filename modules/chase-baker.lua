@@ -226,9 +226,9 @@ function love.draw()
   love.graphics.draw(knight2.img, knight2.x2, knight2.y2)
   love.graphics.draw(questItem, g, b)
   if hp < 1 then
-    x = x
-    y = y
-    love.graphics.print('GAME OVER', x + 50, y + -50)
+    x = 500
+    y = 270
+    love.graphics.print('GAME OVER', x, y + -36)
     hp = 0
   end
   if ehp1 < 1 then
