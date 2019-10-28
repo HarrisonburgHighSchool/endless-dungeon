@@ -12,6 +12,8 @@ function love.load()
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
+    axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
+    rod=love.graphics.newImage('assets-1/item/rod/rod_6.png')
   w=60
   h=60
   hp=100
@@ -225,6 +227,8 @@ if hp > 0 then
     floor2:draw()
 end
 if hp > 0 then
+    love.graphics.draw(rod, 415, 650)
+    love.graphics.draw(axe, 115, 115)
     love.graphics.draw(gold, 1650, 375)
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
