@@ -105,23 +105,23 @@ end
       hp = hp - 1
   end
 if ex < x then
-   if collision:cc(ex + 3, ey, 64, 64) == false then
-      ex = ex + 3
+   if collision:cc(ex + 5, ey, 64, 64) == false then
+      ex = ex + 5
    end
  end
 if ex > x then
-   if collision:cc(ex - 3 , ey, 64, 64) == false then
-     ex = ex - 3
+   if collision:cc(ex - 5 , ey, 64, 64) == false then
+     ex = ex - 5
    end
  end
 if ey > y then
-    if collision:cc(ex, ey - 3, 64, 64) == false then
-      ey = ey - 3
+    if collision:cc(ex, ey - 5, 64, 64) == false then
+      ey = ey - 5
     end
   end
   if ey < y then
-    if collision:cc(ex, ey + 3, 64, 64) == false then
-      ey = ey + 3
+    if collision:cc(ex, ey + 5, 64, 64) == false then
+      ey = ey + 5
     end
   end
   if cc(x, y, 32, 32, ex, ey, 32, 32) then
