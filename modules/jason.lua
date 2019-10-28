@@ -89,8 +89,9 @@ function love.update(dt)
   if ey < y then
   ey = ey + 6
   end
-
-
+if love.keyboard.isDown('escape')then
+love.exitModule()
+  end
 end
 
 function love.draw()
