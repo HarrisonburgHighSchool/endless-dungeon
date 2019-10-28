@@ -15,22 +15,24 @@ function love.load()
   y = 320
   camy = 256
   mirrory = 320
-  hp = 20
+  hpnum = 10
   cam = gamera.new(48, 52, 800, 600)
   w = 64
   h = 64
+  timerIFrames = 0
+  Iframes = 0
 
   spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.2)
-  idle = anim8.newAnimation(grid('1-4', 1), 0.3)
+  idle = anim8.newAnimation(grid('1-4', 1), 0.4)
 
   anim = idle
 
   spritesheetM = love.graphics.newImage('hero/Old hero M.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walkm = anim8.newAnimation(grid('1-6', 2), 0.2)
-  idlem = anim8.newAnimation(grid('1-4', 1), 0.3)
+  idlem = anim8.newAnimation(grid('1-4', 1), 0.4)
 
   anim = idlem
 
@@ -41,8 +43,17 @@ function love.load()
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
-  Hp = love.graphics.newImage('assets-1/player/hp_bar/full.png')
-
+  Hpfull = love.graphics.newImage('assets-1/player/hp_bar/full.png')
+  --Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
+  --Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
+  --Hp7 = love.graphics.newImage('assets-1/player/hp_bar/7.png')
+  --Hp6 = love.graphics.newImage('assets-1/player/hp_bar/6.png')
+  --Hp5 = love.graphics.newImage('assets-1/player/hp_bar/5.png')
+  --Hp4 = love.graphics.newImage('assets-1/player/hp_bar/4.png')
+  --Hp3 = love.graphics.newImage('assets-1/player/hp_bar/3.png')
+  --Hp2 = love.graphics.newImage('assets-1/player/hp_bar/2.png')
+  --Hp1 = love.graphics.newImage('assets-1/player/hp_bar/critical.png')
+  --Hpempty = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
     floor = {
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, 'nil', 'nil',},
@@ -235,17 +246,27 @@ function love.update(dt)
       end
     end
     if mirrorshatttered == true then
-      if wallsm:cc(x, y - 4, 64, 64) == false then
+      if wallsm:cc(x, y - 4, 64, 64) == 0 then
         y = y - 4
         mirrory = mirrory - 4
     end
   end
 end
   if cc(x, y, w, h, 158, 216, 80, 16) then  
-    hp = hp - 1
+    if Iframes == 0 then
+      hpnum = hpnum - 1
+      if Iframes == 0 then
+        Iframes = 1
+      end
+    end
   end
   if cc(x, y, w, h, 280, 410, 16, 16) then  
-    hp = hp - 1
+    if Iframes == 0 then
+      hpnum = hpnum - 1
+      if Iframes == 0 then
+        Iframes = 1
+      end
+    end
   end
   if cc(x, y, w, h, 344, 510, 64, 64) then
     if mirrorshatttered == false then
@@ -253,10 +274,32 @@ end
     end
   end
   if cc(x, y, w, h, 60, 542, 99, 84) then
-    hp = hp - 1
+    if Iframes == 0 then
+      hpnum = hpnum - 1
+      if Iframes == 0 then
+        Iframes = 1
+      end
+    end
   end
   if cc(x, y, w, h, 348, 152, 12, 72) then  
-    hp = hp - 1
+    if Iframes == 0 then
+      hpnum = hpnum - 1
+      if Iframes == 0 then
+        Iframes = 1
+      end
+    end
+  end
+
+  if Iframes == 1 then
+    timerIFrames = 0.5
+  end
+  if timerIFrames > 0 then
+   timerIFrames = timerIFrames - 0.0033
+   Iframes = 2
+  end
+  if timerIFrames < 0 then
+    timerIFrames = 0
+    Iframes = 0
   end
   if x > 864 then
     love.exitModule()
@@ -280,18 +323,60 @@ function love.draw()
     mirrorm:draw()
     doors:draw()
   end
-
-  love.graphics.print(hp, x, y)
+  if hpnum == 10 then
+    love.graphics.draw(Hpfull, x, y - 20)
+  end
+  if hpnum == 9 then
+    love.graphics.draw(Hp9, x, y - 20)
+    end
+  if hpnum == 8 then
+    love.graphics.draw(Hp8, x, y - 20)
+  end
+  if hpnum == 7 then
+    love.graphics.draw(Hp7, x, y - 20)
+  end
+  if hpnum == 6 then
+    love.graphics.draw(Hp6, x, y - 20)
+  end
+  if hpnum == 5 then
+    love.graphics.draw(Hp5, x, y - 20)
+  end
+  if hpnum == 4 then
+    love.graphics.draw(Hp4, x, y - 20)
+  end
+  if hpnum == 3 then
+    love.graphics.draw(Hp3, x, y - 20)
+  end
+  if hpnum == 2 then
+    love.graphics.draw(Hp2, x, y - 20)
+  end
+  if hpnum == 1 then
+    love.graphics.draw(Hp1, x, y - 20)
+  end
+  if hpnum == 0 then
+    love.graphics.draw(Hpempty, x, y - 20)
+  end
   if love.keyboard.isDown('down') == false then
     if love.keyboard.isDown('up') == false then
       if love.keyboard.isDown('left') == false then
         if love.keyboard.isDown('right') == false then
           if mirrorshatttered == false then
-            idle:draw(spritesheet, x, y)
-            idle:draw(spritesheetM, mirrorx, mirrory)
+            if facingR == true then
+              idle:draw(spritesheet, x, y)
+              idle:draw(spritesheetM, mirrorx, mirrory)
+            end
+            if facingL == true then
+              idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+              idle:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+            end
           end
           if mirrorshatttered == true then
-            idle:draw(spritesheet, x, y)
+            if facingR == true then
+              idle:draw(spritesheet, x, y)
+            end
+            if facingL == true then
+              idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+            end
           end
         end
       end
