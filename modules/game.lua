@@ -99,17 +99,15 @@ function love.update(dt)
   end
 
   if dir == 'left' then
-
     ex = ex - 1
   end
   if dir == 'right' then
     ex = ex + 1
   end
 
-
   --Changes left & right
   if ex < 70 then
-    dir = 'right' 
+    dir = 'right'
   end
   if ex > 735 then
     dir = 'left'
