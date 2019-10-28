@@ -18,6 +18,8 @@ function love.load()
   ex = 270
   ey = 210
   eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
+  ex = 270
+  ey = 210
 
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
@@ -38,17 +40,17 @@ currentDoor = openDoor
 
   mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass},
-    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
+    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
     {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
+    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
     {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
     
   }
@@ -57,14 +59,14 @@ currentDoor = openDoor
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,grass,'nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {'nil','nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,grass,'nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
