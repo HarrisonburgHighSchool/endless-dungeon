@@ -4,7 +4,7 @@ local Util = require 'core/util'
 local Entity = require 'core/entity'
 function love.load()
 
-  speed = 1.7
+  speed = 5
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
   y = 100
@@ -32,6 +32,9 @@ function love.load()
   f = 64
   g = 64
 
+BossImg = love.graphics.newImage('assets-1/monster/Boss2.png')
+bx = 800
+by = 160
   portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
 
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
@@ -248,5 +251,6 @@ function love.draw()
   love.graphics.draw(currentDoor, dx, dy)
   love.graphics.draw(portal, 450, 160)
   love.graphics.draw(switch, 450, 600)
+  love.graphics.draw(BossImg, bx, by)
  end)
 end
