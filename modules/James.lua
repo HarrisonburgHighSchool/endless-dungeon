@@ -3,14 +3,15 @@ local gamera = require 'core/gamera'
 --local Entity = require 'core/entity'
 
 function love.load()
-  --player = Entity:new(img, 200, 200)
+  --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,2000,2000)
-  x = 100
-  y = 100
+  x = 300
+  y = 300
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   ex = 100
   ey = 100
-  dir = 'd'
   eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
+  dir = 'd'
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
  w = 32   -- The player's width is 64
  h = 32   -- The player's height is 64
@@ -83,18 +84,6 @@ function love.update(dt)
   if love.keyboard.isDown('escape') then
     love.exitModule();
   end
-  if ex < 100 then
-    dir = 'right'
-      end
-      if ex > 1900 then
-    dir = 'left'
-      end
-      if dir == 'right' then
-      ex = ex + 10
-      end
-      if dir == 'left' then 
-        ex = ex - 10
-      end
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
@@ -110,8 +99,9 @@ end
   if love.keyboard.isDown('a') or  love.keyboard.isDown('left')then
     if map2:cc(x - 5 ,y, w, h) == false then 
     x = x - 3
-  end  
+  end 
 end
+
  if love.keyboard.isDown('d') or love.keyboard.isDown('right')then
    if map2:cc(x + 5, y, w, h) == false then 
    x = x + 3
@@ -120,17 +110,23 @@ end
 
   cam:setPosition(x,y)
 
+  --Enemy movement stuff (new)
+  if ex < 100 then
+    ex = ex + 1
+  end
 end
 
 
+
 function love.draw()
+  love.graphics.draw(img, x, y)
+  love.graphics.draw(eimg, ex, ey)
  --player:draw()
   cam:draw(function(l, t, w, h)
     map:draw()
     map2:draw()
     love.graphics.print(x, 50, 50)
     love.graphics.print(y, 60, 60)
-   --love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     if map:cc(x, y+1, 64, 64) == false then
     end
