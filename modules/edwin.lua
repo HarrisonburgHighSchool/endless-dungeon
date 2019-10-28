@@ -84,27 +84,26 @@ end
     end
 
     if ex < x then
-      if collision:cc(ex + 2, ey, 64, 64) == false then
-         ex = ex + 2
+       if collision:cc(ex + 5, ey, 64, 64) == false then
+          ex = ex + 5
        end
      end
     if ex > x then
-      if collision:cc(ex - 2, ey, 64, 64) == false then
-         ex = ex - 2
-      end
-    end
-    if ey > y then
-      if collision:cc(ey - 2, ex, 64, 64) == false then
-        ey = ey - 2
-      end
-    end
-    if ey < y then
-      if collision:cc(ey + 2, ex, 64, 64) == false then
-         ey = ey + 2
+       if collision:cc(ex - 5 , ey, 64, 64) == false then
+         ex = ex - 5
+       end
      end
-   end
-end
-
+    if ey > y then
+        if collision:cc(ey - 5 , ex, 64, 64) == false then
+          ey = ey - 5
+        end
+      end
+      if ey < y then
+        if collision:cc(ey + 5 , ex, 64, 64) == false then
+          ey = ey + 5
+        end
+      end
+    end
 function love.draw()
   map:draw()
   background:draw()
