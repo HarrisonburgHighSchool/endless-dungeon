@@ -12,10 +12,10 @@ function love.load()
 
 
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  wall =love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_yellow.png')
+  wall =love.graphics.newImage('assets-1/dungeon/wall/zot_blue_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
       altar = love.graphics.newImage('assets-1/dungeon/wall/bars_red_4.png')
-     ground = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_lightcyan.png')
+     ground = love.graphics.newImage('assets-1/dungeon/wall/emerald_8.png')
       flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
@@ -37,16 +37,20 @@ template = {
 
 }
 wall={
-             {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,'nil','nil',wall},
-             {wall,                },
-
+  {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
+{wall,'nil','nil','nil', 'nil', 'nil' ,'nil','nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
+{wall,'nil','nil','nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil',wall},
+{wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall}
 
             }
 
