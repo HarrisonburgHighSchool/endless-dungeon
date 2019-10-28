@@ -10,7 +10,7 @@ local Util = require 'core/util'
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_middle.png')
   closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_middle.png')
   switch = love.graphics.newImage('assets-1/dungeon/vaults/disco_ball.png')
-  
+  deathTrap = love.graphics.newImage('assets-2/item/misc/runes/rune_gloorx_vloq.png')
   currentDoor = closedDoor
 
 
@@ -95,7 +95,7 @@ h = 200   -- The player's height is 50
 hp = 100 -- Set the player's HP to 100 at the start of the game
 PNG = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 z = 100 -- The enemy's width is 50
-g = 150 -- The enemy's height is 50
+g = 250 -- The enemy's height is 50
 --img = love.graphics.newImage('assets')
 end
 
@@ -160,7 +160,7 @@ function love.draw()
   
   love.graphics.draw(currentDoor, 764, 92)
   love.graphics.draw(switch, 200, 200)
-  
+  love.graphics.draw(deathTrap, 200, 400)
   -- Draw the enemy
   love.graphics.draw(PNG, z, g)
 
@@ -174,6 +174,10 @@ function love.draw()
  love.graphics.print(hp, 0, 0)
 
  love.graphics.print("So you must be Bob the shape-shifting alien? You have to solve all the puzzles in order to get out of here.",  100, 100)
+if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
+ -- What should go here?
+end
+love.graphics.print("Don't pick up this rune, it will actually kill you.",  100, 150)
 if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
