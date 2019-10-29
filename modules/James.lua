@@ -44,7 +44,7 @@ function love.load()
               }
 
 
---POOPOOWEEWEECACA
+
 
 
 map2 = { --a 20 x 20 map with the altar texture in the middle

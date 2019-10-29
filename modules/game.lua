@@ -18,7 +18,7 @@ function love.load()
   w = 64
   h = 64
   hp = 100
---POOPOOWEEWEECACA
+
   --Creates the map
   template = { --a 13 x 10 map with the altar texture in the middle
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
