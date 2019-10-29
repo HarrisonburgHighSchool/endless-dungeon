@@ -10,6 +10,8 @@ function love.load()
  ex = 100
  ey = 100
 
+ 
+
  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
 playerImg = love.graphics.newImage('assets-1/player/base/kobold_male.png')
@@ -118,7 +120,7 @@ end
  end
  if cc(x, y, 32, 64,   ex, ey, 64, 64)then
 
-   hp = hp - 1
+   hp = hp - 0.5
  end
 end
 
@@ -135,5 +137,5 @@ cam:draw(function(l, t, w, h)
 
  end)
  love.graphics.rectangle('line', 0, 0, 64, 64)
-love.graphics.print(hp, 0, 0)
+love.graphics.print(hp, 10, 0)
 end
