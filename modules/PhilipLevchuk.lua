@@ -4,31 +4,48 @@ local Util = require 'core/util'
 local Entity = require 'core/entity'
 function love.load()
 
+  speed = 5
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
   y = 100
+  open = false
   playerImg = love.graphics.newImage('assets-1/monster/knight.png')
   w = 64
   h = 64
   hp = 100
-  a = 470
-  b = 400
+  --a = 470
+  --b = 400
   Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
   ex = 520
   ey = 550
   dir = 'right'
-  e = 470
-  d = 400
+  e = 64
+  d = 64
   Img4 = love.graphics.newImage('assets-1/monster/EvilKnight.png')
   ax = 320
   ay = 895
   dir2 = 'right'
   Img5 = love.graphics.newImage('assets-1/monster/hello.png')
-  rx = 600
-  ry = 900
+  rx = 500
+  ry = 820
   dir3 = 'right'
-  f = 470
-  g = 400
+  f = 64
+  g = 64
+
+BossImg = love.graphics.newImage('assets-1/monster/Boss2.png')
+bx = 800
+by = 160
+  portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
+
+  openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
+closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
+switch = love.graphics.newImage('assets-1/dungeon/altars/cheibriados.png')
+dx = 1080
+dy = 500
+currentDoor = closedDoor
+
+
+
 
   crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
@@ -83,15 +100,22 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
 }
-
 collide = Map:new(walls)
 end
 function love.update(dt)
 
-  --if ey < 635 then
-    --ey = ey + 1
 
-  --end
+
+
+--if cc(x, y, 64, 64,  1080, 500, 200, 200) == true then
+  --(currentDoor 0, 0, 0)
+--end
+
+
+
+
+
+
 
 if dir3 == 'left' then
   ry = ry + 1
@@ -99,12 +123,15 @@ end
 if dir3 == 'right' then
   ry = ry - 1
 end
-if ey < 950 then
- dir3 = 'left'
+
+if ry < 800 then
+  dir3 = 'left'
 end
-if ey > 960 then
-  --dir3 = 'right'
---end
+if ry > 910 then
+  dir3 = 'right'
+end
+
+
 if dir2 == 'left' then
   ay = ay + 1
 end
@@ -145,30 +172,66 @@ end
     y = 950
   end
 
+    local tx = x
+    local ty = y
     if love.keyboard.isDown('up') then
-        if collide:cc(x, y - 2, 64, 64) == false then
-          y = y - 2
-        end
+
+          ty = ty - speed
+
       end
       if love.keyboard.isDown('down') then
-        if collide:cc(x, y + 2, 64, 64) == false then
-          y = y + 2
-        end
+          ty = ty + speed
       end
       if love.keyboard.isDown('right') then
-        if collide:cc(x + 2, y, 64, 64) == false then
-          x = x + 2
-        end
+          tx = tx + speed
+
       end
       if love.keyboard.isDown('left') then
-        if collide:cc(x - 2, y, 64, 64) == false then
-          x = x - 2
-        end
+
+          tx = tx - speed
+
       end
 
 
+      if collide:cc(tx, ty, 64, 64) == false then
+        if open == true then
+          x = tx
+          y = ty
+        else
+          if cc(tx, ty, 64, 64,  dx, dy, 128, 128) == false then
+            x = tx
+            y = ty
+          end
+        end
+      end
 
+if hp == 0 then
+  x = -300
 
+end
+
+if cc(x, y, w, h, 450, 600, 64, 64)
+then
+  currentDoor = openDoor
+  open = true
+end
+
+if cc(x, y, w, h, 450, 160, 64, 64)
+then love.exitModule()
+end
+
+if cc(x, y, w, h, ax, ay, 64, 64)
+then
+  hp = hp - 1
+end
+if cc(x, y, w, h, rx, ry, 64, 64)
+then
+  hp = hp - 1
+end
+if cc(x, y, w, h, ex, ey, 64, 64)
+then
+  hp = hp - 1
+end
 
 
   cam:setPosition(x, y)
@@ -185,11 +248,9 @@ function love.draw()
   love.graphics.draw(Img4, ax, ay)
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
+  love.graphics.draw(currentDoor, dx, dy)
+  love.graphics.draw(portal, 450, 160)
+  love.graphics.draw(switch, 450, 600)
+  love.graphics.draw(BossImg, bx, by)
  end)
-end
-
-function love.keypressed(key)
-  if key == 'escape' then
-    love.exitModule()
-  end
 end
