@@ -2,9 +2,10 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local Entity = require 'core/entity'
+
 function love.load()
 
-  speed = 5
+  speed = 1.8
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
   y = 100
@@ -86,9 +87,9 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil','nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
+  {wall, wall, wall, wall, 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', wall, 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
@@ -111,8 +112,20 @@ function love.update(dt)
   --(currentDoor 0, 0, 0)
 --end
 
-
-
+if collide:cc(bx, by, 64, 64) == false then
+  if x > bx then
+     bx = bx + 3
+   end
+   if x < bx then
+     bx = bx - 3
+   end
+   if y > by then
+     by = by + 3
+   end
+   if y < by then
+     by = by - 3
+   end
+ end
 
 
 
@@ -233,6 +246,9 @@ then
   hp = hp - 1
 end
 
+if cc(x, y, w, h, bx, by, 64, 64)
+then hp = hp - 1
+end
 
   cam:setPosition(x, y)
 end
