@@ -2,6 +2,7 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
 
+
   cam = gamera.new(0, 0, 2000, 2000) --
 
 
@@ -9,6 +10,7 @@ function love.load()
   ey = 100
   eimg = love.graphics.newImage('assets-1/player/base/octopode_4.png')
 
+hp = 100
 
   x = 400
   y = 300
@@ -107,21 +109,32 @@ if y > ey then
 end
 
 
+if  x == 80 and y == 315  then
+  love.exitModule()
+end
+
+
+if ey == y and ex == x then
+  hp = hp - 1
+end
+
+
 end
 
 function love.draw()
 
   cam:draw(function(l, t, w, h)
 
+if hp > 0 then
     map:draw()
     love.graphics.print('Hello, world!', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(eimg, ex, ey)
-
+love.graphics.print(hp, x + 10, y - 15)
 love.graphics.rectangle('line', 100, 300, 64, 64)
 love.graphics.rectangle('line', 200, 300, 64, 64)
 love.graphics.rectangle('line', 300, 300, 64, 64)
-
+end
 
 
   end)
