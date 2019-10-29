@@ -49,7 +49,7 @@ player = {
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
-  {nil, nil, nil, nil, nil, nil, nil, nil, wall},
+  {nil, nil, nil, nil, nil, nil, nil, nil, wall},   
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
@@ -61,7 +61,7 @@ player = {
 
   map = Map:new(template)
   collision = Map:new(collision)
-end
+end  
 
 function love.update(dt)
  
