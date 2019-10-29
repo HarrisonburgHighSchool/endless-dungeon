@@ -1,4 +1,4 @@
-local Map = require 'core/map'
+           local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
 
@@ -12,82 +12,98 @@ function love.load()
 
   x = 400
   y = 300
+  w = 64
+  h = 64
 
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/floor_nerves_1.png')
-    altar     = love.graphics.newImage('assets-1/dungeon/floor/floor_nerves_1.png')
+    altar     = love.graphics.newImage('assets-1/dungeon/floor/infernal_10.png')
     template = { --a 3 x 3 map with the altar texture in the middle
 
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
 
-                                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-
-                                                      {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, floorTile, floorTile, altar, floorTile,floorTile, floorTile, altar},  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-
-
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar. floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                    {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
-                  {floorTile, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar},
+          {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          {floorTile, floorTile, floorTile , floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+          
 }
 
+wall = {
+  {altar, altar, altar, altar, altar, altar, altar, altar, altar},
+  {altar, 'nil', 'nil', altar, 'nil', 'nil', 'nil', 'nil'},
+  {altar, 'nil', 'nil', altar, 'nil', 'nil', 'nil', 'nil'}
+}
+
+
+
+  collision = Map:new(wall)
     map = Map:new(template)
-
-end
-
-function love.update(dt)
-  cam:setPosition(x, y)
-  if love.keyboard.isDown('right') then
-    x = x + 5
+    cam = gamera.new(-100, -100, 2000, 2000)
   end
 
-  if love.keyboard.isDown('left') then
-    x = x - 5
+
+  function love.update(dt)
+
+  if collision:cc(x,y-5,w,h, 0,0,64,64) == false then
+    if love.keyboard.isDown('up')then
+        y=y-5
+        cam:setPosition(x, y)
+    end
+   end
+  if collision:cc(x,y+5,w,h) == false then
+
+     if love.keyboard.isDown('down')then
+      y=y+5
+      cam:setPosition(x, y)
+    end
   end
 
-  if love.keyboard.isDown('up') then
-    y = y - 5
-end
-if love.keyboard.isDown('down') then
-  y = y + 5
-end
+  if collision:cc(x-5,y,w,h) == false then
+
+    if love.keyboard.isDown('left')then
+      x=x-5
+      cam:setPosition(x, y)
+    end
+  end
+
+   if collision:cc(x+5,y,w,h, 0,0,64,64) == false then
+   if love.keyboard.isDown('right')then
+      x=x+5
+      cam:setPosition(x, y)
+    end
+   end
+
 
 if x > ex then
   ex = ex + 3
@@ -114,7 +130,8 @@ function love.draw()
   cam:draw(function(l, t, w, h)
 
     map:draw()
-    love.graphics.print('Hello, world!', 0, 0)
+    collision:draw()
+    love.graphics.print('Hello, Mustafa!', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(eimg, ex, ey)
 
