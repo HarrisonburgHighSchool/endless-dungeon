@@ -71,7 +71,7 @@ collision = {
 end
 function love.update(dt)
   if love.keyboard.isDown('w') then
-    if collision:cc(x, y-5, 16, 16) then
+    if collision:cc(x, y-4, 16, 16) then
       y = y - 5
     end
     if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
@@ -79,7 +79,7 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('s') then
-    if collision:cc(x, y+5, 16, 16) then
+    if collision:cc(x, y+4, 16, 16) then
       y = y + 5
     end
     if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
@@ -87,7 +87,7 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('d') then
-    if collision:cc(x+5, y, 16, 16) then
+    if collision:cc(x+4, y, 16, 16) then
       x = x + 5
     end
     if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
@@ -95,14 +95,16 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('a') then
-    if collision:cc(x-5, y, 16, 16) then
+    if collision:cc(x-4, y, 16, 16) then
       x = x - 5
     end
     if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
       currentDoor = openDoor
     end
   end
-  
+  if cc(x, y, 64, 64,   0, 319, 64, 64) == true then
+    love.exitModule{};
+  end
 end
    
 
