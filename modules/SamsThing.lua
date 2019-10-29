@@ -26,7 +26,9 @@ function love.load()
   src1:setLooping(true)
   src1:play()
 
+  
 
+  
 
   x = 400
   y = 300
@@ -292,14 +294,15 @@ end
     end
       
     if cc(x, y - 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x, y + 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x - 16, y, w, h, enemy.x, enemy.y, 32, 32) or cc(x + 16, y, w, h, enemy.x, enemy.y, 32, 32)== true then
-      enemy_draw = false
+      
+      enemy = newEnemy()
     end
-  end
-    if enemy_draw == true then
-      if cc(x, y, w, h,   enemy.x, enemy.y, 16, 16) then  
+ end
+ if enemy_draw == true then
+    if cc(x, y, w, h,   enemy.x, enemy.y, 16, 16) then  
         hp = hp - 1
       end
-    end
+ end
 
 
   if love.keyboard.isDown('escape') then
@@ -362,4 +365,14 @@ end
 
 function enemyD()
   enemy_draw = true
+end
+
+function newEnemy()
+  local enemy = {
+    x = 100,
+    y = 100,
+    img = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
+  }
+
+  return enemy
 end
