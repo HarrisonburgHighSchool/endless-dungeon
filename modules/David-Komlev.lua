@@ -50,6 +50,27 @@ function love.load()
     {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9}
   }
 
+  poison = {
+    {tile4, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile6, tile7, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5},
+    {tile7, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {tile6, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
+    {tile5, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile4, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile7, tile5, tile6, 'nil', 'nil', tile5, tile6, 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile7, tile5, tile6, 'nil', 'nil', tile5, tile6, 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile7, tile5, tile6, 'nil', 'nil', tile5, tile6, 'nil', 'nil'},
+    {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile5, 'nil', 'nil', tile5, tile6, tile7, 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {tile6, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile4, tile5, tile6, tile7, tile5, 'nil', 'nil', tile5, tile6, tile7, 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {tile7, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile5, tile6, tile7, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {tile4, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile5, tile6, tile7, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
+    {tile5, tile6, 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, 'nil', 'nil'},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, 'nil', 'nil'},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
+    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'}
+  }
+
+
   collision = {
     {wall2, 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
     {'nil', wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, 'nil'},
@@ -69,7 +90,8 @@ function love.load()
 
 
       background = Map:new(background)
-        collision = Map:new(collision)
+      collision = Map:new(collision)
+      poison = Map:new(poison)
 
 end
 
@@ -99,9 +121,13 @@ function love.update(dt)
     end
   end
 
+
+
   if cc(x, y, w, h, ex, ey, 5, 5) then
     hp = hp - .5
   end
+
+
   if hp == 0 then
     love.exitModule()
   end
@@ -132,6 +158,7 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   collision:draw()
   background:draw()
+  poison:draw()
   love.graphics.print(hp, x, y+ -18)
   love.graphics.draw(img, x, y)
   love.graphics.draw(eimg, ex, ey)
