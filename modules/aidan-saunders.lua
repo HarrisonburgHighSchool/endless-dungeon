@@ -25,7 +25,8 @@ openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 z=100
 s=100
 q=700
-c=100
+c=0
+b=0
 direction = 'down'
 direction2= 'left'
 direction3= 'right2'
@@ -156,24 +157,24 @@ function love.update(dt)
   if direction4 == 'diagonal1' then
     c = c - 5
   end
-  if c==700 then
+  if c==200 then
     direction4 = 'diagonal1'
   end
-  if c==100 then
+  if c==0 then
     direction4 = 'diagonal'
   end
---
-    if direction4 == 'diagonal' then
-      c = c + 5
+
+    if direction5 == 'diagonal2' then
+      b = b + 5
     end
-    if direction4 == 'diagonal1' then
-      c = c - 5
+    if direction5 == 'diagonal3' then
+      b = b - 5
     end
-    if c==700 then
-      direction4 = 'diagonal1'
+    if b==200 then
+      direction5 = 'diagonal3'
     end
-    if c==100 then
-      direction4 = 'diagonal'
+    if b==0 then
+      direction5 = 'diagonal2'
     end
 --Player Movement
   if love.keyboard.isDown('right')then
@@ -213,7 +214,7 @@ if x > 0 then
 
    hp = hp - 1
  end
-if cc(x, y, w, h,   c, 190, 60, 60) then
+if cc(x, y, w, h,   c, b, 60, 60) then
 
   hp = hp - 1
 end
@@ -246,7 +247,7 @@ if hp > 0 then
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
-    love.graphics.draw(oct4, c, 190)
+    love.graphics.draw(oct4, c, b)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
