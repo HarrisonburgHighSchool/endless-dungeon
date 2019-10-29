@@ -103,7 +103,7 @@ map2 = { --a 3 x 3 map with the altar texture in the middle
 {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar,  'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
 {walls, 'nil', 'nil', altar,  'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls}, 
+{walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,walls}, 
 
 
 } 
