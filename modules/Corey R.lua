@@ -9,7 +9,7 @@ col = 1
   y = 60
   w = 38
   h = 56
-  x2 = 740
+  x2 = 750
   y2 = 68
   w2 = 64
   h2 = 64
@@ -22,6 +22,7 @@ col = 1
   playerImg2 = love.graphics.newImage('assets-1/player/base/gargoyle_male - Copy.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
   floor1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
+  door = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
   lava = love.graphics.newImage('assets-2/dc-dngn/floor/lava0.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   banner = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
@@ -44,10 +45,27 @@ col = 1
       {wall, floor, floor, floor, floor1, floor, floor, floor, wall1},
       {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
       {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
+      {wall_enter, floor1, floor, floor, floor, floor, floor1, floor, wall3},
+      {wall3, wall, wall1, wall3, wall1, wall, wall, wall, wall},
+    }
+    map = Map:new(template)
+
+    template12 = { 
+      {wall, wall1, wall3, wall1, wall3, wall2, wall3, wall, wall},
+      {wall1, floor1, floor1, floor, floor, floor, floor1, floor1, wall},
+      {wall, floor1, floor, floor, floor, floor, floor, floor1, wall},
+      {wall3, floor, floor, floor, floor, floor, floor1, floor, wall1},
+      {wall1, floor, floor, floor, floor, wall_enter, floor, floor, wall},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall3},
+      {wall, floor1, floor, floor, floor, floor, floor, floor, wall1},
+      {banner, floor, floor, floor, floor, floor, floor, floor, wall},
+      {wall, floor, floor, floor, floor, floor1, floor, floor, wall1},
+      {wall1, floor, floor, floor, floor, floor, floor, floor, wall2},
+      {wall3, floor1, floor, floor, floor, floor, floor, floor1, wall1},
       {wall, floor1, floor, floor, floor, floor, floor1, floor, wall3},
       {wall3, wall1, wall1, wall3, wall1, wall, wall, wall, wall},
     }
-    map = Map:new(template)
+    map12 = Map:new(template12)
     
     template2 = { 
       {wall , 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'},
@@ -125,7 +143,7 @@ end
 if(x > 720)then 
   x = x - 2
 end
-if(y < 67)then 
+if(y < 60)then 
   y = y + 2
 end
 if(y > 450)then 
@@ -140,16 +158,10 @@ if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
   game_end2 = true
  end
 if (collide == true and col == 1) then  
-  hp = hp - 0.5
-  flash = flash + 0.1
-else
-  flash = 0
+  hp = hp - 0.51
 end
 if (collide3 == true and col == 2) then  
-  hp = hp - 0.5
-  flash = flash + 0.1
-else
-  flash = 0
+  hp = hp - 0.51
 end
 if(hp < 0)then
   hp = 0
@@ -175,7 +187,7 @@ function love.draw()
   map:draw()
   map2:draw()
   if(collide2 == true)then 
-    map:draw()
+    map12:draw()
     map3:draw()
   end
   if(hp > 0)then
@@ -185,19 +197,11 @@ function love.draw()
     love.exitModule();
   end
   love.graphics.print(hp, 10, 10)
-  love.graphics.print(x, 10, 25)
-  love.graphics.print(y, 10, 35)
-
+  love.graphics.print(x, 10, 30)
+  love.graphics.print(y, 10, 40)
   if(hp > 0)then
     love.graphics.draw(playerImg, x, y)
   end
-  if(flash > 5)then
-    love.graphics.draw(playerImg2, x, y)
-  end
-  if(flash > 20)then
-    love.graphics.draw(playerImg, x, y)
-  end
-  
   if(hp == 0)then
     map4:draw()
   end
