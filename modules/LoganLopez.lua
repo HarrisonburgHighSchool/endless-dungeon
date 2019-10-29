@@ -142,7 +142,7 @@ if direction == 'left' then
 end
 if love.keyboard.isDown('escape')then
   love.exitModule()
-end
+endv k 7j bn7 
 end
 
 
