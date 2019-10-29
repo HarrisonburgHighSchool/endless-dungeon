@@ -9,7 +9,7 @@ function love.load()
   x = 400
   y = 300
   --playerImg = love.graphics.newImage('a/images.png')
-  sound = love.audio.newSource('Sound Effects/boing_jack_01.wav', 'static')
+  sound = love.audio.newSource('Daniel V. Personal Assets/Sound Effects/coincollected.wav', 'static')
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
   x2 = 79
   y2 = 270
@@ -18,9 +18,9 @@ function love.load()
   h = 32
   hp = 100
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
-  coin = love.graphics.newImage('a/coin.png')
+  coin = love.graphics.newImage('Daniel V. Personal Assets/Images/coin.png')
   gotCoin = true
-  prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal90CCW.png')
+  prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
   
   template = {
@@ -81,42 +81,46 @@ end
 
 function love.update(dt)
   
-  if not collision:cc(x2 + 5, y2, w, h) then
-  if love.keyboard.isDown('d') then   
-    x2 = x2 + 5
+  if not collision:cc(x2 + 4, y2, w, h) then
+  if love.keyboard.isDown('d') or love.keyboard.isDown('right')  then   
+    x2 = x2 + 4
   end
 end
-if not collision:cc(x2, y2 - 5, w, h) then  
-  if love.keyboard.isDown('w') then   
-    y2 = y2 - 5
+if not collision:cc(x2, y2 - 4, w, h) then  
+  if love.keyboard.isDown('w') or love.keyboard.isDown('up') then   
+    y2 = y2 - 4
   end
 end
-  if not collision:cc(x2 - 5, y2, w, h) then
-    if love.keyboard.isDown('a') then   
-    x2 = x2 - 5
+  if not collision:cc(x2 - 4, y2, w, h) then
+    if love.keyboard.isDown('a') or love.keyboard.isDown('left') then   
+    x2 = x2 - 4
   end
  end
- if not collision:cc(x2, y2 + 5, w, h) then
-  if love.keyboard.isDown('s') then 
-    y2 = y2 + 5
+ if not collision:cc(x2, y2 + 4, w, h) then
+  if love.keyboard.isDown('s') or love.keyboard.isDown('down') then 
+    y2 = y2 + 4
   end
 end
 
 if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
   gotCoin = false
+  if love.keyboard.isDown('f') then
+    gotCoin = true
+  end
 end
 
 function love.keypressed(key)
-  if key == 'space' then
+  if key == 'f' then
     sound:play()
   end
 end
-cam:setPosition(x2,y)
+
+if love.keyboard.isDown('escape') then
+  love.exitModule();
 end
 
-
-
-
+cam:setPosition(x2,y)
+end
 
 function love.draw()
   cam:draw(function(l, t, w, h)

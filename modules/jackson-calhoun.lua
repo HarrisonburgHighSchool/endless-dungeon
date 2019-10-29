@@ -12,7 +12,7 @@ function love.load()
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_open_door.png')
   doorc = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
   furnace = love.graphics.newImage('assets-2/dc-dngn/wall/stone_gray0.png')
-  x = 65
+  x = 65    --POOPOOWEEWEECACA
   y = 70
   w = 60   -- The player's width is 64
   h = 60   -- The player's height is 64
