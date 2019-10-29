@@ -19,7 +19,8 @@ function love.load()
   hp = 100
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
   coin = love.graphics.newImage('Daniel V. Personal Assets/Images/coin.png')
-  gotCoin = true
+  gotcoin = true
+  foundcoin = true
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
 
@@ -103,10 +104,11 @@ end
 end
 
 if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
-  gotCoin = false
-  if love.keyboard.isDown('f') then
-    gotCoin = true
- end
+  gotcoin = false
+  foundcoin = true
+--  if love.keyboard.isDown('f') then
+--    gotCoin = true
+-- end
 end
 
 --function love.keypressed(key)
@@ -123,20 +125,12 @@ cam:setPosition(x2,y)
 end
 
 
-
-if love.keyboard.isDown('escape') then
-  love.exitModule();
-end
-
-cam:setPosition(x2,y)
-end
-
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
  collision:draw()
   love.graphics.draw(playerImg, x2, y2)
-  if gotCoin == false then
+  if gotcoin == false then
    love.graphics.draw(coin, 769, 65, 0, 2)
   end
   --love.graphics.print(hp, 0, 0)
@@ -144,4 +138,14 @@ function love.draw()
 --love.graphics.print(tostring(mapc), 0, 0)
     love.graphics.rectangle('line', x2, y2, 32, 32)
   end)
+end
+
+
+function love.keypressed(key)
+  if key == 'f' then
+   if gotcoin == false then
+    gotcoin = true
+   foundcoin = true
+  end
+ end
 end
