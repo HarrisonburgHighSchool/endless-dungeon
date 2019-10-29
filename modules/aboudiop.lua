@@ -12,6 +12,16 @@ function love.load()
   ey = 200
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
+  cx = 500
+  cy = 400
+  cimg = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
+
+  c2x = 100
+  c2x = 700
+  c2img = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
+
+
+
   
   w = 67   -- The player's width is 67
   h = 67   -- The player's height is 67
@@ -92,6 +102,10 @@ function love.draw()
   love.graphics.print(hp, 0, 0) 
 
   love.graphics.draw(eimg, ex, ey)
+
+  love.graphics.draw(cimg, cx, cy)
+
+  love.graphics.draw(c2img, c2x, c2y)
 
 
 
