@@ -181,67 +181,84 @@ function love.update(dt)
 
   collide1 = false
 
+ 
 
-  
-  if count > 24 == true then
-    if map4:cc(x + 4, y, w, h) == false and map5:cc(x + 4, y, w, h) == false then
-      if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
+
+if count < 24 then
+  if mapx:cc(x + 4, y, w, h) == false then
+    if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
+      x = x + 4
+       if count > 24 then
+        if mapx:cc(x + 4, y, w, h) == false then
+          if map4:cc(x + 4, y, w, h) == false and map5:cc(x + 4, y, w, h) == false then
+            if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
         x = x + 4
          
-        else   
-          if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
-            x = x + 4
-            end
-          end
-        end 
-      end
+             end
+          end 
+       end
+      end 
+    end
+  end 
+end 
    
       
    
-
-  if count > 24 then
-    if map4:cc(x - 4, y, w, h) == false then
-      if map5:cc(x - 4, y, w, h) == false then
-        if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
+if count < 24 then
+  if mapx:cc(x - 4, y, w, h) == false then
+    if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
+      x = x - 4
+        if count > 24 then
+          if mapx:cc(x - 4, y, w, h) == false then
+          if map4:cc(x - 4, y, w, h) == false then
+           if map5:cc(x - 4, y, w, h) == false then
+             if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
         x = x - 4
-        else
-          if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
-            x = x - 4
-
-       
+              end 
+            end
+            end
+          end
         end
       end
     end
   end 
-end 
-  
-  if count > 24 then
-    if map4:cc(x, y - 4, w, h) == false then
-      if map5:cc(x, y - 4, w, h) == false then
-       if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
+             
+  if count < 24 then
+    if mapx:cc(x, y - 4, w, h) == false then
+      if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
         y = y - 4
-       else
-        if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
-          y = y - 4
-        end 
-       end 
+        if count > 24 then
+          if mapx:cc(x, y - 4, w, h) == false then
+            if map4:cc(x, y - 4, w, h) == false then
+              if map5:cc(x, y - 4, w, h) == false then
+                if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
+        y = y - 4
+                end 
+              end 
+            end
+          end
+        end
       end
     end
   end 
-  
-   if count > 24 then 
-    if map4:cc(x, y + 4, w, h) == false then
-      if map5:cc(x, y + 4, w, h) == false then
-        if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
+  if count < 24 then
+    if mapx:cc(x, y + 4, w, h) == false then
+      if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
         y = y + 4
-        else
-          if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
-            y = y + 4
-          end 
-        end 
+          if count > 24 then 
+            if mapx:cc(x, y + 4, w, h) == false then
+             if map4:cc(x, y + 4, w, h) == false then
+              if map5:cc(x, y + 4, w, h) == false then
+                if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
+        y = y + 4
+                  end 
+                end
+              end
+            end
+          end
+        end
       end
-    end
-  end 
+    end 
   
  
 if(summon == 1) then
