@@ -6,6 +6,13 @@ local gamera = require 'core/gamera'
 function love.load()
 
 
+
+  ex = 100
+    ey = 100
+    eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+
+
+
   x = 400
   y = 300
 cam = gamera.new(10, 10, 2000, 2000)
@@ -70,6 +77,21 @@ function love.update(dt)
   end
 
 
+  if ex > x then
+  ex = ex - 6
+  end
+  if ex < x then
+  ex = ex + 6
+  end
+  if ey > y then
+  ey = ey - 6
+  end
+  if ey < y then
+  ey = ey + 6
+  end
+if love.keyboard.isDown('escape')then
+love.exitModule()
+  end
 end
 
 function love.draw()
@@ -87,4 +109,5 @@ function love.draw()
   collision:draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
+    love.graphics.draw(eimg, ex, ey)
 end
