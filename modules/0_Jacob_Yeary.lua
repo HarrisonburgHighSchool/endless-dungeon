@@ -67,7 +67,7 @@ function love.update(dt)
  
   player.walk:update(dt)
   moving = false
---x, y, w, h all represent the player's rectangle.
+
 --If the statement is true it will run the code, but if it is false it will skip it.
 
 if love.keyboard.isDown('w') and player.y > 18 or love.keyboard.isDown('up') and player.y > 18 then -- up
@@ -96,6 +96,10 @@ if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
  end
 end
 
+-- if cc(player.x, player.y, 64, 64, 512, 0, 64, 64) then
+  -- love.exitModule() -- ends the game
+-- end
+
 function love.draw()
   map:draw()
   collision:draw()
@@ -104,7 +108,9 @@ function love.draw()
   else
     love.graphics.draw(player.img, player.x + 15, player.y, 0, 2, 2, 9)
   end
+
+  love.graphics.print(player.hp, 0, 0)
+
 end
 
 
--- love.exitModule()
