@@ -116,14 +116,14 @@ function Map:move(dx, dy)
   self.x = dx
   self.y = dy
   for x = 1, #self.matrix do
-    -- if type(self.matrix[x]) == 'table' then
-    --   for y = 1, #self.matrix[x] do
-      local tileX, tileY = self.matrix[x]:getCoords()
-        self.matrix[x]:move(tileX + dx, tileY + dy)
-    --   end
-    -- else
-    --   self.matrix[x]:scoot(x, y)
-    -- end
+    if type(self.matrix[x]) == 'table' then
+      for y = 1, #self.matrix[x] do
+        local tileX, tileY = self.matrix[x][y]:getCoords()
+        self.matrix[x][y]:move(tileX + dx, tileY + dy)
+      end
+    else
+      self.matrix[x]:scoot(x, y)
+    end
   end
 end
 
@@ -142,7 +142,7 @@ function Map:cc(x, y, w, h)
   --   for y = 1, #self.matrix[x] do
   for b = 1, #self.matrix do
     if self.matrix[b] then
-      if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, 64, 64) then
+      if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, 32, 32) then
         print('Got tile at '..b)
         return true
       end
