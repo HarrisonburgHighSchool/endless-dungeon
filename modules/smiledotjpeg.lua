@@ -197,7 +197,8 @@ function love.update(dt)
           end
         end 
       end
-  
+   
+      
    
 
   if count > 24 then
