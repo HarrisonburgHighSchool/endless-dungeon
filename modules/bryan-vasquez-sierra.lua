@@ -10,10 +10,15 @@ function love.load()
   t = 0
   w = 1000
   h = 1000
-  hp = 100 --set the player's HP to 100 at the start of the game
---effect = love.graohics.newImage('assets-1/effect/cloud_forest_fire.png')
---{effect, effect},
---}
+  hp = 100
+  x = 400
+  y = 300
+
+  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+ex = 100
+ey = 100
+elimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+
   playerImg = love.graphics.newImage('assets-2/player/transform/dragon_form.png')
   --playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
 floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_0.png')
