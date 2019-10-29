@@ -11,6 +11,16 @@ function love.load()
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
+  ex = 529
+  ey = 210
+  eimg = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
+
+  ex = 270
+  ey = 210
+  eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
+  ex = 270
+  ey = 210
+
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
@@ -22,25 +32,25 @@ function love.load()
   grey = love.graphics.newImage('assets-2/dc-dngn/floor/rect_gray1.png')
   mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
   lair = love.graphics.newImage('assets-1/dungeon/floor/lair3b.png')
-  openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
-closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_closed_up.png')
+  openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_middle.png')
+closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
 currentDoor = openDoor
 
 
   mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass},
-    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
+    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
     {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
     {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-    {mud,marble,marble,grass,marble,marble,grass,marble,grass,grass},
+    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
     {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass},
-    {mud,grass,grass,grass,marble,marble,grass,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass},
+    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
     {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
     
   }
@@ -49,14 +59,14 @@ currentDoor = openDoor
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,grass,'nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {'nil','nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,grass,'nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -94,8 +104,14 @@ end
   -- if true, decrease HP:
   hp = hp - 1
  end
+ ex = ex + 1
+ 
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = closedDoor
+
+  if love.keyboard.isDown('escape') then
+    love.exitModule();
+  end
   end
 end
 
@@ -110,11 +126,12 @@ function love.draw()
   love.graphics.draw(statue, 385, 175, 0, 2)
   love.graphics.draw(jelly, 529, 210)
   love.graphics.draw(jelly2, 270, 210)
-  love.graphics.draw(currentDoor, 385, 1 ,0,2)
+  love.graphics.draw(currentDoor, 385,1)
 love.graphics.draw(switch, 200, 200,0,2)
   love.graphics.draw(playerImg, x, y,0,2)
-  
- 
+
+  love.graphics.draw(eimg, ex, ey)
+  love.graphics.draw(eimg2, ex, ey)
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', 0, 0, 64, 64)
 
