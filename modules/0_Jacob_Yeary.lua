@@ -6,7 +6,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   love.window.setMode(768, 576)
 player = {
-  x = 388,
+  x = 373,
   y = 468,
   w = 64,   -- The player's width is 64
   h = 64,   -- The player's height is 64
@@ -71,26 +71,26 @@ function love.update(dt)
 --If the statement is true it will run the code, but if it is false it will skip it.
 
 if love.keyboard.isDown('w') and player.y > 18 or love.keyboard.isDown('up') and player.y > 18 then -- up
-  if collision:cc(player.x, player.y - 4 , 10, 32) == false then
+  if collision:cc(player.x, player.y - 4 , 24, 32) == false then
     player.y = player.y - 4 -- speed
   end
 end 
 if love.keyboard.isDown('a') or love.keyboard.isDown('left') then -- left
   moving = true
   flip = -2
-  if collision:cc(player.x - 4 , player.y, 10, 32) == false then  
+  if collision:cc(player.x - 4 , player.y, 24, 32) == false then  
     player.x = player.x - 4 -- speed
   end
 end
 if love.keyboard.isDown('s') or love.keyboard.isDown('down') then -- down
-  if collision:cc(player.x, player.y + 4 , 10, 32) == false then  
+  if collision:cc(player.x, player.y + 4 , 24, 32) == false then  
     player.y = player.y + 4 -- speed
   end
 end
 if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
   moving = true
   flip = 2
-  if collision:cc(player.x + 4  , player.y , 10, 32) == false then  
+  if collision:cc(player.x + 4  , player.y , 24, 32) == false then  
     player.x = player.x + 4 -- speed
   end
  end
@@ -100,8 +100,11 @@ function love.draw()
   map:draw()
   collision:draw()
   if moving == true then
-    player.walk:draw(player.spritesheet, player.x, player.y, 0, flip, 2, 9)
+    player.walk:draw(player.spritesheet, player.x + 15, player.y, 0, flip, 2, 9)
   else
-    love.graphics.draw(player.img, player.x, player.y, 0, 2, 2, 9)
+    love.graphics.draw(player.img, player.x + 15, player.y, 0, 2, 2, 9)
   end
 end
+
+
+-- love.exitModule()
