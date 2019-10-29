@@ -48,7 +48,7 @@ function love.load()
                 -- Create the collision map, with walls around the edge of the map
                 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
                 collision = {
-                  {wall, 'nil', 'nil', 'nil', Item, Item, 'nil', 'nil', 'nil', 'nil'},
+                  {wall, 'nil', 'nil', 'nil', Item, Item, 'nil', 'nil', 'nil', wall},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
                   {wall, obstacle, 'nil', obstacle1, 'nil', 'nil', obstacle1, 'nil', obstacle, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
