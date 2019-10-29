@@ -6,12 +6,20 @@ function love.load()
   ey = 100
   dir = 'right'
   eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
-
-
-  
-  cam = gamera.new(0, 0, 2000, 2000) 
+   rx = 100
+   ry = 400
+   bir = 'right'
+   tir = 'right'
+   eir = 'right'
+   air = 'right'
+   tx = 100
+   ty = 600
+   ax = 100
+   ay = 800 
+   
+   cam = gamera.new(0, 0, 2000, 2000) 
   cam:setPosition(400, 400)
-  x = 400
+  x = 800
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
@@ -53,7 +61,7 @@ function love.load()
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls, walls, walls, walls, walls, walls, walls}, 
+                 {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls, walls, walls, walls, walls, walls, walls},
   
   
   
@@ -109,15 +117,61 @@ end
 
 
 function love.update(dt)
-  if ex < 10 then
-end
-  if ex > 200 then
-end
+  if love.keyboard.isDown('escape') then
+    love.exitModule();  
+  end 
+  
+  
+  if ax < 100 then
+    air = 'right'
+  end
+  if ax > 1900 then
+    air = 'left'
+  end
+  if air == 'right' then
+    ax = ax + 10
+  end
+  if air == 'left' then 
+    ax = ax - 10
+  end
+  
+  if tx < 100 then
+    eir = 'right'
+  end
+  if tx > 1900 then
+    eir = 'left'
+  end
+  if eir == 'right' then
+    tx = tx + 10
+  end
+  if eir == 'left' then 
+    tx = tx - 10
+  end
+  
+  if rx < 100 then
+    bir = 'right'
+      end
+      if rx > 1900 then
+    bir = 'left'
+      end
+      if bir == 'right' then
+      rx = rx + 10
+      end
+      if bir == 'left' then 
+        rx = ex - 10
+      end
+  
+      if ex < 100 then
+dir = 'right'
+  end
+  if ex > 1900 then
+dir = 'left'
+  end
   if dir == 'right' then
-  ex = ex + 3
+  ex = ex + 10
   end
   if dir == 'left' then 
-    ex = ex - 3
+    ex = ex - 10
   end
   -- if ex < 1950 then
   --   ex = ex + 3
@@ -156,6 +210,9 @@ function love.draw()
     map:draw()
     map2:draw()
     love.graphics.draw(eimg, ex, ey) 
+    love.graphics.draw(eimg, rx, ry )
+    love.graphics.draw(eimg, tx, ty )
+    love.graphics.draw(eimg, ax, ay )
     love.graphics.print('', 0, 0)
     love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0 , 0, 64, 899) 
