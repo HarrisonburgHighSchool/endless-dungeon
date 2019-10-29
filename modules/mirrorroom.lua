@@ -21,6 +21,8 @@ function love.load()
   h = 64
   timerIFrames = 0
   Iframes = 0
+  lifelost = 0
+  lives = 1
 
   spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
@@ -44,16 +46,22 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
   Hpfull = love.graphics.newImage('assets-1/player/hp_bar/full.png')
-  --Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
-  --Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
-  --Hp7 = love.graphics.newImage('assets-1/player/hp_bar/7.png')
-  --Hp6 = love.graphics.newImage('assets-1/player/hp_bar/6.png')
-  --Hp5 = love.graphics.newImage('assets-1/player/hp_bar/5.png')
-  --Hp4 = love.graphics.newImage('assets-1/player/hp_bar/4.png')
-  --Hp3 = love.graphics.newImage('assets-1/player/hp_bar/3.png')
-  --Hp2 = love.graphics.newImage('assets-1/player/hp_bar/2.png')
-  --Hp1 = love.graphics.newImage('assets-1/player/hp_bar/critical.png')
-  --Hpempty = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
+  Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
+  Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
+  Hp7 = love.graphics.newImage('assets-1/player/hp_bar/7.png')
+  Hp6 = love.graphics.newImage('assets-1/player/hp_bar/6.png')
+  Hp5 = love.graphics.newImage('assets-1/player/hp_bar/5.png')
+  Hp4 = love.graphics.newImage('assets-1/player/hp_bar/4.png')
+  Hp3 = love.graphics.newImage('assets-1/player/hp_bar/3.png')
+  Hp2 = love.graphics.newImage('assets-1/player/hp_bar/2.png')
+  Hp1 = love.graphics.newImage('assets-1/player/hp_bar/critical.png')
+  Hpempty = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
+
+  Lifecount3 = love.graphics.newImage('hero/life sheet 3.png')
+  Lifecount2 = love.graphics.newImage('hero/life sheet 2.png')
+  Lifecount1 = love.graphics.newImage('hero/life sheet 1.png')
+  gameover = love.graphics.newImage('assets-1/player/hp_bar/game over.jfif')
+
     floor = {
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt,},
       {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, 'nil', 'nil',},
@@ -246,7 +254,7 @@ function love.update(dt)
       end
     end
     if mirrorshatttered == true then
-      if wallsm:cc(x, y - 4, 64, 64) == 0 then
+      if wallsm:cc(x, y - 4, 64, 64) == false then
         y = y - 4
         mirrory = mirrory - 4
     end
@@ -291,20 +299,49 @@ end
   end
 
   if Iframes == 1 then
-    timerIFrames = 0.5
+    timerIFrames = 8
   end
   if timerIFrames > 0 then
-   timerIFrames = timerIFrames - 0.0033
+   timerIFrames = timerIFrames - 0.1
    Iframes = 2
   end
   if timerIFrames < 0 then
     timerIFrames = 0
     Iframes = 0
   end
+  if hpnum == 0 then
+    lifelost = 1
+  end
+  if lifelost == 1 then
+    lives = lives - 1
+    facingR = true
+    facingL = false
+    varL = true
+    x = 64
+    camx = 96
+    mirrorx = 768
+    y = 320
+    camy = 256
+    mirrory = 320
+    hpnum = 10
+    w = 64
+    h = 64
+    timerIFrames = 0
+    Iframes = 0
+    lifelost = 0
+  end
   if x > 864 then
     love.exitModule()
   end
-  anim = idle
+  if love.keyboard.isDown('up') == false then
+    if love.keyboard.isDown('right') == false then
+      if love.keyboard.isDown('left') == false then
+        if love.keyboard.isDown('down') == false then
+          anim = idle
+        end
+      end
+    end
+  end
   idle:update(dt)
   cam:setPosition(x, y)
 end
@@ -324,121 +361,93 @@ function love.draw()
     doors:draw()
   end
   if hpnum == 10 then
-    love.graphics.draw(Hpfull, x, y - 20)
+    love.graphics.draw(Hpfull, 415, 52)
   end
   if hpnum == 9 then
-    love.graphics.draw(Hp9, x, y - 20)
-    end
+    love.graphics.draw(Hp9, 415, 52)
+  end
   if hpnum == 8 then
-    love.graphics.draw(Hp8, x, y - 20)
+    love.graphics.draw(Hp8, 415, 52)
   end
   if hpnum == 7 then
-    love.graphics.draw(Hp7, x, y - 20)
+    love.graphics.draw(Hp7, 415, 52)
   end
   if hpnum == 6 then
-    love.graphics.draw(Hp6, x, y - 20)
+    love.graphics.draw(Hp6, 415, 52)
   end
   if hpnum == 5 then
-    love.graphics.draw(Hp5, x, y - 20)
+    love.graphics.draw(Hp5, 415, 52)
   end
   if hpnum == 4 then
-    love.graphics.draw(Hp4, x, y - 20)
+    love.graphics.draw(Hp4, 415, 52)
   end
   if hpnum == 3 then
-    love.graphics.draw(Hp3, x, y - 20)
+    love.graphics.draw(Hp3, 415, 52)
   end
   if hpnum == 2 then
-    love.graphics.draw(Hp2, x, y - 20)
+    love.graphics.draw(Hp2, 415, 52)
   end
   if hpnum == 1 then
-    love.graphics.draw(Hp1, x, y - 20)
+    love.graphics.draw(Hp1, 415, 52)
   end
   if hpnum == 0 then
-    love.graphics.draw(Hpempty, x, y - 20)
+    love.graphics.draw(Hpempty, 415, 52)
   end
-  if love.keyboard.isDown('down') == false then
-    if love.keyboard.isDown('up') == false then
-      if love.keyboard.isDown('left') == false then
-        if love.keyboard.isDown('right') == false then
-          if mirrorshatttered == false then
-            if facingR == true then
-              idle:draw(spritesheet, x, y)
-              idle:draw(spritesheetM, mirrorx, mirrory)
-            end
-            if facingL == true then
-              idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-              idle:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
-            end
-          end
-          if mirrorshatttered == true then
-            if facingR == true then
-              idle:draw(spritesheet, x, y)
-            end
-            if facingL == true then
-              idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-            end
-          end
-        end
+
+  if anim == idle then
+    if mirrorshatttered == false then
+      if facingR == true then
+        idle:draw(spritesheet, x, y)
+        idle:draw(spritesheetM, mirrorx, mirrory)
+      end
+      if facingL == true then
+        idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        idle:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+      end
+    end
+    if mirrorshatttered == true then
+      if facingR == true then
+        idle:draw(spritesheet, x, y)
+      end
+      if facingL == true then
+        idle:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
       end
     end
   end
-  if mirrorshatttered == true then
-    if facingR == true then
-      if love.keyboard.isDown('up') then
+
+  if anim == walk then
+    if mirrorshatttered == true then
+      if facingR == true then
         walk:draw(spritesheet, x, y)
-        end
-        if love.keyboard.isDown('down') then
-          walk:draw(spritesheet, x, y)
-        end
-        if love.keyboard.isDown('right') then
-          walk:draw(spritesheet, x, y)
       end
-    end
-  end
-  if mirrorshatttered == false then
-    if facingR == true then
-      if love.keyboard.isDown('up') then
-        walk:draw(spritesheet, x, y)
-        walkm:draw(spritesheetM, mirrorx, mirrory)
-        end
-        if love.keyboard.isDown('down') then
-          walk:draw(spritesheet, x, y)
-          walkm:draw(spritesheetM, mirrorx, mirrory)
-        end
-        if love.keyboard.isDown('right') then
-          walk:draw(spritesheet, x, y)
-          walkm:draw(spritesheetM, mirrorx, mirrory)
-        end
-    end
-  end
-  if mirrorshatttered == true then
-    if facingL == true then
-      if love.keyboard.isDown('up') then
+      if facingL == true then
         walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
       end
-      if love.keyboard.isDown('down') then
-        walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)        
+    end
+    if mirrorshatttered == false then
+      if facingR == true then
+          walk:draw(spritesheet, x, y)
+          walkm:draw(spritesheetM, mirrorx, mirrory)
       end
-      if love.keyboard.isDown('left') then
-        walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0) 
+      if mirrorshatttered == false then
+        if facingL == true then
+          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0) 
+          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0) 
+        end
       end
     end
   end
-    if mirrorshatttered == false then
-      if facingL == true then
-        if love.keyboard.isDown('up') then
-          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
-        end
-        if love.keyboard.isDown('down') then
-          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
-        end
-        if love.keyboard.isDown('left') then
-          walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
-          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
-        end
-      end
-    end
+  if lives == 3 then
+    love.graphics.draw(Lifecount3, 50, 52)
+  end
+  if lives == 2 then
+    love.graphics.draw(Lifecount2, 50, 52)
+  end
+  if lives == 1 then
+    love.graphics.draw(Lifecount1, 50, 52)
+  end
+  if lives == 0 then
+    love.graphics.draw(gameover, 48, 52)
+  end
   end)
 end
