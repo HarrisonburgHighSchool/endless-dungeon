@@ -1,9 +1,11 @@
 local Map = require 'core/map'
 local Util = require 'core/util'
+local gamera = require 'core/gamera'
 
 function love.load()
   x = 80
   y = 270
+cam = gamera.new(0, 0, 2000, 2000)
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
 ex = 300
@@ -83,22 +85,22 @@ end
       end
     end
 
-    if ex < x then
+    if x > ex then
        if collision:cc(ex + 5, ey, 64, 64) == false then
           ex = ex + 5
        end
      end
-    if ex > x then
+    if x < ex then
        if collision:cc(ex - 5 , ey, 64, 64) == false then
          ex = ex - 5
        end
      end
-    if ey > y then
+    if y < ey then
         if collision:cc(ey - 5 , ex, 64, 64) == false then
           ey = ey - 5
         end
       end
-      if ey < y then
+      if y > ey then
         if collision:cc(ey + 5 , ex, 64, 64) == false then
           ey = ey + 5
         end
