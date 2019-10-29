@@ -4,13 +4,14 @@ local gamera = require 'core/gamera'
 
 function love.load()
   --player = Entity:new(img, 200, 200) 
-  cam = gamera.new(0,0,2000,2000)
+  cam = gamera.new(0,0,5000,5000)
   x = 300
   y = 300
-  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
+  --img = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   ex = 100
   ey = 100
-  eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
+  dir = 'left'
+  eimg = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   dir = 'd'
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
  w = 32   -- The player's width is 64
@@ -21,6 +22,23 @@ function love.load()
   altar = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_3.png')
   map = { --a 20 x 20 map with the altar texture in the middle  
                 {floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
+                {floorTile2, floorTile2, floorTile2,floorTile, floorTile, floorTile2, floorTile2, floorTile2, floorTile2,floorTile, floorTile, floorTile2, floorTile2},
+                {floorTile2, floorTile2, floorTile2,floorTile, floorTile, floorTile2, floorTile2, floorTile2, floorTile2,floorTile, floorTile, floorTile2, floorTile2},
                 {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
                 {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
                 {floorTile2, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile2},
@@ -65,7 +83,28 @@ map2 = { --a 20 x 20 map with the altar texture in the middle
                {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
                {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
                {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, floorTile2, floorTile2,'nil','nil', floorTile2,floorTile2, floorTile2, floorTile2,'nil', 'nil', floorTile2,floorTile2, floorTile2},
+               {floorTile2, floorTile2, floorTile2,'nil','nil', floorTile2,floorTile2, floorTile2, floorTile2,'nil', 'nil', floorTile2,floorTile2, floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil', 'nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil','nil',floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil', altar,altar,altar,altar,'nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
+               {floorTile2, 'nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil','nil', floorTile2},
                {floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2, floorTile2,floorTile2, floorTile2},
+
+
+
+
 
 
 
@@ -87,41 +126,43 @@ function love.update(dt)
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
-    if map2:cc(x, y - 5, w, h) == false then
-    y = y - 5
+    if map2:cc(x, y - 3, w, h) == false then
+    y = y - 3
   end
 end
   if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
-    if map2:cc(x, y + 5, w, h) == false then
-    y = y + 5
+    if map2:cc(x, y + 3, w, h) == false then
+    y = y + 3
   end
 end
   if love.keyboard.isDown('a') or  love.keyboard.isDown('left')then
-    if map2:cc(x - 5 ,y, w, h) == false then 
+    if map2:cc(x - 3 ,y, w, h) == false then 
     x = x - 3
   end 
 end
 
  if love.keyboard.isDown('d') or love.keyboard.isDown('right')then
-   if map2:cc(x + 5, y, w, h) == false then 
+   if map2:cc(x + 3, y, w, h) == false then 
    x = x + 3
   end
 end
 
   cam:setPosition(x,y)
 
-  --Enemy movement stuff (new)
-  if ex < 100 then
-    ex = ex + 1
+   -- Enemy movement stuff (new)
+
+  if dir == 'left' then
+    ey = ey - 5
+  end
+  if dir == 'right' then
+    ey = ey + 5
   end
 end
 
 
 
 function love.draw()
-  love.graphics.draw(img, x, y)
-  love.graphics.draw(eimg, ex, ey)
- --player:draw()
+  --love.graphics.draw(img, x, y)
   cam:draw(function(l, t, w, h)
     map:draw()
     map2:draw()
@@ -132,5 +173,6 @@ function love.draw()
     end
    love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
+    love.graphics.draw(eimg, ex, ey)
 end)
 end
