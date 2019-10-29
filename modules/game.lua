@@ -14,7 +14,7 @@ function love.load()
   ey = 100
   dir = 'left'
   --dir = 'right'
-  enemyImg = love.graphics.newImage('assets-2/spells/fire/fireball.png')
+  enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
   h = 64
   hp = 100
@@ -90,7 +90,14 @@ function love.update(dt)
   -- if ex < 500 then
   --   ex = ex - 1
   -- end
-  ay = ay + 1
+
+  --enemy movement stuff
+  --ey = ey - 1
+
+  --Enemy movement stuff
+   --if ey < 500 then
+   ay = ay + 10
+   --end
 
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
@@ -124,5 +131,6 @@ function love.draw()
   love.graphics.print(hp, 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(enemyImg, ex, ey)
+  love.graphics.draw(aimg, ax, ay)
   love.graphics.rectangle('line', 0, 0, 64, 64)
 end
