@@ -22,7 +22,7 @@ function love.load()
   gotCoin = true
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
-  
+
   template = {
     {wall, wall, wall, wall, prtl, wall, wall, wall, wall, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
@@ -109,11 +109,11 @@ if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
   end
 end
 
-function love.keypressed(key)
-  if key == 'f' then
-    sound:play()
-  end
-end
+--function love.keypressed(key)
+--  if key == 'f' then
+--    sound:play()
+--  end
+--end
 
 if love.keyboard.isDown('escape') then
   love.exitModule();
@@ -128,7 +128,7 @@ function love.draw()
  collision:draw()
   love.graphics.draw(playerImg, x2, y2)
   if gotCoin == false then
-    love.graphics.draw(coin, 769, 65, 0, 2)
+   love.graphics.draw(coin, 769, 65, 0, 2)
   end
   --love.graphics.print(hp, 0, 0)
   --end)
