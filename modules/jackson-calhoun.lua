@@ -2,7 +2,6 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 function love.load()
   key = love.graphics.newImage('jackson-assets/key.png')
-  --wall2 = love.graphics.newImage('assets-1/dungeon/wall/orc_11.png')
   torch = love.graphics.newImage('jackson-assets/torch2.png')
   fountain = love.graphics.newImage('assets-2/dc-dngn/dngn_blue_fountain2.png')
   fountain2 = love.graphics.newImage('assets-2/dc-dngn/dngn_blood_fountain.png')
@@ -15,10 +14,8 @@ function love.load()
   furnace = love.graphics.newImage('assets-2/dc-dngn/wall/stone_gray0.png')
   x = 65
   y = 70
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
-  keytouch = (false) 
-  doortouch = (false)
+  w = 60   -- The player's width is 64
+  h = 60   -- The player's height is 64
   sound:setVolume(0.35)
   sound:setLooping(true)
   love.audio.play( sound )
@@ -81,38 +78,32 @@ end
 
 function love.update(dt)
     if love.keyboard.isDown('up') then   -- if the 'right' key is being pressed...
-      if map2:cc(x, y - 1, w, h) == false then
+      if map2:cc(x, y - 4, w, h) == false then
       
-      y = y - 1
+      y = y - 4
     end
   end  
   if love.keyboard.isDown('down') then   -- if the 'right' key is being pressed...
-    if map2:cc(x, y + 1, w, h) == false then
+    if map2:cc(x, y + 4, w, h) == false then
     
-    y = y + 1
+    y = y + 4
   end
 end  
 if love.keyboard.isDown('right') then   -- if the 'right' key is being pressed...
-  if map2:cc(x + 1, y, w, h) == false then
+  if map2:cc(x + 4, y, w, h) == false then
   
-  x = x + 1
+  x = x + 4
   end
 end  
 if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
-  if map2:cc(x - 1, y, w, h) == false then
+  if map2:cc(x - 4, y, w, h) == false then
   
-  x = x - 1
+  x = x - 4
  end
 end  
 
-if keytouch == (true) then
-  
-end
-if doortouch == (true) and keytouch == (true) then
-  love.exitmodule()
-end
-
-
+if (x > 145) then
+  love.exitModule();
 end
 function love.draw()
   map:draw()
@@ -121,8 +112,7 @@ map2:draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(playerImg, x, y)
-  if keytouch == (false) then
-  love.graphics.draw(key, 400, 480)
+  love.graphics.draw(key, 192, 200)
   
   end
 end
