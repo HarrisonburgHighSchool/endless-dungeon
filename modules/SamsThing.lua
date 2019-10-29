@@ -27,20 +27,27 @@ function love.load()
   src1:play()
 
 
+
   x = 400
   y = 300
 
   butterfly_x = 450
   butterfly_y = 100
 
+
   
 
   w = 45   -- The player's width is 64
   h = 45   -- The player's height is 64
-  hp = 100 -- Set the player's HP to 100 at the start of the game
+  hp = 5 -- Set the player's HP to 100 at the start of the game
 
-  enemy_x = 0
-  enemy_y = 0
+  
+
+  enemy = {
+    x = 100;
+    y = 100;
+    img = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
+  }
 
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
@@ -58,7 +65,6 @@ function love.load()
 
   
   playerImg = love.graphics.newImage('hero/sliced/idle-3.png')
-  enemyImg = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   map = Map:new(30,30) -- Create a 5 x 5 map object named "map"
   map2 = Map:new(30,30) -- Create a 5 x 5 map object named "map"
   
@@ -172,7 +178,7 @@ function love.update(dt)
     end
   
  
-    if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true then
+    if cc(x, y - 5, w, h, enemy.x, enemy.y, 8, 8)== true and  enemy_draw == true then
       y = y + 15
 
     end
@@ -197,7 +203,7 @@ function love.update(dt)
   end
 
 
-  if cc(x, y - 5, w, h, enemy_x, enemy_y, 8, 8)== true and  enemy_draw == true then
+  if cc(x, y - 5, w, h, enemy.x, enemy.y, 8, 8)== true and  enemy_draw == true then
     y = y - 15
 
   end
@@ -215,7 +221,7 @@ end
       x = x - 5
    end
   
-    if cc(x - 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true then
+    if cc(x - 5, y, w, h, enemy.x, enemy.y, 8, 8)== true and enemy_draw == true then
       x = x + 15
    end
  end
@@ -233,7 +239,7 @@ end
       
     end
         
-    if cc(x + 5, y, w, h, enemy_x, enemy_y, 8, 8)== true and enemy_draw == true then
+    if cc(x + 5, y, w, h, enemy.x, enemy.y, 8, 8)== true and enemy_draw == true then
       x = x - 15
     end
   end
@@ -266,15 +272,15 @@ end
 
   
   if enemy_draw == true then
-    c = dist(enemy_x, enemy_y, x, y)
-    a = y - enemy_y
-    b = x - enemy_x
+    c = dist(enemy.x, enemy.y, x, y)
+    a = y - enemy.y
+    b = x - enemy.x
     speed = 3
     cRatio = speed/c
     dy = a * cRatio
     dx = b * cRatio
-    enemy_x = enemy_x + dx
-    enemy_y = enemy_y + dy
+    enemy.x = enemy.x + dx
+    enemy.y = enemy.y + dy
  
   end
   cam:setPosition(x, y)
@@ -285,13 +291,13 @@ end
       enemyD()
     end
       
-    if cc(x, y - 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x, y + 16, w, h, enemy_x, enemy_y, 32, 32) or cc(x - 16, y, w, h, enemy_x, enemy_y, 32, 32) or cc(x + 16, y, w, h, enemy_x, enemy_y, 32, 32)== true then
+    if cc(x, y - 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x, y + 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x - 16, y, w, h, enemy.x, enemy.y, 32, 32) or cc(x + 16, y, w, h, enemy.x, enemy.y, 32, 32)== true then
       enemy_draw = false
     end
   end
     if enemy_draw == true then
-      if cc(x, y, w, h,   enemy_x, enemy_y, 32, 32) then  
-        hp = hp - .2
+      if cc(x, y, w, h,   enemy.x, enemy.y, 16, 16) then  
+        hp = hp - 1
       end
     end
 
@@ -299,6 +305,11 @@ end
   if love.keyboard.isDown('escape') then
     love.exitModule();
     
+  end
+
+
+  if hp == 0 then
+    love.exitModule();
   end
 end
 
@@ -316,7 +327,8 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
   if butterfly_alive == false then
-   
+   butterfly_x = 1000
+   butterfly_y = 1000
     map2:draw()
   end
   if butterfly_alive == true then
@@ -334,7 +346,7 @@ function love.draw()
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
   end
   if enemy_draw == true then
-  love.graphics.draw(enemyImg, enemy_x, enemy_y) 
+  love.graphics.draw(enemy.img, enemy.x, enemy.y) 
   end
   
   end)
