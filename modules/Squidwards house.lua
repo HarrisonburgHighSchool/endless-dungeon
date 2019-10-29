@@ -156,7 +156,7 @@ end
 function love.draw()
   map:draw()
   collision:draw()
-  love.graphics.print('Octopod-cast!', 0, 0)
+  love.graphics.print('', 0, 0)
   
   love.graphics.draw(currentDoor, 764, 92)
   love.graphics.draw(switch, 200, 200)
