@@ -7,8 +7,8 @@ function love.load()
   x = 1
   y = 275
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
-  oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
-  oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
+    oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
+    oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
@@ -162,6 +162,19 @@ function love.update(dt)
   if c==100 then
     direction4 = 'diagonal'
   end
+--
+    if direction4 == 'diagonal' then
+      c = c + 5
+    end
+    if direction4 == 'diagonal1' then
+      c = c - 5
+    end
+    if c==700 then
+      direction4 = 'diagonal1'
+    end
+    if c==100 then
+      direction4 = 'diagonal'
+    end
 --Player Movement
   if love.keyboard.isDown('right')then
     if floor2:cc(x + 4, y, 60, 60)==false then
@@ -227,7 +240,7 @@ if hp > 0 then
     floor2:draw()
 end
 if hp > 0 then
-    love.graphics.draw(rod, 415, 650)
+    love.graphics.draw(rod, 375, 625)
     love.graphics.draw(axe, 115, 115)
     love.graphics.draw(gold, 1650, 375)
     love.graphics.draw(oct, 100, z)
