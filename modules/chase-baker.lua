@@ -28,6 +28,17 @@ function love.load()
   questItem = love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
   g = 775
   b = 270
+  trap = love.graphics.newImage('assets-1/dungeon/traps/gas_trap.png')
+  t1x = 360
+  t1y = 350
+  t2x = 500
+  t2y = 450
+  t3x = 600
+  t3y = 200
+  t4x = 125
+  t4y = 150
+  t5x = 800
+  t5y = 350
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
   w = 36   -- The player's width is 64
@@ -204,6 +215,26 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 10
   end
+  if cc(x, y, w, h,   t1x, t1y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
+  if cc(x, y, w, h,   t2x, t2y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
+  if cc(x, y, w, h,   t3x, t3y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
+  if cc(x, y, w, h,   t4x, t4y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
+  if cc(x, y, w, h,   t5x, t5y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
   if cc(x, y, w, h,   g, b, 36, 36) then
    love.exitModule()
   end
@@ -225,6 +256,11 @@ function love.draw()
   love.graphics.draw(knight1.img, knight1.x2, knight1.y2)
   love.graphics.draw(knight2.img, knight2.x2, knight2.y2)
   love.graphics.draw(questItem, g, b)
+  love.graphics.draw(trap, t1x, t1y)
+  love.graphics.draw(trap, t2x, t2y)
+  love.graphics.draw(trap, t3x, t3y)
+  love.graphics.draw(trap, t4x, t4y)
+  love.graphics.draw(trap, t5x, t5y)
   if hp < 1 then
     x = 500
     y = 270
