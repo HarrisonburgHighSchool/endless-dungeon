@@ -274,6 +274,7 @@ function love.draw()
 
 
 
+
   love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
   love.graphics.print('True Road Is At          /!', 450, 250, 6, 3)
 
