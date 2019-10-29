@@ -2,7 +2,8 @@ local Map = require 'core/map'
 function love.load()
 collide = false
 collide2 = false
-collide3 = false
+game_end = false
+game_end2 = false
 col = 1
   x = 385
   y = 60
@@ -12,9 +13,13 @@ col = 1
   y2 = 68
   w2 = 64
   h2 = 64
+  x3 = 267
+  y3 = 322
+  w3 = 64
+  h3 = 30
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
-
+  playerImg2 = love.graphics.newImage('assets-1/player/base/gargoyle_male - Copy.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
   floor1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
   lava = love.graphics.newImage('assets-2/dc-dngn/floor/lava0.png')
@@ -128,13 +133,23 @@ if(y > 450)then
 end
 if cc(x, y, w, h, x2, y2, w2, h2) == true then
  collide2 = true
+ game_end = true
  col = 2
 end
+if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
+  game_end2 = true
+ end
 if (collide == true and col == 1) then  
   hp = hp - 0.5
+  flash = flash + 0.1
+else
+  flash = 0
 end
 if (collide3 == true and col == 2) then  
   hp = hp - 0.5
+  flash = flash + 0.1
+else
+  flash = 0
 end
 if(hp < 0)then
   hp = 0
@@ -163,11 +178,27 @@ function love.draw()
     map:draw()
     map3:draw()
   end
-  if(hp == 0)then
-    map4:draw()
-  end
   if(hp > 0)then
     love.graphics.draw(playerImg, x, y)
   end
+  if(game_end2 == true)then
+    love.exitModule();
+  end
   love.graphics.print(hp, 10, 10)
+  love.graphics.print(x, 10, 25)
+  love.graphics.print(y, 10, 35)
+
+  if(hp > 0)then
+    love.graphics.draw(playerImg, x, y)
+  end
+  if(flash > 5)then
+    love.graphics.draw(playerImg2, x, y)
+  end
+  if(flash > 20)then
+    love.graphics.draw(playerImg, x, y)
+  end
+  
+  if(hp == 0)then
+    map4:draw()
+  end
 end
