@@ -24,25 +24,26 @@ player = {
   rect2Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_2.png')
   rect3Floor = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_3.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
-  doorway = love.graphics.newImage('assets-2/dc-dngn/gateways/dngn_enter_dis.png')
+  gateway = love.graphics.newImage('assets-2/dc-dngn/gateways/dngn_enter_dis.png')
   trap1 = love.graphics.newImage('assets-2/dc-dngn/dngn_trap_axe.png')
+  transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
 
   template = {
  
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {doorway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {nil, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
-
+ 
  -- Create the collision map, with walls around the edge of the map
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -59,8 +60,25 @@ player = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
 
+endGate = {
+    {transp, transp, transp, transp, transp, transp, transp, transp, transp, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {gateway, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
+  {transp, transp, transp, transp, transp, transp, transp, transp, transp, transp},
+}
+
   map = Map:new(template)
   collision = Map:new(collision)
+  endGate = Map:new(endGate)
+
 end
 
 function love.update(dt)
@@ -71,38 +89,40 @@ function love.update(dt)
 --If the statement is true it will run the code, but if it is false it will skip it.
 
 if love.keyboard.isDown('w') and player.y > 18 or love.keyboard.isDown('up') and player.y > 18 then -- up
-  if collision:cc(player.x, player.y - 4 , 24, 32) == false then
+  if collision:cc(player.x, player.y - 4, 24, 32) == false then
     player.y = player.y - 4 -- speed
   end
 end 
 if love.keyboard.isDown('a') or love.keyboard.isDown('left') then -- left
   moving = true
   flip = -2
-  if collision:cc(player.x - 4 , player.y, 24, 32) == false then  
+  if collision:cc(player.x - 4, player.y, 24, 32) == false then  
     player.x = player.x - 4 -- speed
   end
 end
 if love.keyboard.isDown('s') or love.keyboard.isDown('down') then -- down
-  if collision:cc(player.x, player.y + 4 , 24, 32) == false then  
+  if collision:cc(player.x, player.y + 4, 24, 32) == false then  
     player.y = player.y + 4 -- speed
   end
 end
 if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
   moving = true
   flip = 2
-  if collision:cc(player.x + 4  , player.y , 24, 32) == false then  
+  if collision:cc(player.x + 4, player.y, 24, 32) == false then  
     player.x = player.x + 4 -- speed
   end
- end
+end
+if endGate:cc(player.x, player.y, 24, 32) then
+  love.exitModule()
+  end
 end
 
--- if cc(player.x, player.y, 64, 64, 512, 0, 64, 64) then
-  -- love.exitModule() -- ends the game
--- end
-
 function love.draw()
+
   map:draw()
   collision:draw()
+  endGate:draw()
+
   if moving == true then
     player.walk:draw(player.spritesheet, player.x + 15, player.y, 0, flip, 2, 9)
   else
