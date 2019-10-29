@@ -6,7 +6,7 @@ LOAD_MODULE = nil
 
 -- /////////////////////////////////////////////////////////////////////////
 
-
+require "core/require"
 modules = love.filesystem.getDirectoryItems('modules')
 
 for i = 1, #modules do
