@@ -37,23 +37,6 @@ closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
 currentDoor = openDoor
 
-mapTemplate2 = {
-  {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-  {mud,},
-  {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-  {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
-  {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-  {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
-  {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
-  {mud,grass,grass,grass,water,water,grass,grass,grass},
-  {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
-  {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
-  
 
   mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
