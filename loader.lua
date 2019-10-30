@@ -1,19 +1,14 @@
-
+require 'core/require'
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
 LOAD_MODULE = 'Corey R'
 
+
+
 -- /////////////////////////////////////////////////////////////////////////
 
-
-
--- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
--- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
--- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
--- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
--- DON'T CHANGE ANYTHING BELOW THIS POINT!!!
-require 'core/require'
+require "core/require"
 modules = love.filesystem.getDirectoryItems('modules')
 
 for i = 1, #modules do
@@ -50,3 +45,4 @@ function love.exitModule()
     love.event.quit()
   end
 end
+
