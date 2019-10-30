@@ -2,6 +2,7 @@ local Map = require 'core/map'
 local Util = require 'core/util'
 local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
+attack = true
 
 function love.load()
   cam = gamera.new(0, 0, 960, 625)
@@ -39,6 +40,8 @@ function love.load()
   t4y = 150
   t5x = 800
   t5y = 350
+  t6x = 700
+  t6y = 270
   tile = love.graphics.newImage('assets-1/dungeon/floor/sand_6.png')
   path = love.graphics.newImage('assets-1/dungeon/wall/lab-stone_0.png')
   w = 36   -- The player's width is 64
@@ -92,10 +95,14 @@ function love.load()
 
 end
 
-
-
-
 function love.update(dt)
+  if hp > 1 then
+    attack = true
+  end
+  if hp < 1 then
+    attack = false
+  end
+if attack == true then
   enemy.x2 = enemy.x2
   enemy.y2 = enemy.y2
   knight1.x2 = knight1.x2
@@ -235,14 +242,14 @@ function love.update(dt)
     -- if true, decrease HP:
     hp = hp - 10
   end
+  if cc(x, y, w, h,   t6x, t6y, 36, 36) then
+    -- if true, decrease HP:
+    hp = hp - 10
+  end
   if cc(x, y, w, h,   g, b, 36, 36) then
    love.exitModule()
   end
  end
-
-
-
-
 
 
 function love.draw()
@@ -261,9 +268,8 @@ function love.draw()
   love.graphics.draw(trap, t3x, t3y)
   love.graphics.draw(trap, t4x, t4y)
   love.graphics.draw(trap, t5x, t5y)
+  love.graphics.draw(trap, t6x, t6y)
   if hp < 1 then
-    x = 500
-    y = 270
     love.graphics.print('GAME OVER', x, y + -36)
     hp = 0
   end
@@ -287,6 +293,7 @@ function love.draw()
   love.graphics.print(ehp1, enemy.x2, enemy.y2 + -18)
   love.graphics.print(ehp2, knight1.x2, knight1.y2 + -18)
   love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
-    --Draw everything here. For example:
+  love.graphics.print('Press the W key to attack!', 100, 70)
   end)
+ end
 end
