@@ -8,7 +8,7 @@ function love.load()
   map = Map:new(20,20)
   x = 400
   y = 300
-  --playerImg = love.graphics.newImage('a/images.png')
+  cobalt = love.graphics.newImage('Daniel V. Personal Assets/Images/mesh&coin.png')
   sound = love.audio.newSource('Daniel V. Personal Assets/Sound Effects/coincollected.wav', 'static')
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
   x2 = 79
@@ -17,15 +17,16 @@ function love.load()
   w = 32
   h = 32
   hp = 100
-  cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
+  --cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
   coin = love.graphics.newImage('Daniel V. Personal Assets/Images/coin.png')
-  gotcoin = true
-  foundcoin = true
-  prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
+  gotcoin = false
+  foundcoin = false
+  prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_used.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
+  prtl2 = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
 
   template = {
-    {wall, wall, wall, wall, prtl, wall, wall, wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
@@ -71,7 +72,7 @@ function love.load()
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, wall, wall, wall, wall, wall, wall ,wall, wall, wall},
+    {wall, wall, wall, wall, 'nil', wall, wall ,wall, wall, wall},
   }  
 
   collision = Map:new(collision)
@@ -104,13 +105,14 @@ end
 end
 
 if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
-  gotcoin = false
-  foundcoin = true
+ foundcoin = true
 --  if love.keyboard.isDown('f') then
 --    gotCoin = true
 -- end
 end
-
+if gotcoin == true then
+  sound:play()
+end
 --function love.keypressed(key)
 --  if key == 'f' then
 --    sound:play()
@@ -130,22 +132,27 @@ function love.draw()
   map:draw()
  collision:draw()
   love.graphics.draw(playerImg, x2, y2)
-  if gotcoin == false then
+  if foundcoin == true then
+    if gotcoin == false then
    love.graphics.draw(coin, 769, 65, 0, 2)
   end
+end
+if gotcoin == true then
+  love.graphics.draw(prtl2, 1280, 255, 0, 2)
+end
   --love.graphics.print(hp, 0, 0)
   --end)
 --love.graphics.print(tostring(mapc), 0, 0)
     love.graphics.rectangle('line', x2, y2, 32, 32)
   end)
-end
-
+  love.graphics.print(x2..", "..y2, 0, 0)
+  end
 
 function love.keypressed(key)
-  if key == 'f' then
+  if key == 'space' then
    if gotcoin == false then
     gotcoin = true
-   foundcoin = true
+
   end
  end
 end
