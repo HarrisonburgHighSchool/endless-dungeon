@@ -5,12 +5,11 @@ local gamera = require 'core/gamera'
 function love.load()
   --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
-  x = 300
+  x = 200
   y = 300
-  --img = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
+  img = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   ex = 100
   ey = 100
-  dir = 'left'
   eimg = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   dir = 'd'
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
@@ -122,7 +121,7 @@ end
 function love.update(dt)
   if love.keyboard.isDown('escape') then
     love.exitModule();
-  end
+  end 
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
@@ -146,23 +145,25 @@ end
    x = x + 3
   end
 end
-
+if x > ex then
+  ex = ex + 2
+end
+if x < ex then
+  ex = ex - 2
+end
+if y < ey then
+  ey = ey - 2
+end
+if y > ey then
+  ey = ey + 2
+end
   cam:setPosition(x,y)
 
-   -- Enemy movement stuff (new)
-
-  if dir == 'left' then
-    ey = ey - 5
-  end
-  if dir == 'right' then
-    ey = ey + 5
-  end
 end
 
 
-
 function love.draw()
-  --love.graphics.draw(img, x, y)
+  love.graphics.draw(img, x, y)
   cam:draw(function(l, t, w, h)
     map:draw()
     map2:draw()
@@ -173,6 +174,6 @@ function love.draw()
     end
    love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
-    love.graphics.draw(eimg, ex, ey)
+    love.graphics.draw(eimg, ex, ey, 0, 4)
 end)
 end
