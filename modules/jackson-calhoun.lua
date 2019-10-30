@@ -102,17 +102,22 @@ if love.keyboard.isDown('left') then   -- if the 'right' key is being pressed...
  end
 end  
 
-if (x > 145) then
+if (x > 300) then
   love.exitModule();
 end
 function love.draw()
   map:draw()
-map2:draw()
+  map2:draw()
+  love.graphics.setColor(0, 0, 0, 1)
+  love.graphics.rectangle('fill', x + 150, y - 150, 1000000000, 1000000000)
+  love.graphics.rectangle('fill', x - 65 , y + 150, 1000000000, 1000000000)
+  love.graphics.rectangle('fill', x - 1000, y - 150, 950, 1000000000)
+  love.graphics.rectangle('fill', x - 1000, y - 1000, 1000000000, 950)
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(fountain, 675, 100)
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
+  love.graphics.draw(key, 330, 275)
   love.graphics.draw(playerImg, x, y)
-  love.graphics.draw(key, 192, 200)
-  
   end
 end
