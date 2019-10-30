@@ -102,6 +102,9 @@ end
 function love.update(dt)
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
     currentDoor = openDoor
+    if love.exitModule(x > 9) then
+      currentDoor = escape
+    end
   end
   if love.keyboard.isDown('right' or 'd') then
     if collision:cc(x + 5, y, 64, 64) == false then
