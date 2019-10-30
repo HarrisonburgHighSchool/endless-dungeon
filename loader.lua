@@ -3,7 +3,7 @@
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
 
-LOAD_MODULE =  nil   -- change this to the name of your file if you want to test your file
+LOAD_MODULE =  'PhilipLevchuk'  -- change this to the name of your file if you want to test your file
 
 
 -- /////////////////////////////////////////////////////////////////////////

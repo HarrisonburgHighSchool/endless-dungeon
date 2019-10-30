@@ -6,6 +6,7 @@ local Entity = require 'core/entity'
 function love.load()
 
   speed = 1.8
+
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
   y = 100
@@ -34,7 +35,7 @@ function love.load()
   g = 64
 
 BossImg = love.graphics.newImage('assets-1/monster/Boss2.png')
-bx = 800
+bx = 700
 by = 160
   portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
 
@@ -87,12 +88,12 @@ walls = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil','nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, wall, wall, wall, 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
+  {wall, 'nil', wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
+  {wall, 'nil', wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
@@ -112,20 +113,24 @@ function love.update(dt)
   --(currentDoor 0, 0, 0)
 --end
 
-if collide:cc(bx, by, 64, 64) == false then
+  local fbx = bx
+  local fby = by
   if x > bx then
-     bx = bx + 3
+     fbx = fbx + 3
    end
    if x < bx then
-     bx = bx - 3
+     fbx = fbx - 3
    end
    if y > by then
-     by = by + 3
+     fby = fby + 3
    end
    if y < by then
-     by = by - 3
+     fby = fby - 3
    end
- end
+if collide:cc(fbx, fby, 64, 64) == false then
+    bx = fbx
+    by = fby
+end
 
 
 
