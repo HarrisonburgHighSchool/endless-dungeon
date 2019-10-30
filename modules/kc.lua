@@ -14,22 +14,20 @@ function love.load()
   ex = 529
   ey = 210
   eimg = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
-
-  ex = 270
-  ey = 210
+  ex = 529
+  ey = 460
   eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   ex = 270
-  ey = 210
+  ey = 460
 
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
-  jelly = love.graphics.newImage('assets-2/dc-mon/unique/dissolution.png')
-  jelly2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
+  
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
-  grey = love.graphics.newImage('assets-2/dc-dngn/floor/rect_gray1.png')
+  cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
   lair = love.graphics.newImage('assets-1/dungeon/floor/lair3b.png')
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_middle.png')
@@ -37,8 +35,24 @@ closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
 currentDoor = openDoor
 
+mapTemplate2 = {
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+ {cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble,cobble},
+  
+}
 
-  mapTemplate = {
+mapTemplate = {
     {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
     {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
     {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
@@ -63,7 +77,7 @@ currentDoor = openDoor
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {'nil','nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {'nil','nil','nil','nil','nil','nil','nil','nil','nil',wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
@@ -72,7 +86,7 @@ currentDoor = openDoor
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     
   }
-
+   map = Map:new(mapTemplate2)
    map = Map:new(mapTemplate)
   collision = Map:new(collision)
 end
@@ -104,17 +118,8 @@ end
   -- if true, decrease HP:
   hp = hp - 1
  end
- if x > ex then
+ if ex < 500 then
   ex = ex + 1
- end
- if x > ex then
-  ex = ex - 1
- end
- if x > ex then
-  x = x + 1
- end
- if x > ex then
-  x = x - 1
  end
 
 
@@ -134,12 +139,10 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
 
-  --love.graphics.draw(secretpath, 400, 270)
-  love.graphics.draw(statue, 385, 175, 0, 2)
-  love.graphics.draw(jelly, 529, 210)
-  love.graphics.draw(jelly2, 270, 210)
+  love.graphics.draw(secretpath, 400, 270)
+  --love.graphics.draw(statue, 385, 175, 0, 2)
   love.graphics.draw(currentDoor, 385,1)
-love.graphics.draw(switch, 200, 200,0,2)
+love.graphics.draw(switch, 193, 200,0,2)
   love.graphics.draw(playerImg, x, y,0,2)
 
   love.graphics.draw(eimg, ex, ey)
