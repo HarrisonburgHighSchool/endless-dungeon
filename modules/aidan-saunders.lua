@@ -51,7 +51,7 @@ floor = {
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, path, openDoor, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, path, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -222,6 +222,11 @@ if cc(x, y, w, h,   1650, 375, 60, 60) then
 
   love.exitModule()
 end
+
+if cc(x, y, w, h,   375, 625, 60, 60) ==true then
+
+door=openDoor
+end
 end
 
 
@@ -248,6 +253,7 @@ if hp > 0 then
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
     love.graphics.draw(oct4, c, b)
+    love.graphics.draw(door, 1300, 325)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
