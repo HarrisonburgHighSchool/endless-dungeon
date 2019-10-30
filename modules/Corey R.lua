@@ -158,10 +158,10 @@ if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
   game_end2 = true
  end
 if (collide == true and col == 1) then  
-  hp = hp - 0.51
+  hp = hp - 0.8
 end
 if (collide3 == true and col == 2) then  
-  hp = hp - 0.51
+  hp = hp - 0.8
 end
 if(hp < 0)then
   hp = 0
@@ -194,8 +194,8 @@ function love.draw()
     love.graphics.draw(playerImg, x, y)
   end
   if(game_end2 == true)then
-    love.exitModule();
-  end
+   love.exitModule();
+ end
   love.graphics.print(hp, 10, 10)
   love.graphics.print(x, 10, 30)
   love.graphics.print(y, 10, 40)
@@ -203,6 +203,6 @@ function love.draw()
     love.graphics.draw(playerImg, x, y)
   end
   if(hp == 0)then
-    map4:draw()
+    love.exitModule();
   end
 end
