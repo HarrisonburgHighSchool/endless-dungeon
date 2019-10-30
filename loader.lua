@@ -4,7 +4,7 @@
 
 
 
-LOAD_MODULE = nil-- change this to the name of your file if you want to test your file
+LOAD_MODULE = 'zayed'-- change this to the name of your file if you want to test your file
 
 
 -- /////////////////////////////////////////////////////////////////////////
