@@ -83,6 +83,9 @@ function love.update(dt)
       y = y - 1
     end
   end
+
+  --Moves enemy left & right
+  
   --Enemy movement stuff
   -- ex = ex + 1
 
@@ -94,9 +97,15 @@ function love.update(dt)
   --enemy movement stuff
   --ey = ey - 1
 
-  --Enemy movement stuff
+  --Attack movement stuff
    --if ey < 500 then
-   ay = ay + 10
+  if collision:cc(ax, ay + 5, 64, 64) == false then
+    ay = ay + 5
+  end
+   if ay > 400 then
+    ay = 100
+    ax = ex
+   end
    --end
 
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
