@@ -3,8 +3,11 @@ function love.load()
  playerImg = love.graphics.newImage('assets-1/monster/animals/fire_bat.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-
-
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
  x = 400
  y = 400
 
@@ -13,7 +16,8 @@ function love.load()
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
            {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
-           {cobalt, cobalt, cobalt, cobalt, cobalt, cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
+           {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
            {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
            {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
            {cobalt, 'nil', 'nil', 'nil', 'nil', cobalt},
@@ -34,6 +38,7 @@ function love.load()
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
+       {stone, 'nil', 'nil', stone},
        {stone, stone, stone, stone},
 
 }
@@ -43,18 +48,18 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('right')then -- if the 'up' key is being pressed
+  if love.keyboard.isPressed('right')then -- if the 'up' key is being pressed
     x = x + 15
   end
-  if love.keyboard.isDown('left')then -- if the 'up' key is being pressed
+  if love.keyboard.isPressed('left')then -- if the 'up' key is being pressed
     x = x - 15
   end
-  if love.keyboard.isDown('down')then -- if the 'up' key is being pressed
+  if love.keyboard.isPressed('down')then -- if the 'up' key is being pressed
     y = y + 15
-end
-if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
+  end
+  if love.keyboard.isPressed('up')then -- if the 'up' key is being pressed
   y = y - 15
-end
+  end
  end
 
 
