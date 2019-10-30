@@ -112,9 +112,14 @@ if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
     player.x = player.x + 4 -- speed
   end
 end
-if endGate:cc(player.x, player.y, 24, 32) then
+if love.keyboard.isDown('escape') or endGate:cc(player.x, player.y, 24, 32) or player.hp <= 0 then
   love.exitModule()
   end
+end
+
+if cc(player.x, player.y, 64, 64,   200, 200, 64, 64) == true then
+  player.x = 373 
+  player.y = 468
 end
 
 function love.draw()
