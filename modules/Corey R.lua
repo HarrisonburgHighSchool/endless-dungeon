@@ -2,6 +2,8 @@ local Map = require 'core/map'
 function love.load()
 collide = false
 collide2 = false
+collide3 = false
+collide8 = false
 game_end = false
 game_end2 = false
 col = 1
@@ -176,6 +178,11 @@ if map3:cc(x , y , w , h) == true then
 else
   collide3 = false
 end
+if(collide3 == true and collide == true)then
+  collide8 = true
+else
+  collide8 = false
+end
 end
 
 
@@ -204,5 +211,10 @@ function love.draw()
   end
   if(hp == 0)then
     love.exitModule();
+  end
+  if(collide8 == true)then
+    love.graphics.setColor(1, 0, 0, 1)
+  else
+  love.graphics.setColor(1, 1, 1, 1)
   end
 end
