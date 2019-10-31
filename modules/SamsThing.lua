@@ -27,7 +27,11 @@ function love.load()
   src1:play()
 
   
-
+  enemies = {}
+  enemies[1] = newEnemy(400, 300)
+  enemies[2] = newEnemy(100, 100)
+  enemies[3] = newEnemy(50, 200)
+  
   
 
   x = 400
@@ -36,7 +40,7 @@ function love.load()
   butterfly_x = 450
   butterfly_y = 100
 
-
+  en = newEnemy()
   
 
   w = 45   -- The player's width is 64
@@ -295,7 +299,7 @@ end
       
     if cc(x, y - 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x, y + 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x - 16, y, w, h, enemy.x, enemy.y, 32, 32) or cc(x + 16, y, w, h, enemy.x, enemy.y, 32, 32)== true then
       
-      enemy = newEnemy()
+      
     end
  end
  if enemy_draw == true then
@@ -352,6 +356,10 @@ function love.draw()
   love.graphics.draw(enemy.img, enemy.x, enemy.y) 
   end
   
+  for i = 1, 3 do
+    print(i)
+    love.graphics.draw(enemies[i].img, enemies[i].x, enemies[i].y)
+  end
   end)
 end
 
