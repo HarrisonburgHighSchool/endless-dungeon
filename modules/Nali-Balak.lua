@@ -3,11 +3,11 @@ function love.load()
  playerImg = love.graphics.newImage('assets-1/monster/animals/fire_bat.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
   cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
-  cobalt = love.graphics.newImage('assets-1/dungeon/wall/cobalt_stone_8.png')
+  openDoor = love.graphics.newImage('asset-1/dungeon/doors/vgate_open_down.png')
+  closedDoor = love.graphics.newImage('asset-1/dungeon/doors/vgate_open_down.png')
+  switch = love.graphics.newImage('asset-1/dungeon/doors/vgate_open_down.png')
+  
+  currentDoor = closedDoor
  x = 400
  y = 400
 
@@ -38,7 +38,7 @@ function love.load()
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
        {stone, 'nil', 'nil', stone},
-       {stone, 'nil', 'nil', stone},
+       {stone, 'nil', 'nil', stone},                                  
        {stone, stone, stone, stone},
 
 }
@@ -60,9 +60,11 @@ function love.update(dt)
   if love.keyboard.isPressed('up')then -- if the 'up' key is being pressed
   y = y - 15
   end
+  if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
+  --if true then open
  end
 
-
+end
 
 
 
@@ -74,4 +76,6 @@ function love.draw()
   map:draw()
   wall:draw()
   love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(currentDoor, 500, 500)
+love.graphics.draw(switch, 200, 200)
 end
