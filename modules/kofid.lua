@@ -35,7 +35,7 @@ indian2 = {
   cam = gamera.new(0, 0, 2000, 2000)
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
-  --gate = love.graphics.newImage('assets-1/dungeon/gateways/bazaar_gone.png')
+  gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
   --floor = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_1.png')
 
 
@@ -133,6 +133,9 @@ indian2 = {
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
 
+  x = 400
+  y = 300
+gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
 
 
 
@@ -226,6 +229,7 @@ function love.draw()
   --map:draw()
 collide:draw()
   love.graphics.draw(playerImg, x, y, 0, 0.04)
+  love.graphics.draw(gate, x, y, 0, 0.04)
 
 
   love.graphics.rectangle('line', x + 16, y, 16, 0)
