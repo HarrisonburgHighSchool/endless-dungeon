@@ -23,11 +23,18 @@ function love.load()
   Iframes = 0
   lifelost = 0
   lives = 3
+  bx = 600
+  by = 128
+  hitbox = 0
+  hitboxtimer = 0
+  cooldown = 0
+  animtimer = 0
 
   spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walk = anim8.newAnimation(grid('1-6', 2), 0.2)
   idle = anim8.newAnimation(grid('1-4', 1), 0.4)
+  kick = anim8.newAnimation(grid('4-4', 3), 0.4)
 
   anim = idle
 
@@ -35,6 +42,7 @@ function love.load()
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   walkm = anim8.newAnimation(grid('1-6', 2), 0.2)
   idlem = anim8.newAnimation(grid('1-4', 1), 0.4)
+  kickm = anim8.newAnimation(grid('3-3', 3), 0.4)
 
   anim = idlem
 
@@ -188,12 +196,27 @@ function love.load()
 end
   
 function love.update(dt)
+  if love.keyboard.isDown('x') then   -- if the 'x' key is being pressed...
+    if hitbox == 0 then
+      if cooldown == 0 then
+        if cooldown == 1 or cooldown == 0 or cooldown == 2 or cooldown == 3 or cooldown == 4 or cooldown == 5 or cooldown == 6 or cooldown == 7 or cooldown == 8 or cooldown == 9 or cooldown == 10 or cooldown == 11 or cooldown == 12 or cooldown == 13 or cooldown == 14 or cooldown == 15 or cooldown == 16 or cooldown == 17 or cooldown == 18 or cooldown == 19 or cooldown == 20 then
+        anim = nil
+        end
+        anim = kick
+        kick:update(dt)
+        hitbox = 1
+      end
+    end
+  end 
+
   if love.keyboard.isDown('right') then --if the 'right' key is being pressed...
-    anim = walk
-    walk:update(dt)
-    walkm:update(dt)
-    facingR = true
-    facingL = false
+    if anim == kick == false then
+      anim = walk
+    end
+      walk:update(dt)
+      walkm:update(dt)
+      facingR = true
+      facingL = false
     if mirrorshatttered == false then
       if walls:cc(x + 4, y, 64, 64) == false then
         if mirror:cc(x - 54, y, 64, 64) == false then 
@@ -210,9 +233,11 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
+    if anim == kick == false then  
       anim = walk
+    end
       walk:update(dt) 
-      walkm:update(dt) 
+      walkm:update(dt)
       if mirrorshatttered == false then
         if walls:cc(x, y + 4, 64, 64) == false then
           y = y + 4
@@ -227,11 +252,13 @@ function love.update(dt)
       end
     end
   if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-    anim = walk
-    walk:update(dt)
-    walkm:update(dt)
-    facingR = false
-    facingL = true  
+    if anim == kick == false then
+      anim = walk
+      walk:update(dt)
+      walkm:update(dt)
+      facingR = false
+      facingL = true  
+    end
     if mirrorshatttered == false then
       if walls:cc(x - 4, y, 64, 64) == false then
         if mirror:cc(x - 64, y, 64, 64) == false then
@@ -247,23 +274,29 @@ function love.update(dt)
       end
     end
   end
-    if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    anim = walk
-    walk:update(dt)
-    walkm:update(dt)
-    if mirrorshatttered == false then
-      if walls:cc(x, y - 4, 64, 64) == false then
-        y = y - 4
-        mirrory = mirrory - 4
+
+  if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+    if animtimer == 1 or animtimer == 0 then
+      if anim == kick == false then
+        anim = walk
       end
     end
-    if mirrorshatttered == true then
-      if wallsm:cc(x, y - 4, 64, 64) == false then
-        y = y - 4
-        mirrory = mirrory - 4
-    end
+      walk:update(dt)
+      walkm:update(dt)
+        if mirrorshatttered == false then
+          if walls:cc(x, y - 4, 64, 64) == false then
+            y = y - 4
+            mirrory = mirrory - 4
+          end
+        end
+        if mirrorshatttered == true then
+          if wallsm:cc(x, y - 4, 64, 64) == false then
+            y = y - 4
+            mirrory = mirrory - 4
+        end
+      end
   end
-end
+
   if cc(x, y, w, h, 158, 216, 80, 16) then  
     if Iframes == 0 then
       hpnum = hpnum - 1
@@ -302,6 +335,16 @@ end
     end
   end
 
+  if cc(mirrorx, mirrory, w, h, bx, by, w, h) then  
+    if Iframes == 0 then
+      hpnum = hpnum - 1
+      if Iframes == 0 then
+        Iframes = 1
+      end
+    end
+  end
+
+
   if Iframes == 1 then
     timerIFrames = 60
   end
@@ -315,6 +358,27 @@ end
   end
   if hpnum == 0 then
     lifelost = 1
+  end
+
+  if hitbox == 1 then
+    hitboxtimer = 20
+    animtimer = 20
+  end
+  if hitboxtimer > 0 then
+    hitboxtimer = hitboxtimer - 1
+    hitbox = 2
+  end
+  if animtimer > 0 then
+    animtimer = animtimer - 1
+  end
+  if hitboxtimer == 0 then
+    hitbox = 0
+  end
+  if hitboxtimer == 1 then
+    cooldown = 21
+  end
+  if cooldown > 0 then
+    cooldown = cooldown - 1
   end
   if lifelost == 1 then
     lives = lives - 1
@@ -337,17 +401,21 @@ end
   if x > 864 then
     love.exitModule()
   end
-  if love.keyboard.isDown('up') == false then
-    if love.keyboard.isDown('right') == false then
-      if love.keyboard.isDown('left') == false then
-        if love.keyboard.isDown('down') == false then
-          anim = idle
+  if animtimer == 1 or animtimer == 0 then
+    if love.keyboard.isDown('up') == false then
+      if love.keyboard.isDown('right') == false then
+        if love.keyboard.isDown('left') == false then
+          if love.keyboard.isDown('down') == false then
+            anim = idle
+          end
         end
       end
     end
   end
   idle:update(dt)
   idle1:update(dt)
+  bx = bx + 4
+  by = by + 4
   cam:setPosition(x, y)
 end
 
@@ -399,11 +467,12 @@ function love.draw()
     love.graphics.draw(Hpempty, 415, 52)
   end
 
-  love.graphics.print(timerIFrames, x - 20, y)
+  love.graphics.print(hitboxtimer, x - 20, y)
+  love.graphics.print(animtimer, x - 20, y - 10)
 
-  idle1:draw(bannanaspritesheet, 550, 400)
+  idle1:draw(bannanaspritesheet, bx, by)
 
-  if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
+if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
   if anim == idle then
     if mirrorshatttered == false then
       if facingR == true then
@@ -444,8 +513,31 @@ if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames =
       if mirrorshatttered == false then
         if facingL == true then
           walk:draw(spritesheet, x, y, rotation, -1, 1, 64, 0) 
-          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0) 
+          walkm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)  
         end
+      end
+    end
+  end
+end
+
+if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
+  if anim == kick then
+    if mirrorshatttered == false then
+      if facingR == true then
+        kick:draw(spritesheet, x, y)
+        kickm:draw(spritesheetM, mirrorx, mirrory)
+      end
+      if facingL == true then
+        kick:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
+        kickm:draw(spritesheetM, mirrorx, mirrory, rotation, -1, 1, 64, 0)
+      end
+    end
+    if mirrorshatttered == true then
+      if facingR == true then
+        kick:draw(spritesheet, x, y)
+      end
+      if facingL == true then
+        kick:draw(spritesheet, x, y, rotation, -1, 1, 64, 0)
       end
     end
   end
