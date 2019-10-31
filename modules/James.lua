@@ -3,18 +3,22 @@ local gamera = require 'core/gamera'
 --local Entity = require 'core/entity'
 
 function love.load()
+  hp = 100
+  bosshp = 1000
   --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
   x = 200
   y = 300
-  img = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
-  ex = 100
-  ey = 100
-  eimg = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
+  boss = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
+  by = 15
+  bx = 200
+  boss2 = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   dir = 'd'
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
  w = 32   -- The player's width is 64
  h = 32   -- The player's height is 64
+ bossw = 96
+ bossy = 96
   hp = 100 -- Set the player's HP to 100 at the start of the game
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   floorTile2 = love.graphics.newImage('assets-1/dungeon/wall/pebble_red_0.png')
@@ -119,9 +123,9 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('escape') then
+  if bosshp < 1 then
     love.exitModule();
-  end 
+  end
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
@@ -145,17 +149,18 @@ end
    x = x + 3
   end
 end
-if x > ex then
-  ex = ex + 2
+if x > bx then
+  if map2:cc(x, y + 3, w, h) == false then
+  bx = bx + 2
 end
-if x < ex then
-  ex = ex - 2
+if x < bx then
+  bx = bx - 2
 end
-if y < ey then
-  ey = ey - 2
+if y <  by then
+  by =  by - 2
 end
-if y > ey then
-  ey = ey + 2
+if y >  by then
+  by = by + 2
 end
   cam:setPosition(x,y)
 
@@ -163,7 +168,7 @@ end
 
 
 function love.draw()
-  love.graphics.draw(img, x, y)
+  love.graphics.draw(boss2, x, y)
   cam:draw(function(l, t, w, h)
     map:draw()
     map2:draw()
@@ -173,7 +178,14 @@ function love.draw()
     if map:cc(x, y+1, 64, 64) == false then
     end
    love.graphics.rectangle('line', 0, 0, 64, 899)
-    love.graphics.print(hp, 0, 0)
-    love.graphics.draw(eimg, ex, ey, 0, 4)
+    love.graphics.print(hp)
+    love.graphics.print(bosshp,bx,by)
+    love.graphics.draw(boss, bx, by, 0, 3)
 end)
+end
+
+function love.keypressed(key)
+  if key == 'q' then
+  bosshp = bosshp - 5
+  end
 end
