@@ -19,17 +19,22 @@ function love.load()
   eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   ex = 270
   ey = 460
+  FinalBoss= love.graphics.newImage('assets-1/monster/dragons/golden_dragon.png')
+  x=400
+  y=300
+  
 
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
+  Dgrass = love.graphics.newImage('assets-1/dungeon/floor/dirt_south.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
-  
+  waterwave = love.graphics.newImage('assets-1/dungeon/water/deep_water_wave_south_1.png')
+  darkwater = love.graphics.newImage('assets-1/dungeon/water/shoals_deep_water_11.png')
   water = love.graphics.newImage('assets-1/dungeon/water/shoals_shallow_water_7.png')
   marble = love.graphics.newImage('assets-1/dungeon/floor/white_marble_4.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   mud = love.graphics.newImage('assets-1/dungeon/floor/mud_1.png')
-  lair = love.graphics.newImage('assets-1/dungeon/floor/lair3b.png')
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_middle.png')
 closedDoor = love.graphics.newImage('assets-1/dungeon/doors/runed_door.png')
 switch = love.graphics.newImage('assets-1/dungeon/traps/pressure_plate.png')
@@ -86,7 +91,7 @@ mapTemplate = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     
   }
-   map = Map:new(mapTemplate2)
+   map2 = Map:new(mapTemplate2)
    map = Map:new(mapTemplate)
   collision = Map:new(collision)
 end
@@ -134,8 +139,13 @@ end
 
 
 function love.draw()
-  map:draw()
-  collision:draw()
+  if level == 1 then
+    map:draw()
+    collision:draw()
+  end
+  if level == 2 then
+   map2:draw() -- what goes here?
+  end
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
 
