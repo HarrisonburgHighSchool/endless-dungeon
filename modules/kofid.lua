@@ -4,6 +4,9 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
+indian = newEnemy()
+
+
 
 function love.load()
   x = 100
@@ -22,14 +25,7 @@ indian = {
 
   }
 
-indian2 = {
 
-  x = 100,
-  y = 100,
-  img = love.graphics.newImage('assets-1/player/body/PixelArt.png')
-
-
-}
 
 
   cam = gamera.new(0, 0, 2000, 2000)
@@ -141,17 +137,31 @@ gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
 
 
 
-cam:setPosition(400, 400)
 
 
 
-  img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 400
-  y = 300
+
+  indian = {
+    x = 100,
+    y = 100,
+    img = love.graphics.newImage('assets-1/player/body/PixelArtcopy 2.png')
+  }
+
 
 
 
 end
+function newEnemy()
+  local indian = {
+    x = 100,
+    y = 100,
+    img = love.graphics.newImage('assets-1/player/body/PixelArtcopy 2.png')
+  }
+
+  return enemy
+end
+
+
 
 
 function love.update(dt)
@@ -194,26 +204,11 @@ function love.update(dt)
       indian.y = indian.y + 1
   end
 
-  if x > indian2.x then
-        indian2.x = indian2.x + 1
-  end
 
-  if x < indian2.x then
-       indian2.x = indian2.x - 1
-  end
-
-  if y < indian2.y then
-      indian2.y = indian2.y - 1
-  end
-
-  if y > indian2.y then
-      indian2.y = indian2.y + 1
   end
 
 indian.x = indian.x + 1
 indian.y = indian.y + 1
-indian2.x = indian.x + 1
-indian2.y = indian.y + 1
 
   if love.keyboard.isDown('k') then
     love.exitModule()
@@ -226,7 +221,7 @@ end
 
 function love.draw()
   cam:draw(function(l, t, w, h)
-  --map:draw()
+  map:draw()
 collide:draw()
   love.graphics.draw(playerImg, x, y, 0, 0.04)
   love.graphics.draw(gate, x, y, 0, 0.04)
