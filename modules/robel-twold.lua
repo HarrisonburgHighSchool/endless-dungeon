@@ -101,31 +101,31 @@ end
    cam:setPosition(x, y)
   end
 end
-   if cc(x, y, w, h,   0, 0, 64, 64) then
+   if cc(x, y, 0, 0, a, b, 0, 0) then
       hp = hp - 1
   end
 if ex < x then
-   if collision:cc(ex + 2, ey, 64, 64) == false then
-      ex = ex + 2
+   if collision:cc(ex + 1, ey, 64, 64) == false then
+      ex = ex + 1
    end
  end
 if ex > x then
-   if collision:cc(ex - 2 , ey, 64, 64) == false then
-     ex = ex - 2
+   if collision:cc(ex - 1 , ey, 64, 64) == false then
+     ex = ex - 1
    end
  end
 if ey > y then
-    if collision:cc(ex, ey - 5, 64, 64) == false then
-      ey = ey - 2
+    if collision:cc(ex, ey - 1, 64, 64) == false then
+      ey = ey - 1
     end
   end
   if ey < y then
-    if collision:cc(ex, ey + 2, 64, 64) == false then
-      ey = ey + 2
+    if collision:cc(ex, ey + 1, 64, 64) == false then
+      ey = ey + 1
     end
   end
   if cc(x, y, 32, 32, ex, ey, 32, 32) then
-    love.exitModule()
+    --love.exitModule()
 end
   --if love.keyboard.isDown('escape') then
     --love.exitmodule()
@@ -166,7 +166,6 @@ function love.draw()
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(playerImg1, a, b)
     love.graphics.print(hp, x, y)
-    love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
     love.graphics.draw(playerImg1, a, b)
