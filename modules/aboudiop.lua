@@ -4,6 +4,14 @@ local Util = require 'core/util'
 
 function love.load()
   
+collision = true
+collision2 = true
+collision3 = true
+
+
+
+
+
   x = 400
   y = 300
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
