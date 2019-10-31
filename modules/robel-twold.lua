@@ -19,6 +19,8 @@ function love.load()
     altar     = love.graphics.newImage('assets-1/dungeon/floor/cage_5.png')
     ground    = love.graphics.newImage('assets-1/dungeon/floor/sand_1.png')
     obstacle  = love.graphics.newImage('assets-1/dungeon/altars/ashenzari.png')
+    obstacle1 = love.graphics.newImage('assets-1/dungeon/traps/shadow.png')
+    Item      = love.graphics.newImage('assets-1/item/misc/runes/rune_spider.png')
     template = {
                   {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                   {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
@@ -46,8 +48,9 @@ function love.load()
                 -- Create the collision map, with walls around the edge of the map
                 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
                 collision = {
+                  {wall, 'nil', 'nil', 'nil', Item, Item, 'nil', 'nil', 'nil', 'nil'},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
-                  {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
+                  {wall, obstacle, 'nil', obstacle1, 'nil', 'nil', obstacle1, 'nil', obstacle, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
@@ -60,9 +63,9 @@ function love.load()
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
                   {wall, obstacle, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', obstacle, wall},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
-                  {'nil', 'nil', 'nil', wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil'},
+                  {'nil', 'nil', 'nil', wall, obstacle1, obstacle1, wall, 'nil', 'nil', 'nil'},
                   {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil'}
-                }
+                  }
                 background = Map:new(background)
                 collision = Map:new(collision)
                 map = Map:new(template)
@@ -112,15 +115,21 @@ if ex > x then
    end
  end
 if ey > y then
-    if collision:cc(ey - 5 , ex, 64, 64) == false then
+    if collision:cc(ex, ey - 5, 64, 64) == false then
       ey = ey - 5
     end
   end
   if ey < y then
-    if collision:cc(ey + 5 , ex, 64, 64) == false then
+    if collision:cc(ex, ey + 5, 64, 64) == false then
       ey = ey + 5
     end
   end
+  if cc(x, y, 32, 32, ex, ey, 32, 32) then
+    love.exitModule()
+end
+  --if love.keyboard.isDown('escape') then
+    --love.exitmodule()
+  --end
 end
 function player2()
   if love.keyboard.isDown('w')then
