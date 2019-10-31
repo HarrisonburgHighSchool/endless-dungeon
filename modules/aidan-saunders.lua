@@ -231,8 +231,6 @@ end
 
 
 
-
-
 function love.draw()
   cam:draw(function(l, t, w, h)
 
@@ -253,7 +251,7 @@ if hp > 0 then
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
     love.graphics.draw(oct4, c, b)
-    love.graphics.draw(door, 1300, 325)
+    love.graphics.draw(door, 1280, 320)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
