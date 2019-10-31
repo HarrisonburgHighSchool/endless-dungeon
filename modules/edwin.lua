@@ -5,6 +5,7 @@ local gamera = require 'core/gamera'
 function love.load()
   x = 80
   y = 270
+  hp = 500
 cam = gamera.new(0, 0, 2000, 2000)
 playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
 
@@ -103,20 +104,26 @@ end
       if y > ey then
         if collision:cc(ey + 5 , ex, 64, 64) == false then
           ey = ey + 5
-          if cc(x, y, 32, 32, ex, ey,32,32)then
-           love.exitModule()
-          end
-          if hp == 0 then
-            love.exitModule()
-          end
+
         end
+      end
+
+      -- Reduce hp if colliding with enemy
+      if cc(x, y, 32, 32, ex, ey,32,32)then
+       hp = hp - 5
+      end
+
+      --If the player dies, end the level
+      if hp == 0 then
+        love.exitModule()
       end
     end
 function love.draw()
   map:draw()
   background:draw()
   collision:draw()
-  love.graphics.print('Yo!', 0, 0)
+  --love.graphics.print('Yo!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(eimg, ex, ey)
+  love.graphics.print(hp, 0,0)
 end
