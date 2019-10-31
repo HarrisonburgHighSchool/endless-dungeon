@@ -8,8 +8,9 @@ function love.load()
   map = Map:new(20,20)
   x = 400
   y = 300
-  cobalt = love.graphics.newImage('Daniel V. Personal Assets/Images/mesh&coin.png')
+ -- cobalt = love.graphics.newImage('Daniel V. Personal Assets/Images/images.png')
   sound = love.audio.newSource('Daniel V. Personal Assets/Sound Effects/coincollected.wav', 'static')
+  prtlsnd = love.audio.newSource('Daniel V. Personal Assets/Sci-Fi Sound Library/Wav/WarpDrive_00.wav', 'static')
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
   x2 = 79
   y2 = 270
@@ -17,13 +18,15 @@ function love.load()
   w = 32
   h = 32
   hp = 100
-  --cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
+  cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
   coin = love.graphics.newImage('Daniel V. Personal Assets/Images/coin.png')
   gotcoin = false
   foundcoin = false
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_used.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
   prtl2 = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
+  time = 120
+  timestart = false
 
   template = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -82,7 +85,7 @@ end
 
 
 function love.update(dt)
-  
+if timestart == false then
   if not collision:cc(x2 + 4, y2, w, h) then
   if love.keyboard.isDown('d') or love.keyboard.isDown('right')  then   
     x2 = x2 + 4
@@ -103,21 +106,21 @@ end
     y2 = y2 + 4
   end
 end
+end
 
 if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
  foundcoin = true
---  if love.keyboard.isDown('f') then
---    gotCoin = true
--- end
 end
-if gotcoin == true then
-  sound:play()
+if cc(x2, y2, 64, 64, 1295, 255, 65, 64, 64) == true then
+  time = time - 1
+  timestart = true
 end
---function love.keypressed(key)
---  if key == 'f' then
---    sound:play()
---  end
---end
+if cc(x2, y2, 64, 64, 1295, 255, 65, 64, 64) == true then
+prtlsnd:play()
+end
+if time < 0 then
+  love.exitModule();
+end    
 
 if love.keyboard.isDown('escape') then
   love.exitModule();
@@ -142,17 +145,19 @@ if gotcoin == true then
 end
   --love.graphics.print(hp, 0, 0)
   --end)
---love.graphics.print(tostring(mapc), 0, 0)
-    love.graphics.rectangle('line', x2, y2, 32, 32)
-  end)
-  love.graphics.print(x2..", "..y2, 0, 0)
-  end
+love.graphics.rectangle('line', 64, 64, 1295, 255, 65, 64, 64)
+   
+love.graphics.rectangle('line', x2, y2, 32, 32)
+end)
+love.graphics.print(tostring(foundcoin), 0, 10)
+love.graphics.print(x2..", "..y2, 0, 0)
+end
 
 function love.keypressed(key)
   if key == 'space' then
    if gotcoin == false then
     gotcoin = true
-
+    sound:play()
   end
  end
 end
