@@ -61,9 +61,10 @@ map = Map:new(background)
   background = Map:new(background)
   collide = Map:new(walls)
 end
-
-  function love.update(dt)
+function love.update(dt)
 cam:setPosition(x, y)
+  function love.update(dt)
+
 
     if love.keyboard.isDown('up') then
       if collide:cc(x, y - 5, 0, 0) == false then
@@ -85,6 +86,7 @@ cam:setPosition(x, y)
         x = x - 5
       end
     end
+  end
   if x > 2400 then
     x = 2400
   end
@@ -152,7 +154,7 @@ function love.draw()
 
 cam:draw(function(l, t, w, h)
   map:draw()
-    love.graphics.print(hp, 0, 10)
+    love.graphics.print(hp, x, y)
   if hp==0 then
   love.graphics.print('GAME OVER', x3, y3)
   end
