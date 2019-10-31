@@ -32,6 +32,17 @@ function love.load()
  count = 0
   v = true
   step = false
+  cx = 446
+  cy = 257
+  cw = 64
+  ch = 64
+  rx = 64
+  ry = 254
+  rw = 64
+  rh = 64
+  shoot = 0
+  fire = 0
+  targ = love.graphic.newImage('assets-2/dc-mon/animals/target.png')
   e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   boss = love.graphics.newImage('assets-1/monster/demons/eye1.png')
   boss2 = love.graphics.newImage('assets-1/monster/demons/eye2.png')
@@ -46,6 +57,7 @@ function love.load()
   lava1 = love.graphics.newImage('assets-2/dc-dngn/floor/lava1.png')
   lava2 = love.graphics.newImage('assets-2/dc-dngn/floor/lava2.png')
   lava3 = love.graphics.newImage('assets-2/dc-dngn/floor/lava3.png')
+  rocket1 = love.graphics.newImage('assets-2/dc-mon/unique/rocket.png')
   template = {
               {colbalt, colbalt, colbalt, colbalt, cobble, colbalt, colbalt, colbalt, colbalt,},
               {colbalt, cobble, cobble, cobble, cobble, cobble, cobble, cobble, colbalt},
@@ -270,13 +282,26 @@ if count < 14 and step == false then
     end
   end
  
-if(summon == 1) then
+if(summon == 10) then
   if cc(x, y, w, h, ex, ey, ew, eh) == true then
     HP = HP - 10
     ex = 10000000
     
     
   end
+end
+
+if cc(x, y, w, h, cx, cy, cw, ch) == true then
+  if shoot == 1 then
+    fire = 1
+  end
+end
+if bosshealth == 5 then
+shoot = 1
+end
+
+if fire == 1 then
+  rx = rx + 3
 end
 
   if(collide1 == true) then
@@ -322,7 +347,9 @@ end
 if(count > 25) then
 v = false
 end
-
+if rx > 490 then
+  rx = 10000000
+end
 
 c = dist(ex, ey, x, y)
  a = y - ey
@@ -374,15 +401,13 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   end
     love.graphics.print('Press x to attack', 100, 10)
-  --love.graphics.print(x, 400, 20)
+  love.graphics.print(x, 400, 20)
   --love.graphics.print(g, 50, 50)
-  --love.graphics.print(y, 400 ,30)
+  love.graphics.print(y, 400 ,30)
   love.graphics.print(HP, 100, 100)
   --love.graphics.print(bosshealth, 400, 50)
   --love.graphics.print(tostring(v), 0, 0)
-  if(summon == 1) then
-  love.graphics.draw(e, ex, ey)
-  end
+  
   if(count > 6) then
     map3:draw()
   end
@@ -397,7 +422,17 @@ function love.draw()
   else
   love.graphics.draw(boss, bx, by)
   end
+  --if(summon == 1) then
+   -- love.graphics.draw(rocket1, ex, ey)
+    --end
+    if fire == 1 then
+      love.graphics.draw(rocket1, rx, ry)
+    end
+if fire == 1 then
+  love.graphics.draw(playerImg2, x, y)
+else
   love.graphics.draw(playerImg, x, y)
+end
   love.graphics.print(count, 400, 60)
    
   
