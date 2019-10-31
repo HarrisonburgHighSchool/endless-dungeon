@@ -12,7 +12,7 @@ local Util = require 'core/util'
   switch = love.graphics.newImage('assets-1/dungeon/vaults/disco_ball.png')
   deathTrap = love.graphics.newImage('assets-2/item/misc/runes/rune_gloorx_vloq.png')
   currentDoor = closedDoor
-
+  closedDoor = wall and collision
 
   -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
@@ -102,9 +102,6 @@ end
 function love.update(dt)
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
     currentDoor = openDoor
-    if love.exitModule(x > 9) then
-      currentDoor = escape
-    end
   end
   if love.keyboard.isDown('right' or 'd') then
     if collision:cc(x + 5, y, 64, 64) == false then
@@ -128,6 +125,9 @@ function love.update(dt)
   end
   if love.keyboard.isDown ('escape') then 
     love.exitModule();
+  end
+  if x > 800 then
+    love.exitModule()
   end
 -- nothing to update
 end
@@ -181,6 +181,7 @@ if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
 love.graphics.print("Don't pick up this rune, it will actually kill you.",  100, 150)
+
 if cc(x, y, 64, 64,   100, 100, 40, 40) == true then
  -- What should go here?
 end
