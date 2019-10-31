@@ -10,7 +10,8 @@ function love.load()
  ex = 100
  ey = 100
 
- 
+--x = love.math.random(0,800)
+--y = love.math.random(0,600)
 
  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
@@ -68,26 +69,26 @@ end
 
 function love.update(dt)
 
-if collision:cc(x,y-3,w,h, 0,0,32,32) == false then
+if collision:cc(x,y-3,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('up')then
       y=y-3
       cam:setPosition(x, y)
   end
  end
-if collision:cc(x,y+3,w,h, 0,0,32,32) == false then
+if collision:cc(x,y+3,w,h, 0,0,64,64) == false then
    if love.keyboard.isDown('down')then
     y=y+3
     cam:setPosition(x, y)
   end
 end
-if collision:cc(x-3,y,w,h, 0,0,32,32) == false then
+if collision:cc(x-3,y,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('left')then
     x=x-3
     cam:setPosition(x, y)
   end
 
 end
- if collision:cc(x+3,y,w,h, 0,0,32,32) == false then
+ if collision:cc(x+3,y,w,h, 0,0,64,64) == false then
   if love.keyboard.isDown('right')then
     x=x+3
     cam:setPosition(x, y)
