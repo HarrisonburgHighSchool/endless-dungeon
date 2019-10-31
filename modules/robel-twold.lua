@@ -125,11 +125,11 @@ if ey > y then
     end
   end
   if cc(x, y, 32, 32, ex, ey, 32, 32) then
-    --love.exitModule()
+    love.exitModule()
 end
-  --if love.keyboard.isDown('escape') then
-    --love.exitmodule()
-  --end
+  if love.keyboard.isDown('escape') then
+    love.exitmodule()
+  end
 end
 function player2()
   if love.keyboard.isDown('w')then
