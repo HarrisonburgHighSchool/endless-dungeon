@@ -78,25 +78,25 @@ end
 function love.update(dt)
   player2()
   if love.keyboard.isDown('up')then
-  if collision:cc(x, y - 10, 64, 64) == false then
+  if collision:cc(x, y - 10, 50, 50) == false then
    y = y - 10
    cam:setPosition(x, y)
   end
 end
   if love.keyboard.isDown('down')then
-  if collision:cc(x, y + 10, 64, 64) == false then
+  if collision:cc(x, y + 10, 50, 50) == false then
    y = y + 10
    cam:setPosition(x, y)
   end
 end
   if love.keyboard.isDown('right')then
-  if collision:cc(x + 10, y, 64, 64) == false then
+  if collision:cc(x + 10, y, 50, 50) == false then
    x = x + 10
    cam:setPosition(x, y)
   end
 end
   if love.keyboard.isDown('left')then
-  if collision:cc(x - 10 , y, 64, 64) == false then
+  if collision:cc(x - 10 , y, 50, 50) == false then
    x = x - 10
    cam:setPosition(x, y)
   end
@@ -128,30 +128,30 @@ if ey > y then
     love.exitModule()
 end
   if love.keyboard.isDown('escape') then
-    love.exitmodule()
+    love.exitModule()
   end
 end
 function player2()
   if love.keyboard.isDown('w')then
-    if collision:cc(a, b - 10, 64, 64) == false then
+    if collision:cc(a, b - 10, 60, 60) == false then
    b = b - 10
    cam:setPosition(a, b)
   end
 end
   if love.keyboard.isDown('s')then
-      if collision:cc(a, b + 10, 64, 64) == false then
+      if collision:cc(a, b + 10, 60, 60) == false then
    b = b + 10
    cam:setPosition(a, b)
   end
 end
   if love.keyboard.isDown('d')then
-    if collision:cc(a + 10 , y, 64, 64) == false then
+    if collision:cc(a + 10 , y, 60, 60) == false then
    a = a + 10
    cam:setPosition(a, b)
   end
 end
   if love.keyboard.isDown('a')then
-    if collision:cc(a - 10 , y, 64, 64) == false then
+    if collision:cc(a - 10 , y, 60, 60) == false then
    a = a - 10
    cam:setPosition(a, b)
   end
