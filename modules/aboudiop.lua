@@ -25,10 +25,10 @@ collision3 = true
   cimg = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
 
   c2x = 100
-  c2x = 700
+  c2x = 400
   c2img = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
 
-
+  currentDoor = openDoor
 
   
   w = 67   -- The player's width is 67
@@ -63,6 +63,9 @@ Cobalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_4.png')
   
 
 map = Map:new(template)
+collisionmap = Map:new(template)
+
+
             
 
 function love.update(dt)
@@ -91,7 +94,9 @@ function love.update(dt)
   endGame = true
   end
   
-
+  if cc(x, y, w, h,   20, 20, 64, 64) == true then
+    currentDoor = Door
+  end
  
 
 end
