@@ -109,10 +109,10 @@ if x < 120 and x > 30 and y > 30 and y < 120 then
 
 end
 
-  if x < 150 and x > 50 and y > 350 and y < 450 then
-    y = y + 200
-    x = x + 300
-end
+--  if x < 150 and x > 50 and y > 350 and y < 450 then
+  --  y = y + 200
+  --  x = x + 300
+--end
  if ex < x then
   if collision:cc(ex + 5, ey,64,64) == false then
    ex = ex + 3
@@ -133,10 +133,13 @@ end
       ey = ey + 3
     end
   end
- if cc(x, y, 32, 32, ex, ey,32,32)then
-  love.exitModule()
+if cc(x, y, 32, 32, ex, ey,32,32)then
+hp = hp - 1
  end
- if hp == 0 then
+if hp == 0 then
+   love.exitModule()
+ end
+ if x < 150 and x > 50 and y > 350 and y < 450 then
    love.exitModule()
  end
 end
