@@ -114,12 +114,11 @@ if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
 end
 if love.keyboard.isDown('escape') or endGate:cc(player.x, player.y, 24, 32) or player.hp <= 0 then
   love.exitModule()
-  end
-end
-
-if cc(player.x, player.y, 64, 64,   200, 200, 64, 64) == true then
-  player.x = 373 
+end                                          -- First Set                                                  Second Set                                                   Third Set   Fourth Set
+if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   325, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   325, 0, 50, 55) == true then
+  player.x = 373
   player.y = 468
+  end
 end
 
 function love.draw()
@@ -137,5 +136,3 @@ function love.draw()
   love.graphics.print(player.hp, 0, 0)
 
 end
-
-
