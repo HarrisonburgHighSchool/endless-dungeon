@@ -103,6 +103,12 @@ end
       if y > ey then
         if collision:cc(ey + 5 , ex, 64, 64) == false then
           ey = ey + 5
+          if cc(x, y, 32, 32, ex, ey,32,32)then
+           love.exitModule()
+          end
+          if hp == 0 then
+            love.exitModule()
+          end
         end
       end
     end
