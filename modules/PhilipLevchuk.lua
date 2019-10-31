@@ -5,7 +5,7 @@ local Entity = require 'core/entity'
 
 function love.load()
 
-  speed = 2
+  speed = 1.5
 
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
