@@ -7,14 +7,20 @@ function love.load()
   t = 0
   w = 1000
   h = 1000
-  hp = 100
+  hp = 1000
+  enemyhp = 100
+  eenemyhp = 100
+  xe = 400
+  ye = 300
   x = 400
   y = 300
   img = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
-  ex = 200
+  ex = 140
   ey = 100
-
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  xx = 700
+  yy = 0
+  eeimg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
   floor = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
@@ -121,11 +127,27 @@ function love.update(dt)
     end
   end
 
+if dir == 'left' then
+  ex = ex - 1
+end
+if dir == 'right' then
+  ey = ey + 1
+end
+if ex < 10 then
+  ex = ex + 2
+end
+if ex > 200 then
+  ex = ex - 2
+end
 
 
   if cc(x, y, w, h, ex, ey, 5, 5) then
     hp = hp - .5
   end
+  if cc(x, y, w, h, xx, yy, 2, 2) then
+    hp = hp - .5
+  end
+
 
 
   if hp == 0 then
@@ -152,6 +174,16 @@ function love.update(dt)
   end
 end
 
+function love.keypressed(key)
+  if key == 'space' then
+    enemyhp = enemyhp - 1
+  end
+end
+function love.keypressed(key)
+  if key == 'space' then
+    eenemyhp = eenemyhp - 1
+  end
+end
 
 
 function love.draw()
@@ -159,9 +191,12 @@ function love.draw()
   collision:draw()
   background:draw()
   poison:draw()
+  love.graphics.print(enemyhp, xx, ey+ -18)
+  love.graphics.print(eenemyhp, xe, ye+ -18)
   love.graphics.print(hp, x, y+ -18)
   love.graphics.draw(img, x, y)
   love.graphics.draw(eimg, ex, ey)
+  love.graphics.draw(eeimg, xx, ey)
 end)
 end
 
