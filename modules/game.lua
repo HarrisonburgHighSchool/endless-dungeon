@@ -13,6 +13,7 @@ function love.load()
   ex = 100
   ey = 100
   dir = 'left'
+  enemyhp = 0
   --dir = 'right'
   enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
@@ -64,22 +65,22 @@ end
 --Moves character up, down, left, and right
 function love.update(dt)
   if love.keyboard.isDown('right') and x < 815 then   -- if the 'up' key is being pressed...
-    if collision:cc(x+1, y, 64, 64) == false then
+    if collision:cc(x+1, y, 32, 32) == false then
       x = x + 1
     end
   end
-  if love.keyboard.isDown('down') and y < 500 then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+1, 64, 64) == false then
+  if love.keyboard.isDown('down') and y < 750 then   -- if the 'up' key is being pressed...
+    if collision:cc(x, y+1, 32, 32) == false then
       y = y + 1
     end
   end
   if love.keyboard.isDown('left') and x > 60 then   -- if the 'up' key is being pressed...
-    if collision:cc(x-1, y, 64, 64) == false then
+    if collision:cc(x-1, y, 32, 32) == false then
       x = x - 1
     end
   end
   if love.keyboard.isDown('up') and y > 75 then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y-1, 64, 64) == false then
+    if collision:cc(x, y-1, 32, 32) == false then
       y = y - 1
     end
   end
@@ -99,7 +100,7 @@ function love.update(dt)
 
   --Attack movement stuff
    --if ey < 500 then
-  if collision:cc(ax, ay + 5, 64, 64) == false then
+  if collision:cc(ax, ay + 5, 32, 32) == false then
     ay = ay + 5
   end
    if ay > 400 then
@@ -129,9 +130,9 @@ function love.update(dt)
     dir = 'left'
   end
 
- if love.keyboard.isDown('escape') then
+  if enemyhp < 0 then
     love.exitModule();
- end
+  end
 end
 
 function love.draw()
