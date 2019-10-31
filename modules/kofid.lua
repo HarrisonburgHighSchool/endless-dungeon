@@ -159,22 +159,22 @@ function love.update(dt)
   mapc = map:cc(x, y, 64, 64)
   debug = tostring(mapc)
   if love.keyboard.isDown('right') then
-    if collide:cc(x + 3 + 16, y, 16, 30) == false then
+    if collide:cc(x + 3 + 9, y, 9, 30) == false then
       x = x + 3
     end
   end
   if love.keyboard.isDown('left') then
-    if collide:cc(x - 3, y, 16, 16) == false then
+    if collide:cc(x - 3, y, 9, 9) == false then
       x = x - 3
    end
   end
   if love.keyboard.isDown('up') then
-    if collide:cc(x, y - 3, 16, 16) == false then
+    if collide:cc(x, y - 3, 9, 9) == false then
       y = y - 3
     end
   end
   if love.keyboard.isDown('down') then
-    if collide:cc(x, y + 3, 16, 16) == false then
+    if collide:cc(x, y + 3, 9, 9) == false then
       y = y + 3
     end
   end
@@ -232,8 +232,8 @@ collide:draw()
   love.graphics.draw(gate, x, y, 0, 0.04)
 
 
-  love.graphics.rectangle('line', x + 16, y, 16, 0)
---  love.graphics.draw(indian.img, indian.x, indian.y)
+  love.graphics.rectangle('line', x + 9, y, 9, 0)
+  love.graphics.draw(indian.img, indian.x, indian.y)
 --  love.graphics.draw(indian2.img, indian2.x, indian2.y)
 
   end)
