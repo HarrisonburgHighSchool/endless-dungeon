@@ -46,6 +46,15 @@ end
 
 function love.update(dt)
 
+  if x > ex then    -- when the player is to the right of the enemy...
+    ex = ex + 1     -- move the enemy to the right
+  end
+  if ex > x then    -- when the player is to the left of the enemy...
+    ex = ex - 1     -- move the enemy to the left
+  end
+  if ex > x then    -- when the player is to the left of the enemy...
+    ex = ex + 1     -- move the enemy to the left
+  end
   if x < 0 then
     x = 0
   end
@@ -77,31 +86,31 @@ function love.update(dt)
     x = x + 8
   end
   if love.keyboard.isDown('left') then
-      x = x - 8
-    end
-    if love.keyboard.isDown('down') then
-        y = y + 8
-      end
-    if love.keyboard.isDown('up') then
-          y = y - 8
-        end
-          if love.keyboard.isDown('d') then
-                ex = ex + 8
-              end
-         if love.keyboard.isDown('a') then
-           ex = ex - 8
-         end
-         if love.keyboard.isDown('s') then
-           ey = ey + 8
-         end
-         if love.keyboard.isDown('w') then
-           ey = ey - 8
-         end
+    x = x - 8
+  end
+  if love.keyboard.isDown('down') then
+    y = y + 8
+  end
+  if love.keyboard.isDown('up') then
+    y = y - 8
+  end
+  if love.keyboard.isDown('d') then
+    ex = ex + 8
+  end
+  if love.keyboard.isDown('a') then
+    ex = ex - 8
+  end
+  if love.keyboard.isDown('s') then
+    ey = ey + 8
+  end
+  if love.keyboard.isDown('w') then
+    ey = ey - 8
+  end
 
-         if cc(x, y, w, h,   0, 0, 64, 64) then
-           hp = hp - 1
-         end
-       end
+  if cc(x, y, w, h,   0, 0, 64, 64) then
+    hp = hp - 1
+  end
+end
 
 
 
