@@ -10,8 +10,6 @@ function love.load()
   hp = 1000
   enemyhp = 100
   eenemyhp = 100
-  xe = 400
-  ye = 300
   x = 400
   y = 300
   img = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
@@ -19,7 +17,7 @@ function love.load()
   ey = 100
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
   xx = 700
-  yy = 0
+  yy = 200
   eeimg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
   floor = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
@@ -139,12 +137,24 @@ end
 if ex > 200 then
   ex = ex - 2
 end
+if edir == 'left' then
+  xx = xx - 1
+end
+if edir == 'right' then
+  yy = yy + 1
+end
+if xx < 30 then
+  xx = xx + 2
+end
+if xx > 700 then
+  xx = xx - 2
+end
 
 
   if cc(x, y, w, h, ex, ey, 5, 5) then
     hp = hp - .5
   end
-  if cc(x, y, w, h, xx, yy, 2, 2) then
+  if cc(x, y, w, h, xx, yy, 5, 5) then
     hp = hp - .5
   end
 
@@ -158,8 +168,18 @@ end
 
   cam:setPosition(x, y)
 
-
-
+  if x > xx then
+    xx = xx + 2
+  end
+  if x < xx then
+    xx = xx - 2
+  end
+  if y > yy then
+    yy = yy + 2
+  end
+  if y < yy then
+    yy = yy - 2
+  end
   if x > ex then
     ex = ex + 2
   end
@@ -175,12 +195,12 @@ end
 end
 
 function love.keypressed(key)
-  if key == 'space' then
+  if key == 'z' then
     enemyhp = enemyhp - 1
   end
 end
 function love.keypressed(key)
-  if key == 'space' then
+  if key == 'x' then
     eenemyhp = eenemyhp - 1
   end
 end
@@ -191,12 +211,12 @@ function love.draw()
   collision:draw()
   background:draw()
   poison:draw()
-  love.graphics.print(enemyhp, xx, ey+ -18)
-  love.graphics.print(eenemyhp, xe, ye+ -18)
+  love.graphics.print(enemyhp, xx, yy+ -18)
+  love.graphics.print(eenemyhp, ex, ey+ -18)
   love.graphics.print(hp, x, y+ -18)
   love.graphics.draw(img, x, y)
   love.graphics.draw(eimg, ex, ey)
-  love.graphics.draw(eeimg, xx, ey)
+  love.graphics.draw(eeimg, xx, yy)
 end)
 end
 
