@@ -19,6 +19,11 @@ function love.load()
   h = 64
   hp = 100
 
+  ax = 100
+  ay = 100
+  aimg = love.graphics.newImage('assets-2/spells/fire/fireball.png')
+
+
   --Creates the map
   template = { --a 13 x 10 map with the altar texture in the middle
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -34,19 +39,19 @@ function love.load()
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    }
+  }
 
  walls = { --a 12 x 9 map with the altar texture in the middle
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {door, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
+  {wall, 'nil', 'nil', block, 'nil', 'nil', block, 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -58,7 +63,7 @@ end
 
 --Moves character up, down, left, and right
 function love.update(dt)
-  if love.keyboard.isDown('right') and x < 680 then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('right') and x < 815 then   -- if the 'up' key is being pressed...
     if collision:cc(x+1, y, 64, 64) == false then
       x = x + 1
     end
@@ -85,6 +90,8 @@ function love.update(dt)
   -- if ex < 500 then
   --   ex = ex - 1
   -- end
+  ay = ay + 1
+
   -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   0, 0, 64, 64) then  
     -- if true, decrease HP:
@@ -92,22 +99,25 @@ function love.update(dt)
   end
 
   if dir == 'left' then
-
     ex = ex - 1
   end
   if dir == 'right' then
     ex = ex + 1
   end
 
-
   --Changes left & right
   if ex < 70 then
-    dir = 'right' 
+    dir = 'right'
   end
   if ex > 735 then
     dir = 'left'
   end
+
+ if love.keyboard.isDown('escape') then
+    love.exitModule();
+ end
 end
+
 function love.draw()
   map:draw()
   collision:draw()
