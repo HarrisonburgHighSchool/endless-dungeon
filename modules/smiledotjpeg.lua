@@ -42,13 +42,13 @@ function love.load()
   rh = 64
   shoot = 0
   fire = 0
-  targ = love.graphic.newImage('assets-2/dc-mon/animals/target.png')
+  targ = love.graphics.newImage('assets-2/dc-mon/animals/target.png')
   e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   boss = love.graphics.newImage('assets-1/monster/demons/eye1.png')
   boss2 = love.graphics.newImage('assets-1/monster/demons/eye2.png')
   transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
-  playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
+  --playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   cobble1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
   colbalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
@@ -160,6 +160,22 @@ template4 = {
                 {transp, transp, transp, transp, transp, transp, transp, transp},
     
                 }
+ templatey = {
+
+                  {transp, transp, transp, transp, 'nil', transp, transp, transp},
+                  {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil', targ, 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', colbalt, colbalt, colbalt, 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                  {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                  {transp, transp, transp, transp, transp, transp, transp, transp},
+      
+                  }
 template6 = {
                   {transp, transp, transp, transp, 'nil', transp, transp, transp},
                   {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
@@ -177,6 +193,8 @@ template6 = {
                   }
       
                   map4 = Map:new(template4)
+                  
+                mapy = Map:new(templatey)
     
                 map5 = Map:new(template5)
   
@@ -282,7 +300,7 @@ if count < 14 and step == false then
     end
   end
  
-if(summon == 10) then
+if(summon == 1) then
   if cc(x, y, w, h, ex, ey, ew, eh) == true then
     HP = HP - 10
     ex = 10000000
@@ -302,6 +320,10 @@ end
 
 if fire == 1 then
   rx = rx + 3
+end
+if fire == 2 then
+  step = false
+  count = 0
 end
 
   if(collide1 == true) then
@@ -349,6 +371,7 @@ v = false
 end
 if rx > 490 then
   rx = 10000000
+  fire = 2
 end
 
 c = dist(ex, ey, x, y)
@@ -405,16 +428,16 @@ function love.draw()
   --love.graphics.print(g, 50, 50)
   love.graphics.print(y, 400 ,30)
   love.graphics.print(HP, 100, 100)
-  --love.graphics.print(bosshealth, 400, 50)
+  
   --love.graphics.print(tostring(v), 0, 0)
   
-  if(count > 6) then
+  if(count > 6 and fire < 2) then
     map3:draw()
   end
-  if(count > 10) then
+  if(count > 10 and fire < 2) then
     map4:draw()
   end
-  if(count > 14) then
+  if(count > 14 and fire < 2) then
       map5:draw()
   end
   if(count > 3 and count < 6) then
@@ -429,12 +452,19 @@ function love.draw()
       love.graphics.draw(rocket1, rx, ry)
     end
 if fire == 1 then
-  love.graphics.draw(playerImg2, x, y)
-else
-  love.graphics.draw(playerImg, x, y)
+  mapy:draw()
+ 
+if fire == 2 then
+  map6:draw()
+ 
+  
 end
+end 
+love.graphics.draw(playerImg, x, y)
   love.graphics.print(count, 400, 60)
-   
+  love.graphics.print(bosshealth, 400, 50)
+  love.graphics.print('bosshealth', 330, 50)
+  
   
 end)
 end
