@@ -39,10 +39,10 @@ function love.load()
     {wall,wall,wall,wall,wall,wall,'nil',wall,wall,wall,},
     {wall,wall,wall,wall,wall,'nil','nil','nil',wall,wall,},
     {wall,},
-    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,'nil'},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,'nil',wall,floorTile,},
     {wall,},
     {wall,},
-    {wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,'nil',wall,wall,wall,wall,wall,wall,'nil',},
     {wall,wall,},
     {wall,wall,},
     {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
@@ -77,7 +77,7 @@ end
 function love.draw()
   map:draw()
   collision:draw()
-  love.graphics.print('play here !', 0, 0)
+  love.graphics.print('try me !', 0, 0)
   love.graphics.draw(playerImg, x, y)
   --love.exitModule();
 end
