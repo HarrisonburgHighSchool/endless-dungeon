@@ -11,7 +11,7 @@ function love.load()
     ey = 100
     eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
-
+time = 1000 -- store a big number in time
 
   x = 400
   y = 300
@@ -76,18 +76,26 @@ function love.update(dt)
     end
   end
 
+time = time - 1
+if time < 0 then
+  -- when the timer runs out...
+  -- what goes here?
+  
+end
+
+
 
   if ex > x then
-  ex = ex - 6
+  ex = ex - 4
   end
   if ex < x then
-  ex = ex + 6
+  ex = ex + 4
   end
   if ey > y then
-  ey = ey - 6
+  ey = ey - 4
   end
   if ey < y then
-  ey = ey + 6
+  ey = ey + 4
   end
 if love.keyboard.isDown('escape')then
 love.exitModule()
@@ -107,7 +115,7 @@ end
 function love.draw()
   bkgrnd:draw()
   collision:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  love.graphics.print(time, 0, 0)
   love.graphics.draw(playerImg, x, y)
     love.graphics.draw(eimg, ex, ey)
 end
