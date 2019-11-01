@@ -179,9 +179,15 @@ function love.update(dt)
 --Player Movement
   if love.keyboard.isDown('right')then
     if floor2:cc(x + 4, y, 60, 60)==false then
-    x = x + 4
+      if doorStatus == 'closed' then
+        if cc(x+4, y, 64, 64   , 1280, 320, 64, 64) == false then
+          x = x + 4
+        end
+      elseif doorStatus == 'open' then
+        x = x + 4
+      end
+    end
   end
-end
 if x > 0 then
   if love.keyboard.isDown('left')then
     if floor2:cc(x - 4, y, 60, 60)==false then
@@ -223,9 +229,9 @@ if cc(x, y, w, h,   1650, 375, 60, 60) then
   love.exitModule()
 end
 
-if cc(x, y, w, h,   375, 625, 60, 60) ==true then
-
+if cc(x, y, w, h,   375, 625, 60, 60) == true then
 door=openDoor
+doorStatus='open'
 end
 end
 
