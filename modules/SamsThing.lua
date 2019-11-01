@@ -26,13 +26,12 @@ function love.load()
   src1:setLooping(true)
   src1:play()
 
-  
+
   enemies = {}
-  enemies[1] = newEnemy(400, 300)
-  enemies[2] = newEnemy(100, 100)
-  enemies[3] = newEnemy(50, 200)
   
-  
+  for i = 1, 3 do
+  enemies[i] = newEnemy(100 * i, 100)
+  end
 
   x = 400
   y = 300
@@ -40,7 +39,7 @@ function love.load()
   butterfly_x = 450
   butterfly_y = 100
 
-  en = newEnemy()
+  
   
 
   w = 45   -- The player's width is 64
@@ -276,19 +275,24 @@ end
     x = x - 5
   end
 
+  for i = 1, 3 do
+    if enemy_draw == true then
+      c = dist(enemies[i].x, enemies[i].y, x, y)
+      a = y - enemies[i].y
+      b = x - enemies[i].x
+      speed = 3
+      cRatio = speed/c
+      dy = a * cRatio
+      dx = b * cRatio
+      enemies[i].x = enemies[i].x + dx
+      enemies[i].y = enemies[i].y + dy
   
-  if enemy_draw == true then
-    c = dist(enemy.x, enemy.y, x, y)
-    a = y - enemy.y
-    b = x - enemy.x
-    speed = 3
-    cRatio = speed/c
-    dy = a * cRatio
-    dx = b * cRatio
-    enemy.x = enemy.x + dx
-    enemy.y = enemy.y + dy
- 
+    end
   end
+
+  
+
+
   cam:setPosition(x, y)
 
   if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
@@ -343,6 +347,8 @@ function love.draw()
   end
   love.graphics.print(hp, 0, 0)
 
+  love.graphics.print(x,y)
+
   -- if love.keyboard.isDown('up') or love.keyboard.isDown('right') then
   anim:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
   -- end
@@ -352,12 +358,9 @@ function love.draw()
   if butterfly_alive == true then
   love.graphics.draw(butterfly, butterfly_x, butterfly_y)
   end
-  if enemy_draw == true then
-  love.graphics.draw(enemy.img, enemy.x, enemy.y) 
-  end
+
   
   for i = 1, 3 do
-    print(i)
     love.graphics.draw(enemies[i].img, enemies[i].x, enemies[i].y)
   end
   end)
