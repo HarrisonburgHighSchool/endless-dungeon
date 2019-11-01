@@ -30,6 +30,7 @@ b=0
 direction = 'down'
 direction2= 'left'
 direction3= 'right2'
+doorStatus= "closed"
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -231,7 +232,6 @@ end
 
 if cc(x, y, w, h,   375, 625, 60, 60) == true then
 door=openDoor
-doorStatus='open'
 end
 end
 
