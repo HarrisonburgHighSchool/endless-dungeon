@@ -2,21 +2,25 @@ local Util = require 'core/util'
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
+  bosshp = 1000
   ex = 100
   ey = 100
   dir = 'right'
   eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
-   rx = 100
+  emig = love.graphics.newImage('assets-1/monster/demons/balrug.png')
+  rx = 100
    ry = 400
    bir = 'right'
    tir = 'right'
    eir = 'right'
    air = 'right'
+   sir = 'right'
    tx = 100
    ty = 600
    ax = 100
    ay = 800 
-   
+   ix = 100
+   iy = 1100
    cam = gamera.new(0, 0, 8000, 8000) 
   cam:setPosition(400, 400)
   x = 800
@@ -46,7 +50,7 @@ function love.load()
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,  walls},
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, walls},
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
                  {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
@@ -118,10 +122,21 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('escape') then
-    love.exitModule();  
-  end 
-  
+  if bosshp < 1 then
+    love.exitModule(); 
+  end
+  if ix < 100 then
+    sir = 'right'
+  end
+  if ix > 1900 then
+    sir = 'left'
+  end
+  if sir == 'right' then
+    ix = ix + 10
+  end
+  if sir == 'left' then 
+    ix = ix - 10
+  end
   
   if ax < 100 then
     air = 'right'
@@ -210,6 +225,9 @@ function love.draw()
   cam:draw(function(l,t,w,h)
     map:draw()
     map2:draw()
+    love.graphics.print(bosshp,bx,by)
+    love.graphics.draw(emig,bx,by)
+    love.graphics.draw(emig, ix, iy) 
     love.graphics.draw(eimg, ex, ey) 
     love.graphics.draw(eimg, rx, ry )
     love.graphics.draw(eimg, tx, ty )
