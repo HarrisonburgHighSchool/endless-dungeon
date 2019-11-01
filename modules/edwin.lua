@@ -7,13 +7,13 @@ function love.load()
   y = 270
   hp = 500
 cam = gamera.new(0, 0, 2000, 2000)
-playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_5.png')
+playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy.png')
 
 ex = 300
 ey = 300
-eimg = love.graphics.newImage('assets-1/monster/aquatic/lava_snake.png')
+eimg = love.graphics.newImage('assets-1/monster/eyes/eye_of_devastation.png')
 
-  floorTile = love.graphics.newImage('assets-1/dungeon/floor/cage_1.png')
+  floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_3.png')
   background = {
     {floorTile, floorTile, floorTile, floorTile},
     {floorTile, floorTile, floorTile, floorTile},
@@ -23,14 +23,14 @@ eimg = love.graphics.newImage('assets-1/monster/aquatic/lava_snake.png')
   wallTile = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_1.png')
   collision = {
     {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, wallTile, wallTile, wallTile, 'nil', 'nil', wallTile, wallTile, wallTile, wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, wallTile, wallTile, wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
@@ -110,7 +110,7 @@ end
 
       -- Reduce hp if colliding with enemy
       if cc(x, y, 32, 32, ex, ey,32,32)then
-       hp = hp - 5
+       hp = hp - 0.000000000001
       end
 
       --If the player dies, end the level
@@ -123,7 +123,7 @@ function love.draw()
   background:draw()
   collision:draw()
   --love.graphics.print('Yo!', 0, 0)
-  love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(playerImg, x, y,0, 0.1)
   love.graphics.draw(eimg, ex, ey)
   love.graphics.print(hp, 0,0)
 end
