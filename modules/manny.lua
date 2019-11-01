@@ -42,9 +42,9 @@ function love.load()
     {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,'nil'},
     {wall,},
     {wall,},
-    {wall,wall,wall,wall,wall,wall,wall,wall,},
-    {wall,},
-    {wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,},
+    {wall,wall,},
     {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
   }
 
