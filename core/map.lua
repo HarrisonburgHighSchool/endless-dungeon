@@ -144,9 +144,16 @@ function Map:cc(x, y, w, h)
   --   for y = 1, #self.matrix[x] do
   for b = 1, #self.matrix do
     if self.matrix[b] then
-      if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, self.matrix[b].w, self.matrix[b].h) then
-        print('Got tile at '..b)
-        return true
+      if self.gridsize then
+        if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, self.gridsize, self.gridsize) then
+          print('Got tile at '..b)
+          return true
+        end
+      else
+        if cc(x, y, w, h, self.matrix[b].x, self.matrix[b].y, self.matrix[b].w, self.matrix[b].h) then
+          print('Got tile at '..b)
+          return true
+        end
       end
     end
   end

@@ -4,12 +4,13 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
-indian = newEnemy()
+
 
 
 
 
 function love.load()
+  indian = newEnemy()indian = newEnemy()
   x = 100
   y = 100
   w = 64   -- The player's width is 64
@@ -160,7 +161,7 @@ gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
   indian = {
     x = 100,
     y = 100,
-    img = love.graphics.newImage('assets-1/player/body/PixelArtcopy 2.png')
+    img = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
   }
 
 
@@ -171,7 +172,7 @@ function newEnemy()
   local indian = {
     x = 100,
     y = 100,
-    img = love.graphics.newImage('assets-1/player/body/PixelArtcopy 2.png')
+    img = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
   }
 
   return enemy
@@ -185,7 +186,7 @@ function love.update(dt)
   mapc = map:cc(x, y, 64, 64)
   debug = tostring(mapc)
   if love.keyboard.isDown('right') then
-    if collide:cc(x + 3 + 9, y, 9, 30) == false then
+    if collide:cc(x + 3, y, 9, 9) == false then
       x = x + 3
     end
   end
