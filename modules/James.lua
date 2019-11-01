@@ -7,10 +7,10 @@ function love.load()
   bosshp = 1000
   --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
-  x = 200
-  y = 300
+  x = 500
+  y = 100
   boss = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
-  by = 15
+  by = 150
   bx = 200
   boss2 = love.graphics.newImage('assets-1/monster/animals/black_bear.png')
   dir = 'd'
@@ -150,17 +150,24 @@ end
   end
 end
 if x > bx then
-  if map2:cc(x, y + 3, w, h) == false then
-  bx = bx + 2
+      if map2:cc(bx, by + 3, 96, 96) == false then
+    bx = bx + 2
+  end
 end
 if x < bx then
-  bx = bx - 2
+      if map2:cc(bx + 3, by, 96, 96) == false then 
+    bx = bx - 2
+  end
 end
 if y <  by then
-  by =  by - 2
+     if map2:cc(bx + 3, by, 96, 96) == false then 
+    by =  by - 2
+  end
 end
 if y >  by then
-  by = by + 2
+      if map2:cc(bx + 3, by, 96,96) == false then 
+    by = by + 2
+  end
 end
   cam:setPosition(x,y)
 
@@ -175,7 +182,7 @@ function love.draw()
     love.graphics.print(x, 50, 50)
     love.graphics.print(y, 60, 60)
     love.graphics.draw(playerImg, x, y)
-    if map:cc(x, y+1, 64, 64) == false then
+    if map:cc(x, y + 1, 64, 64) == false then
     end
    love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp)
