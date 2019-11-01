@@ -21,7 +21,6 @@ col = 1
   h3 = 30
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
-  playerImg2 = love.graphics.newImage('assets-1/player/base/gargoyle_male - Copy.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
   floor1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
@@ -216,5 +215,5 @@ function love.draw()
     love.graphics.setColor(1, 0, 0, 1)
   else
   love.graphics.setColor(1, 1, 1, 1)
-  end
+  end  
 end
