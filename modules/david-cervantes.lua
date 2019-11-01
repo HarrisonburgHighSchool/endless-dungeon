@@ -6,13 +6,28 @@ function love.load()
   cam = gamera.new(0, 0, 2000, 2000)
   x = 400
   y = 300
-  ex = 100
-  ey = 100
+enemy = {
+  x = 100,
+  y = 100,
+  img = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+}
+witch = {
+  x = 150,
+  y = 300,
+  img = love.graphics.newImage('fake-assets/enemy/witch.png'),
+}
+ogre = {
+  x = 200,
+  y = 400,
+  img = love.graphics.newImage('fake-assets/enemy/ogre.png'),
+}
+  dir = 'left'
+  dir = 'right'
   playerImg1 = love.graphics.newImage('assets-1/dungeon/trees/mangrove_1.png')
   w = 64   -- The player's width is 64
   h = 64   -- The player's height is 64
   hp = 100 -- Set the player's HP to 100 at the start of the game
-  eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  img = love.graphics.newImage('assets-1/player/base/octopode_2.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/bog_green_1.png')
   wall     = love.graphics.newImage('assets-1/dungeon/wall/hell_5.png')
  template = { --a 3 x 3 map with the altar texture in the middle
@@ -46,14 +61,30 @@ end
 
 function love.update(dt)
 
+
+  if ex < 10 then
+    ex = ex + 1
+  end
+  if ex > 200 then
+    ex = ex - 1
+  end
+  if dir == 'left' then
+    ey = ey - 1
+  end
+  if dir == 'right' then
+    ex = ex + 1
+  end
   if x > ex then    -- when the player is to the right of the enemy...
     ex = ex + 1     -- move the enemy to the right
+  end
+  if y > ey then    -- when the player is below the enemy...
+    ey = ey + 1     -- move the enemy below
   end
   if ex > x then    -- when the player is to the left of the enemy...
     ex = ex - 1     -- move the enemy to the left
   end
-  if ex > x then    -- when the player is to the left of the enemy...
-    ex = ex + 1     -- move the enemy to the left
+  if ey > y then    -- when the player is above the enemy...
+    ey = ey - 1     -- move the enemy above
   end
   if x < 0 then
     x = 0
@@ -79,6 +110,7 @@ function love.update(dt)
   if ex > 1250 then
     ex = 1250
   end
+
 
   cam:setPosition(x, y)
 
