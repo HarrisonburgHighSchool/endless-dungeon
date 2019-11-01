@@ -2,8 +2,8 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 
 function love.load()
-  x = 400
-  y = 300
+  x = 450
+  y = 320
   playerImg = love.graphics.newImage('assets-1/monster/animals/hell_hound.png')
 
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
@@ -40,22 +40,22 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('right') then
-    if idontknow:cc(x + 8, y, 64, 64) == false then
+    if idontknow:cc(x + 8, y, 32, 32) == false then
       x = x + 8
     end
   end
   if love.keyboard.isDown('left') then
-    if idontknow:cc(x - 8, y, 64, 64) == false then
+    if idontknow:cc(x - 8, y, 32, 32) == false then
       x = x - 8
     end
   end
   if love.keyboard.isDown('up') then
-    if idontknow:cc(x, y - 8, 64, 64) == false then
+    if idontknow:cc(x, y - 8, 32, 32) == false then
       y = y - 8
     end
   end
   if love.keyboard.isDown('down') then
-    if idontknow:cc(x, y + 8, 64, 64) == false then
+    if idontknow:cc(x, y + 8, 32, 32) == false then
       y = y + 8
     end
 
