@@ -33,9 +33,19 @@ function love.load()
 
 
   walls = {
-    {wall, wall, wall,wall,wall,wall,wall,},
+    {wall, wall, wall,wall,wall,wall,wall,wall,wall,wall,wall,},
     {wall, 'nil', 'nil',},
-    {wall, wall, wall,wall,},
+    {wall,},
+    {wall,wall,wall,wall,wall,wall,'nil',wall,wall,wall,},
+    {wall,wall,wall,wall,wall,'nil','nil','nil',wall,wall,},
+    {wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,'nil'},
+    {wall,},
+    {wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,},
+    {wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
   }
 
   collision = Map:new(walls, 64)
