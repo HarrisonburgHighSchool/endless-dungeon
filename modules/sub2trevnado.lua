@@ -14,6 +14,10 @@ function love.load()
   dr = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_right.png')
 
   s1 = love.graphics.newImage('assets-1/monster/vault/vault_guard.png')
+  s2 = love.graphics.newImage('assets-2/dc-mon/undead/vampire.png')
+  s3 = love.graphics.newImage('assets-1/monster/holy/angel.png')
+  s4 = love.graphics.newImage('assets-1/monster/undead/skeletal_warrior.png')
+
   --grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   --walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
@@ -64,8 +68,8 @@ function love.load()
   s = 4
   x = 64
   y = 64
-  w = 64
-  h = 64
+  w = 44
+  h = 44
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_4.png')
 end
@@ -75,7 +79,7 @@ function love.update(dt)
     --walk:update(dt)
   
     if love.keyboard.isDown('up' or 'w') then
-      if mapc:cc(x, y - s, w, h) == false then
+      if mapc:cc(x , y - s, w, h) == false then
         y = y - s
       end
     end
@@ -109,8 +113,10 @@ function love.draw()
     mapc:draw()
     doorr:draw()
     --walk:draw(spritesheet, 400, 300)
-    love.graphics.draw(playerImg, x, y)
-    
-
+    love.graphics.draw(playerImg, x - 10, y - 10)
+    love.graphics.draw(s1, 512, 128)
+    love.graphics.draw(s2, 192, 192)
+    love.graphics.draw(s3, 512, 448)
+    love.graphics.draw(s4, 192, 448)
   end)
 end
