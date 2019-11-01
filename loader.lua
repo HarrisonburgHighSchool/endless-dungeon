@@ -2,17 +2,8 @@
 -- /////////////////////////////////////////////////////////////////////////
 -- If you want to load a specific module, change LOAD_MODULE from nil to the name of the module
 
-<<<<<<< Updated upstream
-LOAD_MODULE = 'David-Komlev' -- change this to the name of your file if you want to test your file
-=======
---<<<<<<< HEAD
-LOAD_MODULE = 'kofid' -- change this to the name of your file if you want to test your file
---=======
-
 LOAD_MODULE =  'kofid'  -- change this to the name of your file if you want to test your file
 
--->>>>>>> cb74caec8ac65d807d0bc8e52cef9abe78750d5a
->>>>>>> Stashed changes
 
 -- /////////////////////////////////////////////////////////////////////////
 
