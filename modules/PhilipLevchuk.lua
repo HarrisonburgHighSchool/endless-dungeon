@@ -5,7 +5,7 @@ local Entity = require 'core/entity'
 
 function love.load()
 
-  speed = 1.5
+  speed = 2
 
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
@@ -265,7 +265,7 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, x, y+ -18)
+  love.graphics.print(hp, x, y+ - 18)
   love.graphics.draw(Img4, ax, ay)
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
