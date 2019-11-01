@@ -5,6 +5,10 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 
 function love.load()
   love.window.setMode(768, 576)
+
+message = ""
+timer = 200
+
 player = {
   x = 373,
   y = 468,
@@ -44,7 +48,7 @@ player = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
  
- -- Create the collision map, with walls around the edge of the map
+ 
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
   {nil, nil, nil, nil, nil, nil, nil, nil, wall},
@@ -85,6 +89,7 @@ function love.update(dt)
  
   player.walk:update(dt)
   moving = false
+  
 
 --If the statement is true it will run the code, but if it is false it will skip it.
 
@@ -112,27 +117,48 @@ if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
     player.x = player.x + 4 -- speed
   end
 end
-if love.keyboard.isDown('escape') or endGate:cc(player.x, player.y, 24, 32) or player.hp <= 0 then
-  love.exitModule()
-end                                          -- First Set                                                  Second Set                                                   Third Set   Fourth Set
-if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   325, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   325, 0, 50, 55) == true then
-  player.x = 373
+
+                                       -- First Set  (2 & 3)                                             Second Set  (5)                                              Third Set  (6)                                          Fourth Set  (9 & 10)
+if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   330, 0, 45, 55) == true or cc(player.x, player.y, 27, 32,   458, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   581, 0, 128, 55) == true then
+  player.x = 373      -- Teleports you back to spawn
   player.y = 468
+  
+end
+
+if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   256, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   384, 0, 60, 55) == true then
+  player.x = 373      -- Teleports you back to spawn
+  player.y = 468
+  message = "Ouch... That hurt, I probably shouldn't go through there again."   -- Prints warning
+  timer = 200
+  player.hp = player.hp - 20      -- Take 20 hp from player's health
   end
+
+  -- message timer
+  if timer < 0 then   
+    message = ""
+  else
+    timer = timer - 1     -- subtracting from timer value to make warning dissapear
+  end
+
+  if cc(player.x, player.y, 27, 32,   512, 0, 60, 55) == true or love.keyboard.isDown('escape') or player.hp <= 0 then
+    love.exitModule()     -- Ends the game
+  end
+
 end
 
 function love.draw()
 
   map:draw()
-  collision:draw()
-  endGate:draw()
+  collision:draw()    
+  endGate:draw()    -- Map that ends game
 
-  if moving == true then
+  if moving == true then    -- Smooths aniimation
     player.walk:draw(player.spritesheet, player.x + 15, player.y, 0, flip, 2, 9)
   else
     love.graphics.draw(player.img, player.x + 15, player.y, 0, 2, 2, 9)
   end
 
-  love.graphics.print(player.hp, 0, 0)
+  love.graphics.print(message,  player.x - 180, player.y - 20)    -- Prints warning
 
+  love.graphics.print(player.hp, 0, 0)      -- Prints player's health
 end
