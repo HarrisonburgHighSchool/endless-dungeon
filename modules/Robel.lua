@@ -156,7 +156,7 @@ cam:draw(function(l, t, w, h)
   love.graphics.draw(eimg, ex, ey)
 
 --box color
-  love.graphics.setColor(1, 0,0)
+  love.graphics.setColor(1, 0,1)
   love.graphics.rectangle('line', 67, 67, 64, 64)
   love.graphics.rectangle('line', 100, 400, 64, 64)
   love.graphics.rectangle('line', 800, 500, 64, 64)
