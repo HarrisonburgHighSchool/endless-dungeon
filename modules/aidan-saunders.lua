@@ -11,6 +11,7 @@ function love.load()
     oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
+    oct5=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
     axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
     rod=love.graphics.newImage('assets-1/item/rod/rod_6.png')
@@ -27,10 +28,11 @@ s=100
 q=700
 c=0
 b=0
+enemie=100
 direction = 'down'
 direction2= 'left'
 direction3= 'right2'
-doorStatus= "closed"
+doorStatus= 'closed'
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -177,6 +179,21 @@ function love.update(dt)
     if b==0 then
       direction5 = 'diagonal2'
     end
+--
+if direction == 'down2' then
+  enemie = enemie + 5
+end
+if direction == 'up2' then
+  enemie = enemie - 5
+end
+
+if enemie==400 then
+  direction = 'up2'
+end
+if enemie==50 then
+  direction = 'down2'
+end
+
 --Player Movement
   if love.keyboard.isDown('right')then
     if floor2:cc(x + 4, y, 60, 60)==false then
@@ -225,6 +242,10 @@ if cc(x, y, w, h,   c, b, 60, 60) then
 
   hp = hp - 1
 end
+if cc(x, y, w, h,   100, enemie, 60, 60) then
+
+  hp = hp - 1
+end
 if cc(x, y, w, h,   1650, 375, 60, 60) then
 
   love.exitModule()
@@ -258,6 +279,7 @@ if hp > 0 then
     love.graphics.draw(oct3, q, 385)
     love.graphics.draw(oct4, c, b)
     love.graphics.draw(door, 1280, 320)
+    love.graphics.draw(oct5, 100, enemie)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
