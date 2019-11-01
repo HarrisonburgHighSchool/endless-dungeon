@@ -13,7 +13,7 @@ function love.load()
   ex = 100
   ey = 100
   dir = 'left'
-  enemyhp = 0
+  enemyhp = 450
   --dir = 'right'
   enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
@@ -23,7 +23,6 @@ function love.load()
   ax = 100
   ay = 100
   aimg = love.graphics.newImage('assets-2/spells/fire/fireball.png')
-
 
   --Creates the map
   template = { --a 13 x 10 map with the altar texture in the middle
@@ -130,6 +129,7 @@ function love.update(dt)
     dir = 'left'
   end
 
+  enemyhp = enemyhp - 1
   if enemyhp < 0 then
     love.exitModule();
   end
@@ -138,7 +138,7 @@ end
 function love.draw()
   map:draw()
   collision:draw()
-  love.graphics.print(hp, 0, 0)
+  love.graphics.print(enemyhp, 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(enemyImg, ex, ey)
   love.graphics.draw(aimg, ax, ay)
