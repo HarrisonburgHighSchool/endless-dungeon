@@ -19,14 +19,17 @@ function love.load()
   eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
   ex = 270
   ey = 460
-  FinalBoss= love.graphics.newImage('assets-1/monster/dragons/golden_dragon.png')
+  finalBoss= love.graphics.newImage('assets-1/monster/dragons/golden_dragon.png')
   x=400
   y=300
-  
+  hp=100
+
+  level = 1
+
 
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
-  Dgrass = love.graphics.newImage('assets-1/dungeon/floor/dirt_south.png')
+  dgrass = love.graphics.newImage('assets-1/dungeon/floor/dirt_south.png')
   grass = love.graphics.newImage('assets-2/dc-dngn/floor/grass/grass_flowers_yellow1.png')
   waterwave = love.graphics.newImage('assets-1/dungeon/water/deep_water_wave_south_1.png')
   darkwater = love.graphics.newImage('assets-1/dungeon/water/shoals_deep_water_11.png')
@@ -58,23 +61,24 @@ mapTemplate2 = {
 }
 
 mapTemplate = {
-    {mud,mud,mud,mud,mud,mud,mud,mud,mud,mud},
-    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
-    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
-    {mud,grass,marble,marble,marble,marble,marble,marble,grass},
-    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
-    {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-    {marble,marble,grass,marble,marble,marble,marble,marble,grass,grass,grass},
-    {mud,marble,grass,marble,water,water,marble,marble,grass,grass,grass},
-    {mud,marble,marble,grass,water,water,grass,marble,grass,grass},
-    {mud,grass,marble,marble,marble,marble,marble,marble,grass,grass},
-    {mud,grass,grass,grass,water,water,grass,grass,grass},
-    {mud,grass,grass,grass,water,water,grass,grass,grass,grass},
-    {mud,grass,grass,grass,grass,grass,grass,grass,grass,grass},
+    {mud,dgrass,mud,mud,mud,mud,mud,mud,mud,mud},
+    {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,dgrass,marble,marble,marble,marble,marble,marble,darkwater},
+    {mud,marble,marble,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
+    {mud,marble,darkwater,marble,darkwater,darkwater,marble,marble,darkwater,darkwater,d},
+    {marble,marble,darkwater,marble,marble,marble,marble,marble,darkwater,darkwater,darkwater},
+    {mud,marble,darkwater,marble,darkwater,darkwater,marble,marble,darkwater,darkwater,darkwater},
+    {mud,marble,marble,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
+    {mud,dgrass,marble,marble,marble,marble,marble,marble,darkwater,darkwater},
+    {mud,ddarkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,ddarkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
     
   }
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  darkwater = love.graphics.newImage('assets-1/dungeon/water/shoals_deep_water_11.png')
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
@@ -126,10 +130,11 @@ end
  if ex < 500 then
   ex = ex + 1
  end
-
-
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = closedDoor
+
+  --if finalBoss hp < 0 then
+    --love.exitModule();
 
   if love.keyboard.isDown('escape') then
     love.exitModule();
@@ -144,7 +149,7 @@ function love.draw()
     collision:draw()
   end
   if level == 2 then
-   map2:draw() -- what goes here?
+    -- what goes here1?
   end
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
