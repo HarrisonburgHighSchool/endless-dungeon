@@ -14,7 +14,7 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/player/transform/dragon_form_red.png')
   x2 = 79
   y2 = 270
-  cam = gamera.new(0, 0, 2000, 2000)
+  cam = gamera.new(0, 0, 1344, 2000)
   w = 32
   h = 32
   hp = 100
@@ -27,6 +27,8 @@ function love.load()
   prtl2 = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
   time = 120
   timestart = false
+  time2 = 200
+  timestart2 = true
 
   template = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -75,7 +77,7 @@ function love.load()
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, wall, wall, wall, 'nil', wall, wall ,wall, wall, wall},
+    {wall, wall, wall, wall, wall, wall, wall ,wall, wall, wall},
   }  
 
   collision = Map:new(collision)
@@ -111,16 +113,21 @@ end
 if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
  foundcoin = true
 end
-if cc(x2, y2, 64, 64, 1295, 255, 65, 64, 64) == true then
+if cc(x2, y2, 64, 64, 769, 65, 64, 64) == false then
+  foundcoin = false
+ end
+if gotcoin == true then
+ if cc(x2, y2, 64, 64, 1310, 255, 65, 64, 64) == true then
   time = time - 1
   timestart = true
 end
-if cc(x2, y2, 64, 64, 1295, 255, 65, 64, 64) == true then
+if cc(x2, y2, 64, 64, 1310, 255, 65, 64, 64) == true then
 prtlsnd:play()
 end
 if time < 0 then
   love.exitModule();
-end    
+ end   
+end 
 
 if love.keyboard.isDown('escape') then
   love.exitModule();
@@ -143,19 +150,27 @@ end
 if gotcoin == true then
   love.graphics.draw(prtl2, 1280, 255, 0, 2)
 end
+love.graphics.draw(prtl, 1280, 255, 0, 2)
+if timestart2 == true then
+  time2 = time2 - 1
+if time2 > 0 then 
+love.graphics.print('What the!!!... The portal closed. I have to find a way out!',  150, 150)
+ end
+end
+
   --love.graphics.print(hp, 0, 0)
   --end)
-love.graphics.rectangle('line', 64, 64, 1295, 255, 65, 64, 64)
+--love.graphics.rectangle('line', 64, 64, 1295, 255, 65, 64, 64)
    
 love.graphics.rectangle('line', x2, y2, 32, 32)
 end)
-love.graphics.print(tostring(foundcoin), 0, 10)
+--love.graphics.print(tostring(time2), 0, 10)
 love.graphics.print(x2..", "..y2, 0, 0)
 end
 
 function love.keypressed(key)
   if key == 'space' then
-   if gotcoin == false then
+   if foundcoin == true and gotcoin == false then
     gotcoin = true
     sound:play()
   end
