@@ -1,6 +1,6 @@
 
 local Map = require 'core/map'
-love.graphics.setDefaultFilter('nearest', 'nearest')
+--love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
@@ -10,38 +10,9 @@ local Util = require 'core/util'
 
 
 function love.load()
-  indian = newEnemy()indian = newEnemy()
-  x = 100
-  y = 100
-  w = 64   -- The player's width is 64
-  h = 64   -- The player's height is 64
-  hp = 100 -- Set the player's HP to 100 at the start of the game
+  ex = 5
 
 map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
-
-indian = {
-
-  x = 100,
-  y = 100,
-  img = love.graphics.newImage('assets-1/player/body/PixelArt.png')
-
-  }
-
-
-
-  --scroll = {
-
-  ---  x = 100,
-  --  y = 100,
-  --  img = love.graphics.newImage('assets-1/item/scroll/scroll-red.png')
-
-  --  }
-
-
-
-
-
-
 
 
   cam = gamera.new(0, 0, 2000, 2000)
@@ -50,9 +21,9 @@ indian = {
 
   gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
   scroll = love.graphics.newImage('assets-1/item/scroll/scroll-red.png')
-
-
+  indian = love.graphics.newImage('assets-1/player/body/PixelArt.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
+
     tree = {
       {tree, tree, tree, tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, 'nil', 'nil', },
       {'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', 'nil', 'nil', 'nil',  },
@@ -142,19 +113,6 @@ indian = {
   map = Map:new(template)
   collide = Map:new(tree, 32)
 
-  x = 400
-  y = 300
-  playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
-
-  x = 400
-  y = 300
-gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
-
-
-
-
-
-
 
 
 
@@ -167,15 +125,8 @@ gate = love.graphics.newImage('assets-1/dungeon/gateways/portal_unknown.png')
 
 
 
-end
-function newEnemy()
-  local indian = {
-    x = 100,
-    y = 100,
-    img = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
-  }
 
-  return enemy
+
 end
 
 
@@ -207,11 +158,23 @@ function love.update(dt)
   end
 
 
-  if cc(x, y, w, h, 700, 0, 32*2, 32*2) then
+  if cc(x, y, 9, 9, 700, 0, 64, 64) then
 
     love.exitModule()
-
   end
+  if  ex < 1 then
+    direction = 'right'
+  end
+  if ex > 1 then
+    direction ='left'
+  end
+  if direction == 'right' then
+    ex = ex + 1
+  end
+  if direction == 'left' then
+    ex = ex - 1
+  end
+
 
 
 
@@ -220,10 +183,10 @@ function love.update(dt)
 function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
-collide:draw()
+  collide:draw()
   love.graphics.draw(playerImg, x, y, 0, 0.04)
   love.graphics.draw(gate, x, y, 0, 0.04)
-
+  --love.graphics.draw(indian, x, y, 0, 0)
   love.graphics.draw(scroll, 700, 0, 0, 2)
 
 
