@@ -123,6 +123,13 @@ end
 
    hp = hp - 0.5
  end
+
+ if cc(x, y, 64, 64,  64, 256, 70, 70) == true then
+   hp = hp - 0.5
+ end
+ if cc(x, y, 64, 64,  768, 64, 70, 70) == true then
+   hp = hp - 0.5
+ end
 end
 
 function love.draw()
