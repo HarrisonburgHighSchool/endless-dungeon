@@ -40,8 +40,8 @@ wall={
              {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
              {wall,'nil','nil',wall, obstacle, obstacle, obstacle, obstacle, 'nil', 'nil',wall},
              {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
-             {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
-             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', 'nil', 'nil', wall, 'nil',wall},
+             {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', wall, 'nil',wall},
              {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
              {wall,'nil','nil',wall, 'nil', 'nil', wall, wall, 'nil', 'nil',wall},
              {wall,'nil','nil',wall, 'nil', 'nil', wall, 'nil', 'nil', 'nil',wall},
@@ -56,8 +56,8 @@ wall={
 
 
 
-w = 64   -- The player's width is 64
-h = 64   -- The player's height is 64
+w = 60   -- The player's width is 64
+h = 60   -- The player's height is 64
 hp = 100
 
   collision = Map:new(wall)
@@ -69,26 +69,26 @@ end
 
 function love.update(dt)
 
-if collision:cc(x,y-3,w,h, 0,0,64,64) == false then
+if collision:cc(x,y-3,w,h) == false then
   if love.keyboard.isDown('up')then
       y=y-3
       cam:setPosition(x, y)
   end
  end
-if collision:cc(x,y+3,w,h, 0,0,64,64) == false then
+if collision:cc(x,y+3,w,h) == false then
    if love.keyboard.isDown('down')then
     y=y+3
     cam:setPosition(x, y)
   end
 end
-if collision:cc(x-3,y,w,h, 0,0,64,64) == false then
+if collision:cc(x-3,y,w,h) == false then
   if love.keyboard.isDown('left')then
     x=x-3
     cam:setPosition(x, y)
   end
 
 end
- if collision:cc(x+3,y,w,h, 0,0,64,64) == false then
+ if collision:cc(x+3,y,w,h) == false then
   if love.keyboard.isDown('right')then
     x=x+3
     cam:setPosition(x, y)
@@ -124,14 +124,14 @@ end
    hp = hp - 0.5
  end
 
- if cc(x, y, 64, 64,  64, 256, 70, 70) == true then
+ if cc(x, y, 64, 64,  64, 256, 70, 256) == true then
    hp = hp - 0.5
+
  end
- if cc(x, y, 64, 64,  768, 64, 70, 70) == true then
+ if cc(x, y, 64, 64 ,760, 64, 70,320) == true then
    hp = hp - 0.5
  end
 end
-
 function love.draw()
 
 cam:draw(function(l, t, w, h)
