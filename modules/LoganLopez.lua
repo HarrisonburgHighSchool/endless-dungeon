@@ -67,22 +67,22 @@ cam:setPosition(x, y)
 
 
     if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 5, 0, 0) == false then
+      if collide:cc(x, y - 5, 50, 20) == false then
         y = y - 5
       end
     end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 0, 0) == false then
+      if collide:cc(x, y + 5, 50, 20) == false then
         y = y + 5
       end
     end
     if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 0, 0) == false then
+      if collide:cc(x + 5, y, 50, 30) == false then
         x = x + 5
       end
     end
     if love.keyboard.isDown('left') then
-      if collide:cc(x - 5, y , 0, 0) == false then
+      if collide:cc(x - 5, y , 50, 30) == false then
         x = x - 5
       end
     end
@@ -140,7 +140,6 @@ end
 if direction == 'left' then
   x1 = x1 - 1
 end
-
 if love.keyboard.isDown('escape')then
   love.exitModule()
 end
@@ -154,12 +153,14 @@ function love.draw()
 
 cam:draw(function(l, t, w, h)
   map:draw()
-    love.graphics.print(hp, x, y)
+    love.graphics.print(hp, 10, 10)
   if hp==0 then
   love.graphics.print('GAME OVER', x3, y3)
   end
-  love.graphics.draw(img1, ex, ey)
+  love.graphics.print('Hello, world!', 0, 0)
+  --Draw everything here. For example:
   love.graphics.draw(img, x, y)
+  love.graphics.draw(img1, ex, ey)
   background:draw()
   collide:draw()
   love.graphics.draw(img, x, y)
