@@ -14,6 +14,8 @@ function Map:constructor(xSize, ySize, x, y)
     --Render table as map
     if ySize then
       self.gridsize = ySize
+    else
+      self.gridsize = template[1][1]:getWidth()
     end
   end
   if not template then
