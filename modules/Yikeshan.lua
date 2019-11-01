@@ -36,7 +36,7 @@ function love.load()
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
   e2 = love.graphics.newImage('assets-1/player/base/octopode_3.png')
 
-  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  spritesheet = love.graphics.newImage('hero/eeee.png')
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   swim = anim8.newAnimation(grid('1-6', 4), 0.065)
 
