@@ -135,34 +135,33 @@ if ey > y then
   end
 end
 function player2()
-  if love.keyboard.isDown('w')then
-    if collision:cc(a, b - 10, 60, 60) == false then
-   b = b - 10
-   cam:setPosition(a, b)
+  if b < x then
+     if collision:cc(a, b + 1, 64, 64) == false then
+        b = b + 1
   end
 end
   if love.keyboard.isDown('s')then
-      if collision:cc(a, b + 10, 60, 60) == false then
-   b = b + 10
+      if collision:cc(a, b + 1, 60, 60) == false then
+   b = b + 1
    cam:setPosition(a, b)
   end
 end
   if love.keyboard.isDown('d')then
-    if collision:cc(a + 10 , y, 60, 60) == false then
-   a = a + 10
+    if collision:cc(a + 1 , y, 60, 60) == false then
+   a = a + 1
    cam:setPosition(a, b)
   end
 end
   if love.keyboard.isDown('a')then
     if collision:cc(a - 10 , y, 60, 60) == false then
-   a = a - 10
+   a = a - 1
    cam:setPosition(a, b)
   end
 end
-   if cc(a, b, w, h,   0, 0, 64, 64) then
+  -- if cc(x, y, w, h,   0, 0, 64, 64) then
       hp = hp - 1
 end
-   if hp == 0 then
+  -- if hp == 0 then
       love.exitModule()
 end
 end
