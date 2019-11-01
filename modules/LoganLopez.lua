@@ -12,7 +12,7 @@ cam = gamera.new(0, 0, 2000, 2000)
   x = 200
   y = 200
   ex = 400
-  ey = 500
+  ey = 310
   x2 = 300
   y2 = 400
   x3 = 100
@@ -67,22 +67,22 @@ cam:setPosition(x, y)
 
 
     if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 5, 50, 20) == false then
+      if collide:cc(x, y - 5, 60, 20) == false then
         y = y - 5
       end
     end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 5, 50, 20) == false then
+      if collide:cc(x, y + 5, 60, 20) == false then
         y = y + 5
       end
     end
     if love.keyboard.isDown('right') then
-      if collide:cc(x + 5, y, 50, 30) == false then
+      if collide:cc(x + 5, y, 15, 50) == false then
         x = x + 5
       end
     end
     if love.keyboard.isDown('left') then
-      if collide:cc(x - 5, y , 50, 30) == false then
+      if collide:cc(x - 5, y , 45, 50) == false then
         x = x - 5
       end
     end
@@ -135,12 +135,12 @@ if ex > 400 then
 end
 
 if direction == 'right' then
-  x1 = x1 + 1
+  ex1 = ex1 + 1
 end
 if direction == 'left' then
-  x1 = x1 - 1
+  ex1 = ex1 - 1
 end
-if love.keyboard.isDown('escape')then
+if love.keyboard.isDown('c')then
   love.exitModule()
 end
 end
@@ -153,6 +153,8 @@ function love.draw()
 
 cam:draw(function(l, t, w, h)
   map:draw()
+  background:draw()
+  collide:draw()
     love.graphics.print(hp, 10, 10)
   if hp==0 then
   love.graphics.print('GAME OVER', x3, y3)
@@ -161,8 +163,6 @@ cam:draw(function(l, t, w, h)
   --Draw everything here. For example:
   love.graphics.draw(img, x, y)
   love.graphics.draw(img1, ex, ey)
-  background:draw()
-  collide:draw()
   love.graphics.draw(img, x, y)
 
 end)
