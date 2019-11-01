@@ -15,7 +15,7 @@ function love.load()
   wall =love.graphics.newImage('assets-1/dungeon/wall/zot_blue_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
       altar = love.graphics.newImage('assets-1/dungeon/wall/bars_red_4.png')
-     ground = love.graphics.newImage('assets-1/dungeon/wall/emerald_8.png')
+     ground = love.graphics.newImage('assets-1/dungeon/wall/silver_wall.png')
       flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
