@@ -29,6 +29,7 @@ function love.load()
   hitboxtimer = 0
   cooldown = 0
   animtimer = 0
+  bhp = 1
 
   spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
@@ -197,26 +198,20 @@ end
   
 function love.update(dt)
   if love.keyboard.isDown('x') then   -- if the 'x' key is being pressed...
-    if hitbox == 0 then
       if cooldown == 0 then
-        if cooldown == 1 or cooldown == 0 or cooldown == 2 or cooldown == 3 or cooldown == 4 or cooldown == 5 or cooldown == 6 or cooldown == 7 or cooldown == 8 or cooldown == 9 or cooldown == 10 or cooldown == 11 or cooldown == 12 or cooldown == 13 or cooldown == 14 or cooldown == 15 or cooldown == 16 or cooldown == 17 or cooldown == 18 or cooldown == 19 or cooldown == 20 then
-        anim = nil
-        end
-        anim = kick
         kick:update(dt)
+        if hitbox == 0 then
         hitbox = 1
       end
     end
   end 
 
   if love.keyboard.isDown('right') then --if the 'right' key is being pressed...
-    if anim == kick == false then
-      anim = walk
-    end
-      walk:update(dt)
-      walkm:update(dt)
-      facingR = true
-      facingL = false
+    anim = walk
+    walk:update(dt)
+    walkm:update(dt)
+    facingR = true
+    facingL = false
     if mirrorshatttered == false then
       if walls:cc(x + 4, y, 64, 64) == false then
         if mirror:cc(x - 54, y, 64, 64) == false then 
@@ -233,9 +228,7 @@ function love.update(dt)
     end
   end
   if love.keyboard.isDown('down') then   -- if the 'down' key is being pressed...
-    if anim == kick == false then  
       anim = walk
-    end
       walk:update(dt) 
       walkm:update(dt)
       if mirrorshatttered == false then
@@ -252,13 +245,11 @@ function love.update(dt)
       end
     end
   if love.keyboard.isDown('left') then   -- if the 'left' key is being pressed...
-    if anim == kick == false then
-      anim = walk
-      walk:update(dt)
-      walkm:update(dt)
-      facingR = false
-      facingL = true  
-    end
+    anim = walk
+    walk:update(dt)
+    walkm:update(dt)
+    facingR = false
+    facingL = true  
     if mirrorshatttered == false then
       if walls:cc(x - 4, y, 64, 64) == false then
         if mirror:cc(x - 64, y, 64, 64) == false then
@@ -276,11 +267,7 @@ function love.update(dt)
   end
 
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    if animtimer == 1 or animtimer == 0 then
-      if anim == kick == false then
-        anim = walk
-      end
-    end
+      anim = walk
       walk:update(dt)
       walkm:update(dt)
         if mirrorshatttered == false then
@@ -335,11 +322,19 @@ function love.update(dt)
     end
   end
 
-  if cc(mirrorx, mirrory, w, h, bx, by, w, h) then  
-    if Iframes == 0 then
-      hpnum = hpnum - 1
+  if hitbox == 1 or hitbox == 2 then
+    if cc(mirrorx - 52, y + 34, 16, 20, bx, by, w, h) then
+      bhp = bhp - 1
+    end
+  end
+
+  if bhp == 1 then
+    if cc(mirrorx, mirrory, w, h, bx, by, w, h) then  
       if Iframes == 0 then
-        Iframes = 1
+        hpnum = hpnum - 1
+        if Iframes == 0 then
+          Iframes = 1
+        end
       end
     end
   end
@@ -367,6 +362,7 @@ function love.update(dt)
   if hitboxtimer > 0 then
     hitboxtimer = hitboxtimer - 1
     hitbox = 2
+    anim = kick
   end
   if animtimer > 0 then
     animtimer = animtimer - 1
@@ -414,8 +410,18 @@ function love.update(dt)
   end
   idle:update(dt)
   idle1:update(dt)
-  bx = bx + 4
-  by = by + 4
+  if mirrorx > bx then
+  bx = bx + 2
+  end
+  if mirrorx < bx then
+    bx = bx - 2
+    end
+  if y > by then
+  by = by + 2
+  end
+  if y < by then
+    by = by - 2
+  end
   cam:setPosition(x, y)
 end
 
