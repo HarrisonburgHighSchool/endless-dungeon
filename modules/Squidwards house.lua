@@ -12,7 +12,6 @@ local Util = require 'core/util'
   switch = love.graphics.newImage('assets-1/dungeon/vaults/disco_ball.png')
   deathTrap = love.graphics.newImage('assets-2/item/misc/runes/rune_gloorx_vloq.png')
   currentDoor = closedDoor
-  closedDoor = wall and collision
 
   -- Create the collision map, with walls around the edge of the map
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
@@ -105,7 +104,13 @@ function love.update(dt)
   end
   if love.keyboard.isDown('right' or 'd') then
     if collision:cc(x + 5, y, 64, 64) == false then
-      x = x + 5
+      if currentDoor == closedDoor then
+        if cc(x, y, 64, 64,    764, 92, 263, 263) == false then
+          x = x + 5
+        end
+      else
+        x = x + 5
+      end
     end
   end
   if love.keyboard.isDown('down' or 's') then
