@@ -101,8 +101,8 @@ end
    cam:setPosition(x, y)
   end
 end
-   if cc(x, y, 0, 0, a, b, 0, 0) then
-      hp = hp - 1
+   if cc(x, y, 0, 0, a, b, 50, 50) then
+      hp = hp - 10
   end
 if ex < x then
    if collision:cc(ex + 1, ey, 64, 64) == false then
@@ -124,9 +124,12 @@ if ey > y then
       ey = ey + 1
     end
   end
-  if cc(x, y, 32, 32, ex, ey, 32, 32) then
+  if cc(a, b, 32, 32, ex, ey, 32, 32) then
+    hp = hp - 5
+  end
+  if hp == 0 then
     love.exitModule()
-end
+  end
   if love.keyboard.isDown('escape') then
     love.exitModule()
   end
@@ -156,10 +159,14 @@ end
    cam:setPosition(a, b)
   end
 end
-   if cc(x, y, w, h,   0, 0, 64, 64) then
+   if cc(a, b, w, h,   0, 0, 64, 64) then
       hp = hp - 1
 end
+   if hp == 0 then
+      love.exitModule()
 end
+end
+
 function love.draw()
   cam:draw(function(l, t, w, h)
     map:draw()
