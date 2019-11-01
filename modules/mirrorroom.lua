@@ -300,11 +300,7 @@ function love.update(dt)
       end
     end
   end
-  if cc(x, y, w, h, 344, 510, 64, 64) then
-    if mirrorshatttered == false then
-        mirrorshatttered = true
-    end
-  end
+
   if cc(x, y, w, h, 60, 542, 99, 84) then
     if Iframes == 0 then
       hpnum = hpnum - 1
@@ -323,13 +319,20 @@ function love.update(dt)
   end
 
   if hitbox == 1 or hitbox == 2 then
-    if cc(mirrorx - 52, y + 34, 16, 20, bx, by, w, h) then
-      bhp = bhp - 1
+    if facingR == true then
+      if cc(mirrorx + 12, y + 34, 16, 20, bx, by, w, h) then
+        bhp = bhp - 1
+      end
+    end
+    if facingL == true then
+      if cc(mirrorx + 52, y + 34, 8, 20, bx, by, w, h) then
+        bhp = bhp - 1
+      end
     end
   end
 
   if bhp == 1 then
-    if cc(mirrorx, mirrory, w, h, bx, by, w, h) then  
+    if cc(mirrorx + 8, mirrory, 40, h, bx, by, w, h) then  
       if Iframes == 0 then
         hpnum = hpnum - 1
         if Iframes == 0 then
@@ -339,6 +342,11 @@ function love.update(dt)
     end
   end
 
+  if bhp == 0 then
+    if mirrorshatttered == false then
+      mirrorshatttered = true
+    end
+  end
 
   if Iframes == 1 then
     timerIFrames = 60
@@ -411,16 +419,16 @@ function love.update(dt)
   idle:update(dt)
   idle1:update(dt)
   if mirrorx > bx then
-  bx = bx + 2
+    bx = bx + 1
   end
   if mirrorx < bx then
-    bx = bx - 2
-    end
+    bx = bx - 1
+  end
   if y > by then
-  by = by + 2
+    by = by + 1
   end
   if y < by then
-    by = by - 2
+    by = by - 1
   end
   cam:setPosition(x, y)
 end
@@ -476,7 +484,10 @@ function love.draw()
   love.graphics.print(hitboxtimer, x - 20, y)
   love.graphics.print(animtimer, x - 20, y - 10)
 
-  idle1:draw(bannanaspritesheet, bx, by)
+  if bhp == 1 then
+    idle1:draw(bannanaspritesheet, bx, by)
+  end
+
 
 if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
   if anim == idle then
