@@ -20,6 +20,17 @@ player = {
   img = love.graphics.newImage('hero/sliced/idle-1.png'),
   spritesheet = love.graphics.newImage('hero/Old hero.png'),
 }
+
+enemy = {
+  x = 371,
+  y = 100,
+  w = 64,
+  h = 64,
+  hp = 100,
+  img = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_2.png'),
+}
+
+
   grid = anim8.newGrid(16, 16, player.spritesheet:getWidth(), player.spritesheet:getHeight())
   player.walk = anim8.newAnimation(grid('1-6', 2), 0.2)
 
@@ -42,12 +53,11 @@ player = {
   {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
-  {nil, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
+  {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {gateway, rect1Floor, rect2Floor, rect3Floor, rectFloor, rect1Floor, rect2Floor, rect3Floor, wall},
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
- 
  
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -64,35 +74,18 @@ player = {
   {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
 }
 
-endGate = {
-    {transp, transp, transp, transp, transp, transp, transp, transp, transp, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {gateway, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {nil, nil, nil, nil, nil, nil, nil, nil, transp},
-  {transp, transp, transp, transp, transp, transp, transp, transp, transp, transp},
-}
-
   map = Map:new(template)
   collision = Map:new(collision)
-  endGate = Map:new(endGate)
-
 end
+
+
+
 
 function love.update(dt)
  
   player.walk:update(dt)
   moving = false
   
-
---If the statement is true it will run the code, but if it is false it will skip it.
-
 if love.keyboard.isDown('w') and player.y > 18 or love.keyboard.isDown('up') and player.y > 18 then -- up
   if collision:cc(player.x, player.y - 4, 24, 32) == false then
     player.y = player.y - 4 -- speed
@@ -118,11 +111,31 @@ if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
   end
 end
 
+  if love.keyboard.isDown('w') and enemy.y > 18 or love.keyboard.isDown('up') and enemy.y > 18 then -- up
+    if collision:cc(enemy.x, enemy.y - 3.5, 24, 32) == false then
+      enemy.y = enemy.y - 3.5 -- speed
+    end
+  end 
+  if love.keyboard.isDown('a') or love.keyboard.isDown('left') then -- left
+    if collision:cc(enemy.x - 3.5, enemy.y, 24, 32) == false then  
+      enemy.x = enemy.x - 3.5 -- speed
+    end
+  end
+  if love.keyboard.isDown('s') or love.keyboard.isDown('down') then -- down
+    if collision:cc(enemy.x, enemy.y + 3.5, 24, 32) == false then  
+      enemy.y = enemy.y + 3.5 -- speed
+    end
+  end
+  if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
+    if collision:cc(enemy.x + 3.5, enemy.y, 24, 32) == false then  
+      enemy.x = enemy.x + 3.5 -- speed
+  end
+end
+
                                        -- First Set  (2 & 3)                                             Second Set  (5)                                              Third Set  (6)                                          Fourth Set  (9 & 10)
 if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   330, 0, 45, 55) == true or cc(player.x, player.y, 27, 32,   458, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   581, 0, 128, 55) == true then
   player.x = 373      -- Teleports you back to spawn
   player.y = 468
-  
 end
 
 if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   256, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   384, 0, 60, 55) == true then
@@ -132,7 +145,6 @@ if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, playe
   timer = 200
   player.hp = player.hp - 20      -- Take 20 hp from player's health
   end
-
   -- message timer
   if timer < 0 then   
     message = ""
@@ -143,22 +155,26 @@ if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, playe
   if cc(player.x, player.y, 27, 32,   512, 0, 60, 55) == true or love.keyboard.isDown('escape') or player.hp <= 0 then
     love.exitModule()     -- Ends the game
   end
-
 end
+
+
+
 
 function love.draw()
 
   map:draw()
   collision:draw()    
-  endGate:draw()    -- Map that ends game
 
   if moving == true then    -- Smooths aniimation
     player.walk:draw(player.spritesheet, player.x + 15, player.y, 0, flip, 2, 9)
   else
     love.graphics.draw(player.img, player.x + 15, player.y, 0, 2, 2, 9)
   end
-
   love.graphics.print(message,  player.x - 180, player.y - 20)    -- Prints warning
-
   love.graphics.print(player.hp, 0, 0)      -- Prints player's health
+
+
+  love.graphics.draw(enemy.img, enemy.x, enemy.y)
+
+
 end
