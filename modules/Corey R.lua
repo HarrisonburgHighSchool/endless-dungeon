@@ -6,7 +6,13 @@ collide3 = false
 collide8 = false
 game_end = false
 game_end2 = false
+enemy = false
+enemy2 = false
 col = 1
+  ex = 400
+  ey = 60
+  ex2 = 719
+  ey2 = 60
   x = 385
   y = 60
   w = 38
@@ -19,8 +25,13 @@ col = 1
   y3 = 322
   w3 = 64
   h3 = 30
+  x5 = 80
+  y5 = 70
+  x6 = 715
+  y6 = 136
   hp = 100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
+  playerImg2 = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
   floor1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
@@ -126,18 +137,18 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('right') then 
+if love.keyboard.isDown('right') then 
     x = x + 2
-  end
-  if love.keyboard.isDown('left') then 
+end
+if love.keyboard.isDown('left') then 
     x = x - 2
-  end
-  if love.keyboard.isDown('up') then 
+end
+if love.keyboard.isDown('up') then 
     y = y - 2
-  end
-  if love.keyboard.isDown('down') then 
+end
+if love.keyboard.isDown('down') then 
      y = y + 2
-  end
+end
 if(x < 67)then 
     x = x + 2
 end
@@ -150,11 +161,47 @@ end
 if(y > 450)then 
   y = y - 2
 end
+if (enemy == true) then
+  if (x > ex) then
+  ex = ex + 1
+  end
+  if (x < ex) then
+  ex = ex - 1
+  end
+  if (y > ey) then
+  ey = ey + 1
+  end
+  if (y < ey) then
+  ey = ey - 1
+  end
+end
+--if (enemy2 == true) then
+ -- if (x > ex2) then
+ -- ex2 = ex2 + 1
+ -- end
+ -- if (x < ex2) then
+ -- ex2 = ex2 - 1
+ -- end
+  --if (y > ey2) then
+  --ey2= ey2 + 1
+ -- end
+ -- if (y < ey2) then
+ -- ey2 = ey2 - 1
+ -- end
+--end
 if cc(x, y, w, h, x2, y2, w2, h2) == true then
  collide2 = true
  game_end = true
  col = 2
+ enemy = false
 end
+if cc(x, y, w, h, x5, y5, w2, h2) == true then
+  enemy = true
+ end
+ if cc(x, y, w, h, x6, y6, w2, h2) == true then
+ -- enemy2 = true
+  enemy = false
+ end
 if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
   game_end2 = true
  end
@@ -216,4 +263,10 @@ function love.draw()
   else
   love.graphics.setColor(1, 1, 1, 1)
   end  
+  if (enemy == true)then
+  love.graphics.draw(playerImg2, ex, ey)
+  end
+  --if (enemy2 == true)then
+  --  love.graphics.draw(playerImg2, ex, ey)
+ --   end
 end
