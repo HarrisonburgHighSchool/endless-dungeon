@@ -3,8 +3,8 @@ local Util = require 'core/util'
 local gamera = require 'core/gamera'
 
 function love.load()
-  x = 80
-  y = 270
+  x = 700
+  y = 510
   hp = 500
 cam = gamera.new(0, 0, 2000, 2000)
 playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy.png')
@@ -23,16 +23,16 @@ eimg = love.graphics.newImage('assets-1/monster/eyes/eye_of_devastation.png')
   wallTile = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_1.png')
   collision = {
     {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
-    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, wallTile, wallTile, wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', wallTile, 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', wallTile, 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', wallTile, 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', wallTile, 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', wallTile, wallTile, wallTile,wallTile},
+    {wallTile, 'nil', 'nil', wallTile, 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wallTile},
     {wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile, wallTile},
     {wallTile},
@@ -110,7 +110,7 @@ end
 
       -- Reduce hp if colliding with enemy
       if cc(x, y, 32, 32, ex, ey,32,32)then
-       hp = hp - 0.000000000001
+       hp = hp - 5
       end
 
       --If the player dies, end the level
