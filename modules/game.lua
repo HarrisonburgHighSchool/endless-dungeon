@@ -13,7 +13,7 @@ function love.load()
   ex = 100
   ey = 100
   dir = 'left'
-  enemyhp = 450
+  enemyhp = 500
   --dir = 'right'
   enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
@@ -99,11 +99,14 @@ function love.update(dt)
 
   --Attack movement stuff
    --if ey < 500 then
-  if collision:cc(ax, ay + 5, 32, 32) == false then
+  if collision:cc(ax, ay, 32, 32) then
+   ay=ey 
+   ax = ex
+  else
     ay = ay + 5
   end
    if ay > 400 then
-    ay = 100
+    ay = ey
     ax = ex
    end
    --end
@@ -129,7 +132,7 @@ function love.update(dt)
     dir = 'left'
   end
 
-  enemyhp = enemyhp - 1
+  --enemyhp = enemyhp - 1
   if enemyhp < 0 then
     love.exitModule();
   end
