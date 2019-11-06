@@ -32,6 +32,7 @@ function love.load()
   tile8 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_left.png')
   tile9 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_middle.png')
   tile10 = love.graphics.newImage('assets-1/dungeon/doors/gate_runed_right.png')
+  door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
 
 
   background = {
@@ -47,11 +48,11 @@ function love.load()
     {tile6, wall2, floor, floor, floor, floor, floor, floor, wall2, tile4, tile5, tile6, tile7, tile5, floor, floor, tile5, tile6, tile7, floor, floor, tile6, tile7, floor, floor},
     {tile7, wall2, floor, floor, floor, floor, floor, floor, wall2, tile5, tile5, tile6, tile7, tile5, floor, floor, floor, floor, floor, floor, floor, tile6, tile7, floor, floor},
     {tile4, wall2, wall2, floor, floor, floor, wall2, wall2, wall2, tile6, tile5, tile6, tile7, tile5, floor, floor, floor, floor, floor, floor, floor, tile6, tile7, floor, floor},
-    {tile5, tile6, wall2, wall, wall, wall, wall2, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, floor, floor},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, floor, floor},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile8, tile9, tile9},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile9, tile9, tile9},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9}
+    {tile5, tile6, wall2, wall, floor, wall, wall2, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, floor, floor},
+    {tile5, tile6, wall2, wall2, floor, wall2, wall2, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, floor, floor},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile8, tile9, tile9},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile9, tile9, tile9},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9}
   }
 
   poison = {
@@ -68,10 +69,11 @@ function love.load()
     {tile7, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile5, tile6, tile7, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
     {tile4, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile5, tile6, tile7, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tile6, tile7, 'nil', 'nil'},
     {tile5, tile6, 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, 'nil', 'nil'},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, 'nil', 'nil'},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
-    {tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'}
+    {tile5, tile6, wall2, wall2, 'nil', wall2, wall2, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, 'nil', 'nil'},
+    {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
+    {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
+    {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
+    {tile5, tile6, tile7, wall2, door, wall2, tile7, tile4, tile5, tile6}
   }
 
 
@@ -88,7 +90,13 @@ function love.load()
     {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
     {'nil', wall2, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall2, 'nil'},
     {'nil', wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, 'nil'},
-    {'nil', 'nil', wall2, wall, wall, wall, wall2, 'nil', 'nil', 'nil'}
+    {'nil', 'nil', wall2, 'nil', 'nil', wall, wall2, 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, door, 'nil', wall2, 'nil', 'nil', 'nil', 'nil'}
+
   }
 
 
