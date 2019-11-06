@@ -81,17 +81,17 @@ mapTemplate = {
   darkwater = love.graphics.newImage('assets-1/dungeon/water/shoals_deep_water_11.png')
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, wall},
+    {wall,'nil','nil',darkwater,darkwater,darkwater,darkwater,'nil','nil', wall},
+    {wall,'nil',darkwater,'nil','nil',darkwater,'nil','nil','nil',wall},
     {'nil','nil','nil','nil','nil','nil','nil','nil','nil',wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil','nil', wall},
+    {wall,'nil',darkwater,'nil','nil',darkwater,'nil','nil','nil', wall},
+    {wall,'nil','nil',darkwater,darkwater,darkwater,darkwater,'nil','nil',wall},
+    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, wall},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     
   }
@@ -103,27 +103,27 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+2, 64, 64) == false then
+    if collision:cc(x, y+2, 40, 64) == false then
     y = y + 2
     end
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y-2, 64, 64) == false then
+    if collision:cc(x, y-2, 40, 64) == false then
     y = y - 2
   end
 end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    if collision:cc(x + 2, y, 64, 64) == false then
+    if collision:cc(x + 2, y, 40, 64) == false then
     x = x + 2
   end
 end
 if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-  if collision:cc(x-2, y, 64, 64) == false then
+  if collision:cc(x-2, y, 40, 64) == false then
   x = x - 2
   end
 end
  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
- if cc(x, y, w, h,   0, 0, 64, 64) then  
+ if cc(x, y, w, h,   0, 0, 40, 64) then  
   -- if true, decrease HP:
   hp = hp - 1
  end
@@ -145,11 +145,11 @@ end
 
 function love.draw()
   if level == 1 then
-    map:draw()
+    --map:draw()
     collision:draw()
   end
   if level == 2 then
-    -- what goes here1?
+    map2:draw()-- what goes here1?
   end
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
@@ -163,7 +163,7 @@ love.graphics.draw(switch, 193, 200,0,2)
   love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(eimg2, ex, ey)
    -- Draw the rectangle in the upper left corner
-   love.graphics.rectangle('line', 0, 0, 64, 64)
+   love.graphics.rectangle('line', x + 12, y, 40, 64)
 
    -- Print the player's HP in the top left corner
    love.graphics.print(hp, 0, 0)
