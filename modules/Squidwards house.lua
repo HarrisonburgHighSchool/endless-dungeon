@@ -13,7 +13,7 @@ local Util = require 'core/util'
   deathTrap = love.graphics.newImage('assets-2/item/misc/runes/rune_gloorx_vloq.png')
   currentDoor = closedDoor
 
-  -- Create the collision map, with walls around the edge of the map
+ 
 x = 100
 y = 146
 
@@ -30,7 +30,7 @@ else
   state = 'move'
   x = x - 1
 end
-
+ -- Create the collision map, with walls around the edge of the map
 print(x..", "..y..", state: "..state)
 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
   collision = {
