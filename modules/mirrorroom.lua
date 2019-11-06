@@ -52,7 +52,7 @@ function love.load()
   idle1 = anim8.newAnimation(grid('1-4', 1), 0.4)
 
   rollinspritesheet = love.graphics.newImage('assets-1/enemies/rollin.jfif')
-  grid = anim8.newGrid(44, 130, 704, 586)
+  grid = anim8.newGrid(44, 70, 704, 586)
   idle2 = anim8.newAnimation(grid('1-16', 1), 0.03)
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
