@@ -5,7 +5,8 @@ local Entity = require 'core/entity'
 
 function love.load()
 
-  speed = 2
+  speed = 1.6
+
 
   cam = gamera.new(0, 0, 1250, 1000)
   x = 100
@@ -34,7 +35,7 @@ function love.load()
   f = 64
   g = 64
 
-BossImg = love.graphics.newImage('assets-1/monster/Boss2.png')
+BossImg = love.graphics.newImage('assets-1/monster/Boss copy.png')
 bx = 700
 by = 160
   portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
@@ -91,7 +92,7 @@ walls = {
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', wall, 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
+  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
   {wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
@@ -127,7 +128,7 @@ function love.update(dt)
    if y < by then
      fby = fby - 3
    end
-if collide:cc(fbx, fby, 64, 64) == false then
+if collide:cc(fbx, fby, 64, 105) == false then
     bx = fbx
     by = fby
 end
@@ -251,7 +252,7 @@ then
   hp = hp - 1
 end
 
-if cc(x, y, w, h, bx, by, 64, 64)
+if cc(x, y, w, h, bx, by, 128, 128)
 then hp = hp - 1
 end
 
@@ -265,7 +266,7 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, x, y+ -18)
+  love.graphics.print(hp, x, y+ - 18)
   love.graphics.draw(Img4, ax, ay)
   love.graphics.draw(Img3, ex, ey)
   love.graphics.draw(Img5, rx, ry)
