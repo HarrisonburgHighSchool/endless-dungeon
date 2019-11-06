@@ -14,7 +14,25 @@ local Util = require 'core/util'
   currentDoor = closedDoor
 
   -- Create the collision map, with walls around the edge of the map
-  wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
+x = 100
+y = 146
+
+state = 'rest'
+
+if x > 100 then
+  if y > 200 then
+    state = 'move'
+    y = y - 1
+  else
+    state = 'rest'
+  end
+else
+  state = 'move'
+  x = x - 1
+end
+
+print(x..", "..y..", state: "..state)
+wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_4.png')
   collision = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
