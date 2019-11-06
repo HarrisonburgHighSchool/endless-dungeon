@@ -38,15 +38,15 @@ wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_2.png')
     {tile, tile, tile, tile2, tile3, tile3, tile, tile, tile, tile}
 }
 collision = {
-    {wall, wall, wall, wall,wall,wall,wall,wall,wall},
-    {wall, 'nil', 'nil', wall,'nil','nil','nil',wall},
-    {wall, 'nil', 'nil', wall,'nil','nil','nil',wall},
-    {wall, 'nil', 'nil', wall,'nil','nil','nil','nil'},
-    {wall, 'nil', 'nil', wall,'nil',wall,'nil','nil'},
-    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall},
-    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall},
-    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall},
-    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall},
+    {wall, wall, wall, wall,wall,wall,wall,wall,wall,wall},
+    {wall, 'nil', 'nil', wall,'nil','nil','nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil','nil','nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil','nil','nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall,'nil'},
+    {wall, 'nil', 'nil', wall,'nil',wall,'nil',wall,'nil'},
     {wall, 'nil', 'nil', 'nil','nil',wall,'nil','nil','nil'},
     {wall, 'nil', 'nil', 'nil','nil',wall,'nil','nil','nil'},
     {wall, wall, wall, wall,wall,wall,wall,wall,wall},
@@ -62,23 +62,23 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('up') then
-    if collision:cc(x, y - 10, 60, 60) == false then
+    if collision:cc(x, y - 10, 50, 50) == false then
       y = y - 10
     end
   end
   if love.keyboard.isDown('down') then
-    if collision:cc(x, y + 10 , 60, 60)  == false then
+    if collision:cc(x, y + 10 , 50, 50)  == false then
       y = y + 10
     end
   end
   if love.keyboard.isDown('right') then
-    if collision:cc(x + 10, y, 60, 60)  == false then
+    if collision:cc(x + 10, y, 50, 50)  == false then
 
       x = x + 10
     end
   end
   if love.keyboard.isDown('left') then
-    if collision:cc(x - 10, y, 60, 60)  == false then
+    if collision:cc(x - 10, y, 50, 50)  == false then
       x = x - 10
     end
   end
