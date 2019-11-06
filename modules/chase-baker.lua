@@ -103,6 +103,13 @@ function love.load()
 end
 
 function love.update(dt)
+if love.keyboard.isDown('e') then
+  hp = love.math.random(1, 1000)
+  ehp1 = love.math.random(1, 1000)
+  ehp2 = love.math.random(1, 1000)
+  ehp3 = love.math.random(1, 1000)
+  hppotion = love.graphics.newImage('assets-1/item/potion/ruby.png')
+end
   -- Whether the game had ended or not.
   if hp > 1 then
     attack = true
@@ -341,5 +348,8 @@ function love.draw()
   love.graphics.print(ehp2, knight1.x2, knight1.y2 + -18)
   love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
   love.graphics.print('Press the W key to attack!', 70, 70)
+  love.graphics.print('Press the E key to activate Mayhem Mode!', 70, 100)
+  if love.keyboard.isDown('e') then
+    love.graphics.print(hppotion, , )
   end)
 end
