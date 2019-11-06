@@ -165,7 +165,7 @@ function love.update(dt)
     butterfly_y = butterfly_y -2
   end 
 
-  if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('up' or 'w') then   -- if the 'up' key is being pressed...
     if flip == 2.5 then
       flip = 2.5
     else 
@@ -174,23 +174,24 @@ function love.update(dt)
     anim = walk
     --walk:update(dt)
     if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-      y = y - 5
+      y = y - 4
     elseif butterfly_alive == true then
      y = y + 15
     elseif butterfly_alive == false then
-      y = y - 5
+      y = y - 4
       
     end
   
- 
-    if cc(x, y - 5, w, h, enemy.x, enemy.y, 8, 8)== true and  enemy_draw == true then
+    for i = 1, 3 do
+    if cc(x, y - 5, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and  enemy_draw == true then
       y = y + 15
 
     end
  end
+end
   
   
- if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
+ if love.keyboard.isDown('down' or 's') then   -- if the 'up' key is being pressed...
   if flip == 2.5 then
     flip = 2.5
   else 
@@ -199,56 +200,58 @@ function love.update(dt)
   anim = walk
   --walk:update(dt)
   if cc(x, y - 5, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-    y = y + 5
+    y = y + 4
   elseif butterfly_alive == true then
    y = y - 15
   elseif butterfly_alive == false then
-    y = y + 5
+    y = y + 4
     
   end
 
-
-  if cc(x, y - 5, w, h, enemy.x, enemy.y, 8, 8)== true and  enemy_draw == true then
+  for i = 1, 3 do
+  if cc(x, y - 5, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and  enemy_draw == true then
     y = y - 15
 
   end
 end
+end
   
-  if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('left' or 'a') then   -- if the 'up' key is being pressed...
     flip = -2.5
     anim = walk
     --walk:update(dt)
    if cc(x - 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-      x = x - 5
+      x = x - 4
     elseif butterfly_alive == true then
       x = x + 15
     elseif butterfly_alive == false then
-      x = x - 5
+      x = x - 4
    end
-  
-    if cc(x - 5, y, w, h, enemy.x, enemy.y, 8, 8)== true and enemy_draw == true then
+  for i = 1, 3 do
+    if cc(x - 5, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true then
       x = x + 15
    end
+  end
  end
   
-  if love.keyboard.isDown('right') then
+  if love.keyboard.isDown('right' or 'd') then
     flip = 2.5   -- if the 'up' key is being pressed...
     anim = walk
     --walk:update(dt)
     if cc(x + 5, y, w, h, butterfly_x, butterfly_y, 8, 8)== false then
-        x = x + 5
+        x = x + 4
     elseif butterfly_alive == true then
       x = x - 15
     elseif butterfly_alive == false then
-      x = x + 5
+      x = x + 4
       
     end
-        
-    if cc(x + 5, y, w, h, enemy.x, enemy.y, 8, 8)== true and enemy_draw == true then
+    for i = 1, 3 do  
+    if cc(x + 5, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true then
       x = x - 15
     end
   end
-
+end
   
   
 
@@ -295,19 +298,19 @@ end
 
   cam:setPosition(x, y)
 
-  if love.keyboard.isDown('a') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('e') then   -- if the 'up' key is being pressed...
     if cc(x, y - 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x, y + 16, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x - 16, y, w, h, butterfly_x, butterfly_y, 9, 9) or cc(x + 16, y, w, h, butterfly_x, butterfly_y, 9, 9)== true then 
       butterfly_alive = false
       enemyD()
     end
+    for i = 1, 3 do 
+    if cc(x, y - 16, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x, y + 16, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x - 16, y, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x + 16, y, w, h, enemies[i].x, enemies[i].y, 32, 32)== true then
       
-    if cc(x, y - 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x, y + 16, w, h, enemy.x, enemy.y, 32, 32) or cc(x - 16, y, w, h, enemy.x, enemy.y, 32, 32) or cc(x + 16, y, w, h, enemy.x, enemy.y, 32, 32)== true then
-      
-      
+    end
     end
  end
  if enemy_draw == true then
-    if cc(x, y, w, h,   enemy.x, enemy.y, 16, 16) then  
+    if cc(x, y, w, h,   enemies[i].x, enemies[i].y, 16, 16) then  
         hp = hp - 1
       end
  end
@@ -347,7 +350,7 @@ function love.draw()
   end
   love.graphics.print(hp, 0, 0)
 
-  love.graphics.print(x,y)
+  
 
   -- if love.keyboard.isDown('up') or love.keyboard.isDown('right') then
   anim:draw(spritesheet, x + 32, y + 32, 0, flip, 2.5, 8, 8)
@@ -378,12 +381,13 @@ function enemyD()
   enemy_draw = true
 end
 
-function newEnemy()
+function newEnemy(xpos, ypos)
   local enemy = {
-    x = 100,
-    y = 100,
+    x = xpos,
+    y = ypos,
     img = love.graphics.newImage('assets-2/dc-mon/demons/chaos_spawn.png')
   }
 
   return enemy
 end
+
