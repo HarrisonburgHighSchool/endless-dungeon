@@ -25,10 +25,14 @@ function love.load()
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_used.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/lab-metal_0.png') 
   prtl2 = love.graphics.newImage('assets-1/dungeon/gateways/zig_portal.png')
+  exit = love.graphics.newImage('Daniel V. Personal Assets/Images/ExitSign2.png')
+  arrow = love.graphics.newImage('Daniel V. Personal Assets/Images/ExitArrow2.png')
   time = 120
   timestart = false
   time2 = 200
   timestart2 = true
+  time3 = 150
+  timestart3 = false
 
   template = {
     {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
@@ -49,8 +53,8 @@ function love.load()
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
     {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
-    {wall, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, cobalt, wall},
+    {wall, cobalt, cobalt, cobalt, exit, cobalt, cobalt, cobalt, cobalt, wall},
+    {wall, cobalt, cobalt, cobalt, arrow, cobalt, cobalt, cobalt, cobalt, wall},
     {wall,wall, wall, wall, wall, wall, wall, wall, wall, wall},
   }
 
@@ -124,6 +128,9 @@ end
 if cc(x2, y2, 64, 64, 1310, 255, 65, 64, 64) == true then
 prtlsnd:play()
 end
+if cc(x2, y2, 64, 64, 970, 265, 65, 64, 64) == true  then
+  timestart3 = true
+end
 if time < 0 then
   love.exitModule();
  end   
@@ -157,14 +164,19 @@ if time2 > 0 then
 love.graphics.print('What the!!!... The portal closed. I have to find a way out!',  150, 150)
  end
 end
-
+if timestart3 == true then
+  time3 = time3 - 1
+  if time3 > 0 then
+love.graphics.print('uhhhh, I guess I have to find a key or something?', 975, 142)
+  end
+end
   --love.graphics.print(hp, 0, 0)
   --end)
 --love.graphics.rectangle('line', 64, 64, 1295, 255, 65, 64, 64)
    
 love.graphics.rectangle('line', x2, y2, 32, 32)
 end)
---love.graphics.print(tostring(time2), 0, 10)
+love.graphics.print(tostring(timestart3), 0, 10)
 love.graphics.print(x2..", "..y2, 0, 0)
 end
 
