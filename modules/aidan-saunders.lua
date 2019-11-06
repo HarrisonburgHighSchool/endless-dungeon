@@ -28,11 +28,12 @@ s=100
 q=700
 c=0
 b=0
-enemie=100
+enemy=200
 direction = 'down'
 direction2= 'left'
 direction3= 'right2'
 doorStatus= 'closed'
+direction5= 'up2'
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -181,16 +182,16 @@ function love.update(dt)
     end
 --
 if direction == 'down2' then
-  enemie = enemie + 5
+  enemy = enemy + 5
 end
 if direction == 'up2' then
-  enemie = enemie - 5
+  enemy = enemy - 5
 end
 
-if enemie==400 then
+if enemy==500 then
   direction = 'up2'
 end
-if enemie==50 then
+if enemy==200 then
   direction = 'down2'
 end
 
@@ -242,7 +243,7 @@ if cc(x, y, w, h,   c, b, 60, 60) then
 
   hp = hp - 1
 end
-if cc(x, y, w, h,   100, enemie, 60, 60) then
+if cc(x, y, w, h,   1100, enemy, 60, 60) then
 
   hp = hp - 1
 end
@@ -279,7 +280,7 @@ if hp > 0 then
     love.graphics.draw(oct3, q, 385)
     love.graphics.draw(oct4, c, b)
     love.graphics.draw(door, 1280, 320)
-    love.graphics.draw(oct5, 100, enemie)
+    love.graphics.draw(oct5, 1100, enemy)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
