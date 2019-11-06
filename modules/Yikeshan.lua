@@ -255,30 +255,37 @@ end
   entity.x = entity.x +- G
   entity.y = entity.y +- H
 
+
+
   if x < 250 and x > 150 and y < 240 and y > 140 then
     y = y + 200
     x = x + 400
 end
+
 
 if x < 650 and x > 550 and y < 650 and y > 550 then
   y = y - 600
   x = x - 600
 end
 
+
 if x < 250 and x > 150 and y < 950 and y > 850 then
   y = y + 50
   x = x + 700
 end
+
 
 if x < 850 and x > 750 and y < 50 and y > 0 then
   y = 550
   x = 380
 end
 
+
 if x < 850 and x > 750 and y < 0 and y > -50 then
   y = 1500
   x = 1500
 end
+
 
 
 
