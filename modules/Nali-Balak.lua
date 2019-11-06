@@ -6,6 +6,7 @@ function love.load()
   openDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
   closedDoor = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
   switch = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_down.png')
+  endDoor = love.graphics.newImage('assets-1/dungeon/doors/fleshy_orifice_closed.png')
   
   currentDoor = closedDoor
  x = 400
@@ -59,8 +60,8 @@ function love.update(dt)
   if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
   y = y - 5
   end
-  if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
-  --if true then closed
+  if cc(x, y, 64, 64,   90, 80, 64, 64) == true then
+  --if true then game ends
  end
 
 end
@@ -76,5 +77,6 @@ function love.draw()
   wall:draw()
   love.graphics.draw(playerImg,x,y)
   love.graphics.draw(currentDoor, 192, 190)
-love.graphics.draw(switch, 513, 190)
+  love.graphics.draw(switch, 513, 190)
+  love.graphics.draw(endDoor, 90, 80)
 end
