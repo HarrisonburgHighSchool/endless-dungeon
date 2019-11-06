@@ -15,6 +15,7 @@ function love.load()
 map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
 
 
+
   cam = gamera.new(0, 0, 2000, 2000)
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/grass/grass_flowers_red_1.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
@@ -23,7 +24,7 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
   scroll = love.graphics.newImage('assets-1/item/scroll/scroll-red.png')
   indian = love.graphics.newImage('assets-1/player/body/PixelArt.png')
   tree = love.graphics.newImage('assets-1/dungeon/trees/mangrove_3.png')
-
+  pikachu = love.graphics.newImage('assets-1/player/body/PixelArt copy 2.png')
     tree = {
       {tree, tree, tree, tree, tree, tree, tree, 'nil', tree, 'nil', tree, tree, tree, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', tree, tree, 'nil', 'nil', },
       {'nil', tree, tree, tree, 'nil', tree, tree, 'nil', tree, 'nil', tree, tree, tree, tree, 'nil', tree, tree, 'nil', tree, tree, 'nil', 'nil', 'nil', 'nil',  },
@@ -87,7 +88,7 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
-               {floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
+               {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
                {floorTile, floorTile, floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile,floorTile},
@@ -123,19 +124,28 @@ map = Map:new(5, 5) -- Create a 5 x 5 map object named "map"
   }
 
 
+  scroll = {
+    x = 100,
+    y = 100,
 
 
+  }
+
+pikachu = {
+    x = 100,
+    y = 100,
+
+
+}
 
 
 end
 
 
 
-
 function love.update(dt)
 
-  mapc = map:cc(x, y, 64, 64)
-  debug = tostring(mapc)
+
   if love.keyboard.isDown('right') then
     if collide:cc(x + 3, y, 9, 9) == false then
       x = x + 3
@@ -158,7 +168,7 @@ function love.update(dt)
   end
 
 
-  if cc(x, y, 9, 9, 700, 0, 64, 64) then
+  if cc(scroll.x, scroll.y, 9, 9, 700, 0, 64, 64) then
 
     love.exitModule()
   end
@@ -184,9 +194,9 @@ function love.draw()
   cam:draw(function(l, t, w, h)
   map:draw()
   collide:draw()
-  love.graphics.draw(playerImg, x, y, 0, 0.04)
-  love.graphics.draw(gate, x, y, 0, 0.04)
-  --love.graphics.draw(indian, x, y, 0, 0)
+  love.graphics.draw(pikachu.img, pikachu.x, pikachu.y, 0, 0.04)
+  --love.graphics.draw(gate, x, y, 0, 0.04)
+  love.graphics.draw(indian.img, indian.x, indian.y, 0, 0)
   love.graphics.draw(scroll, 700, 0, 0, 2)
 
 
