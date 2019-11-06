@@ -36,12 +36,13 @@ function love.load()
   cy = 257
   cw = 64
   ch = 64
-  rx = 64
+  rx = -10
   ry = 254
   rw = 64
   rh = 64
   shoot = 0
   fire = 0
+  boom = 0
   targ = love.graphics.newImage('assets-2/dc-mon/animals/target.png')
   e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   boss = love.graphics.newImage('assets-1/monster/demons/eye1.png')
@@ -301,9 +302,9 @@ if count < 14 and step == false then
   end
  
 if(summon == 1) then
-  if cc(x, y, w, h, ex, ey, ew, eh) == true then
-    HP = HP - 10
-    ex = 10000000
+  if cc(x, y, w, h, rx, ry, rw, rh) == true then
+    HP = HP - 0.1
+    --rx = 10000000
     
     
   end
@@ -314,7 +315,7 @@ if cc(x, y, w, h, cx, cy, cw, ch) == true then
     fire = 1
   end
 end
-if bosshealth == 5 then
+if bosshealth == 5 and boom == 0 then
 shoot = 1
 end
 
@@ -369,24 +370,37 @@ end
 if(count > 25) then
 v = false
 end
-if rx > 490 then
+if rx > 446 and ry > 133 and ry < 337  then
   rx = 10000000
   fire = 2
 end
+if rx == 800 then
+  rx = -100000000
+  fire = 0
+  boom = 1
+  shoot = 0
+end
 
-c = dist(ex, ey, x, y)
- a = y - ey
- b = x - ex
- speed = 2
- cRatio = speed/c
- dy = a * cRatio
- dx = b * cRatio
- ex = ex + dx
- ey = ey + dy
- cam:setPosition(x, y)
+--c = dist(ex, ey, x, y)
+ --a = y - ey
+ --b = x - ex
+ --speed = 2
+-- cRatio = speed/c
+ --dy = a * cRatio
+ --dx = b * cRatio
+-- ex = ex + dx
+-- ey = ey + dy
+-- cam:setPosition(x, y)
 
-
-
+-- x = 446
+--y = 133
+--y = 337
+if y > ry then
+  ry = ry + 1
+end
+if y < ry then
+  ry = ry - 1
+end
 
 
 
