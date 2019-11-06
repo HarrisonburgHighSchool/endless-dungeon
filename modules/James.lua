@@ -4,7 +4,7 @@ local gamera = require 'core/gamera'
 
 function love.load()
   hp = 100
-  bosshp = 1000
+  bosshp = 100
   --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
   x = 500
@@ -17,8 +17,8 @@ function love.load()
   playerImg = love.graphics.newImage('assets-1/monster/demons/hellion.png')
  w = 32   -- The player's width is 64
  h = 32   -- The player's height is 64
- bossw = 96
- bossy = 96
+ bossw = 100
+ bossy = 100
   hp = 100 -- Set the player's HP to 100 at the start of the game
   floorTile = love.graphics.newImage('assets-1/dungeon/floor/etched_5.png')
   floorTile2 = love.graphics.newImage('assets-1/dungeon/wall/pebble_red_0.png')
