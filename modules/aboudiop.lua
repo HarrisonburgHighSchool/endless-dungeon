@@ -108,7 +108,7 @@ function love.update(dt)
   end
 
 
-  
+   
   
    if cc(x, y, 64, 64,   0, 0, 67, 67) then  
     -- if true, decrease HP:
@@ -125,6 +125,9 @@ function love.update(dt)
   if cc(x, y, 64, 64,   170, 170, 64, 64) == true then
   love.exitModule{};
   end
+
+
+
 
 
 
