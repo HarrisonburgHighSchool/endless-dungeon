@@ -124,7 +124,7 @@ end
 
 function love.update(dt)
   if cc( x , y , w , h , bx , by, 100 , 100) then
-    hp = hp - 2.5
+    hp = hp - .1
   end
   if hp < 0 then 
     love.exitModule();
@@ -140,6 +140,7 @@ function love.update(dt)
   end
   if cc( x , y , w , h , bx , by, 100 , 100) then
     hp = hp - 2.5
+    y = y + 30
   end
 end
   if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
@@ -148,6 +149,7 @@ end
   end
   if cc( x , y , w , h , bx , by, 100 , 100) then
     hp = hp - 2.5
+    y = y - 30
   end
 end
   if love.keyboard.isDown('a') or  love.keyboard.isDown('left')then
@@ -156,6 +158,7 @@ end
   end 
   if cc( x , y , w , h , bx , by, 100 , 100) then
     hp = hp - 2.5
+    x = x + 30
   end
 end
 
@@ -165,6 +168,7 @@ end
   end
   if cc( x , y , w , h , bx , by, 100 , 100) then
     hp = hp - 2.5
+    x = x - 30
   end
 end
 if x > bx then
