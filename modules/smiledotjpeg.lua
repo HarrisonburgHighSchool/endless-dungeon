@@ -14,8 +14,8 @@ function love.load()
   y2 = 192
   w2 = 192
   h2 = 192
- w = 64
- h = 64
+ w = 32
+ h = 32
  HP = 100
  ex = 440
  ey = 260
@@ -192,6 +192,21 @@ template6 = {
                   {transp, transp, transp, transp, transp, transp, transp, transp},
       
                   }
+  template7 = {
+                    {transp, transp, transp, transp, 'nil', transp, transp, transp},
+                    {transp, 'nil', lava,'nil', 'nil', 'nil', lava,'nil', transp},
+                    {transp, 'nil', 'nil', lava, 'nil', 'nil', 'nil','nil', transp},
+                    {transp, lava, 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+                    {transp, 'nil', lava, 'nil','nil', lava, 'nil','nil', transp},
+                    {transp, 'nil', 'nil', 'nil', lava, 'nil', 'nil', lava, transp},
+                    {transp, lava, 'nil', lava,'nil', 'nil', lava,'nil', transp},
+                    {transp, 'nil', lava, 'nil','nil', 'nil','nil','nil', transp},
+                    {transp, 'nil', lava, lava, lava, lava, lava,'nil', transp},
+                    {transp, lava, 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                    {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+                    {transp, transp, transp, transp, transp, transp, transp, transp},
+        
+                    }
       
                   map4 = Map:new(template4)
                   
@@ -200,6 +215,8 @@ template6 = {
                 map5 = Map:new(template5)
   
               map6 = Map:new(template6)
+             
+             map7 = Map:new(template7) 
     
 end
 
@@ -306,9 +323,17 @@ if(summon == 1) then
     HP = HP - 0.1
     --rx = 10000000
     
-    
+    if HP < 1 then
+      HP = 0
+    end 
+
   end
 end
+if map7:cc(x, y, w, h) == true then
+  if bosshealth < 4 then
+HP = HP - 1
+end
+  end 
 
 if cc(x, y, w, h, cx, cy, cw, ch) == true then
   if shoot == 1 then
@@ -325,6 +350,8 @@ end
 if fire == 2 then
   step = false
   count = 0
+  fire = 0
+  shoot = 0
 end
 
   if(collide1 == true) then
@@ -443,6 +470,9 @@ function love.draw()
   love.graphics.print(y, 400 ,30)
   love.graphics.print(HP, 100, 100)
   
+  if bosshealth < 4 then
+    map7:draw()
+  end
   --love.graphics.print(tostring(v), 0, 0)
   
   if(count > 6 and fire < 2) then
