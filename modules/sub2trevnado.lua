@@ -23,20 +23,19 @@ function love.load()
     s = 4
   }
 
-  Hpfull = love.graphics.newImage('assets-1/player/hp_bar/full.png')
-  Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
-  Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
-  Hp7 = love.graphics.newImage('assets-1/player/hp_bar/7.png')
-  Hp6 = love.graphics.newImage('assets-1/player/hp_bar/6.png')
-  Hp5 = love.graphics.newImage('assets-1/player/hp_bar/5.png')
-  Hp4 = love.graphics.newImage('assets-1/player/hp_bar/4.png')
-  Hp3 = love.graphics.newImage('assets-1/player/hp_bar/3.png')
-  Hp2 = love.graphics.newImage('assets-1/player/hp_bar/2.png')
-  Hp1 = love.graphics.newImage('assets-1/player/hp_bar/critical.png')
-  Hpempty = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
-
-
-
+  hpBar = {
+    love.graphics.newImage('assets-1/player/hp_bar/0.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/1.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/2.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/3.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/4.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/5.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/6.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/7.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/8.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/9.png'),
+    love.graphics.newImage('assets-1/player/hp_bar/10.png'),
+  }
   
   w0 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   w1 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
@@ -145,38 +144,7 @@ function love.draw()
     love.graphics.draw(s2, 192, 192)
     love.graphics.draw(s3, 512, 448)
     love.graphics.draw(s4, 192, 448)
-    if player.hp == 10 then
-      love.graphics.draw(Hpfull, player.x, player.y - 20)
-    end
-    if player.hp == 9 then
-      love.graphics.draw(Hp9, player.x, player.y - 20)
-      end
-    if player.hp == 8 then
-      love.graphics.draw(Hp8, player.x, player.y - 20)
-    end
-    if player.hp == 7 then
-      love.graphics.draw(Hp7, player.x, player.y - 20)
-    end
-    if player.hp == 6 then
-      love.graphics.draw(Hp6, player.x, player.y - 20)
-    end
-    if player.hp == 5 then
-      love.graphics.draw(Hp5, player.x, player.y - 20)
-    end
-    if player.hp == 4 then
-      love.graphics.draw(Hp4, player.x, player.y - 20)
-    end
-    if player.hp == 3 then
-      love.graphics.draw(Hp3, player.x, player.y - 20)
-    end
-    if player.hp == 2 then
-      love.graphics.draw(Hp2, player.x, player.y - 20)
-    end
-    if player.hp == 1 then
-      love.graphics.draw(Hp1, player.x, player.y - 20)
-    end
-    if player.hp == 0 then
-      love.graphics.draw(Hpempty, player.x, player.y - 20)
-    end
+    
+    love.graphics.draw(hpBar[player.hp + 1], player.x -10, player.y - 20)
   end)
 end
