@@ -3,6 +3,8 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
   cam = gamera.new(0, 0, 2000, 2000)
+  dx = 1083
+  dy = 250
   l = 0
   t = 0
   w = 1000
@@ -52,8 +54,12 @@ function love.load()
     {tile5, tile6, wall2, wall2, floor, wall2, wall2, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, floor, floor},
     {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile8, tile9, tile9},
     {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile9, tile9, tile9},
-    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9}
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile10, tile9, tile9},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6},
+    {tile5, tile6, tile7, wall2, floor, wall2, tile7, tile4, tile5, tile6},
   }
+
 
   poison = {
     {tile4, tile5, 'nil', 'nil', 'nil', 'nil', 'nil', tile5, tile6, tile7, tile5, tile6, tile7, tile5, tile4, tile7, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5},
@@ -73,7 +79,8 @@ function love.load()
     {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
     {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
     {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, tile7, tile4, tile5, tile6, 'nil', 'nil', 'nil'},
-    {tile5, tile6, tile7, wall2, door, wall2, tile7, tile4, tile5, tile6}
+    {tile5, tile6, tile7, wall2, 'nil', wall2, tile7, tile4, tile5, tile6},
+
   }
 
 
@@ -95,7 +102,11 @@ function love.load()
     {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
     {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
     {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
-    {'nil', 'nil', wall2, door, 'nil', wall2, 'nil', 'nil', 'nil', 'nil'}
+    {'nil', 'nil', wall2, door, 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil', 'nil', wall2, 'nil', 'nil', 'nil', 'nil'},
+    {'nil', 'nil', wall2, 'nil' , 'nil', wall2, 'nil', 'nil', 'nil', 'nil'}
 
   }
 
@@ -172,6 +183,10 @@ end
     love.exitModule()
   end
 
+  if cc(x, y, 64, 64, dx, dy, 64, 64) then
+    love.exitModule()
+  end
+
 
 
   cam:setPosition(x, y)
@@ -200,17 +215,21 @@ end
   if y < ey then
     ey = ey - 2
   end
-end
 
-function love.keypressed(key)
-  if key == 'z' then
-    enemyhp = enemyhp - 1
+
+
+  if love.keyboard.isDown('a') then
+    if cc(x - 25, y - 25, 36, 36, xx, yy, 36, 36) then
+      enemyhp = enemyhp - 1
+    end
   end
-end
-function love.keypressed(key)
-  if key == 'x' then
-    eenemyhp = eenemyhp - 1
+
+  if love.keyboard.isDown('a') then
+    if cc(x - 25, y - 25, 36, 36, ex, ey, 36, 36) then
+      eenemyhp = eenemyhp - 1
+    end
   end
+
 end
 
 
@@ -225,6 +244,7 @@ function love.draw()
   love.graphics.draw(img, x, y)
   love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(eeimg, xx, yy)
+  love.graphics.draw(door, dx, dy)
 end)
 end
 
