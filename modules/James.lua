@@ -3,7 +3,7 @@ local gamera = require 'core/gamera'
 --local Entity = require 'core/entity'
 
 function love.load()
-  hp = 100
+  hp = 1000
   bosshp = 100
   --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
@@ -123,50 +123,68 @@ end
 
 
 function love.update(dt)
+  if cc( x , y , w , h , bx , by, 100 , 100) then
+    hp = hp - 2.5
+  end
+  if hp < 0 then 
+    love.exitModule();
+  end
   if bosshp < 1 then
     love.exitModule();
   end
    --Nothing update
  -- Set up player movement
  if love.keyboard.isDown('w')  or love.keyboard.isDown('up') then
-    if map2:cc(x, y - 3, w, h) == false then
-    y = y - 3
+    if map2:cc(x, y - 3.5, w, h) == false then
+    y = y - 3.5
+  end
+  if cc( x , y , w , h , bx , by, 100 , 100) then
+    hp = hp - 2.5
   end
 end
   if love.keyboard.isDown('s') or love.keyboard.isDown('down') then
-    if map2:cc(x, y + 3, w, h) == false then
-    y = y + 3
+    if map2:cc(x, y + 3.5, w, h) == false then
+    y = y + 3.5
+  end
+  if cc( x , y , w , h , bx , by, 100 , 100) then
+    hp = hp - 2.5
   end
 end
   if love.keyboard.isDown('a') or  love.keyboard.isDown('left')then
-    if map2:cc(x - 3 ,y, w, h) == false then 
-    x = x - 3
+    if map2:cc(x - 3.5 ,y, w, h) == false then 
+    x = x - 3.5
   end 
+  if cc( x , y , w , h , bx , by, 100 , 100) then
+    hp = hp - 2.5
+  end
 end
 
  if love.keyboard.isDown('d') or love.keyboard.isDown('right')then
-   if map2:cc(x + 3, y, w, h) == false then 
-   x = x + 3
+   if map2:cc(x + 3.5, y, w, h) == false then 
+   x = x + 3.5
+  end
+  if cc( x , y , w , h , bx , by, 100 , 100) then
+    hp = hp - 2.5
   end
 end
 if x > bx then
-      if map2:cc(bx + 2, by,  100, 100) == false then
-    bx = bx + 2
+      if map2:cc(bx + 3, by,  100, 100) == false then
+    bx = bx + 3
   end
 end
 if x < bx then
-      if map2:cc(bx -2, by , 100 , 100) == false then 
-    bx = bx - 2
+      if map2:cc(bx -3, by , 100 , 100) == false then 
+    bx = bx - 3
   end
 end
 if y <  by then
-     if map2:cc(bx , by - 2,  100, 100) == false then 
-    by =  by - 2
+     if map2:cc(bx , by - 3,  100, 100) == false then 
+    by =  by - 3
   end
 end
 if y >  by then
-      if map2:cc(bx , by + 2, 100, 100) == false then 
-    by = by + 2
+      if map2:cc(bx , by + 3, 100, 100) == false then 
+    by = by + 3
   end
 end
   cam:setPosition(x,y)
@@ -185,7 +203,7 @@ function love.draw()
     if map:cc(x, y + 1, 64, 64) == false then
     end
    love.graphics.rectangle('line', 0, 0, 64, 899)
-    love.graphics.print(hp)
+    love.graphics.print(hp, x, y)
     love.graphics.print(bosshp,bx,by)
     love.graphics.draw(boss, bx, by, 0, 3)
 end)
@@ -193,6 +211,8 @@ end
 
 function love.keypressed(key)
   if key == 'q' then
-  bosshp = bosshp - 5
+    if cc(x, y, w, h,   bx, by, 200, 200) then
+      bosshp = bosshp - 5
+    end
   end
 end
