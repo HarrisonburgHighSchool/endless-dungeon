@@ -9,6 +9,8 @@ function love.load()
 message = ""
 timer = 200
 
+buttonPressed = false
+
 player = {
   x = 373,
   y = 468,
@@ -87,6 +89,7 @@ function love.update(dt)
   moving = false
   
 if love.keyboard.isDown('w') and player.y > 18 or love.keyboard.isDown('up') and player.y > 18 then -- up
+  buttonPressed = true
   if collision:cc(player.x, player.y - 4, 24, 32) == false then
     player.y = player.y - 4 -- speed
   end
@@ -94,11 +97,13 @@ end
 if love.keyboard.isDown('a') or love.keyboard.isDown('left') then -- left
   moving = true
   flip = -2
+  buttonPressed = true
   if collision:cc(player.x - 4, player.y, 24, 32) == false then  
     player.x = player.x - 4 -- speed
   end
 end
 if love.keyboard.isDown('s') or love.keyboard.isDown('down') then -- down
+  buttonPressed = true
   if collision:cc(player.x, player.y + 4, 24, 32) == false then  
     player.y = player.y + 4 -- speed
   end
@@ -106,29 +111,32 @@ end
 if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
   moving = true
   flip = 2
+  buttonPressed = true
   if collision:cc(player.x + 4, player.y, 24, 32) == false then  
     player.x = player.x + 4 -- speed
   end
 end
 
-  if love.keyboard.isDown('w') and enemy.y > 18 or love.keyboard.isDown('up') and enemy.y > 18 then -- up
+if buttonPressed == true then
+  if player.y < enemy.y then -- up
     if collision:cc(enemy.x, enemy.y - 3.5, 24, 32) == false then
-      enemy.y = enemy.y - 3.5 -- speed
+      enemy.y = enemy.y - 2.5 -- speed
     end
   end 
-  if love.keyboard.isDown('a') or love.keyboard.isDown('left') then -- left
+  if player.x < enemy.x then -- left
     if collision:cc(enemy.x - 3.5, enemy.y, 24, 32) == false then  
-      enemy.x = enemy.x - 3.5 -- speed
+      enemy.x = enemy.x - 2.5 -- speed
     end
   end
-  if love.keyboard.isDown('s') or love.keyboard.isDown('down') then -- down
+  if player.y > enemy.y then -- down
     if collision:cc(enemy.x, enemy.y + 3.5, 24, 32) == false then  
-      enemy.y = enemy.y + 3.5 -- speed
+      enemy.y = enemy.y + 2.5 -- speed
     end
   end
-  if love.keyboard.isDown('d') or love.keyboard.isDown('right') then -- right
+  if player.x > enemy.x then -- right
     if collision:cc(enemy.x + 3.5, enemy.y, 24, 32) == false then  
-      enemy.x = enemy.x + 3.5 -- speed
+      enemy.x = enemy.x + 2.5 -- speed
+    end
   end
 end
 
