@@ -150,22 +150,22 @@ end
   end
 end
 if x > bx then
-      if map2:cc(bx, by + 3, 96, 96) == false then
+      if map2:cc(bx + 2, by,  100, 100) == false then
     bx = bx + 2
   end
 end
 if x < bx then
-      if map2:cc(bx + 3, by, 96, 96) == false then 
+      if map2:cc(bx -2, by , 100 , 100) == false then 
     bx = bx - 2
   end
 end
 if y <  by then
-     if map2:cc(bx + 3, by, 96, 96) == false then 
+     if map2:cc(bx , by - 2,  100, 100) == false then 
     by =  by - 2
   end
 end
 if y >  by then
-      if map2:cc(bx + 3, by, 96,96) == false then 
+      if map2:cc(bx , by + 2, 100, 100) == false then 
     by = by + 2
   end
 end
