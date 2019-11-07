@@ -12,10 +12,10 @@ function love.load()
 
 
   playerImg = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  wall =love.graphics.newImage('assets-1/dungeon/wall/zot_blue_1.png')
-  floorTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
-      altar = love.graphics.newImage('assets-1/dungeon/wall/bars_red_4.png')
-     ground = love.graphics.newImage('assets-1/dungeon/wall/silver_wall.png')
+  wall =love.graphics.newImage('assets-1/dungeon/wall/abyss/abyss_cyan_1.png')
+  floorTile = love.graphics.newImage('assets-1/dungeon/wall/transparent_wall.png')
+      altar = love.graphics.newImage('assets-1/dungeon/wall/transparent_wall.png')
+     ground = love.graphics.newImage('assets-1/dungeon/wall/metal_wall_white_2.png')
       flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
