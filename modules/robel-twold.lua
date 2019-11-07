@@ -76,7 +76,7 @@ function love.load()
 end
 
 function love.update(dt)
-  if cc(x, y, 50, 50, 64, 64, 64,64) then
+  if cc(x, y, 50, 50, 90, 90, 64,64) then
     love.exitModule()
   end
   player2()
