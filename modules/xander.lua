@@ -245,6 +245,6 @@ end
 function love.keypressed(key)
   if key == 'z' then
     -- what goes here?
-    bosshp = bosshp - 1
+    bosshp = bosshp - 3
  end
 end
