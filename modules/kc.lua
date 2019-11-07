@@ -5,7 +5,7 @@ function love.load()
 
   -- Create the player variables
   img = love.graphics.newImage('assets-1/player/base/octopode_1.png')
-  x = 385
+  x = 40
   y = 65
   playerImg = love.graphics.newImage('assets-2/dc-mon/glowing_shapeshifter.png')
   w = 64   -- The player's width is 64
@@ -64,35 +64,35 @@ mapTemplate = {
     {mud,dgrass,mud,mud,mud,mud,mud,mud,mud,mud},
     {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
     {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
-    {mud,dgrass,marble,marble,marble,marble,marble,marble,darkwater},
-    {mud,marble,marble,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
+    {mud,marble,marble,marble,marble,marble,marble,marble,darkwater},
+    {mud,marble,darkwater,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
     {mud,marble,darkwater,marble,darkwater,darkwater,marble,marble,darkwater,darkwater,d},
     {marble,marble,darkwater,marble,marble,marble,marble,marble,darkwater,darkwater,darkwater},
     {mud,marble,darkwater,marble,darkwater,darkwater,marble,marble,darkwater,darkwater,darkwater},
-    {mud,marble,marble,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
-    {mud,dgrass,marble,marble,marble,marble,marble,marble,darkwater,darkwater},
-    {mud,ddarkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,marble,darkwater,darkwater,darkwater,darkwater,darkwater,marble,darkwater,darkwater},
+    {mud,marble,marble,marble,marble,marble,marble,marble,darkwater,darkwater},
+    {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
     {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
-    {mud,ddarkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
+    {mud,dgrass,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater},
     
   }
 
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   darkwater = love.graphics.newImage('assets-1/dungeon/water/shoals_deep_water_11.png')
   collision = {
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
-    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, wall},
-    {wall,'nil','nil',darkwater,darkwater,darkwater,darkwater,'nil','nil', wall},
-    {wall,'nil',darkwater,'nil','nil',darkwater,'nil','nil','nil',wall},
-    {'nil','nil','nil','nil','nil','nil','nil','nil','nil',wall},
-    {wall,'nil',darkwater,'nil','nil',darkwater,'nil','nil','nil', wall},
-    {wall,'nil','nil',darkwater,darkwater,darkwater,darkwater,'nil','nil',wall},
-    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, wall},
-    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
-    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, wall},
-    {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
+    {wall, 'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater,darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater},
+    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,'nil',darkwater, darkwater},
+    {wall,'nil',darkwater,'nil',darkwater,darkwater,'nil','nil',darkwater,darkwater},
+    {marble,'nil',darkwater,'nil','nil','nil','nil','nil',darkwater,darkwater},
+    {wall,'nil',darkwater,'nil',darkwater,darkwater,'nil','nil',darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,'nil',darkwater,darkwater},
+    {wall,'nil','nil','nil','nil','nil','nil','nil',darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater},
+    {wall,'nil',darkwater,darkwater,darkwater,darkwater,darkwater,darkwater, darkwater,darkwater},
     
   }
    map2 = Map:new(mapTemplate2)
@@ -103,23 +103,23 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+2, 40, 64) == false then
-    y = y + 2
+    if collision:cc(x+12, y+3, 40, 64) == false then
+    y = y + 3
     end
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y-2, 40, 64) == false then
-    y = y - 2
+    if collision:cc(x+12, y-3, 40, 64) == false then
+    y = y - 3
   end
 end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    if collision:cc(x + 2, y, 40, 64) == false then
-    x = x + 2
+    if collision:cc(x + 3, y, 40, 64) == false then
+    x = x + 3
   end
 end
 if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-  if collision:cc(x-2, y, 40, 64) == false then
-  x = x - 2
+  if collision:cc(x-3, y, 40, 64) == false then
+  x = x - 3
   end
 end
  -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
@@ -133,6 +133,8 @@ end
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = closedDoor
 
+ 
+
   --if finalBoss hp < 0 then
     --love.exitModule();
 
@@ -145,7 +147,7 @@ end
 
 function love.draw()
   if level == 1 then
-    --map:draw()
+   -- map:draw()
     collision:draw()
   end
   if level == 2 then
@@ -154,7 +156,7 @@ function love.draw()
   love.graphics.print('Hello, world!', 0, 0)
   --map:draw()
 
-  love.graphics.draw(secretpath, 400, 270)
+  love.graphics.draw(secretpath, 450, 192,0,2)
   --love.graphics.draw(statue, 385, 175, 0, 2)
   love.graphics.draw(currentDoor, 385,1)
 love.graphics.draw(switch, 193, 200,0,2)
