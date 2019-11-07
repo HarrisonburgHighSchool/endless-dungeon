@@ -10,10 +10,13 @@ function love.load()
   wall = love.graphics.newImage('assets-1/dungeon/wall/stone_2_dark0.png')
   door = love.graphics.newImage('assets-1/dungeon/doors/vgate_runed_middle.png')
   block = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
+  sword = love.graphics.newImage('assets-1/item/weapon/greatsword_3_new.png')
   ex = 100
   ey = 100
   dir = 'left'
   enemyhp = 500
+  foundsword = false
+  gotsword = false
   --dir = 'right'
   enemyImg = love.graphics.newImage('assets-1/monster/undead/shadow.png')
   w = 64
@@ -64,25 +67,33 @@ end
 --Moves character up, down, left, and right
 function love.update(dt)
   if love.keyboard.isDown('right') and x < 815 then   -- if the 'up' key is being pressed...
-    if collision:cc(x+1, y, 32, 32) == false then
-      x = x + 1
+    if collision:cc(x+4, y, 32, 32) == false then
+      x = x + 4
     end
   end
   if love.keyboard.isDown('down') and y < 750 then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y+1, 32, 32) == false then
-      y = y + 1
+    if collision:cc(x, y+4, 32, 32) == false then
+      y = y + 4
     end
   end
   if love.keyboard.isDown('left') and x > 60 then   -- if the 'up' key is being pressed...
-    if collision:cc(x-1, y, 32, 32) == false then
-      x = x - 1
+    if collision:cc(x-4, y, 32, 32) == false then
+      x = x - 4
     end
   end
   if love.keyboard.isDown('up') and y > 75 then   -- if the 'up' key is being pressed...
-    if collision:cc(x, y-1, 32, 32) == false then
-      y = y - 1
+    if collision:cc(x, y-4, 32, 32) == false then
+      y = y - 4
     end
   end
+
+if cc(x, y, 64, 64, 190, 260, 64, 64) == true then
+  foundsword = true
+end
+
+if cc(x, y, 64, 64, 190, 260, 64, 64) == false then
+  foundsword = false
+end
 
   --Moves enemy left & right
   
@@ -132,7 +143,10 @@ function love.update(dt)
     dir = 'left'
   end
 
-  --enemyhp = enemyhp - 1
+ --enemyhp = enemyhp - 1
+  if love.keyboard.isDown('escape') then
+    love.exitModule();
+  end
   if enemyhp < 0 then
     love.exitModule();
   end
@@ -145,5 +159,16 @@ function love.draw()
   love.graphics.draw(playerImg, x, y)
   love.graphics.draw(enemyImg, ex, ey)
   love.graphics.draw(aimg, ax, ay)
+ if gotsword == false then
+  love.graphics.draw(sword, 190, 260, 0, 2)
+ end
   love.graphics.rectangle('line', 0, 0, 64, 64)
+end
+
+function love.keypressed(key)
+  if key == 'space' then
+    if foundsword == true and gotsword == false then
+      gotsword = true
+    end
+  end
 end
