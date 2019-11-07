@@ -48,7 +48,7 @@ function love.load()
                 -- Create the collision map, with walls around the edge of the map
                 wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
                 collision = {
-                  {wall, 'nil', 'nil', 'nil', Item, Item, 'nil', 'nil', 'nil', 'nil'},
+                  {wall, 'nil', 'nil', 'nil', Item, Item, 'nil', 'nil', 'nil', wall},
                   {wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall, wall},
                   {wall, obstacle, 'nil', obstacle1, 'nil', 'nil', obstacle1, 'nil', obstacle, wall},
                   {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
@@ -76,97 +76,98 @@ function love.load()
 end
 
 function love.update(dt)
+  if cc(x, y, 50, 50, 90, 90, 64,64) then
+    love.exitModule()
+  end
   player2()
   if love.keyboard.isDown('up')then
-  if collision:cc(x, y - 10, 64, 64) == false then
-   y = y - 10
-   cam:setPosition(x, y)
+    if collision:cc(x, y - 10, 50, 50) == false then
+     y = y - 10
+     cam:setPosition(x, y)
+    end
   end
-end
   if love.keyboard.isDown('down')then
-  if collision:cc(x, y + 10, 64, 64) == false then
-   y = y + 10
-   cam:setPosition(x, y)
+    if collision:cc(x, y + 10, 50, 50) == false then
+     y = y + 10
+     cam:setPosition(x, y)
+    end
   end
-end
   if love.keyboard.isDown('right')then
-  if collision:cc(x + 10, y, 64, 64) == false then
-   x = x + 10
-   cam:setPosition(x, y)
+    if collision:cc(x + 10, y, 50, 50) == false then
+     x = x + 10
+     cam:setPosition(x, y)
+    end
   end
-end
   if love.keyboard.isDown('left')then
-  if collision:cc(x - 10 , y, 64, 64) == false then
-   x = x - 10
-   cam:setPosition(x, y)
+    if collision:cc(x - 10 , y, 50, 50) == false then
+     x = x - 10
+     cam:setPosition(x, y)
+    end
   end
-end
-   if cc(x, y, w, h,   0, 0, 64, 64) then
-      hp = hp - 1
+   if cc(x, y, 64, 64, ex, ey, 64, 64) then
+      hp = hp - 0.5
   end
-if ex < x then
-   if collision:cc(ex + 5, ey, 64, 64) == false then
-      ex = ex + 5
+  if ex < x then
+   if collision:cc(ex + 1, ey, 64, 64) == false then
+      ex = ex + 1
    end
  end
 if ex > x then
-   if collision:cc(ex - 5 , ey, 64, 64) == false then
-     ex = ex - 5
+   if collision:cc(ex - 1 , ey, 64, 64) == false then
+     ex = ex - 1
    end
  end
 if ey > y then
-    if collision:cc(ex, ey - 5, 64, 64) == false then
-      ey = ey - 5
+    if collision:cc(ex, ey - 1, 64, 64) == false then
+      ey = ey - 1
     end
   end
   if ey < y then
-    if collision:cc(ex, ey + 5, 64, 64) == false then
-      ey = ey + 5
+    if collision:cc(ex, ey + 1, 64, 64) == false then
+      ey = ey + 1
     end
   end
-  if cc(x, y, 32, 32, ex, ey, 32, 32) then
+  if hp == 0 then
     love.exitModule()
-end
-  --if love.keyboard.isDown('escape') then
-    --love.exitmodule()
-  --end
+  end
+  if love.keyboard.isDown('escape') then
+    love.exitModule()
+  end
 end
 function player2()
-  if love.keyboard.isDown('w')then
-    if collision:cc(a, b - 10, 64, 64) == false then
-   b = b - 10
-   cam:setPosition(a, b)
-  end
+    if b < y then
+     if collision:cc(a, b + 4, 64, 64) == false then
+        b = b + 4
+      end
+    end
+    if b > y then
+       if collision:cc(a, b - 4, 64, 64) == false then
+          b = b - 4
+      end
+    end
+    if a < x then
+       if collision:cc(a + 4, b, 64, 64) == false then
+          a = a + 4
+      end
+    end
+    if a > x then
+       if collision:cc(a - 4, b, 64, 64) == false then
+          a = a - 4
+      end
+    end
+    if cc(a, b, 64, 64, ex, ey, 64, 64) then
+      hp = hp - 0.5
+    end
+
 end
-  if love.keyboard.isDown('s')then
-      if collision:cc(a, b + 10, 64, 64) == false then
-   b = b + 10
-   cam:setPosition(a, b)
-  end
-end
-  if love.keyboard.isDown('d')then
-    if collision:cc(a + 10 , y, 64, 64) == false then
-   a = a + 10
-   cam:setPosition(a, b)
-  end
-end
-  if love.keyboard.isDown('a')then
-    if collision:cc(a - 10 , y, 64, 64) == false then
-   a = a - 10
-   cam:setPosition(a, b)
-  end
-end
-   if cc(x, y, w, h,   0, 0, 64, 64) then
-      hp = hp - 1
-end
-end
+
+
 function love.draw()
   cam:draw(function(l, t, w, h)
     map:draw()
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(playerImg1, a, b)
     love.graphics.print(hp, x, y)
-    love.graphics.draw(playerImg, x, y)
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
     love.graphics.draw(playerImg1, a, b)
@@ -177,6 +178,7 @@ function love.draw()
     love.graphics.draw(enemyimg, ex, ey)
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
+    love.graphics.draw(Item, 64, 64)
   end)
 end
 
