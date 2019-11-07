@@ -14,6 +14,10 @@ cam = gamera.new(0, 0, 2000, 2000)
   img3 =love.graphics.newImage('assets-1/monster/animals/emperor_scorpion.png')
   x = 100
   y = 100
+  x5 = 100
+  y5 = 100
+  x6 = 75
+  y6 = 100
   ex = 150
   ey = 350
   ex1 = 150
@@ -49,14 +53,14 @@ min1= -1
     {wall, wall, wall, wall, wall, wall, wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', wall, 'nil', wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', wall, 'nil', wall},
+    {wall, 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
     {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
 {wall, wall, wall, wall, wall, wall, wall, wall, wall},
 
@@ -68,25 +72,24 @@ map = Map:new(background)
 end
 
   function love.update(dt)
-cam:setPosition(x2, y2)
-
+  cam:setPosition(x, y)
     if love.keyboard.isDown('up') then
-      if collide:cc(x, y - 2, 60, 20) == false then
+      if collide:cc(x, y - 1, 60, 20) == false then
         y = y - 2
       end
     end
     if love.keyboard.isDown('down') then
-      if collide:cc(x, y + 2, 60, 20) == false then
+      if collide:cc(x, y + 1, 60, 20) == false then
         y = y + 2
       end
     end
     if love.keyboard.isDown('right') then
-      if collide:cc(x + 2, y, 15, 50) == false then
+      if collide:cc(x + 1, y, 15, 50) == false then
         x = x + 2
       end
     end
     if love.keyboard.isDown('left') then
-      if collide:cc(x - 2, y , 45, 50) == false then
+      if collide:cc(x - 1, y , 45, 50) == false then
         x = x - 2
       end
     end
@@ -140,10 +143,10 @@ if ex > 700 then
 end
 
 if direction == 'right' then
-  ex = ex + 1
+  ex = ex + 3
 end
 if direction == 'left' then
-  ex = ex - 1
+  ex = ex - 3
 end
 if ey1 < 2 then
   direction = 'right'
@@ -153,10 +156,21 @@ if ey1 >500 then
 end
 
 if direction == 'right' then
-  ey1 = ey1 + 1
+  ey1 = ey1 + 3
 end
 if direction == 'left' then
-  ey1 = ey1 - 1
+  ey1 = ey1 - 3
+end
+if hp == 0 then
+x = x5
+y = y5
+end
+if hp == 0 then
+x2 = x6
+y2 = y6
+end
+if hp == 0 then
+hp = 100
 end
 if cc(x, y, w, h,   x3, y3, 36, 36 ) then
   love.exitModule()
