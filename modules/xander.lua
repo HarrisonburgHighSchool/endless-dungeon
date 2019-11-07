@@ -2,7 +2,7 @@ local Util = require 'core/util'
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
-  bosshp = 1000
+  bosshp = 100
   ex = 100
   ey = 100
   dir = 'right'
@@ -225,10 +225,9 @@ function love.draw()
   cam:draw(function(l,t,w,h)
     map:draw()
     map2:draw()
-  
-    love.graphics.draw(emig, ix, iy)
-    love.graphics.print(bosshp,bx,by)
     love.graphics.draw(emig,bx,by)
+    
+    love.graphics.draw(emig, ix, iy)
     love.graphics.draw(eimg, ex, ey) 
     love.graphics.draw(eimg, rx, ry )
     love.graphics.draw(eimg, tx, ty )
@@ -239,9 +238,13 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
   end)
+  love.graphics.print(bosshp,bx,by)
 end
 
 
-
-
-
+function love.keypressed(key)
+  if key == 'z' then
+    -- what goes here?
+    bosshp = bosshp - 1
+ end
+end
