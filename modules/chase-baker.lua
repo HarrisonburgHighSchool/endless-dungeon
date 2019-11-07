@@ -9,7 +9,9 @@ timer = love.timer.getTime()
 function love.load()
   cam = gamera.new(0, 0, 960, 625)
 -- Creates the variables for the images and assigns their location.
-
+  hppotion = love.graphics.newImage('assets-1/item/potion/ruby.png')
+  hppx = 400
+  hppy = 150
   weapon = love.graphics.newImage('assets-1/player/hand_right/long_sword_slant.png')
   shield = love.graphics.newImage('assets-1/player/hand_left/shield_goblin.png')
   hpgain = love.graphics.newImage('assets-1/item/potion/bubbly.png')
@@ -108,7 +110,7 @@ if love.keyboard.isDown('e') then
   ehp1 = love.math.random(1, 1000)
   ehp2 = love.math.random(1, 1000)
   ehp3 = love.math.random(1, 1000)
-  hppotion = love.graphics.newImage('assets-1/item/potion/ruby.png')
+  if cc(x - 25, y - 25, 86, 86,   hppx, hppy, 36, 36) then -- left off
 end
   -- Whether the game had ended or not.
   if hp > 1 then
@@ -349,7 +351,6 @@ function love.draw()
   love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
   love.graphics.print('Press the W key to attack!', 70, 70)
   love.graphics.print('Press the E key to activate Mayhem Mode!', 70, 100)
-  if love.keyboard.isDown('e') then
-    love.graphics.print(hppotion, , )
-  end)
+  love.graphics.draw(hppotion, hppx, hppy)
+ end)
 end
