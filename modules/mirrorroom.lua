@@ -33,7 +33,7 @@ function love.load()
 
   spritesheet = love.graphics.newImage('hero/Old heroT.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
-  walk = anim8.newAnimation(grid('1-6', 2), 0.2)
+  walk = anim8.newAnimation(grid('1-6', 2), 0.1)
   idle = anim8.newAnimation(grid('1-4', 1), 0.4)
   kick = anim8.newAnimation(grid('4-4', 3), 0.4)
 
@@ -41,7 +41,7 @@ function love.load()
 
   spritesheetM = love.graphics.newImage('hero/Old hero M.png')
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
-  walkm = anim8.newAnimation(grid('1-6', 2), 0.2)
+  walkm = anim8.newAnimation(grid('1-6', 2), 0.1)
   idlem = anim8.newAnimation(grid('1-4', 1), 0.4)
   kickm = anim8.newAnimation(grid('3-3', 3), 0.4)
 
@@ -51,9 +51,9 @@ function love.load()
   grid = anim8.newGrid(64, 64, spritesheet:getWidth(), spritesheet:getHeight())
   idle1 = anim8.newAnimation(grid('1-4', 1), 0.4)
 
-  rollinspritesheet = love.graphics.newImage('assets-1/enemies/rollin.jfif')
-  grid = anim8.newGrid(44, 70, 704, 586)
-  idle2 = anim8.newAnimation(grid('1-16', 1), 0.03)
+  rollinspritesheet = love.graphics.newImage('assets-1/enemies/rollin.png')
+  grid = anim8.newGrid(88, 140, 1408, 1172)
+  idle2 = anim8.newAnimation(grid('1-16', 1), 0.1)
 
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/limestone_6.png')
   cobaltM = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_flip.png')
@@ -61,7 +61,7 @@ function love.load()
   MirrorR = love.graphics.newImage('assets-1/dungeon/floor/limestone_6_mirror_right.png')
   hole = love.graphics.newImage('assets-1/dungeon/floor/hole.png')
   wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
-  door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_up.png')
+  door = love.graphics.newImage('assets-1/dungeon/doors/vgate_open_right.png')
   Hpfull = love.graphics.newImage('assets-1/player/hp_bar/full.png')
   Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
   Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
@@ -327,7 +327,7 @@ function love.update(dt)
   end
 
   if hitbox == 1 or hitbox == 2 then
-    if cc(mirrorx - 52, y + 34, 16, 20, bx, by, w, h) then
+    if cc(mirrorx, y + 34, 16, 20, bx, by, w, h) then
       bhp = bhp - 1
     end
   end
@@ -480,8 +480,9 @@ function love.draw()
 
   love.graphics.print(hitboxtimer, x - 20, y)
   love.graphics.print(animtimer, x - 20, y - 10)
-
+if bhp == 1 then
   idle1:draw(bannanaspritesheet, bx, by)
+end
   idle2:draw(rollinspritesheet, x + 90, y + 90)
 
 if timerIFrames == 1 or timerIFrames == 2 or timerIFrames == 3 or timerIFrames == 4 or timerIFrames == 5 or timerIFrames == 6 or timerIFrames == 7 or timerIFrames == 8 or timerIFrames == 9 or timerIFrames == 10 or timerIFrames == 11 or timerIFrames == 12 or timerIFrames == 13 or timerIFrames == 14 or timerIFrames == 15 or timerIFrames == 16 or timerIFrames == 17 or timerIFrames == 21 or timerIFrames == 22 or timerIFrames == 23 or timerIFrames == 24 or timerIFrames == 25 or timerIFrames == 26 or timerIFrames == 27 or timerIFrames == 28 or timerIFrames == 29 or timerIFrames == 30 or timerIFrames == 31 or timerIFrames == 32 or timerIFrames == 33 or timerIFrames == 34 or timerIFrames == 35 or timerIFrames == 36 or timerIFrames == 37 or timerIFrames == 40 or timerIFrames == 41 or timerIFrames == 42 or timerIFrames == 43 or timerIFrames == 44 or timerIFrames == 45 or timerIFrames == 46 or timerIFrames == 47 or timerIFrames == 48 or timerIFrames == 49 or timerIFrames == 50 or timerIFrames == 51 or timerIFrames == 52 or timerIFrames == 53 or timerIFrames == 54 or timerIFrames == 55 or timerIFrames == 56 or timerIFrames == 57 or timerIFrames == 0 then
