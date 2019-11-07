@@ -1,191 +1,205 @@
+love.graphics.setDefaultFilter('nearest', 'nearest')
 local Map = require 'core/map'
-local gamera = require 'core/gamera'
-local Util = require 'core/util'
-local Entity = require 'core/entity'
+localUtil = require 'core/util'
 function love.load()
 
-  cam = gamera.new(0, 0, 1250, 1000)
-  x = 100
-  y = 100
-  playerImg = love.graphics.newImage('assets-1/monster/knight.png')
-  w = 64
-  h = 64
-  hp = 100
-  a = 470
-  b = 400
-  Img3 = love.graphics.newImage('assets-1/monster/juggernaut.png')
-  ex = 520
-  ey = 550
-  dir = 'right'
-  e = 470
-  d = 400
-  Img4 = love.graphics.newImage('assets-1/monster/EvilKnight.png')
-  ax = 320
-  ay = 895
-  dir2 = 'right'
-  Img5 = love.graphics.newImage('assets-1/monster/hello.png')
-  rx = 600
-  ry = 900
-  dir3 = 'right'
-  f = 470
-  g = 400
 
-  crypt = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_5a.png')
-  floorTile = love.graphics.newImage('assets-1/dungeon/floor/rect_gray_0.png')
-  altar     = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
-  template = { --a 3 x 3 map with the altar texture in the middle
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,},
-       {floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar},
-       {floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-       {floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar, floorTile, altar},
 
-             }
-  map = Map:new(template)
+local Entity = require 'core/entity'
 
-wall = love.graphics.newImage('assets-1/dungeon/wall/catacombs_2.png')
-walls = {
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, 'nil' ,'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil' ,wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil','nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', wall, 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-  {wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall, wall},
-
-}
-
-collide = Map:new(walls)
+function love.load()
+  img = love.graphics.newImage('player.png')
+  player = Entity:new(img, 200, 200)
 end
+
 function love.update(dt)
-
-  --if ey < 635 then
-    --ey = ey + 1
-
-  --end
-
-if dir3 == 'left' then
-  ry = ry + 1
-end
-if dir3 == 'right' then
-  ry = ry - 1
-end
-if ey < 950 then
- dir3 = 'left'
-end
-if ey > 960 then
-  --dir3 = 'right'
---end
-if dir2 == 'left' then
-  ay = ay + 1
-end
-if dir2 == 'right' then
-  ay = ay - 1
-end
-if ay < 800 then
-  dir2 = 'left'
-end
-if ay > 910 then
-  dir2 = 'right'
-end
-
-if dir == 'left'  then
-  ey = ey + 3
-end
-
-  if dir == 'right'  then
-    ey = ey - 3
-end
-
-if ey < 500 then
-  dir = 'left'
-end
-if ey > 635 then
-  dir = 'right'
-end
-  if x < 0 then
-    x = 0
-  end
-  if y < 0 then
-    y = 0
-  end
-  if x > 1200 then
-    x = 1200
-  end
-  if y > 950 then
-    y = 950
-  end
-
-    if love.keyboard.isDown('up') then
-        if collide:cc(x, y - 2, 64, 64) == false then
-          y = y - 2
-        end
-      end
-      if love.keyboard.isDown('down') then
-        if collide:cc(x, y + 2, 64, 64) == false then
-          y = y + 2
-        end
-      end
-      if love.keyboard.isDown('right') then
-        if collide:cc(x + 2, y, 64, 64) == false then
-          x = x + 2
-        end
-      end
-      if love.keyboard.isDown('left') then
-        if collide:cc(x - 2, y, 64, 64) == false then
-          x = x - 2
-        end
-      end
-
-
-
-
-
-
-  cam:setPosition(x, y)
 end
 
 function love.draw()
-  cam:draw(function(l, t, w, h)
-  map:draw()
-  collide:draw()
-  love.graphics.print('Hello, world!', 0, 0)
+  player:draw()
+end
+
+function love.load()
+  x = 400
+  y = 300
+  playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
+  ex = 100
+  ey = 100
+  enemyImg = love.graphics.newImage('assets-1/player/base/lorc_female_6.png')
+  w = 64
+  h = 64
+  hp = 100
+end
+
+
+
+function love.update(dt)
+  if x > ex then
+    ex = ex + 3
+  end
+  if y > ey then
+    ey = ey + 3
+  end
+  if ex > x then
+    ex = ex - 3
+  end
+  if ey > y then
+    ey = ey - 3
+  end
+end
+
+
+
+function love.load()
+
+  tile = love.graphics.newImage('assets-1/dungeon/floor/etched_1.png')
+  floor = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
+  wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
+  wall2 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
+  tile4 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_0.png')
+  tile5 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_1.png')
+  tile6 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_2.png')
+  tile7 = love.graphics.newImage('assets-1/dungeon/floor/acidic_floor_3.png')
+
+  background = {
+    {tile4, tile5, tile6, floor, floor, floor, tile4, tile5, tile6, tile7},
+    {tile7, tile4, tile5, floor, floor, floor, tile7, tile4, tile5, tile6},
+    {tile6, tile7, tile4, floor, floor, floor, tile6, tile7, tile4, tile5},
+    {tile5, tile6, tile7, floor, floor, floor, tile5, tile6, tile7, tile4},
+    {tile4, tile5, tile6, floor, floor, floor, tile4, tile5, tile6, tile7},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {floor, floor, floor, floor, floor, floor, floor, floor, floor, floor},
+    {tile5, tile6, tile7, floor, floor, floor, tile4, tile5, tile6, tile7},
+    {tile6, tile7, tile4, floor, floor, floor, tile5, tile6, tile7, tile4},
+    {tile7, tile4, tile5, floor, floor, floor, tile6, tile7, tile4, tile5},
+    {tile4, tile5, tile6, floor, floor, floor, tile7, tile4, tile5, tile6},
+    {tile5, tile6, tile7, floor, floor, floor, tile4, tile5, tile6, tile7}
+  }
+
+  collision= {
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {wall2, wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, wall2},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', wall},
+      {wall2, wall2, wall2, 'nil', 'nil', 'nil', wall2, wall2, wall2, wall2},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, 'nil', 'nil', 'nil', wall2, 'nil', 'nil', 'nil'},
+      {'nil', 'nil', wall2, wall, wall, wall, wall2, 'nil', 'nil', 'nil'}
+  }
+    collision = Map:new(collision)
+    background = Map:new(background)
+  end
+
+  function love.update(dt)
+    if love.keyboard.isDown('right') then
+      if collision:cc(x + 5, y, 64, 64) == false then
+         x = x + 5
+      end
+    end
+    if love.keyboard.isDown('left') then
+      if collision:cc(x - 5, y, 64, 64) == false then
+         x = x - 5
+      end
+    end
+    if love.keyboard.isDown('up') then
+      if collision:cc(x, y - 5, 64, 64) == false then
+         y = y - 5
+      end
+    end
+    if love.keyboard.isDown('down') then
+      if collision:cc(x , y + 5, 64, 64) == false then
+         y = y + 5
+      end
+    end
+  end
+
+  function love.draw()
+    background:draw()
+    collision:draw()
+    love.graphics.draw(playerImg,x,y)
+  end
+
+    background = Map:new(template)
+  end
+
+  debug = false
+
+
+  background = map:cc(x, y, 64, 64)
+  debug = tostring(mapc)
+
+  local Map = require 'core/map'
+  localUtil = require 'core/util'
+
+
+
+
+
+
+
+
+
+function love.update(dt)
+
+  if love.keyboard.isDown('up') then
+    y = y - 1
+  end
+  if love.keyboard.isDown('down') then
+    y = y + 1
+  end
+  if love.keyboard.isDown('left') then
+    x = x - 1
+  end
+  if love.keyboard.isDown('right') then
+    x = x + 1
+  end
+
+  ex = ex + 1
+
+  if cc(x, y, w, h, 0, 0, 64, 64)
+    hp = hp - 1
+  end
+end
+
+function love.draw()
+  background:draw()
+  collision:draw()
   love.graphics.draw(playerImg, x, y)
+  love.graphics.draw(enemyImg, ex, ey)
   love.graphics.rectangle('line', 0, 0, 64, 64)
-  love.graphics.print(hp, x, y+ -18)
-  love.graphics.draw(Img4, ax, ay)
-  love.graphics.draw(Img3, ex, ey)
-  love.graphics.draw(Img5, rx, ry)
- end)
+  love.graphics.print(hp, 0, 0)
+end
+
+
+
+
+
+
+
+
+local gamera = require 'core/gamera'
+cam = gamera.new(0, 0, 2000, 2000)
+cam:setPosition(400, 400)
+
+function love.draw()
+  cam:draw(function(l, t, w, h)
+  love.graphics.draw(playerImg, x, y)
+  end)
+end
+
+
+
+function love.draw()
+  bkgrnd:draw()
+  love.graphics.print(tostring(map), 0, 0)
+  love.graphics.print('Hello, world!', 0, 0)
+end
 end
 
 function love.keypressed(key)
