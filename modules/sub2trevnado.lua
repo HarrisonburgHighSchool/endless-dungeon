@@ -4,6 +4,39 @@ local anim8 = require 'core/anim8'
 local gamera = require 'core/gamera'
 
 function love.load()
+  -- Shop objects
+  potion = {
+    price = 100,
+    description = "Increase health",
+    stat = "hp",
+    modifier = 5, 
+  }
+
+  player = {
+    img = love.graphics.newImage('assets-1/player/base/octopode_4.png'),
+    x = 64,
+    y  = 64,
+    w = 44,
+    h = 44,
+    hp = 10,
+    gp = 0,
+    s = 4
+  }
+
+  Hpfull = love.graphics.newImage('assets-1/player/hp_bar/full.png')
+  Hp9 = love.graphics.newImage('assets-1/player/hp_bar/9.png')
+  Hp8 = love.graphics.newImage('assets-1/player/hp_bar/8.png')
+  Hp7 = love.graphics.newImage('assets-1/player/hp_bar/7.png')
+  Hp6 = love.graphics.newImage('assets-1/player/hp_bar/6.png')
+  Hp5 = love.graphics.newImage('assets-1/player/hp_bar/5.png')
+  Hp4 = love.graphics.newImage('assets-1/player/hp_bar/4.png')
+  Hp3 = love.graphics.newImage('assets-1/player/hp_bar/3.png')
+  Hp2 = love.graphics.newImage('assets-1/player/hp_bar/2.png')
+  Hp1 = love.graphics.newImage('assets-1/player/hp_bar/critical.png')
+  Hpempty = love.graphics.newImage('assets-1/player/hp_bar/empty.png')
+
+
+
   
   w0 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_0.png')
   w1 = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
@@ -65,13 +98,7 @@ function love.load()
   mapc = Map:new(layer1)
   doorr = Map:new(door)
 
-  s = 4
-  x = 64
-  y = 64
-  w = 44
-  h = 44
-  hp = 100
-  playerImg = love.graphics.newImage('assets-1/player/base/octopode_4.png')
+  
 end
 
 
@@ -79,29 +106,29 @@ function love.update(dt)
     --walk:update(dt)
   
     if love.keyboard.isDown('up' or 'w') then
-      if mapc:cc(x , y - s, w, h) == false then
-        y = y - s
+      if mapc:cc(player.x , player.y - player.s, player.w, player.h) == false then
+        player.y = player.y - player.s
       end
     end
     if love.keyboard.isDown('down' or 's') then
-      if mapc:cc(x, y + s, w, h) == false then
-        y = y + s
+      if mapc:cc(player.x, player.y + player.s, player.w, player.h) == false then
+        player.y = player.y + player.s
       end
     end
     if love.keyboard.isDown('right' or 'd') then
-      if mapc:cc(x + s, y, w, h) == false then
-        x = x + s
+      if mapc:cc(player.x + player.s, player.y, player.w, player.h) == false then
+        player.x = player.x + player.s
       end
     end
     if love.keyboard.isDown('left' or 'a') then
-      if mapc:cc(x - s, y, w, h) == false then
-        x = x - s
+      if mapc:cc(player.x - player.s, player.y, player.w, player.h) == false then
+        player.x = player.x - player.s
       end
     end
-    if doorr:cc(x, y, w, h) then
+    if doorr:cc(player.x, player.y, player.w, player.h) then
       love.exitModule()
     end
-    cam:setPosition(x, y)
+    cam:setPosition(player.x, player.y)
   
 
 end
@@ -113,10 +140,43 @@ function love.draw()
     mapc:draw()
     doorr:draw()
     --walk:draw(spritesheet, 400, 300)
-    love.graphics.draw(playerImg, x - 10, y - 10)
+    love.graphics.draw(player.img, player.x - 10, player.y - 10)
     love.graphics.draw(s1, 512, 128)
     love.graphics.draw(s2, 192, 192)
     love.graphics.draw(s3, 512, 448)
     love.graphics.draw(s4, 192, 448)
+    if player.hp == 10 then
+      love.graphics.draw(Hpfull, player.x, player.y - 20)
+    end
+    if player.hp == 9 then
+      love.graphics.draw(Hp9, player.x, player.y - 20)
+      end
+    if player.hp == 8 then
+      love.graphics.draw(Hp8, player.x, player.y - 20)
+    end
+    if player.hp == 7 then
+      love.graphics.draw(Hp7, player.x, player.y - 20)
+    end
+    if player.hp == 6 then
+      love.graphics.draw(Hp6, player.x, player.y - 20)
+    end
+    if player.hp == 5 then
+      love.graphics.draw(Hp5, player.x, player.y - 20)
+    end
+    if player.hp == 4 then
+      love.graphics.draw(Hp4, player.x, player.y - 20)
+    end
+    if player.hp == 3 then
+      love.graphics.draw(Hp3, player.x, player.y - 20)
+    end
+    if player.hp == 2 then
+      love.graphics.draw(Hp2, player.x, player.y - 20)
+    end
+    if player.hp == 1 then
+      love.graphics.draw(Hp1, player.x, player.y - 20)
+    end
+    if player.hp == 0 then
+      love.graphics.draw(Hpempty, player.x, player.y - 20)
+    end
   end)
 end
