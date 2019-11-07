@@ -24,12 +24,12 @@ player = {
 }
 
 enemy = {
-  x = 371,
+  x = 375,
   y = 100,
   w = 64,
   h = 64,
   hp = 100,
-  img = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_2.png'),
+  img = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_2_large.png'),
 }
 
 
@@ -182,7 +182,7 @@ function love.draw()
   love.graphics.print(player.hp, 0, 0)      -- Prints player's health
 
 
-  love.graphics.draw(enemy.img, enemy.x, enemy.y)
+  love.graphics.draw(enemy.img, enemy.x - 12, enemy.y- 48/4)
 
 
 end
