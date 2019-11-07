@@ -15,7 +15,7 @@ function love.load()
   wall =love.graphics.newImage('assets-1/dungeon/wall/zot_blue_1.png')
   floorTile = love.graphics.newImage('assets-1/dungeon/wall/crystal_wall_blue.png')
       altar = love.graphics.newImage('assets-1/dungeon/wall/bars_red_4.png')
-     ground = love.graphics.newImage('assets-1/dungeon/wall/emerald_8.png')
+     ground = love.graphics.newImage('assets-1/dungeon/wall/silver_wall.png')
       flooor= love.graphics.newImage('assets-1/dungeon/altars/gozag_1.png')
 template = {
 
@@ -38,7 +38,7 @@ template = {
 }
 wall={
   {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall},
-{wall,'nil','nil','nil', 'nil', 'nil' ,'nil','nil', 'nil', 'nil',wall},
+{wall,'nil','nil', 'nil', 'nil' ,'nil','nil', 'nil', 'nil',wall},
 {wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
 {wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
 {wall,'nil','nil','nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil',wall},
@@ -109,10 +109,10 @@ if x < 120 and x > 30 and y > 30 and y < 120 then
 
 end
 
-  if x < 150 and x > 50 and y > 350 and y < 450 then
-    y = y + 200
-    x = x + 300
-end
+--  if x < 150 and x > 50 and y > 350 and y < 450 then
+  --  y = y + 200
+  --  x = x + 300
+--end
  if ex < x then
   if collision:cc(ex + 5, ey,64,64) == false then
    ex = ex + 3
@@ -133,10 +133,13 @@ end
       ey = ey + 3
     end
   end
- if cc(x, y, 32, 32, ex, ey,32,32)then
-  love.exitModule()
+if cc(x, y, 32, 32, ex, ey,32,32)then
+hp = hp - 1
  end
- if hp == 0 then
+if hp == 0 then
+   love.exitModule()
+ end
+ if x < 150 and x > 50 and y > 350 and y < 450 then
    love.exitModule()
  end
 end
@@ -153,7 +156,7 @@ cam:draw(function(l, t, w, h)
   love.graphics.draw(eimg, ex, ey)
 
 --box color
-  love.graphics.setColor(0, 0,1)
+  love.graphics.setColor(1, 0,1)
   love.graphics.rectangle('line', 67, 67, 64, 64)
   love.graphics.rectangle('line', 100, 400, 64, 64)
   love.graphics.rectangle('line', 800, 500, 64, 64)
