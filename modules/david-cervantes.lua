@@ -11,15 +11,15 @@ enemy = {
   y = 100,
   img = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 }
-witch = {
+skeleton_humanoid_large = {
   x = 150,
   y = 300,
-  img = love.graphics.newImage('fake-assets/enemy/witch.png'),
+  img = love.graphics.newImage('assets-1/monster/undead/skeletons/skeleton_humanoid_large.png'),
 }
-ogre = {
+skeleton_humanoid_small = {
   x = 200,
   y = 400,
-  img = love.graphics.newImage('fake-assets/enemy/ogre.png'),
+  img = love.graphics.newImage('assets-1/monster/undead/skeletons/skeleton_humanoid_small.png'),
 }
   dir = 'left'
   dir = 'right'
@@ -159,6 +159,8 @@ function love.draw()
       love.graphics.print(hp, 0, 0)
       -- Draw the enemy
       love.graphics.draw(eimg, ex, ey)
+      love.graphics.draw(skeleton_humanoid_large, x, y)
+      love.graphics.draw(skeleton_humanoid_small, x, y)
 
       love.graphics.print('Hello, world!', 0, 0)
   end)
