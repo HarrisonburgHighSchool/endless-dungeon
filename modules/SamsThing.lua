@@ -218,7 +218,7 @@ end
 end
 end
   
-  if love.keyboard.isDown('left' or 'a') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('left') or love.keyboard.isDown('a')  then   -- if the 'up' key is being pressed...
     flip = -2.5
     anim = walk
     --walk:update(dt)
@@ -257,9 +257,11 @@ end
   end
 end
   
-  
-
-
+for i = 1, 3 do 
+if cc(x, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true and enemies[i].hp == 10 then
+hp = hp - 1
+end
+end
 
    -- x, y, w, h all represent the player's rectangle. The other values are a rectangle in the upper corner
   if cc(x, y, w, h,   1, -40, 880, 1) then  
