@@ -12,6 +12,7 @@ function love.load()
     oct3=love.graphics.newImage('assets-1/player/base/octopode_3.png')
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     oct5=love.graphics.newImage('assets-1/player/base/octopode_1.png')
+    oct6=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
     axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
     rod=love.graphics.newImage('assets-1/item/rod/rod_6.png')
@@ -29,11 +30,12 @@ q=700
 c=0
 b=0
 enemy=200
+enemy2=500
 direction= 'down'
 direction2= 'left'
 direction3= 'right2'
 doorStatus= 'closed'
-direction5= 'up2'
+direction6= 'down2'
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -181,19 +183,34 @@ function love.update(dt)
       direction5 = 'diagonal2'
     end
 --
-if direction == 'down2' then
+if direction6 == 'down2' then
   enemy = enemy + 5
 end
-if direction == 'up2' then
+if direction6 == 'up2' then
   enemy = enemy - 5
 end
 
 if enemy==500 then
-  direction = 'up2'
+  direction6 = 'up2'
 end
 if enemy==200 then
-  direction = 'down2'
+  direction6 = 'down2'
 end
+--
+if direction7 == 'down2' then
+  enemy2 = enemy2 + 5
+end
+if direction7 == 'up2' then
+  enemy2 = enemy2 - 5
+end
+
+if enemy2==500 then
+  direction7 = 'up2'
+end
+if enemy2==200 then
+  direction7 = 'down2'
+end
+
 
 --Player Movement
   if love.keyboard.isDown('right')then
@@ -243,7 +260,11 @@ if cc(x, y, w, h,   c, b, 60, 60) then
 
   hp = hp - 1
 end
-if cc(x, y, w, h,   1100, enemy, 60, 60) then
+if cc(x, y, w, h,   1090, enemy, 60, 60) then
+
+  hp = hp - 1
+end
+if cc(x, y, w, h,   1025, enemy, 60, 60) then
 
   hp = hp - 1
 end
@@ -254,6 +275,7 @@ end
 
 if cc(x, y, w, h,   375, 625, 60, 60) == true then
 door=openDoor
+doorStatus='open'
 end
 end
 
@@ -280,7 +302,8 @@ if hp > 0 then
     love.graphics.draw(oct3, q, 385)
     love.graphics.draw(oct4, c, b)
     love.graphics.draw(door, 1280, 320)
-    love.graphics.draw(oct5, 1100, enemy)
+    love.graphics.draw(oct5, 1090, enemy)
+    love.graphics.draw(oct6, 1025, enemy2)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
