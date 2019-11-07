@@ -10,9 +10,9 @@ function love.load()
   floor = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_2a.png')
   wall = love.graphics.newImage('assets-2/dc-dngn/wall/brick_dark3.png')
   door = love.graphics.newImage('assets-2/dc-dngn/dngn_open_door.png')
-  
   doorc = love.graphics.newImage('assets-2/dc-dngn/dngn_closed_door.png')
- 
+  keyTouched = false
+
   x = 65
   y = 70
   w = 60   
@@ -64,40 +64,49 @@ end
 function love.update(dt)
     if love.keyboard.isDown('up') then   
       if map2:cc(x, y - 4, w, h) == false then
+        if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
       
-      y = y - 4
+          y = y - 4
+        end
     end
   end  
   if love.keyboard.isDown('down') then  
     if map2:cc(x, y + 4, w, h) == false then
-    
-    y = y + 4
+      if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+
+         y = y + 4
+      end
   end
 end  
 if love.keyboard.isDown('right') then   
   if map2:cc(x + 4, y, w, h) == false then
-  
-  x = x + 4
+    if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+
+         x = x + 4
+    end
   end
 end  
 if love.keyboard.isDown('left') then  
   if map2:cc(x - 4, y, w, h) == false then
+    if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+
+         x = x - 4
+    end 
+  end
+end
+if keyTouched == false then
+
+end
+
+
+
+
+
   
-  x = x - 4
- end
 
-
- if cc(0, 512, 64, 64,      0, 498, 64, 64) then
-  -- something happens
- end
-
-
-
-end  
-
---if (x > 300) then
-  --love.exitModule();
---end
+ if (x < 28) then
+  love.exitModule();
+end
 function love.draw()
   map:draw()
   map2:draw()
@@ -105,7 +114,9 @@ function love.draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(key, 650, 275)
-  love.graphics.draw(doorc, 0, 512)
+  if keyTouched == false then
+    love.graphics.draw(doorc, 4, 512)
+  end
   love.graphics.setColor(0, 0, 0, 1)
   love.graphics.rectangle('fill', x + 120, y - 150, 1000000000, 1000000000)
   love.graphics.rectangle('fill', x - 90 , y + 120, 1000000000, 1000000000)
