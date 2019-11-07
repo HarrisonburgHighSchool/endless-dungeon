@@ -11,7 +11,7 @@ function love.load()
     ey = 100
     eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
-time = 1000 -- store a big number in time
+time = 170 -- store a big number in time
 
   x = 250
   y = 100
@@ -85,7 +85,11 @@ function love.update(dt)
 
 time = time - 1
 if time < 0 then
-love.exitModule()
+love.load()
+end
+
+if y > 580 then
+  love.exitModule()
 end
 
 
