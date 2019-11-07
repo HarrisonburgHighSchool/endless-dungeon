@@ -14,6 +14,8 @@ function Map:constructor(xSize, ySize, x, y)
     --Render table as map
     if ySize then
       self.gridsize = ySize
+    else
+      self.gridsize = template[1][1]:getWidth()
     end
   end
   if not template then
@@ -44,6 +46,7 @@ function Map:constructor(xSize, ySize, x, y)
       else
         w = img:getWidth()
         h = img:getHeight()
+        --self.gridsize = w
       end
       -- Create the matrix
       self:createTwoD(template, w, h)
@@ -116,14 +119,14 @@ function Map:move(dx, dy)
   self.x = dx
   self.y = dy
   for x = 1, #self.matrix do
-    -- if type(self.matrix[x]) == 'table' then
-    --   for y = 1, #self.matrix[x] do
-      local tileX, tileY = self.matrix[x]:getCoords()
-        self.matrix[x]:move(tileX + dx, tileY + dy)
-    --   end
-    -- else
-    --   self.matrix[x]:scoot(x, y)
-    -- end
+    if type(self.matrix[x]) == 'table' then
+      for y = 1, #self.matrix[x] do
+        local tileX, tileY = self.matrix[x][y]:getCoords()
+        self.matrix[x][y]:move(tileX + dx, tileY + dy)
+      end
+    else
+      self.matrix[x]:scoot(x, y)
+    end
   end
 end
 
