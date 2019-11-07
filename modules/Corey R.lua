@@ -193,23 +193,23 @@ if cc(x, y, w, h, x2, y2, w2, h2) == true then
  collide2 = true
  game_end = true
  col = 2
- enemy = false
+ --enemy = false
 end
 if cc(x, y, w, h, x5, y5, w2, h2) == true then
   enemy = true
  end
  if cc(x, y, w, h, x6, y6, w2, h2) == true then
  -- enemy2 = true
-  enemy = false
+  enemy = true
  end
 if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
   game_end2 = true
  end
 if (collide == true and col == 1) then  
-  hp = hp - 0.8
+  hp = hp - 0.9
 end
 if (collide3 == true and col == 2) then  
-  hp = hp - 0.8
+  hp = hp - 0.9
 end
 if(hp < 0)then
   hp = 0
@@ -229,6 +229,9 @@ if(collide3 == true and collide == true)then
 else
   collide8 = false
 end
+if cc(x, y, w, h, ex, ey, w, h) == true then
+    hp = hp - 0.1
+ end
 end
 
 
