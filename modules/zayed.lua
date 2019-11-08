@@ -109,12 +109,12 @@ if y > ey then
 end
 
 
-if  x == 80 and y == 315  then
+if  x > 80 and x < 100 and y > 300 and y < 320  then
   love.exitModule()
 end
 
 
-if ey == y and ex == x then
+if y > ey - 10 and y < ey + 10 and x > ex - 10 and x < ex + 10 then
   hp = hp - 1
 end
 
@@ -131,7 +131,7 @@ if hp > 0 then
     love.graphics.draw(playerImg, x, y)
     love.graphics.draw(eimg, ex, ey)
 love.graphics.print(hp, x + 10, y - 15)
-love.graphics.rectangle('line', 100, 300, 64, 64)
+love.graphics.rectangle('line', 90, 310, 64, 64)
 love.graphics.rectangle('line', 200, 300, 64, 64)
 love.graphics.rectangle('line', 300, 300, 64, 64)
 end
