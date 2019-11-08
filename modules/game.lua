@@ -150,7 +150,13 @@ end
   if enemyhp < 0 then
     love.exitModule();
   end
+
+  if cc(x, y, 64, 64,   ax, ay, 64, 64) then
+    -- What happens when the fireball hits the player
+  end
 end
+
+
 
 function love.draw()
   map:draw()
