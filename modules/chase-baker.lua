@@ -4,6 +4,8 @@ local gamera = require 'core/gamera'
 love.graphics.setDefaultFilter('nearest', 'nearest')
 attack = true
 bleeding = false
+Mayhem = false
+DamageBoost = false
 timer = love.timer.getTime()
 
 function love.load()
@@ -105,13 +107,7 @@ function love.load()
 end
 
 function love.update(dt)
-if love.keyboard.isDown('e') then
-  hp = love.math.random(1, 1000)
-  ehp1 = love.math.random(1, 1000)
-  ehp2 = love.math.random(1, 1000)
-  ehp3 = love.math.random(1, 1000)
-  if cc(x - 25, y - 25, 86, 86,   hppx, hppy, 36, 36) then -- left off
-end
+
   -- Whether the game had ended or not.
   if hp > 1 then
     attack = true
@@ -179,6 +175,7 @@ if attack == true then
    end
   end
 -- Allows the player to attack enemys in a certain radius.
+ if DamageBoost == false then
   if love.keyboard.isDown('w') then
    if cc(x - 25, y - 25, 86, 86,   enemy.x2, enemy.y2, 36, 36) then
      ehp1 = ehp1 - 10
@@ -194,6 +191,9 @@ if attack == true then
      ehp3 = ehp3 - 10
    end
   end
+ else
+
+end
   -- Enemy Movement Code
 
   if x > enemy.x2 then
@@ -292,6 +292,28 @@ if attack == true then
     hp = hp - 1
     timer = love.timer.getTime()
   end
+  if cc(x, y, w, h,   hppx, hppy, 36, 36) then
+   DamageBoost = true
+   hppx = 10000000
+   hppy = 10000000
+  end
+  if DamageBoost == true then
+    if love.keyboard.isDown('w') then
+     if cc(x - 25, y - 25, 86, 86,   enemy.x2, enemy.y2, 36, 36) then
+       ehp1 = ehp1 - 50
+     end
+    end
+    if love.keyboard.isDown('w') then
+     if cc(x - 25, y - 25, 86, 86,   knight1.x2, knight1.y2, 36, 36) then
+       ehp2 = ehp2 - 50
+     end
+    end
+    if love.keyboard.isDown('w') then
+     if cc(x - 25, y - 25, 86, 86,   knight2.x2, knight2.y2, 36, 36) then
+       ehp3 = ehp3 - 50
+     end
+    end
+   end
 
 -- If the player is in touching distance of the amulet, the game ends.
   if cc(x, y, w, h,   g, b, 36, 36) then
@@ -331,8 +353,8 @@ function love.draw()
   end
   if ehp1 < 1 then
     ehp1 = 0
-    enemy.x2 = 10000000
-    enemy.y2 = 10000000
+    enemy.x2 = 100000000
+    enemy.y2 = 100000000
   end
   if ehp2 < 1 then
     ehp2 = 0
@@ -351,6 +373,20 @@ function love.draw()
   love.graphics.print(ehp3, knight2.x2, knight2.y2 + -18)
   love.graphics.print('Press the W key to attack!', 70, 70)
   love.graphics.print('Press the E key to activate Mayhem Mode!', 70, 100)
-  love.graphics.draw(hppotion, hppx, hppy)
+  love.graphics.print('The green potion can stop bleeding from traps!', 350, 70)
+  love.graphics.print('The red potion will give you a (unknown)!', 350, 100)
+  if Mayhem == true then
+    love.graphics.draw(hppotion, hppx, hppy)
+  end
  end)
 end
+
+function love.keyreleased(key)
+  if key == 'e' then
+    Mayhem = true
+    hp = love.math.random(1, 1000)
+    ehp1 = love.math.random(1, 1000)
+    ehp2 = love.math.random(1, 1000)
+    ehp3 = love.math.random(1, 1000)
+  end
+ end
