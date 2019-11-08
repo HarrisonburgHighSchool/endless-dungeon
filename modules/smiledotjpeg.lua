@@ -84,7 +84,7 @@ function love.load()
 
             map2 = Map:new(template2)
   
-template3 = {
+templatex = {
             {transp, transp, transp, transp, 'nil', transp, transp, transp},
             {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
             {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
@@ -93,12 +93,29 @@ template3 = {
             {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
             {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
             {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
-            {transp, 'nil', 'nil', 'nil','nil', colbalt, 'nil','nil', transp},
+            {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
             {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
             {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
             {transp, transp, transp, transp, transp, transp, transp, transp},
 
             }
+            mapx = Map:new(templatex)
+template3 = {
+              {transp, transp, transp, transp, 'nil', transp, transp, transp},
+              {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil','nil', 'nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil', 'nil', colbalt, 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, 'nil', 'nil', 'nil','nil', 'nil', 'nil','nil', transp},
+              {transp, transp, transp, transp, transp, transp, transp, transp},
+  
+              }
+ 
 
             map3 = Map:new(template3)
 template4 = {
@@ -167,67 +184,67 @@ function love.update(dt)
 
 
   
-    if map3:cc(x + 3, y, w, h) == false then
-      if love.keyboard.isDown('right') then  
-        x = x + 3
-     
+  if count > 24 == true then
+    if map4:cc(x + 4, y, w, h) == false and map5:cc(x + 4, y, w, h) == false then
+      if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
+        x = x + 4
+         
+        else   
+          if love.keyboard.isDown('right') or love.keyboard.isDown('d') then  
+            x = x + 4
+            end
+          end
+        end 
+      end
    
+      
+   
+
+  if count > 24 then
+    if map4:cc(x - 4, y, w, h) == false then
+      if map5:cc(x - 4, y, w, h) == false then
+        if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
+        x = x - 4
+        else
+          if love.keyboard.isDown('left') or love.keyboard.isDown('a') then  
+            x = x - 4
+
+       
+        end
       end
     end
+  end 
+end 
   
-   
+  if count > 24 then
+    if map4:cc(x, y - 4, w, h) == false then
+      if map5:cc(x, y - 4, w, h) == false then
+       if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
+        y = y - 4
+       else
+        if love.keyboard.isDown('up') or love.keyboard.isDown('w') then  
+          y = y - 4
+        end 
+       end 
+      end
+    end
+  end 
   
-    
+   if count > 24 then 
+    if map4:cc(x, y + 4, w, h) == false then
+      if map5:cc(x, y + 4, w, h) == false then
+        if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
+        y = y + 4
+        else
+          if love.keyboard.isDown('down') or love.keyboard.isDown('s') then  
+            y = y + 4
+          end 
+        end 
+      end
+    end
+  end 
   
-
-  if map3:cc(x - 3, y, w, h) == false then
-    if love.keyboard.isDown('left') then  
-      x = x - 3
-  
-    end
-  end
-  
-  if map3:cc(x, y + 3, w, h) == false then
-    if love.keyboard.isDown('down') then 
-      y = y + 3
-
-    end
-  end
-
-   
-  if map3:cc(x, y - 3, w, h) == false then
-    if love.keyboard.isDown('up') then
-      y = y - 3
-    end
-  end
-  if cc(x, y, w, h, ex, ey, ew, eh) == false then
-    if x > ex then
-      ex = ex + 1
-    
-    end
-  end
-
-if(summon == 1) then
-  if cc(x, y, w, h, ex, ey, ew, eh) == false then
-    if x < ex then
-      ex = ex - 1
-    end
-  end
-end
-if(summon == 1) then
-  if cc(x, y, w, h, ex, ey, ew, eh) == false then
-    if y > ey then
-      ey = ey + 1
-    end
-  end
-end
-if(summon == 1) then
-  if cc(x, y, w, h, ex, ey, ew, eh) == false then
-    if y < ey then
-      ey = ey - 1
-    end
-  end
-end
+ 
 if(summon == 1) then
   if cc(x, y, w, h, ex, ey, ew, eh) == true then
     HP = HP - 10
@@ -251,7 +268,7 @@ end
     g = 0
   end
 
-  if love.keyboard.isDown('a') then
+  if love.keyboard.isDown('x') then
     attack = true
   else
     attack = false
@@ -273,17 +290,41 @@ if(count > 6) then
   summon = 1
   
 end 
-if(count > 20) then
+if(count > 25) then
 v = false
 end
+
+
+c = dist(ex, ey, x, y)
+ a = y - ey
+ b = x - ex
+ speed = 2
+ cRatio = speed/c
+ dy = a * cRatio
+ dx = b * cRatio
+ ex = ex + dx
+ ey = ey + dy
+ cam:setPosition(x, y)
+
+
+
+
+
+
+
   cam:setPosition(x,y)
 end
 
+function dist ( x1, y1, x2, y2 )
+  local dx = x1 - x2
+  local dy = y1 - y2
+  return math.sqrt ( dx * dx + dy * dy )
+end
 
 
 
 
---press a to attack
+--press x to attack
 
 
 function love.draw()
@@ -303,13 +344,13 @@ function love.draw()
   else
   love.graphics.draw(playerImg, x, y)
   end
- 
-  love.graphics.print(x, 400, 20)
-  love.graphics.print(g, 50, 50)
-  love.graphics.print(y, 400 ,30)
+    love.graphics.print('Press x to attack', 100, 10)
+  --love.graphics.print(x, 400, 20)
+  --love.graphics.print(g, 50, 50)
+  --love.graphics.print(y, 400 ,30)
   love.graphics.print(HP, 100, 100)
-  love.graphics.print(bosshealth, 400, 50)
-  love.graphics.print(tostring(v), 0, 0)
+  --love.graphics.print(bosshealth, 400, 50)
+  --love.graphics.print(tostring(v), 0, 0)
   if(summon == 1) then
   love.graphics.draw(e, ex, ey)
   end
@@ -329,6 +370,7 @@ function love.draw()
   end
   love.graphics.draw(playerImg, x, y)
   love.graphics.print(count, 400, 60)
+   
   
 end)
 end
