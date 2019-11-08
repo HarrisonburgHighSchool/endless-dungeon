@@ -20,6 +20,7 @@ ey = 375
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
     --axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
     rod=love.graphics.newImage('assets-1/item/rod/rod_6.png')
+    heal=love.graphics.newImage('assets-1/item/amulet/artefact/urand_vitality.png')
   w=60
   h=60
   hp=100
@@ -236,7 +237,6 @@ if enemy2==150 then
   direction7 = 'down2'
 end
 
-
 --Player Movement
   if love.keyboard.isDown('right')then
     if floor2:cc(x + 4, y, 60, 60)==false then
@@ -306,6 +306,11 @@ if cc(x, y, w, h,   375, 625, 60, 60) == true then
 door=openDoor
 doorStatus='open'
 end
+if cc(x, y, w, h,   115, 115, 60, 60) == true then
+  if hp < 100 then
+hp = hp + 25
+end
+end
 end
 
 function love.draw()
@@ -324,6 +329,9 @@ if hp > 0 then
     love.graphics.draw(rod, 375, 625)
     --love.graphics.draw(axe, 115, 115)
     love.graphics.draw(gold, 1800, 375)
+    if hp < 100 then
+    love.graphics.draw(heal, 115, 115)
+  end
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
