@@ -6,6 +6,7 @@ love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   love.window.setMode(768, 576)
 
+health = "Health: "
 message = ""
 timer = 200
 
@@ -26,8 +27,8 @@ player = {
 enemy = {
   x = 375,
   y = 100,
-  w = 64,
-  h = 64,
+  w = 48,
+  h = 48,
   hp = 100,
   img = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_2_large.png'),
 }
@@ -140,13 +141,13 @@ if buttonPressed == true then
   end
 end
 
-                                       -- First Set  (2 & 3)                                             Second Set  (5)                                              Third Set  (6)                                          Fourth Set  (9 & 10)
-if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   330, 0, 45, 55) == true or cc(player.x, player.y, 27, 32,   458, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   581, 0, 128, 55) == true then
+                                  -- First Set  (Tile 2 & 3)                                        Second Set  (Tile 5)                                         Third Set  (Tile 6)                                        Fourth Set  (Tile 9)
+if cc(player.x, player.y, 27, 32,   135, 0, 118, 55) == true or cc(player.x, player.y, 27, 32,   330, 0, 45, 55) == true or cc(player.x, player.y, 27, 32,   458, 0, 50, 55) == true or cc(player.x, player.y, 27, 32,   581, 0, 50, 55) == true then
   player.x = 373      -- Teleports you back to spawn
   player.y = 468
 end
 
-if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   256, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   384, 0, 60, 55) == true then
+if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   256, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   384, 0, 60, 55) == true or cc(player.x, player.y, 27, 32,   645, 0, 60, 55)then
   player.x = 373      -- Teleports you back to spawn
   player.y = 468
   message = "Ouch... That hurt, I probably shouldn't go through there again."   -- Prints warning
@@ -162,6 +163,30 @@ if cc(player.x, player.y, 27, 32,   64, 0, 60, 55) == true or cc(player.x, playe
 
   if cc(player.x, player.y, 27, 32,   512, 0, 60, 55) == true or love.keyboard.isDown('escape') or player.hp <= 0 then
     love.exitModule()     -- Ends the game
+  end
+
+
+
+  --Combat Stuff
+  if cc(player.x, player.y, 27, 32,    enemy.x, enemy.y, 24, 32) then -- up
+    if enemy.y > player.y and collision:cc(player.x, player.y - 30, 24, 32) == false then
+      player.y = player.y - 30
+    end
+  end
+  if cc(player.x, player.y, 27, 32,    enemy.x, enemy.y, 24, 32) then -- left
+    if enemy.x > player.x and collision:cc(player.x - 30, player.y, 24, 32) == false then
+      player.x = player.x - 30
+    end
+  end
+  if cc(player.x, player.y, 27, 32,    enemy.x, enemy.y, 24, 32) then -- down
+    if enemy.y < player.y and collision:cc(player.x, player.y + 30, 24, 32) == false then
+      player.y = player.y + 30
+    end
+  end
+  if cc(player.x, player.y, 27, 32,    enemy.x, enemy.y, 24, 32) then -- right
+    if enemy.x < player.x and collision:cc(player.x + 30, player.y, 24, 32) == false then
+      player.x = player.x + 30
+    end
   end
 end
 
@@ -179,10 +204,10 @@ function love.draw()
     love.graphics.draw(player.img, player.x + 15, player.y, 0, 2, 2, 9)
   end
   love.graphics.print(message,  player.x - 180, player.y - 20)    -- Prints warning
-  love.graphics.print(player.hp, 0, 0)      -- Prints player's health
-
+  love.graphics.print(player.hp, 680, 495)      -- Prints player's health
+  love.graphics.print("HP: ", 655, 495)
 
   love.graphics.draw(enemy.img, enemy.x - 12, enemy.y- 48/4)
 
-
+  
 end
