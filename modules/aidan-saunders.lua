@@ -1,6 +1,7 @@
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
+local anim8 = require 'core/anim8'
 
 function love.load()
   cam = gamera.new(0, 0, 2000, 800)
@@ -36,6 +37,7 @@ direction2= 'left'
 direction3= 'right2'
 doorStatus= 'closed'
 direction6= 'down2'
+direction7= 'up2'
 floor = {
                {floorTile, floorTile, floorTile, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, path, path, floorTile, path, path, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
@@ -97,17 +99,17 @@ floor2 = {
                {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
                {wall, wall, wall, wall, wall, 'nil', wall, wall, wall, wall, wall, wall, wall},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile,floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
-               {floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile,floorTile, 'nil', 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
+               --{floorTile, floorTile, floorTile, floorTile, 'nil', 'nil', floorTile, floorTile, floorTile, floorTile, floorTile, floorTile},
              }
 
   floor2 = Map:new(floor2)
@@ -190,10 +192,10 @@ if direction6 == 'up2' then
   enemy = enemy - 5
 end
 
-if enemy==500 then
+if enemy==550 then
   direction6 = 'up2'
 end
-if enemy==200 then
+if enemy==150 then
   direction6 = 'down2'
 end
 --
@@ -204,10 +206,10 @@ if direction7 == 'up2' then
   enemy2 = enemy2 - 5
 end
 
-if enemy2==500 then
+if enemy2==550 then
   direction7 = 'up2'
 end
-if enemy2==200 then
+if enemy2==150 then
   direction7 = 'down2'
 end
 
@@ -268,7 +270,7 @@ if cc(x, y, w, h,   1025, enemy, 60, 60) then
 
   hp = hp - 1
 end
-if cc(x, y, w, h,   1650, 375, 60, 60) then
+if cc(x, y, w, h,   1800, 375, 60, 60) then
 
   love.exitModule()
 end
@@ -278,8 +280,6 @@ door=openDoor
 doorStatus='open'
 end
 end
-
-
 
 function love.draw()
   cam:draw(function(l, t, w, h)
@@ -296,7 +296,7 @@ end
 if hp > 0 then
     love.graphics.draw(rod, 375, 625)
     love.graphics.draw(axe, 115, 115)
-    love.graphics.draw(gold, 1650, 375)
+    love.graphics.draw(gold, 1800, 375)
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
     love.graphics.draw(oct3, q, 385)
