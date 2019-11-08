@@ -64,7 +64,7 @@ end
 function love.update(dt)
     if love.keyboard.isDown('up') then   
       if map2:cc(x, y - 4, w, h) == false then
-        if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+        if cc(0, 516, 64, 64,      x, y - 4, 60, 60) == false then
       
           y = y - 4
         end
@@ -72,7 +72,7 @@ function love.update(dt)
   end  
   if love.keyboard.isDown('down') then  
     if map2:cc(x, y + 4, w, h) == false then
-      if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+      if cc(0, 516, 64, 64,      x, y + 4, 60, 60) == false then
 
          y = y + 4
       end
@@ -80,7 +80,7 @@ function love.update(dt)
 end  
 if love.keyboard.isDown('right') then   
   if map2:cc(x + 4, y, w, h) == false then
-    if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+    if cc(0, 516, 64, 64,      x + 4, y, 60, 60) == false then
 
          x = x + 4
     end
@@ -88,7 +88,7 @@ if love.keyboard.isDown('right') then
 end  
 if love.keyboard.isDown('left') then  
   if map2:cc(x - 4, y, w, h) == false then
-    if cc(0, 516, 64, 64,      x, y, 60, 60) == false then
+    if cc(0, 516, 64, 64,      x - 4, y, 60, 60) == false or keyTouched == true then
 
          x = x - 4
     end 
@@ -96,6 +96,11 @@ if love.keyboard.isDown('left') then
 end
 if keyTouched == false then
 
+end
+
+if cc(650, 275, 64, 64,      x, y, 60, 60) == true then
+
+  
 end
 
 
@@ -114,9 +119,7 @@ function love.draw()
   love.graphics.draw(fountain2, 675, 500)
   love.graphics.draw(torch, 208, 75)
   love.graphics.draw(key, 650, 275)
-  if keyTouched == false then
-    love.graphics.draw(doorc, 4, 512)
-  end
+  love.graphics.draw(doorc, 3, 512)
   love.graphics.setColor(0, 0, 0, 1)
   love.graphics.rectangle('fill', x + 120, y - 150, 1000000000, 1000000000)
   love.graphics.rectangle('fill', x - 90 , y + 120, 1000000000, 1000000000)
