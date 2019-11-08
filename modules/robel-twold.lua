@@ -2,17 +2,19 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local anim8 = require 'core/anim8'
+
+love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   -- Create the object
   player = {
-    e = 150,
-    f = 300,
-    img = love.graphics.newImage('animation spritesheet'),
+    x = 400,
+    y = 300,
+    img = love.graphics.newImage('hero/eeee.png'),
   }
 
   -- Create the animation
   grid = anim8.newGrid(16, 16, player.img:getWidth(), player.img:getHeight())
-  player.walk = anim8.newAnimation(grid('1-6', 2), 0.1)
+  player.walk = anim8.newAnimation(grid('1-6', 4), 2)
   x = 400
   y = 300
   a = 400
@@ -87,7 +89,7 @@ function love.load()
 end
 
 function love.update(dt)
-  player.e = player.e + 1
+  player.x = player.x + 1
   player.walk:update(dt)
   if cc(x, y, 50, 50, 90, 90, 64,64) then
     love.exitModule()
@@ -192,7 +194,7 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 64)
     love.graphics.print(hp, 0, 0)
     love.graphics.draw(Item, 64, 64)
-    walk:draw(spritesheet, 400, 300)
+    player.walk:draw(player.img, player.x, player.y, 0, 2)
   end)
 end
 
