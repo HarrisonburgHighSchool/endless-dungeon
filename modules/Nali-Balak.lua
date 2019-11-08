@@ -60,10 +60,12 @@ function love.update(dt)
   if love.keyboard.isDown('up')then -- if the 'up' key is being pressed
   y = y - 5
   end
-  if cc(x, y, 64, 64,   90, 80, 64, 64) == true then
-  --if true then game ends
+  if love.keyboard.isDown('escape')then -- if the 'up' key is being pressed
+    love.exitModule() 
+  end
+  if cc(x, y, 64, 64,   70, 60, 55, 55) == true then
+  love.exitModule() -- end the level when the two rectangles collide
  end
-
 end
 
 
