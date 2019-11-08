@@ -25,8 +25,8 @@ collision3 = true
   cy = 400
   cimg = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
 
-  c2x = 100
-  c2x = 400
+  c2x = 200
+  c2x = 700
   c2img = love.graphics.newImage('assets-1/item/gold/gold_pile_1.png')
 
   
@@ -39,6 +39,8 @@ collision3 = true
   hp = 100 -- Set the player's HP to 100 at the start of the game
 
 alive = true
+coin = true
+coin2 = true
 
 endGame = false
 
@@ -118,15 +120,15 @@ function love.update(dt)
   
   
   
-  if cc(x, y, 64, 64,   170, 170, 64, 64) == true then
+  if cc(x, y, 64, 64,   80, 207, 64, 64) == true then
     Door = openDoor
   end
  
-  if cc(x, y, 64, 64,   170, 170, 64, 64) == true then
+  if cc(x, y, 64, 64,   0, 207, 64, 64) == true then
   love.exitModule{};
   end
 
-
+ 
 
 
 
@@ -155,9 +157,19 @@ function love.draw()
 
   love.graphics.draw(Door, 0, 256)
 
-
+ if coin == true then
+  love.graphics.draw(cimg, 400, 500)
+end
+if cc(x, y , 64, 64,  400, 500, 64, 64) then
+  coin = false
+end
   
-  
+if coin2 == true then
+  love.graphics.draw(cimg, 700, 600)
+end
+if cc(x, y , 64, 64,  700, 600, 64, 64) then
+  coin2 = false
+end 
 
   
   
