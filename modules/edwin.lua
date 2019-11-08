@@ -9,7 +9,7 @@ function love.load()
 cam = gamera.new(0, 0, 2000, 2000)
 playerImg = love.graphics.newImage('assets-1/player/body/PixelArt copy.png')
 
-ex = 300
+ex = 600
 ey = 300
 eimg = love.graphics.newImage('assets-1/monster/eyes/eye_of_devastation.png')
 
@@ -88,22 +88,22 @@ end
 
     if x > ex then
        if collision:cc(ex + 5, ey, 64, 64) == false then
-          ex = ex + 5
+          ex = ex + 5.9
        end
      end
     if x < ex then
        if collision:cc(ex - 5 , ey, 64, 64) == false then
-         ex = ex - 5
+         ex = ex - 5.9
        end
      end
     if y < ey then
         if collision:cc(ey - 5 , ex, 64, 64) == false then
-          ey = ey - 5
+          ey = ey - 5.9
         end
       end
       if y > ey then
         if collision:cc(ey + 5 , ex, 64, 64) == false then
-          ey = ey + 5
+          ey = ey + 5.9
 
         end
       end
