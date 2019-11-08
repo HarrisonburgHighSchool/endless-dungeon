@@ -35,7 +35,13 @@ function love.load()
   f = 64
   g = 64
 
-BossImg = love.graphics.newImage('assets-1/monster/Boss copy.png')
+  Food = love.graphics.newImage('assets-1/item/food/apricot.png')
+foodx = 750
+foody = 550
+
+
+
+BossImg = love.graphics.newImage('assets-1/monster/Boss.png')
 bx = 700
 by = 160
   portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
@@ -132,9 +138,14 @@ if collide:cc(fbx, fby, 64, 105) == false then
     bx = fbx
     by = fby
 end
-
-
-
+if hp < 300 then
+if cc(x, y, w, h, foodx, foody, 64, 64) then
+  hp = hp + 1
+end
+end
+if hp == 300 then
+  foodx = 40000
+end
 
 if dir3 == 'left' then
   ry = ry + 1
@@ -226,6 +237,9 @@ end
 
 if hp == 0 then
   x = -300
+  if love.keyboard.isDown('escape') then
+    love.load()
+  end
 
 end
 
@@ -274,5 +288,6 @@ function love.draw()
   love.graphics.draw(portal, 450, 160)
   love.graphics.draw(switch, 450, 600)
   love.graphics.draw(BossImg, bx, by)
+  love.graphics.draw(Food, foodx, foody)
  end)
 end
