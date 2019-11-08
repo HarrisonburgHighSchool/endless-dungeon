@@ -33,9 +33,19 @@ function love.load()
 
 
   walls = {
-    {wall, wall, wall,},
-    {wall, 'nil', 'nil',},
-    {wall, wall, wall,},
+    {wall, wall, wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,'nill','nill','nill',wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,'nill','nill',wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,'nill','nill','nill',wall,'nil','nil','nil',wall,wall,wall,wall,},
+    {wall,'nill','nill','nill',wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,floorTile,},
+    {wall,'nill','nill',wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
+    {wall,wall,},
+    {wall,wall,},
+    {wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,},
   }
 
   collision = Map:new(walls, 64)
@@ -67,7 +77,7 @@ end
 function love.draw()
   map:draw()
   collision:draw()
-  love.graphics.print('play here !', 0, 0)
+  love.graphics.print('try me !', 0, 0)
   love.graphics.draw(playerImg, x, y)
   --love.exitModule();
 end
