@@ -96,10 +96,7 @@ function love.load()
   map = Map:new(background)
   mapc = Map:new(layer1)
   doorr = Map:new(door)
-
-  
 end
-
 
 function love.update(dt)
     --walk:update(dt)
