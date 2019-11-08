@@ -4,14 +4,15 @@ local Entity = require 'core/entity'
 local Util = require 'core/util'
 local gamera = require 'core/gamera'
 function love.load()
-
-
+  f = love.graphics.newFont(200)
+  love.graphics.setFont(f)
+  arrow = love.graphics.newImage('assets-1/dungeon/traps/down-arrow.png')
 
   ex = 100
     ey = 100
     eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
 
-time = 170 -- store a big number in time
+time = 159 -- store a big number in time
 
   x = 250
   y = 100
@@ -21,7 +22,7 @@ cam = gamera.new(10, 10, 2000, 2000)
   tile3 = love.graphics.newImage('assets-1/dungeon/wall/bars_red_1.png')
   playerImg = love.graphics.newImage('assets-1/player/base/naga_red_female.png')
 
-wall = love.graphics.newImage('assets-1/dungeon/wall/bars_red_2.png')
+wall = love.graphics.newImage('assets-1/dungeon/wall/transparent_stone.png')
   map = {
     {tile, tile, tile, tile2, tile2, tile2, tile, tile, tile, tile},
     {tile, tile, tile ,tile2, tile2, tile2, tile, tile, tile, tile},
@@ -110,20 +111,16 @@ love.exitModule()
   end
 end
 
-function love.draw()
-  cam:draw(function(l, t, w, h)
-
-  --Draw everything here. For example:
-  love.graphics.draw(playerImg, x, y)
-
-  end)
-end
-
 
 function love.draw()
   bkgrnd:draw()
   collision:draw()
-  love.graphics.print(time, 0, 0)
+  love.graphics.setColor(0, 0, 0.8,0.9)
+  love.graphics.print(math.floor(time/159 * 10) + 1, 0, 0)
+  love.graphics.setColor(1, 1, 1, 1)
   love.graphics.draw(playerImg, x, y)
     love.graphics.draw(eimg, ex, ey)
+    love.graphics.draw(arrow, 265, 325, 0, 0.2)
+    love.graphics.draw(arrow, 520, 200, 0, 0.2)
+    love.graphics.draw(arrow, 520, 455, 0, 0.2)
 end
