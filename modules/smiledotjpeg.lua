@@ -43,13 +43,14 @@ function love.load()
   shoot = 0
   fire = 0
   boom = 0
+  dead = love.graphics.newImage('assets-1/gui/commands/death.png')
   targ = love.graphics.newImage('assets-2/dc-mon/animals/target.png')
   e = love.graphics.newImage('assets-1/monster/demons/blue_devil.png')
   boss = love.graphics.newImage('assets-1/monster/demons/eye1.png')
   boss2 = love.graphics.newImage('assets-1/monster/demons/eye2.png')
   transp = love.graphics.newImage('assets-1/dungeon/floor/tans.png')
   playerImg = love.graphics.newImage('assets-1/monster/aquatic/Sonic.png')
-  --playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
+  playerImg2 = love.graphics.newImage('assets-1/monster/aquatic/sonic2.png')
   cobble = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_1.png')
   cobble1 = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_12.png')
   colbalt = love.graphics.newImage('assets-1/dungeon/floor/black_cobalt_12.png')
@@ -318,9 +319,15 @@ if count < 14 and step == false then
     end
   end
  
+  if love.keyboard.isDown('escape') and HP < 1 then
+    love.exitModule();
+  end
+  if love.keyboard.isDown('r') and HP < 1 then
+    love.load()
+  end
 if(summon == 1) then
   if cc(x, y, w, h, rx, ry, rw, rh) == true then
-    HP = HP - 0.1
+    HP = HP - 5
     --rx = 10000000
     
     if HP < 1 then
@@ -429,7 +436,14 @@ if y < ry then
   ry = ry - 1
 end
 
-
+if HP < 1 then
+  x = 0
+  y = 0
+end
+if count > 1 and count < 23 then
+  x = 64
+  y = 254
+end
 
 
   cam:setPosition(x,y)
@@ -458,12 +472,7 @@ function love.draw()
  
 
   
-  if(collide1 == true) then
-    love.graphics.draw(playerImg2, x, y)
-    
-  else
-  love.graphics.draw(playerImg, x, y)
-  end
+  
     love.graphics.print('Press x to attack', 100, 10)
   love.graphics.print(x, 400, 20)
   --love.graphics.print(g, 50, 50)
@@ -495,20 +504,24 @@ function love.draw()
     if fire == 1 then
       love.graphics.draw(rocket1, rx, ry)
     end
-if fire == 1 then
-  mapy:draw()
- 
-if fire == 2 then
-  map6:draw()
- 
-  
-end
-end 
-love.graphics.draw(playerImg, x, y)
+    
+    
+    if fire == 1 then
+      love.graphics.draw(playerImg2, x, y)
+    end
+     
+    if fire == 2 or fire == 0 then
+      love.graphics.draw(playerImg, x, y)
+     
+      
+    end
+   
   love.graphics.print(count, 400, 60)
   love.graphics.print(bosshealth, 400, 50)
   love.graphics.print('bosshealth', 330, 50)
-  
+  if HP < 1 then
+    love.graphics.draw(dead, 0, -100)
+  end
   
 end)
 end
