@@ -19,7 +19,19 @@ function love.load()
   h = 32
   hp = 100
   cobalt = love.graphics.newImage('assets-1/dungeon/floor/mesh_3.png')
+
   coin = love.graphics.newImage('Daniel V. Personal Assets/Images/coin.png')
+  coinx = 770
+  coiny = 65
+  --coinx2 = 66
+  --coiny2 = 512
+  --coinx3 = 1218
+  --coiny3 = 512
+  --coinx4 = 67
+  --coiny4 = 65
+  --coinx5 = 1218
+  --coiny5 = 64
+
   gotcoin = false
   foundcoin = false
   prtl = love.graphics.newImage('assets-1/dungeon/gateways/zig_used.png')
@@ -115,15 +127,19 @@ if timestart == false then
     if love.keyboard.isDown('s') or love.keyboard.isDown('down') then 
       y2 = y2 + 4
     end
-  end
+ end
 end
 
-if cc(x2, y2, 64, 64, 769, 65, 64, 64) == true then
+
+--Coin
+if cc(x2, y2, 64, 64, coinx, coiny, 64, 64) == true then
  foundcoin = true
 end
-if cc(x2, y2, 64, 64, 769, 65, 64, 64) == false then
+if cc(x2, y2, 64, 64, coinx, coiny, 64, 64) == false then
   foundcoin = false
  end
+
+ -- Gate
 if gotcoin == true then
  if cc(x2, y2, 64, 64, 1310, 255, 65, 64, 64) == true then
   time = time - 1
@@ -167,7 +183,7 @@ function love.draw()
   love.graphics.draw(playerImg, x2, y2)
   if foundcoin == true then
     if gotcoin == false then
-   love.graphics.draw(coin, 769, 65, 0, 2)
+   love.graphics.draw(coin, coinx, coiny, 0, 2)
   end
 end
 if gotcoin == true then
@@ -189,11 +205,13 @@ end
 if timestart4 == true then
   time4 = time4 - 1
   if time4 > 0 then
-    love.graphics.print('Alright, I guess this has to work, lets see.', 700, 142)
+    love.graphics.print('Alright, I guess this has to work, lets see.', coinx, coiny - 10)
   end
 end
+if gotcoin == true then
 if cc(x2, y2, 64, 64, 1310, 255, 65, 64, 64) == true then
-  love.graphics.print('THIS FEELS WEIRD!!!!!!!!!!!', 975, 142)
+  love.graphics.print('THIS FEELS WEIRD!!!!!!!!!!!', 975, 180)
+ end
 end
 if timestart5 == true then
   time5 = time5 - 1
@@ -207,10 +225,11 @@ end
   --end)
 --love.graphics.rectangle('line', 64, 64, 1295, 255, 65, 64, 64)
    
-love.graphics.rectangle('line', x2, y2, 32, 32)
+--love.graphics.rectangle('line', x2, y2, 32, 32)
 end)
-love.graphics.print(tostring(timestart3), 0, 10)
-love.graphics.print(x2..", "..y2, 0, 0)
+--love.graphics.print(tostring(), 0, 10)
+--love.graphics.print(love.math.random(coinx, coinx5)..", "..love.math.random(coiny, coiny5), 0, 0)
+love.graphics.print(x2..", "..y2, 0, 20)
 end
 
 function love.keypressed(key)
