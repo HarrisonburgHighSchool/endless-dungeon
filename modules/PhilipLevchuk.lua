@@ -41,7 +41,7 @@ foody = 550
 
 
 
-BossImg = love.graphics.newImage('assets-1/monster/Boss copy.png')
+BossImg = love.graphics.newImage('assets-1/monster/Boss.png')
 bx = 700
 by = 160
   portal = love.graphics.newImage('assets-1/effect/cloud_neg_2.png')
