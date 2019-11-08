@@ -14,6 +14,8 @@ function love.load()
 
   anim = idle
 
+  locat = 0
+
   enemy_draw = false
   butterfly_alive = true
 
@@ -29,10 +31,56 @@ function love.load()
 
   enemies = {}
   
-  for i = 1, 3 do
-  enemies[i] = newEnemy(100 * 2*i, 5)
-  end
+  --for i = 1, 12 do
+  enemies[1] = newEnemy(100, 5)
+  --end
+  enemies[2] = newEnemy(200, 5)
+  enemies[3] = newEnemy(300, 5)
 
+  enemies[4] = newEnemy(400, 5)
+  enemies[5] = newEnemy(500, 5)
+  enemies[6] = newEnemy(600, 5)
+  enemies[7] = newEnemy(700, 5)
+
+  enemies[8] = newEnemy(800, 5)
+  enemies[9] = newEnemy(900, 5)
+  enemies[10] = newEnemy(1000, 5)
+  enemies[11] = newEnemy(1100, 5)
+  enemies[12] = newEnemy(1200, 5)
+
+  enemies[13] = newEnemy(-1200, 5)
+  enemies[14] = newEnemy(-1100, 5)
+  enemies[15] = newEnemy(-1000, 5)
+  enemies[16] = newEnemy(-900, 5)
+  enemies[17] = newEnemy(-800, 5)
+  enemies[18] = newEnemy(-700, 5)
+  enemies[19] = newEnemy(-600, 5)
+
+  enemies[20] = newEnemy(100, 800)
+  --end
+  enemies[21] = newEnemy(200, 800)
+  enemies[22] = newEnemy(400, 800)
+  enemies[23] = newEnemy(300, 800)
+
+  
+  enemies[24] = newEnemy(600, 800)
+  enemies[25] = newEnemy(700, 800)
+
+  enemies[26] = newEnemy(800, 800)
+  enemies[27] = newEnemy(900, 800)
+  enemies[28] = newEnemy(1000, 800)
+  enemies[29] = newEnemy(1100, 800)
+  enemies[30] = newEnemy(1200, 800)
+
+  enemies[31] = newEnemy(-1200, 800)
+  enemies[32] = newEnemy(400, 5)
+  enemies[33] = newEnemy(100, 5)
+  enemies[34] = newEnemy(-900, 800)
+  enemies[36] = newEnemy(100, 5)
+  enemies[37] = newEnemy(-700, 800)
+  enemies[38] = newEnemy(-600, 800)
+
+  
   x = 400
   y = 300
 
@@ -44,7 +92,7 @@ function love.load()
 
   w = 45   -- The player's width is 64
   h = 45   -- The player's height is 64
-  hp = 5 -- Set the player's HP to 100 at the start of the game
+  hp = 1 -- Set the player's HP to 100 at the start of the game
 
   
 
@@ -57,7 +105,8 @@ function love.load()
   cam = gamera.new(-80, -80, 2000, 2000) -- Create a camera that can move in a rectangle from 0, 0 to 2000, 2000
 
   
-  
+  totalEnemies = 3
+
     floorTile2 = love.graphics.newImage('assets-1/dungeon/floor/grey_dirt_4.png')
   left_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
   right_edge_tile2 = love.graphics.newImage('assets-1/dungeon/floor/crypt_domino_8a.png')
@@ -139,8 +188,36 @@ end
 
 function love.update(dt)
 
-
-
+local count = 0
+for i = 1, totalEnemies do
+  if enemies[i].hp == 0 then
+    count = count + 1
+  end
+end
+if count == 3 then 
+  totalEnemies = 7
+else if count == 7 then
+  totalEnemies = 12
+else if count == 12 then
+  totalEnemies = 19
+else if count == 19 then
+  totalEnemies = 23
+else if count == 23 then
+  totalEnemies = 28
+else if count == 28 then
+  totalEnemies = 34
+else if count == 34 then
+  totalEnemies = 38
+else if count == 38 then
+  love.exitModule();
+end
+end
+end
+end
+end 
+end
+end
+end
   
   anim:update(dt)
   anim = idle
@@ -164,7 +241,7 @@ function love.update(dt)
     butterfly_y = butterfly_y -2
   end 
 
-  if love.keyboard.isDown('up' or 'w') then   -- if the 'up' key is being pressed...
+  if love.keyboard.isDown('up') or love.keyboard.isDown('w') then   -- if the 'up' key is being pressed...
     if flip == 2.5 then
       flip = 2.5
     else 
@@ -181,7 +258,7 @@ function love.update(dt)
       
     end
   
-    for i = 1, 3 do
+    for i = 1, totalEnemies do
       
     if cc(x, y - 5, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and  enemy_draw == true and enemies[i].hp == 10 then
       y = y + 30
@@ -192,7 +269,7 @@ function love.update(dt)
 end
   
   
- if love.keyboard.isDown('down' or 's') then   -- if the 'up' key is being pressed...
+ if love.keyboard.isDown('down') or love.keyboard.isDown('s') then   -- if the 'up' key is being pressed...
   if flip == 2.5 then
     flip = 2.5
   else 
@@ -209,7 +286,7 @@ end
     
   end
 
-  for i = 1, 3 do
+  for i = 1, totalEnemies do
   if cc(x, y - 5, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and  enemy_draw == true and enemies[i].hp == 10 then
     y = y - 30
     hp = hp - 1
@@ -229,7 +306,7 @@ end
     elseif butterfly_alive == false then
       x = x - 4
    end
-  for i = 1, 3 do
+  for i = 1, totalEnemies do
     if cc(x - 5, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true and enemies[i].hp == 10 then
       x = x + 30
       hp = hp - 1
@@ -237,7 +314,7 @@ end
   end
  end
   
-  if love.keyboard.isDown('right' or 'd') then
+  if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
     flip = 2.5   -- if the 'up' key is being pressed...
     anim = walk
     --walk:update(dt)
@@ -249,7 +326,7 @@ end
       x = x + 4
       
     end
-    for i = 1, 3 do  
+    for i = 1, totalEnemies do  
     if cc(x + 5, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true and enemies[i].hp == 10 then
       x = x - 30
       hp = hp - 1
@@ -257,7 +334,7 @@ end
   end
 end
   
-for i = 1, 3 do 
+for i = 1, totalEnemies do 
 if cc(x, y, w, h, enemies[i].x, enemies[i].y, 8, 8)== true and enemy_draw == true and enemies[i].hp == 10 then
 hp = hp - 1
 end
@@ -284,12 +361,12 @@ end
     x = x - 5
   end
 
-  for i = 1, 3 do
+  for i = 1, totalEnemies do
     if enemy_draw == true then
       c = dist(enemies[i].x, enemies[i].y, x, y)
       a = y - enemies[i].y
       b = x - enemies[i].x
-      speed = 3
+      speed = 6
       cRatio = speed/c
       dy = a * cRatio
       dx = b * cRatio
@@ -311,7 +388,7 @@ end
       y = 300
       enemyD()
     end
-    for i = 1, 3 do 
+    for i = 1, totalEnemies do 
     if cc(x, y - 16, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x, y + 16, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x - 16, y, w, h, enemies[i].x, enemies[i].y, 32, 32) or cc(x + 16, y, w, h, enemies[i].x, enemies[i].y, 32, 32)== true then
       enemies[i].hp = 0
     end
@@ -326,7 +403,7 @@ end
   end
 
 
-  if hp == 0 then
+  if hp < 0.9 then
     love.exitModule();
   end
 end
@@ -352,7 +429,7 @@ function love.draw()
   if butterfly_alive == true then
   love.graphics.print('KILL THE BUTTERFLY!', 410, 85)
   end
-  love.graphics.print(hp, 0, 0)
+  love.graphics.print(hp, x, y - 16)
 
   
 
@@ -367,7 +444,7 @@ function love.draw()
   end
 
   if enemy_draw == true then
-  for i = 1, 3 do
+  for i = 1, totalEnemies do
     if enemies[i].hp == 10 then
     love.graphics.draw(enemies[i].img, enemies[i].x, enemies[i].y)
     end
