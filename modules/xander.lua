@@ -2,22 +2,26 @@ local Util = require 'core/util'
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
 function love.load()
+  bosshp = 100
   ex = 100
   ey = 100
   dir = 'right'
   eimg = love.graphics.newImage('assets-1/monster/demons/chaos_spawn_1.png')
-   rx = 100
+  emig = love.graphics.newImage('assets-1/monster/demons/balrug.png')
+  rx = 100
    ry = 400
    bir = 'right'
    tir = 'right'
    eir = 'right'
    air = 'right'
+   sir = 'right'
    tx = 100
    ty = 600
    ax = 100
    ay = 800 
-   
-   cam = gamera.new(0, 0, 2000, 2000) 
+   ix = 100
+   iy = 1100
+   cam = gamera.new(0, 0, 8000, 8000) 
   cam:setPosition(400, 400)
   x = 800
   y = 300
@@ -26,41 +30,42 @@ function love.load()
   walls = love.graphics.newImage('assets-1/dungeon/wall/catacombs_1.png')
   altar     = love.graphics.newImage('assets-1/dungeon/floor/bog_green_1.png')
   template = { --a 3 x 3 map with the altar texture in the middle
-                 {walls, walls, walls, walls, walls, walls, walls, walls,walls, walls, walls, walls,  walls, walls, walls, walls,walls, walls, walls, walls, walls, walls},
-                 {walls, floorTile, floorTile, altar, floorTile, floorTile, floorTile, altar,floorTile, floorTile, floorTile, altar,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
-                 {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, walls},
+                 {walls, walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,      walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls,     walls},
+                 {walls, floorTile, floorTile, altar,     floorTile, floorTile, floorTile, altar,     floorTile, floorTile, floorTile, altar,      floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  walls},
+                 {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 {walls, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, floorTile,  floorTile, floorTile, floorTile,floorTile, floorTile, floorTile, floorTile, floorTile, floorTile, walls},
+                 
                  {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls, walls, walls, walls, walls, walls, walls},
   
   
@@ -68,42 +73,42 @@ function love.load()
                 } 
                 
 map2 = { --a 3 x 3 map with the altar texture in the middle
-{walls, walls, walls, walls, walls, walls, walls, walls,walls, walls, walls, walls,  walls, walls, walls, walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil',  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil',  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar,'nil','nil',  'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar,  'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, 'nil', 'nil', altar,  'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil', walls},
-{walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls}, 
+                  {walls, walls, walls, walls, walls, walls, walls, walls,walls, walls, walls, walls,  walls, walls, walls,  walls,  walls, walls,  walls,    walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil',  'nil', 'nil', 'nil',  'nil', 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', 'nil', 'nil', 'nil', 'nil', 'nil','nil', 'nil', 'nil', 'nil',  'nil', 'nil', 'nil',  'nil', 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, 'nil', 'nil', altar, 'nil', 'nil', 'nil', altar,'nil', 'nil', 'nil', altar,  'nil', 'nil', 'nil',  altar, 'nil',   'nil',  'nil',   walls},
+                  {walls, walls, walls, walls,  walls, walls, walls, walls, walls, walls, walls, walls, walls, walls, walls, walls,  walls,  walls,   walls,  walls}, 
 
 
 } 
@@ -117,10 +122,21 @@ end
 
 
 function love.update(dt)
-  if love.keyboard.isDown('escape') then
-    love.exitModule();  
-  end 
-  
+  if bosshp < 1 then
+    love.exitModule(); 
+  end
+  if ix < 100 then
+    sir = 'right'
+  end
+  if ix > 1900 then
+    sir = 'left'
+  end
+  if sir == 'right' then
+    ix = ix + 10
+  end
+  if sir == 'left' then 
+    ix = ix - 10
+  end
   
   if ax < 100 then
     air = 'right'
@@ -209,6 +225,9 @@ function love.draw()
   cam:draw(function(l,t,w,h)
     map:draw()
     map2:draw()
+    love.graphics.draw(emig,bx,by)
+    
+    love.graphics.draw(emig, ix, iy)
     love.graphics.draw(eimg, ex, ey) 
     love.graphics.draw(eimg, rx, ry )
     love.graphics.draw(eimg, tx, ty )
@@ -219,9 +238,13 @@ function love.draw()
     love.graphics.rectangle('line', 0, 0, 64, 899)
     love.graphics.print(hp, 0, 0)
   end)
+  love.graphics.print(bosshp,bx,by)
 end
 
 
-
-
-
+function love.keypressed(key)
+  if key == 'z' then
+    -- what goes here?
+    bosshp = bosshp - 3
+ end
+end
