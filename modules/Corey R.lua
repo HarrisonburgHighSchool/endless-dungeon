@@ -8,6 +8,7 @@ game_end = false
 game_end2 = false
 enemy = false
 enemy2 = false
+ND = false
 col = 1
   ex = 400
   ey = 60
@@ -17,19 +18,25 @@ col = 1
   y = 60
   w = 38
   h = 56
+
+  -- New level stuff
   x2 = 750
   y2 = 68
   w2 = 64
   h2 = 64
+
+-- end the game
   x3 = 267
   y3 = 322
   w3 = 64
   h3 = 30
   x5 = 80
   y5 = 70
+
+  -- enemy2 trigger
   x6 = 715
   y6 = 136
-  hp = 100
+  hp = 1000 --100
   playerImg = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   playerImg2 = love.graphics.newImage('assets-1/player/base/gargoyle_male.png')
   floor = love.graphics.newImage('assets-1/dungeon/floor/cobble_blood_2.png')
@@ -175,36 +182,32 @@ if (enemy == true) then
   ey = ey - 1
   end
 end
---if (enemy2 == true) then
- -- if (x > ex2) then
- -- ex2 = ex2 + 1
- -- end
- -- if (x < ex2) then
- -- ex2 = ex2 - 1
- -- end
-  --if (y > ey2) then
-  --ey2= ey2 + 1
- -- end
- -- if (y < ey2) then
- -- ey2 = ey2 - 1
- -- end
---end
 if cc(x, y, w, h, x2, y2, w2, h2) == true then
  collide2 = true
  game_end = true
+ --game_end2 = true
  col = 2
- --enemy = false
+ enemy = false
+ ex = 719
+ ey = 60
 end
 if cc(x, y, w, h, x5, y5, w2, h2) == true then
   enemy = true
+  ND = true
  end
  if cc(x, y, w, h, x6, y6, w2, h2) == true then
  -- enemy2 = true
   enemy = true
+  ND = true
  end
-if cc(x, y, w, h, x3, y3, w2, h2) == true and game_end == true then
+
+if cc(x, y, w, h, x3, y3, w3, h3) == true and col == 2 then
   game_end2 = true
- end
+end
+
+
+
+
 if (collide == true and col == 1) then  
   hp = hp - 0.9
 end
@@ -229,7 +232,7 @@ if(collide3 == true and collide == true)then
 else
   collide8 = false
 end
-if cc(x, y, w, h, ex, ey, w, h) == true then
+if cc(x, y, w, h, ex, ey, w, h) == true and ND == true then
     hp = hp - 0.1
  end
 end
