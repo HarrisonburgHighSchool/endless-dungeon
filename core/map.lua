@@ -14,6 +14,8 @@ function Map:constructor(xSize, ySize, x, y)
     --Render table as map
     if ySize then
       self.gridsize = ySize
+    else
+      self.gridsize = template[1][1]:getWidth()
     end
   end
   if not template then
@@ -44,6 +46,7 @@ function Map:constructor(xSize, ySize, x, y)
       else
         w = img:getWidth()
         h = img:getHeight()
+        --self.gridsize = w
       end
       -- Create the matrix
       self:createTwoD(template, w, h)
@@ -97,9 +100,9 @@ function Map:createTwoD(template, w, h)
         end
       else
         img = template[x][y]
-        
+
       end
-      
+
       if img then
         print("Got img at "..x..", "..y)
         table.insert(self.matrix, Tile:new(((x-1)*w + self.x) * self.scale, ((y-1)*h + self.y) * self.scale, img))
