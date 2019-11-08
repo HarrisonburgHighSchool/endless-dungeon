@@ -17,8 +17,9 @@ function love.load()
   ex = 529
   ey = 460
   eimg2 = love.graphics.newImage('assets-2/dc-mon/jelly.png')
-  ex = 270
-  ey = 460
+  ex=100
+  ey=100
+  dir='left'
   finalBoss= love.graphics.newImage('assets-1/monster/dragons/golden_dragon.png')
   x=400
   y=300
@@ -26,6 +27,7 @@ function love.load()
 
   level = 1
 
+ 
 
   secretpath = love.graphics.newImage('assets-2/dc-dngn/gateways/stone_stairs_down.png')
   statue = love.graphics.newImage('assets-1/dungeon/statues/statue_angel.png')
@@ -103,22 +105,22 @@ end
 
 function love.update(dt)
   if love.keyboard.isDown('down') then   -- if the 'up' key is being pressed...
-    if collision:cc(x+12, y+3, 40, 64) == false then
+    if collision:cc(x, y+3 + 12 , 40, 64) == false then
     y = y + 3
     end
   end
   if love.keyboard.isDown('up') then   -- if the 'up' key is being pressed...
-    if collision:cc(x+12, y-3, 40, 64) == false then
+    if collision:cc(x, y-3 +12 , 40, 64) == false then
     y = y - 3
   end
 end
   if love.keyboard.isDown('right') then   -- if the 'up' key is being pressed...
-    if collision:cc(x + 3, y, 40, 64) == false then
+    if collision:cc(x + 3 + 12, y, 40, 64) == false then
     x = x + 3
   end
 end
 if love.keyboard.isDown('left') then   -- if the 'up' key is being pressed...
-  if collision:cc(x-3, y, 40, 64) == false then
+  if collision:cc(x-3 + 12, y, 40, 64) == false then
   x = x - 3
   end
 end
@@ -127,14 +129,18 @@ end
   -- if true, decrease HP:
   hp = hp - 1
  end
- if ex < 500 then
-  ex = ex + 1
- end
+ --if ex < 500 then
+ -- ex = ex + 1
+
   if cc(x, y, 64, 64,   200, 200, 64, 64) == true then
   currentDoor = closedDoor
+  
+if dir =='left' then 
+ ex = ex - 1
+end
 
- 
-
+--if cc(, 450, 192,0,2) then 
+ love.exitModule();
   --if finalBoss hp < 0 then
     --love.exitModule();
 
@@ -162,7 +168,7 @@ function love.draw()
 love.graphics.draw(switch, 193, 200,0,2)
   love.graphics.draw(playerImg, x, y,0,2)
 
-  love.graphics.draw(eimg, ex, ey)
+  --love.graphics.draw(eimg, ex, ey)
   love.graphics.draw(eimg2, ex, ey)
    -- Draw the rectangle in the upper left corner
    love.graphics.rectangle('line', x + 12, y, 40, 64)
