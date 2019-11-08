@@ -24,6 +24,7 @@ template = {
             {floorTile, altar, altar, altar, altar, altar, altar, altar, altar, floorTile},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile,},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
+
             {floorTile, altar, ground, ground, ground, ground, ground, ground,  altar, floorTile},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
             {floorTile, altar, ground, ground, ground, ground, ground, ground, altar, floorTile},
