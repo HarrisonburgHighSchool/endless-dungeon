@@ -7,6 +7,8 @@ function love.load()
   cam = gamera.new(0, 0, 2000, 800)
   x = 1
   y = 275
+ex = 1600
+ey = 375
   playerImg = love.graphics.newImage('assets-1/player/base/lorc_male_6.png')
     oct=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     oct2=love.graphics.newImage('assets-1/player/base/octopode_1.png')
@@ -14,8 +16,9 @@ function love.load()
     oct4=love.graphics.newImage('assets-1/player/base/octopode_2.png')
     oct5=love.graphics.newImage('assets-1/player/base/octopode_1.png')
     oct6=love.graphics.newImage('assets-1/player/base/octopode_2.png')
+    oct7=love.graphics.newImage('assets-1/player/base/octopode_4.png')
     gold=love.graphics.newImage('assets-1/item/gold/gold_pile_25.png')
-    axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
+    --axe=love.graphics.newImage('assets-1/item/weapon/battle_axe_5.png')
     rod=love.graphics.newImage('assets-1/item/rod/rod_6.png')
   w=60
   h=60
@@ -120,6 +123,25 @@ end
 function love.update(dt)
 
 --Enemies
+if x > 1300 then
+if x>ex then
+ex=ex+2.7
+end
+
+if x<ex then
+ex=ex-2.7
+end
+
+if y>ey then
+ey=ey+2.7
+end
+
+if y<ey then
+ey=ey-2.7
+end
+end
+--
+
   if direction == 'down' then
     z = z + 5
   end
@@ -271,6 +293,10 @@ if cc(x, y, w, h,   1025, enemy, 60, 60) then
 
   hp = hp - 1
 end
+if cc(x, y, w, h,   ex, ey, 60, 60) then
+
+  hp = hp - 1
+end
 if cc(x, y, w, h,   1800, 375, 60, 60) then
 
   love.exitModule()
@@ -296,7 +322,7 @@ if hp > 0 then
 end
 if hp > 0 then
     love.graphics.draw(rod, 375, 625)
-    love.graphics.draw(axe, 115, 115)
+    --love.graphics.draw(axe, 115, 115)
     love.graphics.draw(gold, 1800, 375)
     love.graphics.draw(oct, 100, z)
     love.graphics.draw(oct2, s, 325)
@@ -305,6 +331,7 @@ if hp > 0 then
     love.graphics.draw(door, 1280, 320)
     love.graphics.draw(oct5, 1090, enemy)
     love.graphics.draw(oct6, 1025, enemy2)
+    love.graphics.draw(oct7, ex, ey)
   end
     if hp > 0 then
     love.graphics.draw(playerImg, x, y)
