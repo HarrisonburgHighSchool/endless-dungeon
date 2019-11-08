@@ -5,7 +5,6 @@ local gamera = require 'core/gamera'
 function love.load()
   hp = 1000
   bosshp = 100
-  --player = Entity:new(img, 200, 200) 
   cam = gamera.new(0,0,5000,5000)
   x = 500
   y = 100
