@@ -134,7 +134,7 @@ function love.update(dt)
    if y < by then
      fby = fby - 3
    end
-if collide:cc(fbx, fby, 64, 105) == false then
+if collide:cc(fbx, fby, 64, 64) == false then
     bx = fbx
     by = fby
 end
@@ -266,7 +266,7 @@ then
   hp = hp - 1
 end
 
-if cc(x, y, w, h, bx, by, 128, 128)
+if cc(x, y, w, h, bx, by, 64, 64)
 then hp = hp - 1
 end
 
