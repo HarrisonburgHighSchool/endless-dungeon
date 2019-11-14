@@ -1,18 +1,13 @@
-customer = "Ariel"
-price = 0
-order = getOrder(customer)
+count = userInput()
 
-if order.item == "pizza" then
-  price = price + 5
-  if order.toppings == true then
-    for item, toppingPrice in pairs(order.toppingsList) do
-      price = price + toppingPrice
-    end
-  end
-elseif order.item == "sandwich" then
-  price = price + 3
-end
-price = price + order.size*2
-if order.delivery == true then
-  price = price + 4
-end
+if count > 5 then
+  print("Too many!")
+
+  if count > 10 then
+    print("Way too many!")
+
+elseif count < 5 then
+  print("Not enough")
+
+else
+  print("Perfect")
