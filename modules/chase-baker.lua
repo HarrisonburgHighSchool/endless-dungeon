@@ -153,27 +153,27 @@ if attack == true then
   end
 -- If player isn't collidiing with a wall, then it can move forward.
 -- If player is colliding with a wall, then it can't move in the direction of the wall.
+if love.keyboard.isDown('right') then
+   if collision:cc(x + 1, y, 36, 36) == false then
+    x = x + 2
+  end
+ end
+ if love.keyboard.isDown('left') then
+   if collision:cc(x - 1, y, 36, 36) == false then
+    x = x - 2
+  end
+ end
+ if love.keyboard.isDown('down') then
+   if collision:cc(x, y + 1, 36, 36) == false then
+    y = y + 2
+  end
+ end
+ if love.keyboard.isDown('up') then
+   if collision:cc(x, y - 1, 36, 36) == false then
+    y = y - 2
+  end
+ end
 
-  if love.keyboard.isDown('right') then
-    if collision:cc(x + 1, y, 36, 36) == false then
-     x = x + 2
-   end
-  end
-  if love.keyboard.isDown('left') then
-    if collision:cc(x - 1, y, 36, 36) == false then
-     x = x - 2
-   end
-  end
-  if love.keyboard.isDown('down') then
-    if collision:cc(x, y + 1, 36, 36) == false then
-     y = y + 2
-   end
-  end
-  if love.keyboard.isDown('up') then
-    if collision:cc(x, y - 1, 36, 36) == false then
-     y = y - 2
-   end
-  end
 -- Allows the player to attack enemys in a certain radius.
  if DamageBoost == false then
   if love.keyboard.isDown('w') then
