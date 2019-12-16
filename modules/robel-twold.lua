@@ -1,9 +1,6 @@
 local Map = require 'core/map'
 local gamera = require 'core/gamera'
-local Util = require 'core/util'
 local anim8 = require 'core/anim8'
-
-love.graphics.setDefaultFilter('nearest', 'nearest')
 function love.load()
   -- Create the object
   player = {
