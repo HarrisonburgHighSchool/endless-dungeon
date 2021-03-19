@@ -119,6 +119,11 @@ function love.update(dt)
 --if cc(x, y, 64, 64,  1080, 500, 200, 200) == true then
   --(currentDoor 0, 0, 0)
 --end
+if x==-300 then
+  hp = 100
+  x = 100
+  y = 100
+end
 
   local fbx = bx
   local fby = by
