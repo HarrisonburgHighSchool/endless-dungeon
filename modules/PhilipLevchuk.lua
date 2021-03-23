@@ -3,6 +3,7 @@ local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local Entity = require 'core/entity'
 
+
 function love.load()
 
   speed = 1.6
@@ -13,8 +14,8 @@ function love.load()
   y = 100
   open = false
   playerImg = love.graphics.newImage('assets-1/monster/knight.png')
-  w = 64
-  h = 64
+  w = 63
+  h = 60
   hp = 100
   --a = 470
   --b = 400
@@ -212,18 +213,21 @@ end
     if love.keyboard.isDown('up') then
 
           ty = ty - speed
-
+          playerImg = love.graphics.newImage('assets-1/monster/knight.png')
       end
       if love.keyboard.isDown('down') then
           ty = ty + speed
+          playerImg = love.graphics.newImage('assets-1/monster/knight.png')
       end
       if love.keyboard.isDown('right') then
           tx = tx + speed
-
+          playerImg = love.graphics.newImage('assets-1/monster/knightRIGHT.png')
       end
       if love.keyboard.isDown('left') then
+  
 
           tx = tx - speed
+          playerImg = love.graphics.newImage('assets-1/monster/knightLEFT.png')
 
       end
 
