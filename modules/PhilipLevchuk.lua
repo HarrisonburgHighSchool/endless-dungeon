@@ -6,6 +6,9 @@ local Entity = require 'core/entity'
 
 function love.load()
 
+  playerRIGHT = love.graphics.newImage('assets-1/monster/knightRIGHT.png')
+
+
   speed = 1.6
 
 
@@ -221,16 +224,17 @@ end
       end
       if love.keyboard.isDown('right') then
           tx = tx + speed
-          playerImg = love.graphics.newImage('assets-1/monster/knightRIGHT.png')
-          then 
-          playerImg = love.graphics.newImage('assets-1/monster/run1.png')
-          then
-          playerImg = love.graphics.newImage('assets-1/monster/run2.png')
-          then
-          playerImg = love.graphics.newImage('assets-1/monster/run3.png')
-          then
-          playerImg = love.graphics.newImage('assets-1/monster/run4.png')
+          playerImg = playerRIGHT
+           
+          
       end
+
+
+
+
+
+
+      
       if love.keyboard.isDown('left') then
   
 
