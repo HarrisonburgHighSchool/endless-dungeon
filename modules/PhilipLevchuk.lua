@@ -259,7 +259,7 @@ end
 if hp == 0 then
   x = -300
   if love.keyboard.isDown('escape') then
-    love.load()
+    love.exitModule()
   end
 
 end
