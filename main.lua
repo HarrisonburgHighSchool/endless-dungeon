@@ -3,7 +3,7 @@ require 'loader'
 local anim8 = require 'anim8'
 
 function love.load()
-    heroImage = love.graphics.newImage('oldHero.png')
+    heroImage = love.graphics.newImage('Stuwalk.png')
     local g = anim8.newGrid(16, 16, heroImage:getWidth(), heroImage:getHeight())
     heroAnim = anim8.newAnimation(g('1-6',1), 0.1) -- frame info, speed
 end
