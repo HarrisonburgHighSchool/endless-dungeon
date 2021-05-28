@@ -7,8 +7,8 @@ local anim8 = require 'modules/anim8'
 function love.load()
 
   heroImage = love.graphics.newImage('Stuwalk.png')
-  local g = anim8.newGrid(16, 16, heroImage:getWidth(), heroImage:getHeight())
-  heroAnim = anim8.newAnimation(g('1-10',1), 0.1) -- frame info, speed
+  local g = anim8.newGrid(64, 64, heroImage:getWidth(), heroImage:getHeight())
+  heroAnim = anim8.newAnimation(g('1-5',1), 0.1) -- frame info, speed
 
 
 
@@ -308,7 +308,7 @@ function love.draw()
   map:draw()
   collide:draw()
   love.graphics.print('Hello, world!', 0, 0)
-  love.graphics.draw(playerImg, x, y)
+  --love.graphics.draw(playerImg, x, y)
   love.graphics.rectangle('line', 0, 0, 64, 64)
   love.graphics.print(hp, x, y+ - 18)
   love.graphics.draw(Img4, ax, ay)
@@ -319,6 +319,6 @@ function love.draw()
   love.graphics.draw(switch, 450, 600)
   love.graphics.draw(BossImg, bx, by)
   love.graphics.draw(Food, foodx, foody)
-  heroAnim:draw(heroImage, 100, 200, 0, 8)
+  heroAnim:draw(heroImage, x-24*3, y-24*3, 0, 3)
  end)
 end
