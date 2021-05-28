@@ -2,9 +2,18 @@ local Map = require 'core/map'
 local gamera = require 'core/gamera'
 local Util = require 'core/util'
 local Entity = require 'core/entity'
-
+local anim8 = require 'modules/anim8'
 
 function love.load()
+
+  heroImage = love.graphics.newImage('Stuwalk.png')
+  local g = anim8.newGrid(16, 16, heroImage:getWidth(), heroImage:getHeight())
+  heroAnim = anim8.newAnimation(g('1-10',1), 0.1) -- frame info, speed
+
+
+
+
+
 
   playerRIGHT = love.graphics.newImage('assets-1/monster/knightRIGHT.png')
 
@@ -118,7 +127,7 @@ end
 function love.update(dt)
 
 
-
+  heroAnim:update(dt)
 
 --if cc(x, y, 64, 64,  1080, 500, 200, 200) == true then
   --(currentDoor 0, 0, 0)
@@ -310,5 +319,6 @@ function love.draw()
   love.graphics.draw(switch, 450, 600)
   love.graphics.draw(BossImg, bx, by)
   love.graphics.draw(Food, foodx, foody)
+  heroAnim:draw(heroImage, 100, 200, 0, 8)
  end)
 end
