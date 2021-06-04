@@ -11,7 +11,9 @@ function love.load()
   heroAnim = anim8.newAnimation(g('1-5',1), 0.1) -- frame info, speed
 
 
-
+  --rightImage = love.graphics.newImage('Stuwalk.png')
+  --local g = anim8.newGrid(64, 64, rightImage:getWidth(), rightImage:getHeight())
+  --rightAnim = anim8.newAnimation(g('6-13',1), 0.1) -- frame info, speed
 
 
 
@@ -233,7 +235,9 @@ end
       end
       if love.keyboard.isDown('right') then
           tx = tx + speed
-          playerImg = playerRIGHT
+          
+          
+          
            
           
       end
@@ -320,5 +324,9 @@ function love.draw()
   love.graphics.draw(BossImg, bx, by)
   love.graphics.draw(Food, foodx, foody)
   heroAnim:draw(heroImage, x-24*3, y-24*3, 0, 3)
+ -- if love.keyboard.isDown('right') then
+   -- rightAnim:draw(rightImage, x-24*3, y-24*3, 0, 3)
+      
+  --end
  end)
 end
