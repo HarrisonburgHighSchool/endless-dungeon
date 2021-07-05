@@ -24,18 +24,19 @@ function love.load()
   w = 64
   h = 64
   hp = 100
+  ehp1 = 100
+  ehp2 = 100
 
 
-
-
-
+  ex2 = 700
+  ey2 = 100
   ex = 100
   ey = 100
   dir = 'left'
   eimg = love.graphics.newImage('assets-1/player/base/octopode_2.png')
+  e2 = love.graphics.newImage('assets-1/player/base/octopode_3.png')
 
-
-  spritesheet = love.graphics.newImage('hero/Old hero.png')
+  spritesheet = love.graphics.newImage('hero/eeee.png')
   grid = anim8.newGrid(16, 16, spritesheet:getWidth(), spritesheet:getHeight())
   swim = anim8.newAnimation(grid('1-6', 4), 0.065)
 
@@ -85,7 +86,21 @@ function love.update(dt)
 
   cam:setPosition(x, y)
 
+  if love.keyboard.isDown('left') then
+  t = t + 0.1
+  end
 
+  if love.keyboard.isDown('right') then
+    t = t + 0.1
+    end
+
+  if love.keyboard.isDown('up') then
+      t = t + 0.1
+      end
+
+  if love.keyboard.isDown('down') then
+        t = t + 0.1
+        end
 
 
   swim:update(dt)
@@ -104,7 +119,6 @@ end
   X1 = X1 - 5
   X2 = X2 - 5
   end
-
 
 end
 
@@ -135,6 +149,13 @@ end
   end
 end
 
+
+
+
+
+
+
+
   if cc(x, y, w, h,   385, 190, 64, 64) then
       x = x - 3000
     end
@@ -163,7 +184,30 @@ end
       ey = ey - 3
     end
 
+
+
+--ex2
+    if x > ex2 then
+     ex2 = ex2 + 4.9
+     end
+
+     if x < ex2 then
+      ex2 = ex2 - 4.9
+    end
+
+     if y > ey2 then
+       ey2 = ey2 + 4.9
+     end
+
+     if y < ey2 then
+       ey2 = ey2 - 4.9
+     end
+
     if ex > x - 3 and ex < x + 3 and ey > y - 3 and ex < y + 3 then
+      hp = hp - 1
+    end
+
+    if ex2 > x - 3 and ex2 < x + 3 and ey2 > y - 3 and ex2 < y + 3 then
       hp = hp - 1
     end
 
@@ -211,25 +255,31 @@ end
   entity.x = entity.x +- G
   entity.y = entity.y +- H
 
+
+
   if x < 250 and x > 150 and y < 240 and y > 140 then
     y = y + 200
     x = x + 400
 end
+
 
 if x < 650 and x > 550 and y < 650 and y > 550 then
   y = y - 600
   x = x - 600
 end
 
+
 if x < 250 and x > 150 and y < 950 and y > 850 then
   y = y + 50
   x = x + 700
 end
 
+
 if x < 850 and x > 750 and y < 50 and y > 0 then
   y = 550
   x = 380
 end
+
 
 if x < 850 and x > 750 and y < 0 and y > -50 then
   y = 1500
@@ -238,10 +288,26 @@ end
 
 
 
+
 if x < 150 and x > 50 and y < 440 and y > 340 then
   y = yy
   x = xx
 end
+
+
+if love.keyboard.isDown('w') and ex2 > x - 15 and ex2 < x + 15 and ey2 > y - 15 and ex2 < y + 15 then
+  ehp2 = ehp2 - 2
+end
+
+--if love.keyboard.isDown('space') and ex > x - 15 and ex < x + 15 and ey > y - 15 and ex < y + 15 then
+  --ehp1 = ehp1 - 2
+--end
+
+if ehp2 == 0 then
+  ex2 = 100000
+  ey2 = 100000
+end
+
 
 
 end
@@ -265,17 +331,28 @@ function love.draw()
   love.graphics.print(hp, x + 18, y - 15)
 --end
 
-
-
+  love.graphics.print('(Invincible)', ex + 10, ey - 25)
+  love.graphics.print(ehp2, ex2 + 18, ey2 - 15)
   love.graphics.draw(eimg, ex, ey)
+  love.graphics.draw(e2, ex2, ey2)
   love.graphics.draw(gate, 400, 570)
   love.graphics.draw(gate2, 950, 950)
 
 
 
 
+
   love.graphics.print('I will Eat You!!!', ex - 10, ey - 10)
   love.graphics.print('True Road Is At          /!', 450, 250, 6, 3)
+
+  love.graphics.print('Press W!!!!FIGHT!!', 400, 850)
+
+
+  if t > 399 then
+  love.graphics.print('No!! I cant make it!', x - 10, y - 30)
+end
+--  love.graphics.print(t, x, y - 45)
+
 
   love.graphics.setColor(0, 1, 6, 6)
 
